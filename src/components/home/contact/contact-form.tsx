@@ -1,5 +1,5 @@
 "use client";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { valibotResolver } from "@hookform/resolvers/valibot";
 import { HTTPError } from "ky";
 import { Loader2 } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -18,14 +18,14 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
-import { contactSchema } from "@/zodSchema/contact";
+import { contactSchema } from "@/schema/contact";
 
 const ContactForm = () => {
   const t = useTranslations("home.contact");
   const { toast } = useToast();
 
   const form = useForm({
-    resolver: zodResolver(contactSchema),
+    resolver: valibotResolver(contactSchema),
     defaultValues: {
       full_name: "",
       email: "",

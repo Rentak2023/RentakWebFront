@@ -1,17 +1,18 @@
 "use server";
+import { type Input, safeParse } from "valibot";
 
 import ky from "@/lib/ky";
-import { type Contact, contactSchema } from "@/zodSchema/contact";
+import { contactSchema } from "@/schema/contact";
 
 type ContactResponse = {
   message: string;
 };
 
-export const contactAction = (data: Contact) => {
-  const validatedFields = contactSchema.safeParse(data);
+export const contactAction = (data: Input<typeof contactSchema>) => {
+  const validatedFields = safeParse(contactSchema, data);
 
   if (!validatedFields.success) {
-    console.error(validatedFields.error);
+    console.error(validatedFields.issues);
     throw new Error("Invalid fields");
   }
 
