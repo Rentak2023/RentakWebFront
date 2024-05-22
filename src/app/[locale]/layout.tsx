@@ -12,7 +12,7 @@ import {
 
 import Footer from "@/components/Footer";
 import Navbar from "@/components/navbar";
-import { Toaster } from "@/components/ui/Toaster";
+import { Toaster } from "@/components/ui/toaster";
 import useTextDirection from "@/hooks/useTextDirection";
 
 const notoSans = Noto_Sans_Arabic({

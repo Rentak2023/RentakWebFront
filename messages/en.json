@@ -85,26 +85,22 @@
         "description": "Rentak guarantees the unit's condition, settles bills, and manages the transition for both parties."
       }
     },
-    "units": {
-      "discoverOurRentalUnits": "Discover our rental units",
-      "recentUnits": "Recent Units",
-      "viewAll": "View All Units"
-    },
-    "contact": {
-      "contact": "Contact Us",
-      "getInTouch": "Get in touch !",
-      "sendMessage": "Send Message",
-      "yourName": "Your Name",
-      "name": "Name",
-      "yourEmail": "Your Email",
-      "email": "Email",
-      "yourPhone": "Your Phone",
-      "phone": "Phone",
-      "yourQuestion": "Your Question",
-      "subject": "Subject",
-      "yourMessage": "Your Message",
-      "message": "Message"
-    }
+    "discoverOurRentalUnits": "Discover our rental units",
+    "recentUnits": "Recent Units",
+    "viewAll": "View All Units",
+    "contact": "Contact Us",
+    "getInTouch": "Get in touch !",
+    "sendMessage": "Send Message",
+    "yourName": "Your Name",
+    "name": "Name",
+    "yourEmail": "Your Email",
+    "email": "Email",
+    "yourPhone": "Your Phone",
+    "phone": "Phone",
+    "yourQuestion": "Your Question",
+    "subject": "Subject",
+    "yourMessage": "Your Message",
+    "message": "Message"
   },
   "unit": {
     "egp": "EGP",

@@ -6,7 +6,7 @@ import SectionTitle from "../components/sectionTitle";
 import ContactForm from "./contactForm";
 
 const Contact = () => {
-  const t = useTranslations("home.contact");
+  const t = useTranslations("home");
 
   return (
     <section className="relative py-16 lg:py-24">

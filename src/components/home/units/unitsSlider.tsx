@@ -8,11 +8,14 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/Carousel";
-import { Unit } from "@/components/Unit";
+} from "@/components/ui/carousel";
+import Unit from "@/components/unit";
 import useTextDirection from "@/hooks/useTextDirection";
+import { type Unit as TUnit } from "@/services/units";
 
-import { type UnitsSliderProps } from "./types";
+type UnitsSliderProps = {
+  units: Array<TUnit>;
+};
 
 const UnitsSlider = ({ units }: UnitsSliderProps) => {
   const locale = useLocale();

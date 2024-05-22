@@ -1,23 +1,27 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { HTTPError } from "ky";
+import { Loader2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 
 import { contactAction } from "@/app/[locale]/actions/contact";
+import { Button } from "@/components/ui/button";
 import {
-  EmailInput,
   Form,
-  PhoneNumberInput,
-  SubmitButton,
-  TextareaInput,
-  TextInput,
-} from "@/components/ui/Form";
-import { useToast } from "@/hooks/useToast";
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/components/ui/use-toast";
 import { contactSchema } from "@/zodSchema/contact";
 
 const ContactForm = () => {
-  const t = useTranslations("home.contact");
+  const t = useTranslations("home");
   const { toast } = useToast();
 
   const form = useForm({
@@ -63,43 +67,85 @@ const ContactForm = () => {
     <Form {...form}>
       <form onSubmit={onSubmit} className="space-y-5">
         <div className="grid gap-5 lg:grid-cols-2 lg:gap-6">
-          <TextInput
+          <FormField
             control={form.control}
             name="full_name"
-            label={t("yourName")}
-            placeholder={`${t("name")}:`}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>{t("yourName")}</FormLabel>
+                <FormControl>
+                  <Input placeholder={`${t("name")}:`} {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
-          <EmailInput
+          <FormField
             control={form.control}
             name="email"
-            label={t("yourEmail")}
-            placeholder={`${t("email")}:`}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>{t("yourEmail")}</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder={`${t("email")}:`}
+                    type="email"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
         </div>
-        <PhoneNumberInput
+        <FormField
           control={form.control}
           name="phone"
-          label={t("yourPhone")}
-          placeholder={`${t("phone")}:`}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{t("yourPhone")}</FormLabel>
+              <FormControl>
+                <Input placeholder={`${t("phone")}:`} type="tel" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-        <TextInput
+
+        <FormField
           control={form.control}
           name="subject"
-          label={t("yourQuestion")}
-          placeholder={`${t("subject")}:`}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{t("yourQuestion")}</FormLabel>
+              <FormControl>
+                <Input placeholder={`${t("subject")}:`} {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-        <TextareaInput
+
+        <FormField
           control={form.control}
           name="message"
-          label={t("yourMessage")}
-          placeholder={`${t("message")}:`}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{t("yourMessage")}</FormLabel>
+              <FormControl>
+                <Textarea placeholder={`${t("message")}:`} {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-        <SubmitButton
-          size="lg"
-          type="submit"
-          isSubmitting={form.formState.isSubmitting}
-          text={t("sendMessage")}
-        />
+
+        <Button size="lg" type="submit" disabled={form.formState.isSubmitting}>
+          {form.formState.isSubmitting && (
+            <Loader2 className="mr-2 size-4 animate-spin" />
+          )}
+          {t("sendMessage")}
+        </Button>
       </form>
     </Form>
   );

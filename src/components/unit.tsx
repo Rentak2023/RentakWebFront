@@ -8,8 +8,11 @@ import {
   BedIcon,
   LinkIcon,
 } from "@/app/[locale]/assets/svgs";
+import { type Unit as TUnit } from "@/services/units";
 
-import { type UnitProps } from "./types";
+type UnitProps = {
+  item: TUnit;
+};
 
 const Unit = ({ item }: UnitProps) => {
   const trans = useTranslations("unit");
