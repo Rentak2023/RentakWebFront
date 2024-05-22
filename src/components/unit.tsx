@@ -5,6 +5,7 @@ import AreaIcon from "@/app/[locale]/assets/svgs/area-icon";
 import BathIcon from "@/app/[locale]/assets/svgs/bath-icon";
 import BedIcon from "@/app/[locale]/assets/svgs/bed-icon";
 import LinkIcon from "@/app/[locale]/assets/svgs/link-icon";
+import { getImage } from "@/lib/image";
 import { Link } from "@/navigation";
 import { type Unit as TUnit } from "@/services/units";
 
@@ -14,6 +15,8 @@ type UnitProps = {
 
 async function Unit({ item }: UnitProps) {
   const t = await getTranslations("unit");
+
+  const { base64 } = await getImage(item.picture);
 
   const bedroom = item.rooms.find(
     (room: { room_name: string }) => room.room_name === "Bedroom",
@@ -26,11 +29,13 @@ async function Unit({ item }: UnitProps) {
     <div className="group overflow-hidden rounded-xl bg-white shadow duration-300 ease-in-out hover:shadow-xl">
       <div className="relative h-80">
         <Image
-          className="object-cover"
           src={item.picture}
-          alt=""
+          className="object-cover"
+          blurDataURL={base64}
+          placeholder="blur"
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          alt=""
         />
 
         <div className="absolute bottom-4 end-4">
