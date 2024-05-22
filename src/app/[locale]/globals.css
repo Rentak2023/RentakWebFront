@@ -106,7 +106,7 @@
 
   /* =============================== */
   #topnav {
-    @apply fixed inset-x-0 top-0 border-0 duration-500 transition-all bg-transparent z-50;
+    @apply fixed inset-x-0 top-0 border-0 duration-300 transition-all bg-transparent z-50;
   }
 
   #topnav .has-submenu {
@@ -231,12 +231,16 @@
   }
 
   #topnav .navigation-menu .has-submenu .menu-arrow {
-    @apply absolute inline-block rotate-45 transition-all duration-500 border-slate-300;
+    @apply absolute inline-block rotate-45 transition-all duration-300 border-slate-300;
     border-width: 0 2px 2px 0;
     inset-inline-end: 0;
     top: 2.25rem;
     border-radius: 0.5px;
     padding: 2px;
+  }
+
+  #topnav.nav-sticky .navigation-menu .has-submenu .menu-arrow {
+    @apply border-slate-800;
   }
 
   #topnav.scroll {
