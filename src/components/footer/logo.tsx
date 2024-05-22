@@ -1,18 +1,18 @@
 import Image from "next/image";
-import Link from "next/link";
 import { useTranslations } from "next-intl";
 
 import logo from "@/app/[locale]/assets/images/Logo.png";
+import { Link } from "@/navigation";
 
 const Logo = () => {
   const t = useTranslations("footer");
 
   return (
-    <div className="md:col-span-12 lg:col-span-4">
-      <Link href="#" className="text-[22px] focus:outline-none">
+    <div>
+      <Link href="/">
         <Image src={logo} alt="logo" width={98} height={28} />
       </Link>
-      <p className="mt-6 text-[#737373]">{t("description")}</p>
+      <p className="mt-6 text-slate-500">{t("description")}</p>
     </div>
   );
 };

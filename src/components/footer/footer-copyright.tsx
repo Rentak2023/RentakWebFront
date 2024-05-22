@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { useTranslations } from "next-intl";
 
 import FacebookIcon from "@/app/[locale]/assets/svgs/facebook-icon";
@@ -6,6 +5,8 @@ import InstagramIcon from "@/app/[locale]/assets/svgs/instagram-icon";
 import LinkedinIcon from "@/app/[locale]/assets/svgs/linkedin-icon";
 import WhatsappIcon from "@/app/[locale]/assets/svgs/whatsapp-icon";
 import URLS from "@/shared/urls";
+
+import { Button } from "../ui/button";
 
 const Copyright = () => {
   const t = useTranslations("footer");
@@ -30,11 +31,11 @@ const Copyright = () => {
   ];
 
   return (
-    <div className="border-t border-[#BBBBBB] px-0 py-[30px]">
+    <div className="border-t border-t-slate-300 px-0 py-[30px]">
       <div className="container mx-auto px-6 md:px-8">
         <div className="grid items-center gap-6 md:grid-cols-2">
           <div className="text-center md:text-start">
-            <p className="mb-0 text-[#737373]">
+            <p className="mb-0 text-slate-700">
               {`©${new Date().getFullYear()} ${t("copyright")}.`}
             </p>
           </div>
@@ -42,13 +43,11 @@ const Copyright = () => {
           <ul className="list-none text-center md:text-end">
             {socialMediaLinks.map((link) => (
               <li key={link.url} className="ms-1 inline">
-                <Link
-                  href={link.url}
-                  target="_blank"
-                  className="btn btn-icon btn-sm rounded-md text-slate-400 hover:border-secondary hover:bg-primary-600"
-                >
-                  {link.icon}
-                </Link>
+                <Button variant="ghost" size="icon" asChild>
+                  <a href={link.url} target="_blank" rel="noreferrer">
+                    {link.icon}
+                  </a>
+                </Button>
               </li>
             ))}
           </ul>

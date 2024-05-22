@@ -1,9 +1,9 @@
-import Link from "next/link";
 import { useTranslations } from "next-intl";
 
 import LocationIcon from "@/app/[locale]/assets/svgs/location-icon";
 import MailOutlineIcon from "@/app/[locale]/assets/svgs/mail-outline-icon";
 import PhoneIcon from "@/app/[locale]/assets/svgs/phone-icon";
+import { Link } from "@/navigation";
 import URLS from "@/shared/urls";
 
 const Links = () => {
@@ -76,25 +76,22 @@ const Links = () => {
       ],
     },
   ];
-  return lists.map((list, index) => (
-    <div
-      key={list.id}
-      className={`md:col-span-4 ${index === lists.length - 1 ? "lg:col-span-3" : "lg:col-span-2"}`}
-    >
-      <h5 className="font-semibold tracking-[1px] text-primary-800">
-        {list.title}
-      </h5>
-      <ul className="footer-list mt-6 list-none">
+  return lists.map((list) => (
+    <div key={list.id}>
+      <h4 className="font-semibold text-primary-800">{list.title}</h4>
+      <ul className="mt-6 list-none">
         {list.links.map((link) => (
           <li key={link.id} className="mb-3">
             <Link
               href={link.url}
-              className="flex items-center gap-2 text-[#737373] duration-500 ease-in-out hover:text-slate-400"
+              className="flex items-center gap-2 text-slate-600 hover:text-slate-700"
             >
-              {link.icon}
-              <span style={{ direction: link.icon ? "ltr" : undefined }}>
-                {link.text}
-              </span>
+              {link.icon ? (
+                <span className="flex size-5 items-center justify-center">
+                  {link.icon}
+                </span>
+              ) : null}
+              <span>{link.text}</span>
             </Link>
           </li>
         ))}

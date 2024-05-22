@@ -19,6 +19,23 @@ const config = {
   ],
   plugins: ["simple-import-sort"],
   rules: {
+    "no-restricted-imports": [
+      "error",
+      {
+        name: "next/link",
+        message: "Please use @/navigation instead.",
+      },
+      {
+        name: "next/navigation",
+        importNames: [
+          "redirect",
+          "permanentRedirect",
+          "usePathname",
+          "useRouter",
+        ],
+        message: "Please use @/navigation instead.",
+      },
+    ],
     "promise/always-return": [
       "error",
       {

@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { useTranslations } from "next-intl";
 
+import { Link } from "@/navigation";
 import URLS from "@/shared/urls";
 
 const ViewAllUnits = () => {

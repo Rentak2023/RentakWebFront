@@ -1,11 +1,11 @@
 import Image from "next/image";
-import Link from "next/link";
 import { useTranslations } from "next-intl";
 
 import AreaIcon from "@/app/[locale]/assets/svgs/area-icon";
 import BathIcon from "@/app/[locale]/assets/svgs/bath-icon";
 import BedIcon from "@/app/[locale]/assets/svgs/bed-icon";
 import LinkIcon from "@/app/[locale]/assets/svgs/link-icon";
+import { Link } from "@/navigation";
 import { type Unit as TUnit } from "@/services/units";
 
 type UnitProps = {
