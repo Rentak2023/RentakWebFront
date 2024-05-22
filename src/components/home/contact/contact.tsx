@@ -12,7 +12,7 @@ const Contact = () => {
     <section className="relative py-16 lg:py-24">
       <div className="container mx-auto">
         <SectionTitle text={t("contact")} />
-        <div className="mt-8 flex flex-col items-stretch lg:flex-row lg:items-center lg:justify-around">
+        <div className="mt-12 flex flex-col items-stretch lg:flex-row lg:items-center lg:justify-around">
           <div className="flex items-center justify-center">
             <ContactImage />
           </div>

@@ -130,7 +130,7 @@
   }
 
   #topnav .has-submenu .submenu .submenu-arrow {
-    @apply absolute inline-block ltr:-rotate-45 rtl:rotate-[135deg] border-gray-300;
+    @apply absolute inline-block ltr:-rotate-45 rtl:rotate-[135deg] border-slate-300;
     border-width: 0 0.125rem 0.125rem 0;
     inset-inline-end: 1.25rem;
     top: 0.8125rem;
@@ -207,21 +207,25 @@
   }
 
   #topnav .navigation-menu > li > a {
-    @apply block bg-transparent font-medium text-gray-300 text-lg px-4;
+    @apply block bg-transparent font-medium text-slate-300 text-lg px-4;
   }
 
   #topnav.nav-sticky .navigation-menu > li > a {
-    @apply text-gray-800;
+    @apply text-slate-800;
+  }
+
+  #topnav.nav-sticky .navigation-menu > li.active > a {
+    @apply text-slate-900 font-semibold;
   }
 
   #topnav .navigation-menu > li > a:hover,
   #topnav .navigation-menu > li > a:active {
-    @apply text-white;
+    @apply text-slate-50;
   }
 
   #topnav .navigation-menu > li:hover > a,
   #topnav .navigation-menu > li.active > a {
-    @apply text-white;
+    @apply text-slate-50;
   }
 
   #topnav .navigation-menu > li .submenu li {
@@ -231,7 +235,7 @@
   }
 
   #topnav .navigation-menu .has-submenu .menu-arrow {
-    @apply absolute inline-block rotate-45 transition-all duration-500 border-gray-300;
+    @apply absolute inline-block rotate-45 transition-all duration-500 border-slate-300;
     border-width: 0 2px 2px 0;
     inset-inline-end: 0;
     top: 2.25rem;
@@ -250,7 +254,7 @@
   }
 
   #topnav.scroll .navigation-menu > li > .menu-arrow {
-    @apply border-gray-300;
+    @apply border-slate-300;
   }
 
   #topnav.scroll .navigation-menu > li:hover > a,
@@ -288,7 +292,7 @@
   }
 
   #topnav.nav-sticky .navigation-menu.nav-light .has-submenu .menu-arrow {
-    @apply border-gray-300;
+    @apply border-slate-300;
   }
 
   @media (width >= 992px) {
@@ -382,7 +386,7 @@
     }
 
     #topnav .navigation-menu.nav-light > li > a {
-      @apply text-gray-300;
+      @apply text-slate-300;
     }
 
     #topnav .navigation-menu.nav-light > li.active > a {
@@ -398,7 +402,7 @@
     }
 
     #topnav .navigation-menu.nav-light .has-submenu .menu-arrow {
-      @apply border-gray-300;
+      @apply border-slate-300;
     }
 
     #topnav .navigation-menu.nav-light .has-submenu.active .menu-arrow {
@@ -644,23 +648,23 @@
 
   /* =============================== */
   .footer .foot-subscribe input::input-placeholder {
-    @apply border-gray-200;
+    @apply border-slate-200;
   }
 
   .footer .foot-subscribe input::placeholder {
-    @apply border-gray-200;
+    @apply border-slate-200;
   }
 
   .footer .foot-subscribe input:input-placeholder {
-    @apply border-gray-200;
+    @apply border-slate-200;
   }
 
   .footer .foot-subscribe input::input-placeholder {
-    @apply border-gray-200;
+    @apply border-slate-200;
   }
 
   .footer .foot-subscribe input::placeholder {
-    @apply border-gray-200;
+    @apply border-slate-200;
   }
 
   /********************************   */
@@ -1117,7 +1121,7 @@
   }
 
   .choices__inner {
-    @apply bg-gray-50;
+    @apply bg-slate-50;
   }
 
   .choices__list--dropdown,
@@ -1130,7 +1134,7 @@
   }
 
   .choices__list--dropdown .choices__item--selectable.is-highlighted {
-    @apply bg-gray-50;
+    @apply bg-slate-50;
 
     --tw-text-opacity: 1;
 
@@ -1221,7 +1225,7 @@
   }
 
   .swiper-slider-hero .swiper-pagination-bullet {
-    @apply bg-transparent text-gray-50;
+    @apply bg-transparent text-slate-50;
   }
 
   .swiper-slider-hero .swiper-pagination-bullet-active {
@@ -1371,13 +1375,13 @@
 
     --tw-bg-opacity: 1;
 
-    @apply !bg-gray-50;
+    @apply !bg-slate-50;
   }
 
   .css-t3ipsp-control {
     border-color: transparent !important;
 
-    @apply !bg-gray-50;
+    @apply !bg-slate-50;
   }
 
   .css-1u9des2-indicatorSeparator {

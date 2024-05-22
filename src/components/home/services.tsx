@@ -32,7 +32,7 @@ export function Services() {
 
   return (
     <div className="pt-24 sm:pt-32">
-      <div className="container mx-auto flex max-w-7xl flex-col items-center justify-stretch px-6 md:px-8">
+      <div className="container mx-auto flex max-w-7xl flex-col items-center justify-stretch px-6 md:px-8 xl:max-w-7xl">
         <SectionTitle text={t("title")} />
 
         <p className="mt-5 max-w-2xl text-center text-lg text-slate-600">

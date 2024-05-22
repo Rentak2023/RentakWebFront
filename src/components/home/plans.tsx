@@ -55,7 +55,7 @@ export function Plans() {
     <div className="relative pt-24 sm:pt-32">
       <SectionTitle text={t("title")} />
 
-      <div className="mx-auto max-w-7xl px-6 lg:mt-12 lg:rounded-2xl lg:p-10 lg:pb-14 lg:shadow-lg">
+      <div className="mx-auto mt-12 max-w-7xl px-6 pt-4 lg:rounded-2xl lg:px-10 lg:pb-14 lg:shadow">
         {/* Feature comparison (up to lg) */}
         <section
           aria-labelledby="mobile-comparison-heading"

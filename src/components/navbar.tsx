@@ -76,10 +76,10 @@ export default function Navbar({ navClass, topnavClass }: NavbarProps) {
         id="topnav"
         className={`${topNavbar ? "nav-sticky" : ""} ${topnavClass ?? ""}`}
       >
-        <div className="container mx-auto flex max-lg:px-4">
+        <div className="container mx-auto flex px-4">
           {/* <!-- Start Mobile Toggle --> */}
           <div className="me-4 lg:hidden">
-            <div className="border-gray-200">
+            <div className="border-slate-200">
               <Link href="#" className="navbar-toggle" onClick={toggleMenu}>
                 <div className="lines">
                   <span />
@@ -174,9 +174,9 @@ export default function Navbar({ navClass, topnavClass }: NavbarProps) {
                 </Link>
               </Button>
             </li>
-            <li className="mb-0 hidden ps-1 sm:inline">
-              <Button asChild className="rounded-full">
-                <Link href="/auth-signup">Signup</Link>
+            <li className="mb-0 ms-2 hidden sm:inline">
+              <Button asChild size="lg" className="rounded-full">
+                <Link href="/auth-signup">Login/Signup</Link>
               </Button>
             </li>
           </ul>
