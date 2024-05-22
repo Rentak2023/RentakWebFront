@@ -69,6 +69,8 @@ export async function WhyUs() {
               alt=""
               className="w-full rounded-lg object-cover"
               placeholder="blur"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              width={416}
             />
           </div>
         </div>

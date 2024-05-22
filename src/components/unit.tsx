@@ -25,7 +25,13 @@ async function Unit({ item }: UnitProps) {
   return (
     <div className="group overflow-hidden rounded-xl bg-white shadow duration-300 ease-in-out hover:shadow-xl">
       <div className="relative h-80">
-        <Image className="object-cover" src={item.picture} alt="" fill />
+        <Image
+          className="object-cover"
+          src={item.picture}
+          alt=""
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
 
         <div className="absolute bottom-4 end-4">
           <div className="btn rounded-full bg-white">

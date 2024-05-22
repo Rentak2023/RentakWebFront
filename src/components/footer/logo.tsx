@@ -10,7 +10,7 @@ async function Logo() {
   return (
     <div>
       <Link href="/">
-        <Image src={logo} alt="logo" width={98} height={28} />
+        <Image src={logo} alt="logo" height={28} />
       </Link>
       <p className="mt-6 text-slate-500">{t("description")}</p>
     </div>
