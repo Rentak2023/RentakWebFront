@@ -10,15 +10,12 @@ import {
 } from "@/components/ui/carousel";
 import Unit from "@/components/unit";
 import useTextDirection from "@/hooks/text-direction";
-import { type Unit as TUnit } from "@/services/units";
+import { getUnits } from "@/services/units";
 
-type UnitsSliderProps = {
-  units: Array<TUnit>;
-};
-
-async function UnitsSlider({ units }: UnitsSliderProps) {
+async function UnitsSlider() {
   const locale = await getLocale();
   const direction = useTextDirection(locale);
+  const units = await getUnits({ locale });
 
   return (
     <Carousel

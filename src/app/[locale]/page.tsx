@@ -7,15 +7,13 @@ import { Plans } from "@/components/home/plans";
 import { Services } from "@/components/home/services";
 import Units from "@/components/home/units";
 import { WhyUs } from "@/components/home/why-us";
-import { getUnits } from "@/services/units";
 
-export default async function Home({
+export default function Home({
   params: { locale },
 }: Readonly<{
   params: { locale: string };
 }>) {
   unstable_setRequestLocale(locale);
-  const units = await getUnits({ locale });
 
   return (
     <main className="min-h-screen">
@@ -24,7 +22,7 @@ export default async function Home({
       <WhyUs />
       <Plans />
       <HowItWorks />
-      <Units units={units} />
+      <Units />
       <Contact />
     </main>
   );

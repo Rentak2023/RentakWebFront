@@ -38,7 +38,7 @@ async function Unit({ item }: UnitProps) {
       </div>
 
       <div className="p-6">
-        <div className="flex flex-col pb-6">
+        <div className="flex flex-col">
           <Link
             href={`/property-detail/${item.id}`}
             className="truncate text-base font-semibold duration-500 ease-in-out hover:text-primary-800"
@@ -54,7 +54,7 @@ async function Unit({ item }: UnitProps) {
           )}
         </div>
 
-        <ul className="flex list-none items-center gap-4 border-b border-slate-200 py-6">
+        <ul className="mt-6 flex list-none items-center gap-4 border-b border-slate-200 py-6">
           <li className="flex items-center gap-1">
             <BedIcon />
             <span>

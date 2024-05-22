@@ -1,16 +1,12 @@
 import { getTranslations } from "next-intl/server";
-
-import { type Unit } from "@/services/units";
+import { Suspense } from "react";
 
 import SectionTitle from "../components/section-title";
+import UnitsSkeleton from "./units-skeleton";
 import UnitsSlider from "./units-slider";
 import ViewAllUnits from "./view-all-units";
 
-type UnitsProps = {
-  units: Array<Unit>;
-};
-
-async function Units({ units }: UnitsProps) {
+async function Units() {
   const t = await getTranslations("home.units");
 
   return (
@@ -21,7 +17,9 @@ async function Units({ units }: UnitsProps) {
           <ViewAllUnits />
         </div>
         <div className="mt-8">
-          <UnitsSlider units={units} />
+          <Suspense fallback={<UnitsSkeleton />}>
+            <UnitsSlider />
+          </Suspense>
         </div>
       </div>
     </div>
