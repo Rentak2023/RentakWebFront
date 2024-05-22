@@ -8,7 +8,10 @@ export default getRequestConfig(async ({ locale }) => {
   // Validate that the incoming `locale` parameter is valid
   if (!locales.has(locale)) notFound();
 
-  const { default: messages } = await import(`../messages/${locale}.json`);
+  // For some reason `const {messages: default}` isn't working
+  // eslint-disable-next-line unicorn/no-await-expression-member
+  const messages = (await import(`../messages/${locale}.json`)).default;
+
   return {
     messages,
   };

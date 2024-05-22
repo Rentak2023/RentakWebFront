@@ -14,6 +14,7 @@ import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import { Toaster } from "@/components/ui/toaster";
 import useTextDirection from "@/hooks/text-direction";
+import { locales } from "@/navigation";
 
 const notoSans = Noto_Sans_Arabic({
   subsets: ["arabic"],
@@ -41,11 +42,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-// const locales = ["en", "ar"];
-
-// export function generateStaticParams() {
-//   return locales.map((locale) => ({ locale }));
-// }
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
 
 export default async function RootLayout({
   children,
