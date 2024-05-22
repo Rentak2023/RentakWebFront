@@ -35,14 +35,14 @@ export function HowItWorks() {
               key={step.title}
             >
               <div
-                className="mt-6 flex size-4 shrink-0 items-center justify-center rounded-full bg-primary
+                className="mt-6 flex size-4 shrink-0 items-center justify-center rounded-full bg-primary-600
                 ring-4
-          ring-primary ring-offset-2 md:order-1 ltr:md:group-odd:-translate-x-1/2 ltr:md:group-even:translate-x-1/2 rtl:md:group-odd:translate-x-1/2 rtl:md:group-even:-translate-x-1/2"
+          ring-primary-600 ring-offset-2 md:order-1 ltr:md:group-odd:-translate-x-1/2 ltr:md:group-even:translate-x-1/2 rtl:md:group-odd:translate-x-1/2 rtl:md:group-even:-translate-x-1/2"
               />
               <hr />
               <div className="w-[calc(100%-3rem)] p-4 md:w-[calc(50%-1rem)]">
                 <div className="flex items-center justify-between">
-                  <p className="text-xl font-semibold text-primary-shade-3">
+                  <p className="text-xl font-semibold text-primary-800">
                     {step.title}
                   </p>
                 </div>

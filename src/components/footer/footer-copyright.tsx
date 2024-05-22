@@ -45,7 +45,7 @@ const Copyright = () => {
                 <Link
                   href={link.url}
                   target="_blank"
-                  className="btn btn-icon btn-sm rounded-md text-slate-400 hover:border-secondary hover:bg-primary"
+                  className="btn btn-icon btn-sm rounded-md text-slate-400 hover:border-secondary hover:bg-primary-600"
                 >
                   {link.icon}
                 </Link>

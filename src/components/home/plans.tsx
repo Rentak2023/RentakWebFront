@@ -72,7 +72,7 @@ export function Plans() {
                   <h3
                     className={clsx(
                       "text-lg font-medium leading-6",
-                      tier.featured ? "text-primary" : "text-slate-900",
+                      tier.featured ? "text-primary-600" : "text-slate-900",
                     )}
                   >
                     {tier.name}
@@ -127,7 +127,7 @@ export function Plans() {
                   <p
                     className={clsx(
                       "text-lg font-medium leading-6",
-                      tier.featured ? "text-primary" : "text-slate-900",
+                      tier.featured ? "text-primary-600" : "text-slate-900",
                     )}
                   >
                     {tier.name}

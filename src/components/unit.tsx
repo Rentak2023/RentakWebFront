@@ -28,7 +28,7 @@ const Unit = ({ item }: UnitProps) => {
         <Image className="object-cover" src={item.picture} alt="" fill />
 
         <div className="absolute bottom-4 end-4">
-          <div className="btn rounded-full bg-white shadow hover:text-primary focus:text-primary">
+          <div className="btn rounded-full bg-white shadow hover:text-primary-600 focus:text-primary-600">
             <p className="text=[#181A20] font-semibold">
               {item.price} {t("egp")} /{" "}
               <span className="font-normal">{t("month")}</span>
@@ -41,7 +41,7 @@ const Unit = ({ item }: UnitProps) => {
         <div className="flex flex-col pb-6">
           <Link
             href={`/property-detail/${item.id}`}
-            className="truncate text-base font-semibold duration-500 ease-in-out hover:text-primary-shade-3"
+            className="truncate text-base font-semibold duration-500 ease-in-out hover:text-primary-800"
           >
             {item.property_name}
           </Link>
@@ -76,7 +76,7 @@ const Unit = ({ item }: UnitProps) => {
 
         <Link
           href={`/property-detail/${item.id}`}
-          className="duration-500 ease-in-out hover:text-primary-shade-3"
+          className="duration-500 ease-in-out hover:text-primary-800"
         >
           <ul className="flex list-none items-center justify-between pt-6">
             <li>

@@ -47,10 +47,10 @@ export function WhyUs() {
             <dl className="mt-14 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2">
               {features.map((feature) => (
                 <div key={feature.name} className="mx-auto flex flex-col">
-                  <dt className="text-base/7 font-semibold text-primary-shade-3">
-                    <div className="relative mb-6 flex size-8 items-center justify-center rounded-full bg-primary-shade-3/20">
+                  <dt className="text-base/7 font-semibold text-primary-800">
+                    <div className="relative mb-6 flex size-8 items-center justify-center rounded-full bg-primary-800/20">
                       <feature.icon
-                        className="absolute -start-2 -top-2 size-8 text-primary-shade-3"
+                        className="absolute -start-2 -top-2 size-8 text-primary-800"
                         aria-hidden="true"
                       />
                     </div>

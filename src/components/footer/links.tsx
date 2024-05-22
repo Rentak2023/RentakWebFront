@@ -81,7 +81,7 @@ const Links = () => {
       key={list.id}
       className={`md:col-span-4 ${index === lists.length - 1 ? "lg:col-span-3" : "lg:col-span-2"}`}
     >
-      <h5 className="font-semibold tracking-[1px] text-primary-shade-3">
+      <h5 className="font-semibold tracking-[1px] text-primary-800">
         {list.title}
       </h5>
       <ul className="footer-list mt-6 list-none">

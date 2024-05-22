@@ -51,8 +51,8 @@ export function Services() {
 function Service({ title, description, icon: Icon }: Service) {
   return (
     <div className="flex max-w-72 flex-col items-center justify-center gap-4">
-      <div className="hexagon flex h-28 w-24 items-center justify-center bg-primary/5">
-        <Icon className="size-8 text-primary-shade-3" />
+      <div className="hexagon flex h-28 w-24 items-center justify-center bg-primary-600/5">
+        <Icon className="size-8 text-primary-800" />
       </div>
       <h3 className="text-center text-xl font-medium text-slate-900">
         {title}

@@ -3,10 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --color-primary: 0, 102, 204;
-  }
-
   /* Start Custom Scrollbar */
 
   ::-webkit-scrollbar {
@@ -16,7 +12,7 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: rgb(var(--color-primary));
+    @apply bg-primary-600;
     border-radius: 5px;
   }
 
