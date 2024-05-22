@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import logo from "@/app/[locale]/assets/images/Logo.png";
 
 const Logo = () => {
-  const trans = useTranslations("footer");
+  const t = useTranslations("footer");
 
   return (
     <div className="md:col-span-12 lg:col-span-4">

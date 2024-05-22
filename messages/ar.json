@@ -85,22 +85,26 @@
         "description": " تضمن رينتك حالة الوحدة، وتسديد الفواتير، وتدير عملية الايجار لكلا الطرفين."
       }
     },
-    "discoverOurRentalUnits": "اكتشف وحداتنا المؤجرة",
-    "recentUnits": "الوحدات الحديثة",
-    "viewAll": "رؤية كافة الوحدات",
-    "contact": "تواصل معنا",
-    "getInTouch": "تواصل معنا!",
-    "sendMessage": "أرسل رسالة",
-    "yourName": "اسمك",
-    "name": "الإسم",
-    "yourEmail": "البريد الإلكتروني الخاص بك",
-    "email": "الايميل",
-    "yourPhone": "هاتفك",
-    "phone": "رقم الهاتف",
-    "yourQuestion": "سؤالك",
-    "subject": "العنوان",
-    "yourMessage": "رسالتك",
-    "message": "الرسالة"
+    "units": {
+      "discoverOurRentalUnits": "اكتشف وحداتنا المؤجرة",
+      "recentUnits": "الوحدات الحديثة",
+      "viewAll": "رؤية كافة الوحدات"
+    },
+    "contact": {
+      "contact": "تواصل معنا",
+      "getInTouch": "تواصل معنا!",
+      "sendMessage": "أرسل رسالة",
+      "yourName": "اسمك",
+      "name": "الإسم",
+      "yourEmail": "البريد الإلكتروني الخاص بك",
+      "email": "الايميل",
+      "yourPhone": "هاتفك",
+      "phone": "رقم الهاتف",
+      "yourQuestion": "سؤالك",
+      "subject": "العنوان",
+      "yourMessage": "رسالتك",
+      "message": "الرسالة"
+    }
   },
   "unit": {
     "egp": "EGP",

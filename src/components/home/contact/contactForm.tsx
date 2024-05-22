@@ -21,7 +21,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { contactSchema } from "@/zodSchema/contact";
 
 const ContactForm = () => {
-  const t = useTranslations("home");
+  const t = useTranslations("home.contact");
   const { toast } = useToast();
 
   const form = useForm({

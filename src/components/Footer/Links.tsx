@@ -9,7 +9,7 @@ import {
 import URLS from "@/shared/urls";
 
 const Links = () => {
-  const trans = useTranslations("footer");
+  const t = useTranslations("footer");
   const lists = [
     {
       id: "pages",

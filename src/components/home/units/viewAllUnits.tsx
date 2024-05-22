@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import URLS from "@/shared/urls";
 
 const ViewAllUnits = () => {
-  const trans = useTranslations("home");
+  const t = useTranslations("home.units");
   return (
     <div className="flex w-full flex-row justify-between">
       <h3 className="text-2xl font-semibold text-[#2F2F2F]">

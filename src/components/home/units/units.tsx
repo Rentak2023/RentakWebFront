@@ -11,7 +11,7 @@ type UnitsProps = {
 };
 
 function Units({ units }: UnitsProps) {
-  const trans = useTranslations("home");
+  const t = useTranslations("home.units");
 
   return (
     <div className="pt-24 sm:pt-32">

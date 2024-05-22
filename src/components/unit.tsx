@@ -15,7 +15,7 @@ type UnitProps = {
 };
 
 const Unit = ({ item }: UnitProps) => {
-  const trans = useTranslations("unit");
+  const t = useTranslations("unit");
 
   const bedroom = item.rooms.find(
     (room: { room_name: string }) => room.room_name === "Bedroom",

@@ -10,7 +10,7 @@ import {
 import URLS from "@/shared/urls";
 
 const Copyright = () => {
-  const trans = useTranslations("footer");
+  const t = useTranslations("footer");
 
   const socialMediaLinks = [
     {
