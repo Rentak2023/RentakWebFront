@@ -37,7 +37,7 @@ const Copyright = () => {
         <div className="grid items-center gap-6 md:grid-cols-2">
           <div className="text-center md:text-start">
             <p className="mb-0 text-[#737373]">
-              {`©${new Date().getFullYear()} ${trans("copyright")}.`}
+              {`©${new Date().getFullYear()} ${t("copyright")}.`}
             </p>
           </div>
 

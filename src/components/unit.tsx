@@ -33,8 +33,8 @@ const Unit = ({ item }: UnitProps) => {
           <div className="absolute bottom-4 end-4">
             <div className="btn rounded-full bg-white shadow hover:text-primary focus:text-primary">
               <p className="text=[#181A20] font-semibold">
-                {item.price} {trans("egp")} /{" "}
-                <span className="font-normal">{trans("month")}</span>
+                {item.price} {t("egp")} /{" "}
+                <span className="font-normal">{t("month")}</span>
               </p>
             </div>
           </div>
@@ -61,15 +61,14 @@ const Unit = ({ item }: UnitProps) => {
             <li className="me-4 flex items-center gap-1">
               <BedIcon />
               <span>
-                {bedroom !== undefined ? bedroom.num_of_rooms : 0}{" "}
-                {trans("beds")}
+                {bedroom !== undefined ? bedroom.num_of_rooms : 0} {t("beds")}
               </span>
             </li>
 
             <li className="me-4 flex items-center gap-1">
               <BathIcon />
               <span>
-                {bathroom ? bathroom.num_of_rooms : 0} {trans("baths")}
+                {bathroom ? bathroom.num_of_rooms : 0} {t("baths")}
               </span>
             </li>
             <li className="flex items-center gap-1">
@@ -84,7 +83,7 @@ const Unit = ({ item }: UnitProps) => {
           >
             <ul className="flex list-none items-center justify-between pt-6">
               <li>
-                <p className="text-sm font-normal">{trans("availableNow")}</p>
+                <p className="text-sm font-normal">{t("availableNow")}</p>
               </li>
 
               <li>

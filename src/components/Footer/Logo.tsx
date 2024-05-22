@@ -12,7 +12,7 @@ const Logo = () => {
       <Link href="#" className="text-[22px] focus:outline-none">
         <Image src={logo} alt="logo" width={98} height={28} />
       </Link>
-      <p className="mt-6 text-[#737373]">{trans("description")}</p>
+      <p className="mt-6 text-[#737373]">{t("description")}</p>
     </div>
   );
 };

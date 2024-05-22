@@ -13,49 +13,49 @@ const Links = () => {
   const lists = [
     {
       id: "pages",
-      title: trans("pages"),
+      title: t("pages"),
       links: [
         {
           id: "contact-us",
           url: URLS.contactUs,
-          text: trans("contactUs"),
+          text: t("contactUs"),
           icon: null,
         },
         {
           id: "faq",
           url: URLS.faq,
-          text: trans("faq"),
+          text: t("faq"),
           icon: null,
         },
       ],
     },
     {
       id: "services",
-      title: trans("services"),
+      title: t("services"),
       links: [
         {
           id: "rent-payment",
           url: URLS.rentPayment,
-          text: trans("rentPayment"),
+          text: t("rentPayment"),
           icon: null,
         },
         {
           id: "rent-collection",
           url: URLS.rentCollection,
-          text: trans("rentCollection"),
+          text: t("rentCollection"),
           icon: null,
         },
         {
           id: "units",
           url: URLS.units,
-          text: trans("units"),
+          text: t("units"),
           icon: null,
         },
       ],
     },
     {
       id: "contact",
-      title: trans("contact"),
+      title: t("contact"),
       links: [
         {
           id: "address",
