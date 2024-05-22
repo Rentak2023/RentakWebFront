@@ -31,7 +31,7 @@ export function HowItWorks() {
         <div className="relative mt-12">
           {steps.map((step) => (
             <div
-              className="group relative flex items-start justify-between before:absolute before:inset-0 before:top-6 before:ms-5 before:h-full before:w-0.5 before:-translate-x-px before:bg-slate-200 last-of-type:before:hidden md:justify-normal md:before:mx-auto md:before:translate-x-0 md:odd:flex-row-reverse"
+              className="group relative flex items-start justify-between before:absolute before:inset-0 before:top-6 before:-z-10 before:ms-5 before:h-full before:w-0.5 before:-translate-x-3 before:bg-slate-200 last-of-type:before:hidden md:justify-normal md:before:mx-auto md:before:translate-x-0 md:odd:flex-row-reverse"
               key={step.title}
             >
               <div
@@ -46,7 +46,9 @@ export function HowItWorks() {
                     {step.title}
                   </p>
                 </div>
-                <p className="mt-4 text-slate-500">{step.description}</p>
+                <p className="mt-4 min-h-[3lh] text-slate-500">
+                  {step.description}
+                </p>
               </div>
             </div>
           ))}
