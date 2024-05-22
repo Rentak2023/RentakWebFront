@@ -18,7 +18,7 @@ export function Header() {
         priority
         sizes="100vw"
       />
-      <div className="absolute inset-0 -z-10 bg-[#161C2D]/50" />
+      <div className="absolute inset-0 -z-10 bg-slate-900/50" />
       <div className="mx-auto flex min-h-screen max-w-7xl items-center px-6 lg:px-8">
         <div className="max-w-lg py-32 sm:py-48 lg:py-48">
           <div className="text-start">

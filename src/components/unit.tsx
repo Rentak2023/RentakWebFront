@@ -23,13 +23,13 @@ const Unit = ({ item }: UnitProps) => {
   );
 
   return (
-    <div className="group overflow-hidden rounded-xl bg-white shadow duration-500 ease-in-out hover:shadow-xl">
+    <div className="group overflow-hidden rounded-xl bg-white shadow duration-300 ease-in-out hover:shadow-xl">
       <div className="relative h-80">
         <Image className="object-cover" src={item.picture} alt="" fill />
 
         <div className="absolute bottom-4 end-4">
-          <div className="btn rounded-full bg-white shadow hover:text-primary-600 focus:text-primary-600">
-            <p className="text=[#181A20] font-semibold">
+          <div className="btn rounded-full bg-white">
+            <p className="font-semibold text-slate-800">
               {item.price} {t("egp")} /{" "}
               <span className="font-normal">{t("month")}</span>
             </p>
@@ -46,23 +46,23 @@ const Unit = ({ item }: UnitProps) => {
             {item.property_name}
           </Link>
           {item.property_type.type_name ? (
-            <p className="text=[#717171] inline-block text-sm">
+            <p className="inline-block text-sm text-gray-500">
               {item.property_type.type_name}
             </p>
           ) : (
-            <p className="h-[20px]" />
+            <div className="h-5" />
           )}
         </div>
 
-        <ul className="flex list-none items-center border-b border-[#DDDDDD] py-6">
-          <li className="me-4 flex items-center gap-1">
+        <ul className="flex list-none items-center gap-4 border-b border-slate-200 py-6">
+          <li className="flex items-center gap-1">
             <BedIcon />
             <span>
-              {bedroom == undefined ? 0 : bedroom.num_of_rooms} {t("beds")}
+              {bedroom ? bedroom.num_of_rooms : 0} {t("beds")}
             </span>
           </li>
 
-          <li className="me-4 flex items-center gap-1">
+          <li className="flex items-center gap-1">
             <BathIcon />
             <span>
               {bathroom ? bathroom.num_of_rooms : 0} {t("baths")}
@@ -76,7 +76,7 @@ const Unit = ({ item }: UnitProps) => {
 
         <Link
           href={`/property-detail/${item.id}`}
-          className="duration-500 ease-in-out hover:text-primary-800"
+          className="duration-300 ease-in-out hover:text-primary-800"
         >
           <ul className="flex list-none items-center justify-between pt-6">
             <li>

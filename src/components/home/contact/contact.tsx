@@ -20,7 +20,7 @@ const Contact = () => {
           <div className="lg:max-w-lg">
             <div className="lg:me-5">
               <div className="rounded-md bg-white p-6 shadow">
-                <h3 className="mb-6 text-2xl font-medium leading-normal text-[#161C2D]">
+                <h3 className="mb-6 text-2xl font-medium leading-normal text-slate-900">
                   {t("getInTouch")}
                 </h3>
                 <ContactForm />
