@@ -17,7 +17,8 @@ export const config = {
      * - _next/static (static files)
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
+     * - .swa (Azure Static Web Apps)
      */
-    "/((?!api|_next/static|_next/image|assets|images|favicon.ico).*)",
+    "/((?!.swa|api|_next/static|_next/image|assets|images|favicon.ico).*)",
   ],
 };
