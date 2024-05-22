@@ -1,12 +1,12 @@
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
 import headerBackground from "@/app/[locale]/assets/images/header-background.png";
 
 import { Button } from "../ui/button";
 
-export function Header() {
-  const t = useTranslations("header");
+export async function Header() {
+  const t = await getTranslations("header");
   return (
     <div className="relative min-h-screen overflow-hidden pt-14">
       <Image

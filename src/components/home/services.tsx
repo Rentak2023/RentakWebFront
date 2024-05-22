@@ -1,5 +1,5 @@
 import { BriefcaseIcon, HomeIcon, KeyIcon } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
 import SectionTitle from "./components/section-title";
 
@@ -9,8 +9,8 @@ type Service = {
   icon: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
 };
 
-export function Services() {
-  const t = useTranslations("home.our-services");
+export async function Services() {
+  const t = await getTranslations("home.our-services");
 
   const services: Array<Service> = [
     {

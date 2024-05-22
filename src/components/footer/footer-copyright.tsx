@@ -1,4 +1,4 @@
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
 import FacebookIcon from "@/app/[locale]/assets/svgs/facebook-icon";
 import InstagramIcon from "@/app/[locale]/assets/svgs/instagram-icon";
@@ -8,8 +8,8 @@ import URLS from "@/shared/urls";
 
 import { Button } from "../ui/button";
 
-const Copyright = () => {
-  const t = useTranslations("footer");
+async function Copyright() {
+  const t = await getTranslations("footer");
 
   const socialMediaLinks = [
     {
@@ -55,6 +55,6 @@ const Copyright = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Copyright;

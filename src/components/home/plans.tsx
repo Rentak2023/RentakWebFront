@@ -1,10 +1,10 @@
 import clsx from "clsx";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
 import SectionTitle from "./components/section-title";
 
-export function Plans() {
-  const t = useTranslations("home.plans");
+export async function Plans() {
+  const t = await getTranslations("home.plans");
 
   const plans = {
     plans: [

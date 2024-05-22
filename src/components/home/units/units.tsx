@@ -1,4 +1,4 @@
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
 import { type Unit } from "@/services/units";
 
@@ -10,8 +10,8 @@ type UnitsProps = {
   units: Array<Unit>;
 };
 
-function Units({ units }: UnitsProps) {
-  const t = useTranslations("home.units");
+async function Units({ units }: UnitsProps) {
+  const t = await getTranslations("home.units");
 
   return (
     <div className="pt-24 sm:pt-32">

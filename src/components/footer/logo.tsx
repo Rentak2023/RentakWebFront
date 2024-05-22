@@ -1,11 +1,11 @@
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
 import logo from "@/app/[locale]/assets/images/Logo.png";
 import { Link } from "@/navigation";
 
-const Logo = () => {
-  const t = useTranslations("footer");
+async function Logo() {
+  const t = await getTranslations("footer");
 
   return (
     <div>
@@ -15,6 +15,6 @@ const Logo = () => {
       <p className="mt-6 text-slate-500">{t("description")}</p>
     </div>
   );
-};
+}
 
 export default Logo;

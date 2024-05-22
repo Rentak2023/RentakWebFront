@@ -1,5 +1,4 @@
-"use client";
-import { useLocale } from "next-intl";
+import { getLocale } from "next-intl/server";
 
 import {
   Carousel,
@@ -17,8 +16,8 @@ type UnitsSliderProps = {
   units: Array<TUnit>;
 };
 
-const UnitsSlider = ({ units }: UnitsSliderProps) => {
-  const locale = useLocale();
+async function UnitsSlider({ units }: UnitsSliderProps) {
+  const locale = await getLocale();
   const direction = useTextDirection(locale);
 
   return (
@@ -41,5 +40,5 @@ const UnitsSlider = ({ units }: UnitsSliderProps) => {
       </div>
     </Carousel>
   );
-};
+}
 export default UnitsSlider;

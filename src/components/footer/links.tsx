@@ -1,4 +1,4 @@
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
 import LocationIcon from "@/app/[locale]/assets/svgs/location-icon";
 import MailOutlineIcon from "@/app/[locale]/assets/svgs/mail-outline-icon";
@@ -6,8 +6,8 @@ import PhoneIcon from "@/app/[locale]/assets/svgs/phone-icon";
 import { Link } from "@/navigation";
 import URLS from "@/shared/urls";
 
-const Links = () => {
-  const t = useTranslations("footer");
+async function Links() {
+  const t = await getTranslations("footer");
   const lists = [
     {
       id: "pages",
@@ -98,6 +98,6 @@ const Links = () => {
       </ul>
     </div>
   ));
-};
+}
 
 export default Links;

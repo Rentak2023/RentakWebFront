@@ -1,6 +1,6 @@
 import { BriefcaseIcon, HomeIcon, KeyIcon, TruckIcon } from "lucide-react";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
 import whyUsBackground from "@/app/[locale]/assets/images/why-choose-us.png";
 
@@ -31,8 +31,8 @@ const features = [
   },
 ];
 
-export function WhyUs() {
-  const t = useTranslations("home.why-us");
+export async function WhyUs() {
+  const t = await getTranslations("home.why-us");
 
   return (
     <div className="pt-24 sm:pt-32">

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
 import AreaIcon from "@/app/[locale]/assets/svgs/area-icon";
 import BathIcon from "@/app/[locale]/assets/svgs/bath-icon";
@@ -12,8 +12,8 @@ type UnitProps = {
   item: TUnit;
 };
 
-const Unit = ({ item }: UnitProps) => {
-  const t = useTranslations("unit");
+async function Unit({ item }: UnitProps) {
+  const t = await getTranslations("unit");
 
   const bedroom = item.rooms.find(
     (room: { room_name: string }) => room.room_name === "Bedroom",
@@ -91,6 +91,6 @@ const Unit = ({ item }: UnitProps) => {
       </div>
     </div>
   );
-};
+}
 
 export default Unit;

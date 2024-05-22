@@ -1,9 +1,9 @@
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
 import SectionTitle from "./components/section-title";
 
-export function HowItWorks() {
-  const t = useTranslations("home.how-it-works");
+export async function HowItWorks() {
+  const t = await getTranslations("home.how-it-works");
 
   const steps = [
     {

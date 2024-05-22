@@ -1,12 +1,12 @@
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
 import { ContactImage } from "@/app/[locale]/assets/svgs/contact-image";
 
 import SectionTitle from "../components/section-title";
 import ContactForm from "./contact-form";
 
-const Contact = () => {
-  const t = useTranslations("home.contact");
+async function Contact() {
+  const t = await getTranslations("home.contact");
 
   return (
     <section className="relative py-16 lg:py-24">
@@ -31,6 +31,6 @@ const Contact = () => {
       </div>
     </section>
   );
-};
+}
 
 export default Contact;

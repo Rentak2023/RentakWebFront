@@ -1,10 +1,6 @@
-import { useLocale } from "next-intl";
-
 import type { SvgsTypes } from "./types";
 
 const ArrowIcon = ({ size, color, type }: SvgsTypes) => {
-  const locale = useLocale();
-
   switch (type) {
     case "right": {
       return (
@@ -14,9 +10,7 @@ const ArrowIcon = ({ size, color, type }: SvgsTypes) => {
           viewBox="0 0 14 15"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          style={{
-            transform: locale == "ar" ? "rotate(180deg)" : "none",
-          }}
+          className="rtl:rotate-180"
         >
           <path
             d="M9.16016 11.8362C9.03255 11.7268 8.96875 11.581 8.96875 11.3987C8.96875 11.2164 9.03255 11.0615 9.16016 10.9338L11.7578 8.33619H0.65625C0.255208 8.29973 0.0364583 8.07187 0 7.6526C0.0364583 7.26978 0.255208 7.06015 0.65625 7.02369H11.7578L9.16016 4.42603C8.90495 4.11614 8.90495 3.80624 9.16016 3.49635C9.47005 3.24114 9.77995 3.24114 10.0898 3.49635L13.8086 7.2151C14.0638 7.52499 14.0638 7.83489 13.8086 8.14478L10.0898 11.8635C9.77995 12.1187 9.47005 12.1096 9.16016 11.8362Z"
@@ -33,9 +27,7 @@ const ArrowIcon = ({ size, color, type }: SvgsTypes) => {
           viewBox="0 0 14 15"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          style={{
-            transform: locale == "ar" ? "rotate(-180deg)" : "none",
-          }}
+          className="rtl:rotate-180"
         >
           <g clipPath="url(#clip0_1990_2631)">
             <path
