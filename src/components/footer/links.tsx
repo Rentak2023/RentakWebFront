@@ -1,11 +1,9 @@
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 
-import {
-  LocationIcon,
-  MailOutlineIcon,
-  PhoneIcon,
-} from "@/app/[locale]/assets/svgs";
+import LocationIcon from "@/app/[locale]/assets/svgs/location-icon";
+import MailOutlineIcon from "@/app/[locale]/assets/svgs/mail-outline-icon";
+import PhoneIcon from "@/app/[locale]/assets/svgs/phone-icon";
 import URLS from "@/shared/urls";
 
 const Links = () => {
@@ -93,7 +91,7 @@ const Links = () => {
               href={link.url}
               className="flex items-center gap-2 text-[#737373] duration-500 ease-in-out hover:text-slate-400"
             >
-              {link.icon ? link.icon : null}
+              {link.icon}
               <span style={{ direction: link.icon ? "ltr" : undefined }}>
                 {link.text}
               </span>

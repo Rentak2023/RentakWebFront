@@ -11,12 +11,10 @@ const routes = [
   {
     name: "Home",
     path: "/",
-    subRoutes: null,
   },
   {
     name: "Listing",
     path: "/listing",
-    subRoutes: null,
   },
   {
     name: "Services",
@@ -35,7 +33,6 @@ const routes = [
   {
     name: "Contact",
     path: "/contact",
-    subRoutes: null,
   },
 ];
 
@@ -77,7 +74,7 @@ export default function Navbar({ navClass, topnavClass }: NavbarProps) {
     <React.Fragment>
       <nav
         id="topnav"
-        className={`${topNavbar ? "nav-sticky" : ""} ${topnavClass ? topnavClass : ""}`}
+        className={`${topNavbar ? "nav-sticky" : ""} ${topnavClass ?? ""}`}
       >
         <div className="container mx-auto flex max-lg:px-4">
           {/* <!-- Start Mobile Toggle --> */}
@@ -85,9 +82,9 @@ export default function Navbar({ navClass, topnavClass }: NavbarProps) {
             <div className="border-gray-200">
               <Link href="#" className="navbar-toggle" onClick={toggleMenu}>
                 <div className="lines">
-                  <span></span>
-                  <span></span>
-                  <span></span>
+                  <span />
+                  <span />
+                  <span />
                 </div>
               </Link>
             </div>
@@ -142,9 +139,9 @@ export default function Navbar({ navClass, topnavClass }: NavbarProps) {
                     >
                       {route.name}
                     </Link>
-                    {hasSubmenu && (
+                    {hasSubmenu ? (
                       <>
-                        <span className="menu-arrow"></span>
+                        <span className="menu-arrow" />
                         <ul
                           className={`submenu ${checkedRoutes.includes(subMenu) ? "open" : ""}`}
                         >
@@ -163,7 +160,7 @@ export default function Navbar({ navClass, topnavClass }: NavbarProps) {
                           ))}
                         </ul>
                       </>
-                    )}
+                    ) : null}
                   </li>
                 );
               })}

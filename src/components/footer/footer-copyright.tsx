@@ -1,12 +1,10 @@
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 
-import {
-  FacebookIcon,
-  InstagramIcon,
-  LinkedinIcon,
-  WhatsappIcon,
-} from "@/app/[locale]/assets/svgs";
+import FacebookIcon from "@/app/[locale]/assets/svgs/facebook-icon";
+import InstagramIcon from "@/app/[locale]/assets/svgs/instagram-icon";
+import LinkedinIcon from "@/app/[locale]/assets/svgs/linkedin-icon";
+import WhatsappIcon from "@/app/[locale]/assets/svgs/whatsapp-icon";
 import URLS from "@/shared/urls";
 
 const Copyright = () => {

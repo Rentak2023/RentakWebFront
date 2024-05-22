@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 
-import SectionTitle from "./components/sectionTitle";
+import SectionTitle from "./components/section-title";
 
 export function HowItWorks() {
   const t = useTranslations("home.how-it-works");
@@ -38,7 +38,7 @@ export function HowItWorks() {
                 className="mt-6 flex size-4 shrink-0 items-center justify-center rounded-full bg-primary
                 ring-4
           ring-primary ring-offset-2 md:order-1 ltr:md:group-odd:-translate-x-1/2 ltr:md:group-even:translate-x-1/2 rtl:md:group-odd:translate-x-1/2 rtl:md:group-even:-translate-x-1/2"
-              ></div>
+              />
               <hr />
               <div className="w-[calc(100%-3rem)] p-4 md:w-[calc(50%-1rem)]">
                 <div className="flex items-center justify-between">

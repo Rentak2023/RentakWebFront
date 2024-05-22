@@ -1,6 +1,6 @@
-import Copyright from "./FooterCopyright";
-import Links from "./Links";
-import Logo from "./Logo";
+import Copyright from "./footer-copyright";
+import Links from "./links";
+import Logo from "./logo";
 
 export default function Footer() {
   return (

@@ -1,7 +1,7 @@
 import { BriefcaseIcon, HomeIcon, KeyIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-import SectionTitle from "./components/sectionTitle";
+import SectionTitle from "./components/section-title";
 
 type Service = {
   title: string;

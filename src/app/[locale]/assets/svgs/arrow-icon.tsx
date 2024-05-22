@@ -3,8 +3,10 @@ import { useLocale } from "next-intl";
 import type { SvgsTypes } from "./types";
 
 const ArrowIcon = ({ size, color, type }: SvgsTypes) => {
+  const locale = useLocale();
+
   switch (type) {
-    case "right":
+    case "right": {
       return (
         <svg
           width={size ?? "14"}
@@ -13,8 +15,7 @@ const ArrowIcon = ({ size, color, type }: SvgsTypes) => {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           style={{
-            // eslint-disable-next-line react-hooks/rules-of-hooks
-            transform: useLocale() == "ar" ? "rotate(180deg)" : "none",
+            transform: locale == "ar" ? "rotate(180deg)" : "none",
           }}
         >
           <path
@@ -23,7 +24,8 @@ const ArrowIcon = ({ size, color, type }: SvgsTypes) => {
           />
         </svg>
       );
-    case "left":
+    }
+    case "left": {
       return (
         <svg
           width="14"
@@ -32,8 +34,7 @@ const ArrowIcon = ({ size, color, type }: SvgsTypes) => {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           style={{
-            // eslint-disable-next-line react-hooks/rules-of-hooks
-            transform: useLocale() == "ar" ? "rotate(-180deg)" : "none",
+            transform: locale == "ar" ? "rotate(-180deg)" : "none",
           }}
         >
           <g clipPath="url(#clip0_1990_2631)">
@@ -54,6 +55,7 @@ const ArrowIcon = ({ size, color, type }: SvgsTypes) => {
           </defs>
         </svg>
       );
+    }
   }
 };
 

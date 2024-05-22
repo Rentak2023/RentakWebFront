@@ -2,8 +2,8 @@ import { useTranslations } from "next-intl";
 
 import { ContactImage } from "@/app/[locale]/assets/svgs/contact-image";
 
-import SectionTitle from "../components/sectionTitle";
-import ContactForm from "./contactForm";
+import SectionTitle from "../components/section-title";
+import ContactForm from "./contact-form";
 
 const Contact = () => {
   const t = useTranslations("home.contact");

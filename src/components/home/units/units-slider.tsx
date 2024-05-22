@@ -10,7 +10,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Unit from "@/components/unit";
-import useTextDirection from "@/hooks/useTextDirection";
+import useTextDirection from "@/hooks/text-direction";
 import { type Unit as TUnit } from "@/services/units";
 
 type UnitsSliderProps = {

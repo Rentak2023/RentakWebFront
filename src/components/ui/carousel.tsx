@@ -309,7 +309,7 @@ const CarouselDots = React.forwardRef<
 >(({ className, ...props }, ref) => {
   const { scrollSnaps, selectedIndex, onDotButtonClick } = useCarousel();
 
-  if (!scrollSnaps.length) return null;
+  if (scrollSnaps.length === 0) return null;
 
   return (
     <div className={cn("flex gap-3", className)} ref={ref} {...props}>

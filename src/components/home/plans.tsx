@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { useTranslations } from "next-intl";
 
-import SectionTitle from "./components/sectionTitle";
+import SectionTitle from "./components/section-title";
 
 export function Plans() {
   const t = useTranslations("home.plans");

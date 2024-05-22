@@ -13,6 +13,8 @@ const config = {
     "plugin:react/jsx-runtime",
     "plugin:react-hooks/recommended",
     "plugin:tailwindcss/recommended",
+    "plugin:barrel-files/recommended",
+    "plugin:unicorn/recommended",
     "prettier",
   ],
   plugins: ["simple-import-sort"],
@@ -29,6 +31,20 @@ const config = {
     // Gives false positive for overflow-clip
     "tailwindcss/migration-from-tailwind-2": "off",
     "react/prop-types": "off",
+    "react/jsx-no-useless-fragment": "error",
+    "react/jsx-no-leaked-render": "error",
+    "react/jsx-curly-brace-presence": "error",
+    "react/self-closing-comp": "error",
+    "unicorn/prevent-abbreviations": "off",
+    "unicorn/no-null": "off",
+    "barrel-files/avoid-namespace-import": [
+      "error",
+      {
+        allowList: ["react", "@radix-ui/react-toast", "@radix-ui/react-label"],
+      },
+    ],
+    // `lucid-react` is exporting barrel files. but nextjs handles it correctly
+    "barrel-files/avoid-importing-barrel-files": ["off"],
   },
   overrides: [
     {

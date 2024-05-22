@@ -2,9 +2,9 @@ import { useTranslations } from "next-intl";
 
 import { type Unit } from "@/services/units";
 
-import SectionTitle from "../components/sectionTitle";
-import UnitsSlider from "./unitsSlider";
-import ViewAllUnits from "./viewAllUnits";
+import SectionTitle from "../components/section-title";
+import UnitsSlider from "./units-slider";
+import ViewAllUnits from "./view-all-units";
 
 type UnitsProps = {
   units: Array<Unit>;

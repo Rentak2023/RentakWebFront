@@ -141,9 +141,9 @@ const ContactForm = () => {
         />
 
         <Button size="lg" type="submit" disabled={form.formState.isSubmitting}>
-          {form.formState.isSubmitting && (
+          {form.formState.isSubmitting ? (
             <Loader2 className="mr-2 size-4 animate-spin" />
-          )}
+          ) : null}
           {t("sendMessage")}
         </Button>
       </form>

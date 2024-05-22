@@ -10,10 +10,10 @@ import {
   unstable_setRequestLocale,
 } from "next-intl/server";
 
-import Footer from "@/components/Footer";
+import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import { Toaster } from "@/components/ui/toaster";
-import useTextDirection from "@/hooks/useTextDirection";
+import useTextDirection from "@/hooks/text-direction";
 
 const notoSans = Noto_Sans_Arabic({
   subsets: ["arabic"],
