@@ -3,6 +3,17 @@
 @tailwind utilities;
 
 @layer base {
+  @font-face {
+    font-family: "General Sans Fallback";
+    src: local(Arial);
+    size-adjust: 103%;
+    ascent-override: 96%;
+    descent-override: 22%;
+    line-gap-override: 15%;
+    /* Latin range */
+    unicode-range: U+0000-007F;
+  }
+
   /* Start Custom Scrollbar */
 
   ::-webkit-scrollbar {

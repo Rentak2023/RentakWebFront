@@ -36,6 +36,7 @@ const config = {
       fontFamily: {
         sans: [
           "var(--font-general-sans)",
+          "General Sans Fallback",
           "var(--font-noto-sans)",
           ...fontFamily.sans,
         ],
