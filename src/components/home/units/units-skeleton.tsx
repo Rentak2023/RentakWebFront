@@ -3,15 +3,15 @@ import { cn } from "@/lib/utils";
 
 function UnitSkeleton({ className }: { className?: string }) {
   return (
-    <div className={cn("rounded-xl", className)}>
-      <Skeleton className="mb-16 h-80" />
+    <div className={cn("rounded-xl mb-14 border border-slate-100", className)}>
+      <Skeleton className="h-80" />
 
       <div className="p-6">
         <Skeleton className="h-6 w-1/2" />
         <Skeleton className="mt-2 h-5 w-1/3" />
-        <Skeleton className="mt-16 h-4 w-2/3" />
+        <Skeleton className="mt-12 h-4 w-2/3" />
         <Skeleton className="mt-6 h-px w-full" />
-        <Skeleton className="mt-6 h-4 w-2/3" />
+        <Skeleton className="mt-6 h-4 w-1/3" />
       </div>
     </div>
   );
