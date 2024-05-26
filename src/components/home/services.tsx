@@ -1,12 +1,14 @@
 import { BriefcaseIcon, HomeIcon, KeyIcon } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
+import { Button } from "../ui/button";
 import SectionTitle from "./components/section-title";
 
 type Service = {
   title: string;
   description: string;
   icon: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  cta: string;
 };
 
 export async function Services() {
@@ -17,16 +19,19 @@ export async function Services() {
       title: t("rent-management.title"),
       description: t("rent-management.description"),
       icon: HomeIcon,
+      cta: t("rent-management.cta"),
     },
     {
       title: t("rent-collection.title"),
       description: t("rent-collection.description"),
       icon: BriefcaseIcon,
+      cta: t("rent-collection.cta"),
     },
     {
       title: t("rent-payment.title"),
       description: t("rent-payment.description"),
       icon: KeyIcon,
+      cta: t("rent-payment.cta"),
     },
   ];
 
@@ -35,9 +40,6 @@ export async function Services() {
       <div className="container mx-auto flex max-w-7xl flex-col items-center justify-stretch px-6 md:px-8 xl:max-w-7xl">
         <SectionTitle text={t("title")} />
 
-        <p className="mt-5 max-w-2xl text-center text-lg text-slate-600">
-          {t("subtitle")}
-        </p>
         <div className="mt-12 flex w-full flex-col items-center justify-between gap-6 md:flex-row">
           {services.map((service) => (
             <Service key={service.title} {...service} />
@@ -48,16 +50,19 @@ export async function Services() {
   );
 }
 
-function Service({ title, description, icon: Icon }: Service) {
+function Service({ title, description, icon: Icon, cta }: Service) {
   return (
-    <div className="flex max-w-72 flex-col items-center justify-center gap-4">
+    <div className="flex max-w-96 flex-col items-center justify-center gap-4">
       <div className="hexagon flex h-28 w-24 items-center justify-center bg-primary-600/5">
         <Icon className="size-8 text-primary-800" />
       </div>
       <h3 className="text-center text-xl font-medium text-slate-900">
         {title}
       </h3>
-      <p className="text-center text-base text-slate-600">{description}</p>
+      <p className="text-balance text-center text-base text-slate-600">
+        {description}
+      </p>
+      <Button className="mt-4">{cta}</Button>
     </div>
   );
 }

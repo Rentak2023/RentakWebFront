@@ -30,7 +30,6 @@ const ContactForm = () => {
       full_name: "",
       email: "",
       phone: "",
-      subject: "",
       message: "",
     },
   });
@@ -80,18 +79,15 @@ const ContactForm = () => {
               </FormItem>
             )}
           />
+
           <FormField
             control={form.control}
-            name="email"
+            name="phone"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{t("yourEmail")}</FormLabel>
+                <FormLabel>{t("yourPhone")}</FormLabel>
                 <FormControl>
-                  <Input
-                    placeholder={`${t("email")}:`}
-                    type="email"
-                    {...field}
-                  />
+                  <Input placeholder={`${t("phone")}:`} type="tel" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -100,26 +96,12 @@ const ContactForm = () => {
         </div>
         <FormField
           control={form.control}
-          name="phone"
+          name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t("yourPhone")}</FormLabel>
+              <FormLabel>{t("yourEmail")}</FormLabel>
               <FormControl>
-                <Input placeholder={`${t("phone")}:`} type="tel" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name="subject"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>{t("yourQuestion")}</FormLabel>
-              <FormControl>
-                <Input placeholder={`${t("subject")}:`} {...field} />
+                <Input placeholder={`${t("email")}:`} type="email" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -144,7 +126,7 @@ const ContactForm = () => {
           {form.formState.isSubmitting ? (
             <Loader2 className="me-2 size-4 animate-spin" />
           ) : null}
-          {t("sendMessage")}
+          {t("submit")}
         </Button>
       </form>
     </Form>

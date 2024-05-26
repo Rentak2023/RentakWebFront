@@ -1,12 +1,23 @@
 {
-  "hello": "Hello world",
   "meta": {
     "title": "Rentak"
   },
   "header": {
-    "title": "Find the perfect<wbr></wbr> unit for you",
-    "subtitle": "At Rentak, we redefine the rental experience, making it hassle-free and secure for both homeowners and tenants.",
+    "title": "Your Doorway to Smart Rent Solutions",
+    "subtitle": "At Rentak, we simplify and secure the rental process, offering tailored solutions for landlords, tenants, and brokers. Experience seamless property management, transparent transactions, and flexible payment options that transform real estate into a hassle-free world.",
     "cta": "Discover Units"
+  },
+  "navbar": {
+    "home": "Home",
+    "listing": "Find units",
+    "long-term": "Long-term",
+    "short-term": "Short-term",
+    "services": "Services",
+    "manage-property": "Manage Your Property",
+    "rent-collection": "Rent Collection",
+    "rent-payment": "Pay Your Rent",
+    "free-contract": "Create Free Rent Contract",
+    "contact": "Contact"
   },
   "footer": {
     "copyright": "All right reserved",
@@ -22,52 +33,81 @@
   },
   "home": {
     "our-services": {
-      "title": "Our services",
-      "subtitle": "A great platform to buy, sell and rent your properties without any agent or commissions.",
+      "title": "Main Services",
       "rent-management": {
-        "title": "Rent management",
-        "description": "Guaranteed rent collection, Bill payment, Unit conditions and more."
+        "title": "Manage Your Property",
+        "description": "Unlock the full potential of your property with our comprehensive management services—simplify every aspect of being a landlord.",
+        "cta": "Submit Property"
       },
       "rent-collection": {
-        "title": "Rent collection",
-        "description": "For homeowners, remind your tenants paying rent on time, with multiple payment options."
+        "title": "Rent Collection",
+        "description": "Ensure timely rent collection with our automated systems that guarantee peace of mind for landlords and ease for tenants.",
+        "cta": "Collect Rent"
       },
       "rent-payment": {
-        "title": "Rent payment",
-        "description": "For tenants, multiple payment and financing options to any rent all-over Egypt."
+        "title": "Flexible Payments",
+        "description": "From rent to maintenance, choose from various payment methods including up to 60 months of installments.",
+        "cta": "Pay Now"
       }
     },
     "why-us": {
-      "title": "Why Choose Us",
-      "subtitle": "We offer the following the owner and the tenant."
-    },
-    "plans": {
-      "title": "Plans",
-      "feature-comparison": "Feature comparison",
-      "traditional-rent": "Traditional rent",
-      "monthly-reminder": {
-        "title": "Monthly rent reminder",
-        "traditional": "Monthly rent reminders can be inconvenient.",
-        "rentak": "Hassle-free, automated rent collection without the need for reminders."
+      "title": "Why Rentak",
+      "subtitle": "Streamlined, Efficient, Modern Renting Solutions.",
+      "guaranteed-rent": {
+        "title": "Guaranteed Rent",
+        "description": "Receive your rental payments on time, every time, with our guaranteed rent collection service."
       },
       "unit-condition": {
-        "title": "Unit conditions",
-        "traditional": "Renters risk property damages, leading to potential disputes.",
-        "rentak": "We ensure the property's condition at the end of the lease, minimizing risks for landlords."
+        "title": "Guaranteed Unit Condition",
+        "description": "Enjoy peace of mind knowing your property will be returned in the same condition, mitigating the typical fears of property damage"
       },
-      "unpaid-bills": {
-        "title": "Unpaid bills",
-        "traditional": "Unpaid utility bills can cause financial stress and disputes.",
-        "rentak": "We handle all bills promptly, eliminating the risk of unpaid utility bills."
+      "flexible-payment": {
+        "title": "Flexible Payment Options",
+        "description": "Choose how you pay your rent. Options include cash, bank transfer, consumer financing, or credit card—flexibility at your fingertips."
       },
-      "legal-support": {
-        "title": "Legal support",
-        "traditional": "Limited legal support and protection for landlords and tenants.",
-        "rentak": "Legal protection and expert support provided throughout the tenancy period."
+      "easy-move-in": {
+        "title": "Easy Move-In",
+        "description": "Say goodbye to burdensome cash deposits. Start with just the first month's rent."
+      }
+    },
+    "plans": {
+      "title": "Traditional Renting vs. Rentak",
+      "subtitle": "Enhancing Your Rental Experience",
+      "feature-comparison": "Feature comparison",
+      "traditional-rent": "Traditional rent",
+      "finding-tenants": {
+        "title": "Finding Tenants",
+        "traditional": "Landlords typically rely on word of mouth, local ads, or basic online listings. This process can be slow and inefficient, often attracting a broad range of unqualified applicants.",
+        "rentak": "Uses advanced algorithms and a robust online platform to match landlords with pre-screened tenants quickly and efficiently, ensuring compatibility and reducing time-to-rent."
+      },
+      "rent-collection": {
+        "title": "Rent Collection",
+        "traditional": "Rent collection can be inconsistent and relies on manual processes like cash payments or bank transfers, which may delay funds and complicate financial management.",
+        "rentak": "Automates the rent collection process, ensuring landlords receive payments on time every month via direct deposit, reducing hassle and improving cash flow stability."
+      },
+      "property-management": {
+        "title": "Property Management",
+        "traditional": "Often involves reactive maintenance and manual coordination, which can lead to delays in repairs and increased costs.",
+        "rentak": "Provides proactive, streamlined property management services. Our platform enables easy reporting and tracking of maintenance issues, ensuring higher tenant satisfaction."
+      },
+      "tenant-screening": {
+        "title": "Tenant Screening",
+        "traditional": "Screening is often rudimentary, based on simple credit checks and references, which may not fully reveal potential issues.",
+        "rentak": "Offers comprehensive tenant screening, including credit, employment, and background checks, leveraging technology to gather and analyze data more deeply and accurately."
+      },
+      "security-deposit": {
+        "title": "Security Deposits and Disputes",
+        "traditional": "Handling security deposits manually can lead to disputes at the end of tenancy periods, often stemming from miscommunication or unclear terms.",
+        "rentak": "Acts as a neutral third party to hold and manage security deposits, with clear terms set out at the start. Disputes are handled fairly and swiftly, mediated by Rentak’s expert team."
+      },
+      "flexible-payment": {
+        "title": "Flexibility and Payment Options",
+        "traditional": "Limited payment options and rigid rent terms.",
+        "rentak": "Offers flexible payment solutions, including the innovative \"Rent Now, Pay Later\" option, allowing tenants to manage financial flows better and giving landlords enhancing collection leadtime."
       }
     },
     "how-it-works": {
-      "title": "How it work",
+      "title": "How It Works",
       "submit": {
         "title": "Submit your property",
         "description": "Homeowners submit their property details to Rentak for comprehensive management."
@@ -86,22 +126,21 @@
       }
     },
     "units": {
-      "discoverOurRentalUnits": "Discover our rental units",
+      "title": "Available Rental Units",
+      "subtitle": "Browse our up-to-date inventory of available rental units, showcasing a variety of properties that cater to diverse preferences and needs.",
       "recentUnits": "Recent Units",
       "viewAll": "View All Units"
     },
     "contact": {
-      "contact": "Contact Us",
-      "getInTouch": "Get in touch !",
-      "sendMessage": "Send Message",
+      "title": "Contact Us",
+      "subtitle": "Have questions or need assistance? Our dedicated team is ready to help you. Contact us today to learn more about our services or to get started with Rentak.",
+      "submit": "Send Message",
       "yourName": "Your Name",
       "name": "Name",
       "yourEmail": "Your Email",
       "email": "Email",
       "yourPhone": "Your Phone",
       "phone": "Phone",
-      "yourQuestion": "Your Question",
-      "subject": "Subject",
       "yourMessage": "Your Message",
       "message": "Message"
     }

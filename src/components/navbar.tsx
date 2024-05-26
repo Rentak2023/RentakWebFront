@@ -1,40 +1,11 @@
 "use client"; // This is a client component 👈🏽
 import Image from "next/image";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import React, { useEffect, useState } from "react";
 
 import logo from "@/app/[locale]/assets/images/Logo.png";
 import { Button } from "@/components/ui/button";
 import { Link, usePathname } from "@/navigation";
-
-const routes = [
-  {
-    name: "Home",
-    path: "/",
-  },
-  {
-    name: "Listing",
-    path: "/listing",
-  },
-  {
-    name: "Services",
-    path: "/services",
-    subRoutes: [
-      {
-        name: "Service 1",
-        path: "/service-1",
-      },
-      {
-        name: "Service 2",
-        path: "/service-2",
-      },
-    ],
-  },
-  {
-    name: "Contact",
-    path: "/contact",
-  },
-];
 
 type NavbarProps = {
   navClass?: string;
@@ -50,6 +21,54 @@ export default function Navbar({ navClass, topnavClass }: NavbarProps) {
 
   const pathname = usePathname();
   const locale = useLocale();
+  const t = useTranslations("navbar");
+
+  const routes = [
+    {
+      name: t("home"),
+      path: "/",
+    },
+    {
+      name: t("listing"),
+      path: "/listing",
+      subRoutes: [
+        {
+          name: t("long-term"),
+          path: "/service-1",
+        },
+        {
+          name: t("short-term"),
+          path: "/service-2",
+        },
+      ],
+    },
+    {
+      name: t("services"),
+      path: "/services",
+      subRoutes: [
+        {
+          name: t("manage-property"),
+          path: "/service-1",
+        },
+        {
+          name: t("rent-collection"),
+          path: "/service-2",
+        },
+        {
+          name: t("rent-payment"),
+          path: "/service-2",
+        },
+        {
+          name: t("free-contract"),
+          path: "/service-2",
+        },
+      ],
+    },
+    {
+      name: t("contact"),
+      path: "/contact",
+    },
+  ];
 
   useEffect(() => {
     setMenu(pathname);
@@ -59,8 +78,10 @@ export default function Navbar({ navClass, topnavClass }: NavbarProps) {
       setTopNavBar(window.scrollY >= 50);
     }
 
+    windowScroll();
+
     window.addEventListener("scroll", windowScroll);
-    window.scrollTo(0, 0);
+
     return () => {
       window.removeEventListener("scroll", windowScroll);
     };

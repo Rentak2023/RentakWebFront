@@ -128,6 +128,10 @@
     @apply text-white;
   }
 
+  #topnav.nav-sticky .has-submenu.active a {
+    @apply text-slate-900 font-semibold;
+  }
+
   #topnav .has-submenu.active .submenu li.active > a {
     @apply !text-blue-600;
   }
@@ -218,7 +222,7 @@
   }
 
   #topnav.nav-sticky .navigation-menu > li > a {
-    @apply text-slate-800;
+    @apply text-slate-700;
   }
 
   #topnav.nav-sticky .navigation-menu > li.active > a {
@@ -375,6 +379,11 @@
     #topnav .navigation-menu > li:hover > a,
     #topnav .navigation-menu > li.active > a {
       @apply text-white;
+    }
+
+    #topnav.nav-sticky .navigation-menu > li:hover > a,
+    #topnav.nav-sticky .navigation-menu > li.active > a {
+      @apply text-slate-900;
     }
 
     #topnav .navigation-menu > li.last-elements .submenu {

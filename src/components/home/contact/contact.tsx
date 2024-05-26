@@ -10,19 +10,19 @@ async function Contact() {
 
   return (
     <section className="relative py-16 lg:py-24">
-      <div className="container mx-auto">
-        <SectionTitle text={t("contact")} />
-        <div className="mt-12 flex flex-col items-stretch lg:flex-row lg:items-center lg:justify-around">
-          <div className="flex items-center justify-center">
-            <ContactImage />
+      <div className="container mx-auto px-4">
+        <SectionTitle text={t("title")} />
+        <div className="mt-12 flex flex-col items-stretch lg:grid lg:grid-cols-2 lg:items-start">
+          <div className="flex flex-col items-center justify-center">
+            <h3 className="mt-4 text-lg text-slate-600 lg:me-16">
+              {t("subtitle")}
+            </h3>
+            <ContactImage className="h-80" />
           </div>
 
-          <div className="lg:max-w-lg">
+          <div className="">
             <div className="lg:me-5">
               <div className="rounded-md bg-white p-6 shadow">
-                <h3 className="mb-6 text-2xl font-medium leading-normal text-slate-900">
-                  {t("getInTouch")}
-                </h3>
                 <ContactForm />
               </div>
             </div>

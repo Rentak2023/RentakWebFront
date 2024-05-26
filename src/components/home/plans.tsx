@@ -1,5 +1,8 @@
 import clsx from "clsx";
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
+
+import logo from "@/app/[locale]/assets/images/Logo.png";
 
 import SectionTitle from "./components/section-title";
 
@@ -21,31 +24,45 @@ export async function Plans() {
     ],
     features: [
       {
-        name: t("monthly-reminder.title"),
+        name: t("finding-tenants.title"),
         tiers: {
-          traditional: t("monthly-reminder.traditional"),
-          rentak: t("monthly-reminder.rentak"),
+          traditional: t("finding-tenants.traditional"),
+          rentak: t("finding-tenants.rentak"),
         },
       },
       {
-        name: t("unit-condition.title"),
+        name: t("rent-collection.title"),
         tiers: {
-          traditional: t("unit-condition.traditional"),
-          rentak: t("unit-condition.rentak"),
+          traditional: t("rent-collection.traditional"),
+          rentak: t("rent-collection.rentak"),
         },
       },
       {
-        name: t("unpaid-bills.title"),
+        name: t("property-management.title"),
         tiers: {
-          traditional: t("unpaid-bills.traditional"),
-          rentak: t("unpaid-bills.rentak"),
+          traditional: t("property-management.traditional"),
+          rentak: t("property-management.rentak"),
         },
       },
       {
-        name: t("legal-support.title"),
+        name: t("tenant-screening.title"),
         tiers: {
-          traditional: t("legal-support.traditional"),
-          rentak: t("legal-support.rentak"),
+          traditional: t("tenant-screening.traditional"),
+          rentak: t("tenant-screening.rentak"),
+        },
+      },
+      {
+        name: t("security-deposit.title"),
+        tiers: {
+          traditional: t("security-deposit.traditional"),
+          rentak: t("security-deposit.rentak"),
+        },
+      },
+      {
+        name: t("flexible-payment.title"),
+        tiers: {
+          traditional: t("flexible-payment.traditional"),
+          rentak: t("flexible-payment.rentak"),
         },
       },
     ],
@@ -54,6 +71,8 @@ export async function Plans() {
   return (
     <div className="relative pt-24 sm:pt-32">
       <SectionTitle text={t("title")} />
+
+      <p className="mt-4 text-center text-lg text-slate-600">{t("subtitle")}</p>
 
       <div className="mx-auto mt-12 max-w-7xl px-6 pt-4 lg:rounded-2xl lg:px-10 lg:pb-14 lg:shadow">
         {/* Feature comparison (up to lg) */}
@@ -75,7 +94,11 @@ export async function Plans() {
                       tier.featured ? "text-primary-600" : "text-slate-900",
                     )}
                   >
-                    {tier.name}
+                    {tier.featured ? (
+                      <Image src={logo} alt="Rentak" height={24} />
+                    ) : (
+                      tier.name
+                    )}
                   </h3>
                 </div>
 
@@ -126,11 +149,15 @@ export async function Plans() {
                 <div className="px-6 pt-10">
                   <p
                     className={clsx(
-                      "text-lg font-medium leading-6",
+                      "flex items-center justify-center text-center text-xl font-semibold",
                       tier.featured ? "text-primary-600" : "text-slate-900",
                     )}
                   >
-                    {tier.name}
+                    {tier.featured ? (
+                      <Image src={logo} alt="Rentak" height={24} />
+                    ) : (
+                      tier.name
+                    )}
                   </p>
                 </div>
               </div>

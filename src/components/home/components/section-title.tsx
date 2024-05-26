@@ -1,10 +1,18 @@
+import { cn } from "@/lib/utils";
+
 type SectionTitleProps = {
   text: string;
+  className?: string;
 };
 
-const SectionTitle = ({ text }: SectionTitleProps) => {
+const SectionTitle = ({ text, className }: SectionTitleProps) => {
   return (
-    <h2 className="text-center text-3xl font-semibold uppercase leading-7 text-slate-900">
+    <h2
+      className={cn(
+        "text-center text-3xl font-semibold leading-7 tracking-tight text-slate-900",
+        className,
+      )}
+    >
       {text}
     </h2>
   );
