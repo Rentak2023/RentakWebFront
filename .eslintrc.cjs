@@ -114,6 +114,10 @@ const config = {
     react: {
       version: "detect",
     },
+    linkComponents: ["Link"],
+    tailwindcss: {
+      callees: ["cn", "cva"],
+    },
   },
 };
 
