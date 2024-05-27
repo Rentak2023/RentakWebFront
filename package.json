@@ -15,6 +15,7 @@
   "dependencies": {
     "@hookform/resolvers": "^3.4.0",
     "@plaiceholder/next": "^3.0.0",
+    "@radix-ui/react-collapsible": "^1.0.3",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-toast": "^1.1.5",
@@ -34,7 +35,8 @@
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
     "valibot": "^0.30.0",
-    "validator": "^13.12.0"
+    "validator": "^13.12.0",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@types/node": "^20",

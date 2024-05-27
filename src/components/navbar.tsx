@@ -13,14 +13,15 @@ type NavbarProps = {
 };
 
 export default function Navbar({ navClass, topnavClass }: NavbarProps) {
+  const pathname = usePathname();
+  const locale = useLocale();
+
   const [isOpen, setIsOpen] = useState(true);
-  const [topNavbar, setTopNavBar] = useState(false);
+  const [topNavbar, setTopNavBar] = useState(pathname !== "/");
 
   const [menu, setMenu] = useState("");
   const [subMenu, setSubMenu] = useState("");
 
-  const pathname = usePathname();
-  const locale = useLocale();
   const t = useTranslations("navbar");
 
   const routes = [
@@ -75,7 +76,9 @@ export default function Navbar({ navClass, topnavClass }: NavbarProps) {
     setSubMenu(pathname);
 
     function windowScroll() {
-      setTopNavBar(window.scrollY >= 50);
+      if (pathname === "/") {
+        setTopNavBar(window.scrollY >= 50);
+      }
     }
 
     windowScroll();

@@ -57,7 +57,12 @@ const config = {
     "barrel-files/avoid-namespace-import": [
       "error",
       {
-        allowList: ["react", "@radix-ui/react-toast", "@radix-ui/react-label"],
+        allowList: [
+          "react",
+          "@radix-ui/react-toast",
+          "@radix-ui/react-label",
+          "@radix-ui/react-collapsible",
+        ],
       },
     ],
     // `lucid-react` is exporting barrel files. but nextjs handles it correctly
@@ -116,7 +121,7 @@ const config = {
     },
     linkComponents: ["Link"],
     tailwindcss: {
-      callees: ["cn", "cva"],
+      callees: ["cn"],
     },
   },
 };
