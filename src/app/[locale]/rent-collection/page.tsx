@@ -1,16 +1,9 @@
 "use client";
 
 import { valibotResolver } from "@hookform/resolvers/valibot";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
-import {
-  type BaseSchema,
-  email,
-  minLength,
-  object,
-  type ObjectSchema,
-  string,
-} from "valibot";
+import { type BaseSchema, email, minLength, object, string } from "valibot";
 import { create } from "zustand";
 
 import { Button } from "@/components/ui/button";
@@ -34,43 +27,64 @@ type WizardFormData = {
   tenantEmail?: string;
 };
 
-type Store = {
-  formData: WizardFormData;
-  getFormData: () => WizardFormData;
+type Field<BaseFormData extends Record<string, string>> = {
+  name: Extract<keyof BaseFormData, string>;
+  label: string;
+  type: string;
+  description?: string;
+  schema: BaseSchema;
+};
+
+type FormStore<BaseFormData extends Record<string, string>> = {
+  formData: BaseFormData;
+  getFormData: () => BaseFormData;
 
   actions: {
-    updateFormData: (newData: Partial<WizardFormData>) => void;
+    updateFormData: (newData: Partial<BaseFormData>) => void;
   };
 };
 
-const useFormStore = create<Store>((set, get) => ({
-  formData: {},
-  getFormData: () => get().formData,
-  actions: {
-    updateFormData: (newData: Partial<FormData>) => {
-      set((state) => ({ formData: { ...state.formData, ...newData } }));
+function createFormStore<FormData extends Record<string, string>>(
+  initialData: FormData,
+) {
+  return create<FormStore<FormData>>((set, get) => ({
+    formData: initialData,
+    getFormData: () => get().formData,
+    actions: {
+      updateFormData: (newData: Partial<FormData>) => {
+        set((state) => ({ formData: { ...state.formData, ...newData } }));
+      },
     },
-  },
-}));
+  }));
+}
 
-type TStep = {
+type TStep<BaseFormData extends Record<string, string>> = {
   label: string;
-  fields: Array<Field>;
+  fields: Array<Field<BaseFormData>>;
 };
 
 export default function RentCollection() {
+  const [useWizardFormStore] = useState(() =>
+    createFormStore<WizardFormData>({
+      username: "",
+      email: "",
+      tenantName: "",
+      tenantEmail: "",
+    }),
+  );
+
   return (
     <main className="pt-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-center text-7xl font-semibold">Rent Collection</h1>
 
-        <StepperDemo />
+        <StepperDemo useFormStore={useWizardFormStore} />
       </div>
     </main>
   );
 }
 
-const steps: Array<TStep> = [
+const steps: Array<TStep<WizardFormData>> = [
   {
     label: "Profile Info",
     fields: [
@@ -111,13 +125,17 @@ const steps: Array<TStep> = [
   // { label: "Confirmation" },
 ];
 
-function StepperDemo() {
+function StepperDemo({
+  useFormStore,
+}: {
+  useFormStore: ReturnType<typeof createFormStore<WizardFormData>>;
+}) {
   return (
     <div className="mt-16 flex w-full flex-col gap-4">
       <Stepper variant="circle-alt" initialStep={0} steps={steps}>
         {steps.map((stepProps) => (
           <Step key={stepProps.label}>
-            <StepForm fields={stepProps.fields} />
+            <StepForm fields={stepProps.fields} useFormStore={useFormStore} />
           </Step>
         ))}
         <MyStepperFooter />
@@ -126,33 +144,29 @@ function StepperDemo() {
   );
 }
 
-type Field = {
-  name: keyof WizardFormData;
-  label: string;
-  type: string;
-  description?: string;
-  schema: BaseSchema;
+const createSchema = <BaseFormData extends Record<string, string>>(
+  fields: Array<Field<BaseFormData>>,
+) => {
+  const schemaFields: Record<keyof BaseFormData, BaseSchema> = {} as any;
+
+  for (const field of fields) {
+    schemaFields[field.name] = field.schema;
+  }
+
+  const schema = object(schemaFields);
+
+  return schema;
 };
 
-type StepFormProps = {
-  fields: Array<Field>;
+type StepFormProps<BaseFormData extends Record<string, string>> = {
+  fields: Array<Field<BaseFormData>>;
+  useFormStore: ReturnType<typeof createFormStore<BaseFormData>>;
 };
 
-const createSchema = (
-  fields: Array<Field>,
-): ObjectSchema<Partial<Record<keyof WizardFormData, BaseSchema>>> => {
-  // eslint-disable-next-line unicorn/no-array-reduce
-  const schemaFields = fields.reduce<
-    Partial<Record<keyof WizardFormData, BaseSchema>>
-  >((acc, field) => {
-    acc[field.name] = field.schema;
-    return acc;
-  }, {});
-
-  return object(schemaFields);
-};
-
-function StepForm({ fields }: StepFormProps) {
+function StepForm<BaseFormData extends Record<string, string>>({
+  fields,
+  useFormStore,
+}: StepFormProps<BaseFormData>) {
   const { nextStep, isLastStep } = useStepper();
   const schema = useMemo(() => createSchema(fields), [fields]);
 
@@ -162,14 +176,20 @@ function StepForm({ fields }: StepFormProps) {
     actions: { updateFormData },
   } = useFormStore();
 
+  const defaultValues = useMemo(() => {
+    const defaults: Partial<BaseFormData> = {} as any;
+
+    for (const field of fields) {
+      defaults[field.name] = formData[field.name];
+    }
+
+    return defaults;
+  }, [fields, formData]);
+
   const form = useForm({
     resolver: valibotResolver(schema),
-    defaultValues:
-      // eslint-disable-next-line unicorn/no-array-reduce
-      fields.reduce<Partial<WizardFormData>>((acc, field) => {
-        acc[field.name] = formData[field.name];
-        return acc;
-      }, {}),
+    // @ts-expect-error the `defaultValues` is more complicated than our use case
+    defaultValues,
   });
 
   const onSubmit = form.handleSubmit((data) => {
@@ -195,6 +215,7 @@ function StepForm({ fields }: StepFormProps) {
           <FormField
             key={formField.name}
             control={form.control}
+            // @ts-expect-error `name` field is more complicated than our use case
             name={formField.name}
             render={({ field }) => (
               <FormItem>
@@ -243,7 +264,7 @@ function StepperFormActions() {
           >
             Prev
           </Button>
-          <Button size="sm">
+          <Button size="sm" type="submit">
             {isLastStep ? "Finish" : isOptionalStep ? "Skip" : "Next"}
           </Button>
         </>
