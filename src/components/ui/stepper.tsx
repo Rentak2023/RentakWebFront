@@ -103,8 +103,8 @@ function useStepper() {
 
   const previousActiveStep = usePrevious(context.activeStep);
 
-  const currentStep = context.steps[context.activeStep];
-  const isOptionalStep = !!currentStep.optional;
+  const currentStep = context.steps.at(context.activeStep);
+  const isOptionalStep = !!currentStep?.optional;
 
   const isDisabledStep = context.activeStep === 0;
 
