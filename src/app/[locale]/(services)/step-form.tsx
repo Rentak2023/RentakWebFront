@@ -1,6 +1,6 @@
 import { valibotResolver } from "@hookform/resolvers/valibot";
 import { useMemo } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { type BaseSchema, object } from "valibot";
 
 import { Button } from "@/components/ui/button";
@@ -14,6 +14,13 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useStepper } from "@/components/ui/stepper";
 import { toast } from "@/components/ui/use-toast";
 
@@ -68,6 +75,15 @@ export function StepForm<BaseFormData extends Record<string, string>>({
     defaultValues,
   });
 
+  const currentValues = useWatch({ control: form.control });
+
+  const filteredFields = useMemo(() => {
+    return fields.filter(
+      (field) =>
+        !field.condition || field.condition({ ...formData, ...currentValues }),
+    );
+  }, [fields, formData, currentValues]);
+
   const onSubmit = form.handleSubmit((data) => {
     console.log("isLastStep", isLastStep);
     updateFormData(data);
@@ -91,7 +107,7 @@ export function StepForm<BaseFormData extends Record<string, string>>({
   return (
     <Form {...form}>
       <form className="space-y-6" onSubmit={onSubmit}>
-        {fields.map((formField) => (
+        {filteredFields.map((formField) => (
           <FormField
             key={formField.name}
             control={form.control}
@@ -101,7 +117,22 @@ export function StepForm<BaseFormData extends Record<string, string>>({
               <FormItem>
                 <FormLabel>{formField.label}</FormLabel>
                 <FormControl>
-                  <Input type={formField.type} {...field} />
+                  {formField.kind === "select" ? (
+                    <Select onValueChange={field.onChange} value={field.value}>
+                      <SelectTrigger>
+                        <SelectValue placeholder={formField.placeholder} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {formField.options.map((option) => (
+                          <SelectItem value={option.value} key={option.value}>
+                            {option.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  ) : (
+                    <Input type={formField.type} {...field} />
+                  )}
                 </FormControl>
                 {formField.description ? (
                   <FormDescription>{formField.description}</FormDescription>

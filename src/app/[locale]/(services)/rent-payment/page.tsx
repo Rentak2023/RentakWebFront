@@ -22,6 +22,7 @@ const steps: Array<TStep<RentPaymentData>> = [
       {
         name: "username",
         label: "Username",
+        kind: "text",
         type: "text",
         description: "This is your username",
         schema: string([minLength(1, "Username is required")]),
@@ -29,12 +30,14 @@ const steps: Array<TStep<RentPaymentData>> = [
       {
         name: "email",
         label: "Email",
+        kind: "text",
         type: "email",
         schema: string([email("A valid email address is required")]),
       },
       {
         name: "nationalId",
         label: "National ID",
+        kind: "text",
         type: "text",
         schema: string([minLength(5, "National ID is required")]),
       },
@@ -46,12 +49,14 @@ const steps: Array<TStep<RentPaymentData>> = [
       {
         name: "tenantName",
         label: "Tenant Name",
+        kind: "text",
         type: "text",
         schema: string([minLength(1, "Tenant name is required")]),
       },
       {
         name: "tenantEmail",
         label: "Tenant Email",
+        kind: "text",
         type: "email",
         schema: string([email("A valid email address is required")]),
       },

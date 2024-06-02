@@ -62,6 +62,7 @@ const config = {
           "@radix-ui/react-toast",
           "@radix-ui/react-label",
           "@radix-ui/react-collapsible",
+          "@radix-ui/react-select",
         ],
       },
     ],
