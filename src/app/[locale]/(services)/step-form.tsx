@@ -118,7 +118,10 @@ export function StepForm<BaseFormData extends Record<string, string>>({
                 <FormLabel>{formField.label}</FormLabel>
                 <FormControl>
                   {formField.kind === "select" ? (
-                    <Select onValueChange={field.onChange} value={field.value}>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
                       <SelectTrigger>
                         <SelectValue placeholder={formField.placeholder} />
                       </SelectTrigger>
