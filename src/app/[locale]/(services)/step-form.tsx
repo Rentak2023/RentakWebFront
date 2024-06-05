@@ -3,7 +3,7 @@ import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { useMemo } from "react";
 import { useForm, useWatch } from "react-hook-form";
-import { type BaseSchema, object } from "valibot";
+import { type BaseSchema } from "valibot";
 
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -36,31 +36,14 @@ import { cn } from "@/lib/utils";
 import { type createFormStore } from "./stepper-form-store";
 import { type Field } from "./types";
 
-const createSchema = <BaseFormData extends Record<string, string>>(
-  fields: Array<Field<BaseFormData>>,
-) => {
-  const schemaFields: Record<keyof BaseFormData, BaseSchema> = {} as any;
-
-  for (const field of fields) {
-    schemaFields[field.name] = field.schema;
-  }
-
-  const schema = object(schemaFields);
-
-  return schema;
+type StepFormProps = {
+  fields: Array<Field>;
+  useFormStore: ReturnType<typeof createFormStore>;
+  schema: BaseSchema;
 };
 
-type StepFormProps<BaseFormData extends Record<string, string>> = {
-  fields: Array<Field<BaseFormData>>;
-  useFormStore: ReturnType<typeof createFormStore<BaseFormData>>;
-};
-
-export function StepForm<BaseFormData extends Record<string, string>>({
-  fields,
-  useFormStore,
-}: StepFormProps<BaseFormData>) {
+export function StepForm({ fields, useFormStore, schema }: StepFormProps) {
   const { nextStep, isLastStep } = useStepper();
-  const schema = useMemo(() => createSchema(fields), [fields]);
 
   const {
     formData,
@@ -69,7 +52,7 @@ export function StepForm<BaseFormData extends Record<string, string>>({
   } = useFormStore();
 
   const defaultValues = useMemo(() => {
-    const defaults: Partial<BaseFormData> = {} as any;
+    const defaults: Partial<typeof formData> = {} as any;
 
     for (const field of fields) {
       defaults[field.name] = formData[field.name];
@@ -80,7 +63,6 @@ export function StepForm<BaseFormData extends Record<string, string>>({
 
   const form = useForm({
     resolver: valibotResolver(schema),
-    // @ts-expect-error the `defaultValues` is more complicated than our use case
     defaultValues,
   });
 
@@ -120,7 +102,6 @@ export function StepForm<BaseFormData extends Record<string, string>>({
           <FormField
             key={formField.name}
             control={form.control}
-            // @ts-expect-error `name` field is more complicated than our use case
             name={formField.name}
             render={({ field }) => (
               <FormItem>
@@ -166,12 +147,11 @@ export function StepForm<BaseFormData extends Record<string, string>>({
                     <PopoverContent className="w-auto p-0" align="start">
                       <Calendar
                         mode="single"
-                        // @ts-expect-error should be a Date
                         selected={field.value}
                         onSelect={field.onChange}
-                        disabled={(date) =>
-                          date > new Date() || date < new Date("1900-01-01")
-                        }
+                        // disabled={(date) =>
+                        //   date > new Date() || date < new Date("1900-01-01")
+                        // }
                         initialFocus
                       />
                     </PopoverContent>

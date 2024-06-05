@@ -1,23 +1,20 @@
 "use client";
 
 import { useState } from "react";
-import { email, minLength, string } from "valibot";
+import { email, minLength, object, string } from "valibot";
 
 import { ServiceForms } from "../service-forms";
 import { createFormStore } from "../stepper-form-store";
 import { type TStep } from "../types";
 
-type RentPaymentData = {
-  username: string;
-  email: string;
-  tenantName: string;
-  tenantEmail: string;
-  nationalId: string;
-};
-
-const steps: Array<TStep<RentPaymentData>> = [
+const steps = [
   {
     label: "Profile Info",
+    schema: object({
+      username: string([minLength(1, "Username is required")]),
+      email: string([email("A valid email address is required")]),
+      nationalId: string([minLength(5, "National ID is required")]),
+    }),
     fields: [
       {
         name: "username",
@@ -25,58 +22,49 @@ const steps: Array<TStep<RentPaymentData>> = [
         kind: "text",
         type: "text",
         description: "This is your username",
-        schema: string([minLength(1, "Username is required")]),
       },
       {
         name: "email",
         label: "Email",
         kind: "text",
         type: "email",
-        schema: string([email("A valid email address is required")]),
       },
       {
         name: "nationalId",
         label: "National ID",
         kind: "text",
         type: "text",
-        schema: string([minLength(5, "National ID is required")]),
       },
     ],
   },
   {
     label: "Tenant Info",
+    schema: object({
+      tenantName: string([minLength(1, "Tenant name is required")]),
+      tenantEmail: string([email("A valid email address is required")]),
+    }),
     fields: [
       {
         name: "tenantName",
         label: "Tenant Name",
         kind: "text",
         type: "text",
-        schema: string([minLength(1, "Tenant name is required")]),
       },
       {
         name: "tenantEmail",
         label: "Tenant Email",
         kind: "text",
         type: "email",
-        schema: string([email("A valid email address is required")]),
       },
     ],
   },
   // { label: "Payment method" },
   // { label: "Unit description" },
   // { label: "Confirmation" },
-];
+] as const satisfies Array<TStep>;
 
 export default function RentPayment() {
-  const [useWizardFormStore] = useState(() =>
-    createFormStore<RentPaymentData>({
-      username: "",
-      email: "",
-      tenantName: "",
-      tenantEmail: "",
-      nationalId: "",
-    }),
-  );
+  const [useWizardFormStore] = useState(() => createFormStore(steps));
 
   return (
     <main className="pt-24">

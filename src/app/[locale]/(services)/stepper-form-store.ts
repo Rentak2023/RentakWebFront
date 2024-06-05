@@ -1,24 +1,32 @@
 import { create } from "zustand";
 
-import { type TFormData } from "./types";
+import { type TStep } from "./types";
 
-type FormStore<BaseFormData extends TFormData> = {
-  formData: BaseFormData;
-  getFormData: () => BaseFormData;
+type FormStore<T = Record<string, any>> = {
+  formData: T;
+  getFormData: () => T;
 
   actions: {
-    updateFormData: (newData: Partial<BaseFormData>) => void;
+    updateFormData: (newData: Partial<T>) => void;
   };
 };
 
-export function createFormStore<FormData extends TFormData>(
-  initialData: FormData,
+export function createFormStore<T extends Array<TStep> = Array<TStep>>(
+  steps: T,
 ) {
-  return create<FormStore<FormData>>((set, get) => ({
+  // eslint-disable-next-line unicorn/no-array-reduce
+  const initialData = steps.reduce<Record<string, any>>((acc, step) => {
+    return {
+      ...acc,
+      ...Object.fromEntries(step.fields.map((field) => [field.name, ""])),
+    };
+  }, {});
+
+  return create<FormStore>((set, get) => ({
     formData: initialData,
     getFormData: () => get().formData,
     actions: {
-      updateFormData: (newData: Partial<FormData>) => {
+      updateFormData: (newData) => {
         set((state) => ({ formData: { ...state.formData, ...newData } }));
       },
     },
