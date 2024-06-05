@@ -1,8 +1,9 @@
 "use client";
 
 import { use, useState } from "react";
-import { custom, email, minLength, picklist, string } from "valibot";
+import { custom, date, email, minLength, picklist, string } from "valibot";
 import isMobilePhone from "validator/es/lib/isMobilePhone";
+import isNumeric from "validator/es/lib/isNumeric";
 
 import { getBanks } from "@/services/banks";
 
@@ -19,6 +20,13 @@ type RentCollectionData = {
   walletAccountNumber?: string;
   bankAccountNumber?: string;
   bankName?: string;
+  unitDescription: string;
+  rentAmount: string;
+  startDate?: Date;
+  endDate?: Date;
+  increasePercentage?: string;
+  depositAmount?: string;
+  collectionDay?: string;
 };
 
 const banksPromise = getBanks();
@@ -34,6 +42,8 @@ export default function RentCollection() {
       bankAccountNumber: "",
       walletAccountNumber: "",
       bankName: "",
+      unitDescription: "",
+      rentAmount: "",
     }),
   );
 
@@ -110,7 +120,10 @@ export default function RentCollection() {
             value: bank.id.toString(),
             label: bank.bank_name_en,
           })),
-          schema: picklist(banks.map((bank) => bank.id)),
+          schema: picklist(
+            banks.map((bank) => bank.id.toString()),
+            "Bank is required",
+          ),
           condition: (data: RentCollectionData) =>
             data.transferTo === "bank_transfer",
         },
@@ -125,7 +138,62 @@ export default function RentCollection() {
         },
       ],
     },
-    // { label: "Unit description" },
+    {
+      label: "Unit description",
+      fields: [
+        {
+          name: "unitDescription",
+          label: "Unit Description",
+          description:
+            "Type the unit description as you want it to appear on the transfer form",
+          kind: "text",
+          type: "text",
+          schema: string([minLength(1, "Unit Description is required")]),
+        },
+        {
+          name: "rentAmount",
+          label: "Rent Amount",
+          kind: "text",
+          type: "text",
+          schema: string([custom(isNumeric, "Rent Amount must be a number")]),
+        },
+        {
+          name: "startDate",
+          label: "Contract Start Date",
+          kind: "date",
+          schema: date("Contract Start Date is required"),
+        },
+        {
+          name: "endDate",
+          label: "Contract End Date",
+          kind: "date",
+          schema: date("Contract End Date is required"),
+        },
+        {
+          name: "increasePercentage",
+          label: "Annual Increase Percentage",
+          kind: "text",
+          type: "text",
+          schema: string([
+            custom(isNumeric, "Increase Percentage must be a number"),
+          ]),
+        },
+        {
+          name: "collectionDay",
+          label: "Collection Day",
+          kind: "select",
+          options: Array.from({ length: 29 }, (_, i) => ({
+            value: (i + 1).toString(),
+            label: (i + 1).toString(),
+          })),
+          schema: picklist(
+            Array.from({ length: 29 }, (_, i) => (i + 1).toString()),
+            "Collection Day is required",
+          ),
+        },
+      ],
+    },
+
     // { label: "Confirmation" },
   ];
 

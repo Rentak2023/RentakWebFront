@@ -1,7 +1,7 @@
 import { type HTMLInputTypeAttribute } from "react";
 import { type BaseSchema } from "valibot";
 
-export type TFormData = Record<string, string>;
+export type TFormData = Record<string, any>;
 
 export type Field<BaseFormData extends TFormData> = {
   name: Extract<keyof BaseFormData, string>;
@@ -14,6 +14,9 @@ export type Field<BaseFormData extends TFormData> = {
   | {
       kind: "select";
       options: Array<{ value: string; label: string }>;
+    }
+  | {
+      kind: "date";
     }
   | {
       kind: "text";

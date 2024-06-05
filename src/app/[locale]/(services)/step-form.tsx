@@ -1,9 +1,12 @@
 import { valibotResolver } from "@hookform/resolvers/valibot";
+import { format } from "date-fns";
+import { CalendarIcon } from "lucide-react";
 import { useMemo } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { type BaseSchema, object } from "valibot";
 
 import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 import {
   Form,
   FormControl,
@@ -15,6 +18,11 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
   Select,
   SelectContent,
   SelectItem,
@@ -23,6 +31,7 @@ import {
 } from "@/components/ui/select";
 import { useStepper } from "@/components/ui/stepper";
 import { toast } from "@/components/ui/use-toast";
+import { cn } from "@/lib/utils";
 
 import { type createFormStore } from "./stepper-form-store";
 import { type Field } from "./types";
@@ -116,8 +125,8 @@ export function StepForm<BaseFormData extends Record<string, string>>({
             render={({ field }) => (
               <FormItem>
                 <FormLabel>{formField.label}</FormLabel>
-                <FormControl>
-                  {formField.kind === "select" ? (
+                {formField.kind === "select" ? (
+                  <FormControl>
                     <Select
                       onValueChange={field.onChange}
                       defaultValue={field.value}
@@ -133,10 +142,45 @@ export function StepForm<BaseFormData extends Record<string, string>>({
                         ))}
                       </SelectContent>
                     </Select>
-                  ) : (
+                  </FormControl>
+                ) : formField.kind === "date" ? (
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <FormControl>
+                        <Button
+                          variant="outline"
+                          className={cn(
+                            "flex w-full ps-3 text-start font-normal",
+                            !field.value && "text-muted-foreground",
+                          )}
+                        >
+                          {field.value ? (
+                            format(field.value, "PPP")
+                          ) : (
+                            <span>Pick a date</span>
+                          )}
+                          <CalendarIcon className="ms-auto size-4 opacity-50" />
+                        </Button>
+                      </FormControl>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <Calendar
+                        mode="single"
+                        // @ts-expect-error should be a Date
+                        selected={field.value}
+                        onSelect={field.onChange}
+                        disabled={(date) =>
+                          date > new Date() || date < new Date("1900-01-01")
+                        }
+                        initialFocus
+                      />
+                    </PopoverContent>
+                  </Popover>
+                ) : (
+                  <FormControl>
                     <Input type={formField.type} {...field} />
-                  )}
-                </FormControl>
+                  </FormControl>
+                )}
                 {formField.description ? (
                   <FormDescription>{formField.description}</FormDescription>
                 ) : null}
