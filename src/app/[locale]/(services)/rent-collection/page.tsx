@@ -1,10 +1,9 @@
 "use client";
 
-import { use, useState } from "react";
+import { use } from "react";
 import {
   custom,
   date,
-  email,
   literal,
   minLength,
   object,
@@ -18,7 +17,6 @@ import isNumeric from "validator/es/lib/isNumeric";
 import { getBanks } from "@/services/banks";
 
 import { ServiceForms } from "../service-forms";
-import { createFormStore } from "../stepper-form-store";
 import { type TStep } from "../types";
 
 const banksPromise = getBanks();
@@ -31,7 +29,9 @@ export default function RentCollection() {
       label: "Profile Info",
       schema: object({
         fullName: string([minLength(1, "Full name is required")]),
-        email: string([email("A valid email address is required")]),
+        phoneNumber: string([
+          custom(isMobilePhone, "Enter a valid phone number"),
+        ]),
       }),
       fields: [
         {
@@ -41,10 +41,10 @@ export default function RentCollection() {
           type: "text",
         },
         {
-          name: "email",
-          label: "Email",
+          name: "phoneNumber",
+          label: "Phone Number",
           kind: "text",
-          type: "email",
+          type: "tel",
         },
       ],
     },
@@ -186,14 +186,12 @@ export default function RentCollection() {
     // { label: "Confirmation" },
   ] as const satisfies Array<TStep>;
 
-  const [useWizardFormStore] = useState(() => createFormStore(steps));
-
   return (
     <main className="pt-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-center text-7xl font-semibold">Rent Collection</h1>
 
-        <ServiceForms useFormStore={useWizardFormStore} steps={steps} />
+        <ServiceForms steps={steps} />
       </div>
     </main>
   );

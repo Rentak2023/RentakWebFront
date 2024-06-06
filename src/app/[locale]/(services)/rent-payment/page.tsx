@@ -1,10 +1,7 @@
 "use client";
-
-import { useState } from "react";
 import { email, minLength, object, string } from "valibot";
 
 import { ServiceForms } from "../service-forms";
-import { createFormStore } from "../stepper-form-store";
 import { type TStep } from "../types";
 
 const steps = [
@@ -64,14 +61,12 @@ const steps = [
 ] as const satisfies Array<TStep>;
 
 export default function RentPayment() {
-  const [useWizardFormStore] = useState(() => createFormStore(steps));
-
   return (
     <main className="pt-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-center text-7xl font-semibold">Rent Payment</h1>
 
-        <ServiceForms useFormStore={useWizardFormStore} steps={steps} />
+        <ServiceForms steps={steps} />
       </div>
     </main>
   );
