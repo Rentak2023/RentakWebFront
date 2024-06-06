@@ -43,7 +43,7 @@ type StepFormProps = {
 };
 
 export function StepForm({ fields, useFormStore, schema }: StepFormProps) {
-  const { nextStep, isLastStep } = useStepper();
+  const { nextStep, isLastStep, prevStep } = useStepper();
 
   const {
     formData,
@@ -76,7 +76,6 @@ export function StepForm({ fields, useFormStore, schema }: StepFormProps) {
   }, [fields, formData, currentValues]);
 
   const onSubmit = form.handleSubmit((data) => {
-    console.log("isLastStep", isLastStep);
     updateFormData(data);
 
     if (isLastStep) {
@@ -94,6 +93,11 @@ export function StepForm({ fields, useFormStore, schema }: StepFormProps) {
       title: "Step submitted!",
     });
   });
+
+  const handlePrevStep = () => {
+    updateFormData(currentValues);
+    prevStep();
+  };
 
   return (
     <Form {...form}>
@@ -170,15 +174,18 @@ export function StepForm({ fields, useFormStore, schema }: StepFormProps) {
           />
         ))}
 
-        <StepperFormActions />
+        <StepperFormActions onPrevStep={handlePrevStep} />
       </form>
     </Form>
   );
 }
 
-function StepperFormActions() {
+type StepperFormActions = {
+  onPrevStep: () => void;
+};
+
+function StepperFormActions({ onPrevStep }: StepperFormActions) {
   const {
-    prevStep,
     resetSteps,
     isDisabledStep,
     hasCompletedAllSteps,
@@ -196,7 +203,7 @@ function StepperFormActions() {
         <>
           <Button
             disabled={isDisabledStep}
-            onClick={prevStep}
+            onClick={onPrevStep}
             size="sm"
             variant="ghost"
           >
