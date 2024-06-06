@@ -4,6 +4,7 @@ import { use } from "react";
 import {
   custom,
   date,
+  forward,
   literal,
   minLength,
   object,
@@ -80,16 +81,31 @@ export default function RentCollection() {
             minLength(1, "Wallet Account Number is required"),
           ]),
         }),
-        object({
-          transferTo: literal("bank_transfer"),
-          bankAccountNumber: string([
-            minLength(1, "Bank Account Number is required"),
-          ]),
-          bankName: picklist(
-            banks.map((bank) => bank.id.toString()),
-            "Bank is required",
-          ),
-        }),
+        object(
+          {
+            transferTo: literal("bank_transfer"),
+            bankName: picklist(
+              banks.map((bank) => bank.id.toString()),
+              "Bank is required",
+            ),
+            bankAccountNumber: string([
+              minLength(1, "Bank Account Number is required"),
+            ]),
+            confirmBankAccountNumber: string([
+              minLength(1, "Confirm Bank Account Number is required"),
+            ]),
+          },
+          [
+            forward(
+              custom(
+                ({ bankAccountNumber, confirmBankAccountNumber }) =>
+                  bankAccountNumber === confirmBankAccountNumber,
+                "Bank Account Number does not match",
+              ),
+              ["confirmBankAccountNumber"],
+            ),
+          ],
+        ),
       ]),
       fields: [
         {
@@ -123,6 +139,13 @@ export default function RentCollection() {
         {
           name: "bankAccountNumber",
           label: "Bank Account Number",
+          kind: "text",
+          type: "text",
+          condition: (data) => data.transferTo === "bank_transfer",
+        },
+        {
+          name: "confirmBankAccountNumber",
+          label: "Confirm Bank Account Number",
           kind: "text",
           type: "text",
           condition: (data) => data.transferTo === "bank_transfer",
