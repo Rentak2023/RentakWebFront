@@ -1,9 +1,8 @@
 import { valibotResolver } from "@hookform/resolvers/valibot";
 import { format } from "date-fns";
-import { CalendarIcon } from "lucide-react";
+import { CalendarIcon, Loader2 } from "lucide-react";
 import { useMemo } from "react";
-import { useForm, useWatch } from "react-hook-form";
-import { type BaseSchema } from "valibot";
+import { useForm, useFormContext, useWatch } from "react-hook-form";
 
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -40,9 +39,10 @@ import { type TStep } from "./types";
 type StepFormProps = {
   step: TStep;
   useFormStore: ReturnType<typeof createFormStore>;
+  onSubmit: (data: Record<string, any>) => Promise<void>;
 };
 
-export function StepForm({ useFormStore, step }: StepFormProps) {
+export function StepForm({ useFormStore, step, onSubmit }: StepFormProps) {
   const { nextStep, isLastStep, prevStep } = useStepper();
 
   const {
@@ -75,17 +75,19 @@ export function StepForm({ useFormStore, step }: StepFormProps) {
     );
   }, [step.fields, formData, currentValues]);
 
-  const onSubmit = form.handleSubmit((data) => {
+  const handleSubmit = form.handleSubmit(async (data) => {
     updateFormData(data);
 
     if (isLastStep) {
-      console.log(getFormData());
+      const formData = getFormData();
+      await onSubmit(formData);
 
       toast({
         title: "Form submitted!",
       });
 
       // TODO: Submit form
+
       return;
     }
     nextStep();
@@ -101,7 +103,7 @@ export function StepForm({ useFormStore, step }: StepFormProps) {
 
   return (
     <Form {...form}>
-      <form className="space-y-6" onSubmit={onSubmit}>
+      <form className="space-y-6" onSubmit={handleSubmit}>
         {step.heading ? (
           <h3 className="text-2xl font-semibold">
             Acknowledgment And Commitment
@@ -228,6 +230,12 @@ function StepperFormActions({ onPrevStep }: StepperFormActions) {
     isOptionalStep,
   } = useStepper();
 
+  const form = useFormContext();
+
+  const submitMessage = form.formState.isSubmitting
+    ? "Submitting..."
+    : "Submit";
+
   return (
     <div className="flex w-full justify-end gap-2">
       {hasCompletedAllSteps ? (
@@ -244,8 +252,15 @@ function StepperFormActions({ onPrevStep }: StepperFormActions) {
           >
             Prev
           </Button>
-          <Button size="sm" type="submit">
-            {isLastStep ? "Finish" : isOptionalStep ? "Skip" : "Next"}
+          <Button
+            size="sm"
+            type="submit"
+            disabled={form.formState.isSubmitting}
+          >
+            {form.formState.isSubmitting ? (
+              <Loader2 className="mr-2 size-4 animate-spin" />
+            ) : null}
+            {isLastStep ? submitMessage : isOptionalStep ? "Skip" : "Next"}
           </Button>
         </>
       )}

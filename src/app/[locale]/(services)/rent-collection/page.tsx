@@ -210,8 +210,8 @@ export default function RentCollection() {
       heading: "Acknowledgment And Commitment",
       list: [
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque ad ullam debitis, cumque omnis totam? Iusto ea distinctio tempore, corrupti consequatur provident incidunt sint recusandae debitis. Eum unde deleniti laudantium.",
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque ad ullam debitis, cumque omnis totam? Iusto ea distinctio tempore, corrupti consequatur provident incidunt sint recusandae debitis. Eum unde deleniti laudantium.",
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque ad ullam debitis, cumque omnis totam? Iusto ea distinctio tempore, corrupti consequatur provident incidunt sint recusandae debitis. Eum unde deleniti laudantium.",
+        "Lorem2 ipsum dolor sit amet, consectetur adipisicing elit. Eaque ad ullam debitis, cumque omnis totam? Iusto ea distinctio tempore, corrupti consequatur provident incidunt sint recusandae debitis. Eum unde deleniti laudantium.",
+        "Lorem3 ipsum dolor sit amet, consectetur adipisicing elit. Eaque ad ullam debitis, cumque omnis totam? Iusto ea distinctio tempore, corrupti consequatur provident incidunt sint recusandae debitis. Eum unde deleniti laudantium.",
       ],
       label: "Confirmation",
       schema: object({ confirm: literal(true) }),
@@ -225,12 +225,18 @@ export default function RentCollection() {
     },
   ] as const satisfies Array<TStep>;
 
+  // eslint-disable-next-line unicorn/consistent-function-scoping
+  const handleSubmit = async (data: Record<string, any>) => {
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+    console.log(data);
+  };
+
   return (
     <main className="pt-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-center text-7xl font-semibold">Rent Collection</h1>
 
-        <ServiceForms steps={steps} />
+        <ServiceForms steps={steps} onSubmit={handleSubmit} />
       </div>
     </main>
   );

@@ -9,9 +9,10 @@ import { type TStep } from "./types";
 
 type ServiceForms = {
   steps: Array<TStep>;
+  onSubmit: (data: Record<string, any>) => Promise<void>;
 };
 
-export function ServiceForms({ steps }: ServiceForms) {
+export function ServiceForms({ steps, onSubmit }: ServiceForms) {
   const [useFormStore] = useState(() => createFormStore(steps));
 
   return (
@@ -19,7 +20,11 @@ export function ServiceForms({ steps }: ServiceForms) {
       <Stepper variant="circle-alt" initialStep={0} steps={steps}>
         {steps.map((stepProps) => (
           <Step key={stepProps.label} label={stepProps.label}>
-            <StepForm step={stepProps} useFormStore={useFormStore} />
+            <StepForm
+              step={stepProps}
+              useFormStore={useFormStore}
+              onSubmit={onSubmit}
+            />
           </Step>
         ))}
       </Stepper>
