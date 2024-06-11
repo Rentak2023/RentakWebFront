@@ -17,6 +17,7 @@ import isNumeric from "validator/es/lib/isNumeric";
 
 import { getBanks } from "@/services/banks";
 
+import { rentCollectionAction } from "../actions/rent-collection";
 import { ServiceForms } from "../service-forms";
 import { type TStep } from "../types";
 
@@ -29,20 +30,23 @@ export default function RentCollection() {
     {
       label: "Profile Info",
       schema: object({
-        fullName: string([minLength(1, "Full name is required")]),
-        phoneNumber: string([
-          custom(isMobilePhone, "Enter a valid phone number"),
+        landlord_name: string([minLength(1, "Full name is required")]),
+        landlord_phone: string([
+          custom(
+            (input) => isMobilePhone(input, "ar-EG"),
+            "Enter a valid phone number",
+          ),
         ]),
       }),
       fields: [
         {
-          name: "fullName",
+          name: "landlord_name",
           label: "Full Name",
           kind: "text",
           type: "text",
         },
         {
-          name: "phoneNumber",
+          name: "landlord_phone",
           label: "Phone Number",
           kind: "text",
           type: "tel",
@@ -52,20 +56,23 @@ export default function RentCollection() {
     {
       label: "Tenant Info",
       schema: object({
-        tenantFullName: string([minLength(1, "Tenant name is required")]),
-        tenantPhone: string([
-          custom(isMobilePhone, "Enter a valid phone number"),
+        tenant_name: string([minLength(1, "Tenant name is required")]),
+        tenant_phone: string([
+          custom(
+            (input) => isMobilePhone(input, "ar-EG"),
+            "Enter a valid phone number",
+          ),
         ]),
       }),
       fields: [
         {
-          name: "tenantFullName",
+          name: "tenant_name",
           label: "Tenant Full Name",
           kind: "text",
           type: "text",
         },
         {
-          name: "tenantPhone",
+          name: "tenant_phone",
           label: "Tenant Phone Number",
           kind: "text",
           type: "tel",
@@ -74,42 +81,63 @@ export default function RentCollection() {
     },
     {
       label: "Payment method",
-      schema: variant("transferTo", [
-        object({
-          transferTo: literal("wallet"),
-          walletAccountNumber: string([
-            minLength(1, "Wallet Account Number is required"),
-          ]),
-        }),
+      schema: variant("transfer_to", [
         object(
           {
-            transferTo: literal("bank_transfer"),
-            bankName: picklist(
+            transfer_to: literal("wallet"),
+            wallet_account_number: string([
+              custom(
+                (input) => isMobilePhone(input, "ar-EG"),
+                "Enter a valid phone number",
+              ),
+            ]),
+            confirm_wallet_account_number: string([
+              custom(
+                (input) => isMobilePhone(input, "ar-EG"),
+                "Enter a valid phone number",
+              ),
+            ]),
+          },
+          [
+            forward(
+              custom(
+                ({ wallet_account_number, confirm_wallet_account_number }) =>
+                  wallet_account_number === confirm_wallet_account_number,
+                "Wallet Account Number does not match",
+              ),
+              ["confirm_wallet_account_number"],
+            ),
+          ],
+        ),
+        object(
+          {
+            transfer_to: literal("bank_transfer"),
+            bank_id: picklist(
               banks.map((bank) => bank.id.toString()),
               "Bank is required",
             ),
-            bankAccountNumber: string([
+            bank_account_number: string([
               minLength(1, "Bank Account Number is required"),
             ]),
-            confirmBankAccountNumber: string([
+            confirm_bank_account_number: string([
               minLength(1, "Confirm Bank Account Number is required"),
             ]),
           },
           [
             forward(
               custom(
-                ({ bankAccountNumber, confirmBankAccountNumber }) =>
-                  bankAccountNumber === confirmBankAccountNumber,
+                ({ bank_account_number, confirm_bank_account_number }) =>
+                  bank_account_number === confirm_bank_account_number,
                 "Bank Account Number does not match",
               ),
-              ["confirmBankAccountNumber"],
+              ["confirm_bank_account_number"],
             ),
           ],
         ),
       ]),
       fields: [
         {
-          name: "transferTo",
+          name: "transfer_to",
           label: "Transfer To",
           kind: "select",
           options: [
@@ -119,32 +147,39 @@ export default function RentCollection() {
         },
         // fields if wallet
         {
-          name: "walletAccountNumber",
+          name: "wallet_account_number",
           label: "Wallet Account Number",
           kind: "text",
           type: "text",
-          condition: (data) => data.transferTo === "wallet",
+          condition: (data) => data.transfer_to === "wallet",
+        },
+        {
+          name: "confirm_wallet_account_number",
+          label: "Confirm Wallet Account Number",
+          kind: "text",
+          type: "text",
+          condition: (data) => data.transfer_to === "wallet",
         },
         // fields if bank_transfer
         {
-          name: "bankName",
+          name: "bank_id",
           label: "Bank",
           kind: "select",
           options: banks.map((bank) => ({
             value: bank.id.toString(),
             label: bank.bank_name_en,
           })),
-          condition: (data) => data.transferTo === "bank_transfer",
+          condition: (data) => data.transfer_to === "bank_transfer",
         },
         {
-          name: "bankAccountNumber",
+          name: "bank_account_number",
           label: "Bank Account Number",
           kind: "text",
           type: "text",
           condition: (data) => data.transferTo === "bank_transfer",
         },
         {
-          name: "confirmBankAccountNumber",
+          name: "confirm_bank_account_number",
           label: "Confirm Bank Account Number",
           kind: "text",
           type: "text",
@@ -155,17 +190,22 @@ export default function RentCollection() {
     {
       label: "Unit description",
       schema: object({
-        unitDescription: string([minLength(1, "Unit Description is required")]),
-        rentAmount: string([custom(isNumeric, "Rent Amount must be a number")]),
-        startDate: date("Contract Start Date is required"),
-        endDate: date("Contract End Date is required"),
-        increasePercentage: string([
+        unit_description: string([
+          minLength(1, "Unit Description is required"),
+        ]),
+        rent_amount: string([
+          custom(isNumeric, "Rent Amount must be a number"),
+        ]),
+        contract_start_date: date("Contract Start Date is required"),
+        contract_end_date: date("Contract End Date is required"),
+        annual_increase_percentage: string([
           custom(isNumeric, "Annual Increase Percentage must be a number"),
         ]),
+        collection_day: string([minLength(1, "Collection Day is required")]),
       }),
       fields: [
         {
-          name: "unitDescription",
+          name: "unit_description",
           label: "Unit Description",
           description:
             "Type the unit description as you want it to appear on the transfer form",
@@ -173,29 +213,29 @@ export default function RentCollection() {
           type: "text",
         },
         {
-          name: "rentAmount",
+          name: "rent_amount",
           label: "Rent Amount",
           kind: "text",
           type: "text",
         },
         {
-          name: "startDate",
+          name: "contract_start_date",
           label: "Contract Start Date",
           kind: "date",
         },
         {
-          name: "endDate",
+          name: "contract_end_date",
           label: "Contract End Date",
           kind: "date",
         },
         {
-          name: "increasePercentage",
+          name: "annual_increase_percentage",
           label: "Annual Increase Percentage",
           kind: "text",
           type: "text",
         },
         {
-          name: "collectionDay",
+          name: "collection_day",
           label: "Collection Day",
           kind: "select",
           options: Array.from({ length: 29 }, (_, i) => ({
@@ -214,10 +254,10 @@ export default function RentCollection() {
         "Lorem3 ipsum dolor sit amet, consectetur adipisicing elit. Eaque ad ullam debitis, cumque omnis totam? Iusto ea distinctio tempore, corrupti consequatur provident incidunt sint recusandae debitis. Eum unde deleniti laudantium.",
       ],
       label: "Confirmation",
-      schema: object({ confirm: literal(true) }),
+      schema: object({ agree: literal(true) }),
       fields: [
         {
-          name: "confirm",
+          name: "agree",
           label: "Agree",
           kind: "checkbox",
         },
@@ -227,8 +267,10 @@ export default function RentCollection() {
 
   // eslint-disable-next-line unicorn/consistent-function-scoping
   const handleSubmit = async (data: Record<string, any>) => {
-    await new Promise((resolve) => setTimeout(resolve, 3000));
+    // await new Promise((resolve) => setTimeout(resolve, 3000));
     console.log(data);
+    const res = await rentCollectionAction(data);
+    console.log(res);
   };
 
   return (
