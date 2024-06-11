@@ -19,11 +19,7 @@ export function ServiceForms({ steps }: ServiceForms) {
       <Stepper variant="circle-alt" initialStep={0} steps={steps}>
         {steps.map((stepProps) => (
           <Step key={stepProps.label} label={stepProps.label}>
-            <StepForm
-              fields={stepProps.fields}
-              useFormStore={useFormStore}
-              schema={stepProps.schema}
-            />
+            <StepForm step={stepProps} useFormStore={useFormStore} />
           </Step>
         ))}
       </Stepper>

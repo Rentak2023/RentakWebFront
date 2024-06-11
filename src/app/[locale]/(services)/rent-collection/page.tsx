@@ -206,7 +206,23 @@ export default function RentCollection() {
       ],
     },
 
-    // { label: "Confirmation" },
+    {
+      heading: "Acknowledgment And Commitment",
+      list: [
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque ad ullam debitis, cumque omnis totam? Iusto ea distinctio tempore, corrupti consequatur provident incidunt sint recusandae debitis. Eum unde deleniti laudantium.",
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque ad ullam debitis, cumque omnis totam? Iusto ea distinctio tempore, corrupti consequatur provident incidunt sint recusandae debitis. Eum unde deleniti laudantium.",
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque ad ullam debitis, cumque omnis totam? Iusto ea distinctio tempore, corrupti consequatur provident incidunt sint recusandae debitis. Eum unde deleniti laudantium.",
+      ],
+      label: "Confirmation",
+      schema: object({ confirm: literal(true) }),
+      fields: [
+        {
+          name: "confirm",
+          label: "Agree",
+          kind: "checkbox",
+        },
+      ],
+    },
   ] as const satisfies Array<TStep>;
 
   return (

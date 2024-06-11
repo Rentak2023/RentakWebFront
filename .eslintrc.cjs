@@ -64,6 +64,7 @@ const config = {
           "@radix-ui/react-collapsible",
           "@radix-ui/react-select",
           "@radix-ui/react-popover",
+          "@radix-ui/react-checkbox",
         ],
       },
     ],

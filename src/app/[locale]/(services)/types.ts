@@ -13,6 +13,9 @@ export type Field = {
       options: Array<{ value: string; label: string }>;
     }
   | {
+      kind: "checkbox";
+    }
+  | {
       kind: "date";
     }
   | {
@@ -24,5 +27,7 @@ export type Field = {
 export type TStep = {
   label: string;
   fields: Array<Field>;
+  heading?: string;
+  list?: Array<string>;
   schema: BaseSchema;
 };

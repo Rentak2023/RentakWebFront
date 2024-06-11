@@ -7,6 +7,7 @@ import { type BaseSchema } from "valibot";
 
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Form,
   FormControl,
@@ -34,15 +35,14 @@ import { toast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
 
 import { type createFormStore } from "./stepper-form-store";
-import { type Field } from "./types";
+import { type TStep } from "./types";
 
 type StepFormProps = {
-  fields: Array<Field>;
+  step: TStep;
   useFormStore: ReturnType<typeof createFormStore>;
-  schema: BaseSchema;
 };
 
-export function StepForm({ fields, useFormStore, schema }: StepFormProps) {
+export function StepForm({ useFormStore, step }: StepFormProps) {
   const { nextStep, isLastStep, prevStep } = useStepper();
 
   const {
@@ -54,26 +54,26 @@ export function StepForm({ fields, useFormStore, schema }: StepFormProps) {
   const defaultValues = useMemo(() => {
     const defaults: Partial<typeof formData> = {} as any;
 
-    for (const field of fields) {
+    for (const field of step.fields) {
       defaults[field.name] = formData[field.name];
     }
 
     return defaults;
-  }, [fields, formData]);
+  }, [step.fields, formData]);
 
   const form = useForm({
-    resolver: valibotResolver(schema),
+    resolver: valibotResolver(step.schema),
     defaultValues,
   });
 
   const currentValues = useWatch({ control: form.control });
 
   const filteredFields = useMemo(() => {
-    return fields.filter(
+    return step.fields.filter(
       (field) =>
         !field.condition || field.condition({ ...formData, ...currentValues }),
     );
-  }, [fields, formData, currentValues]);
+  }, [step.fields, formData, currentValues]);
 
   const onSubmit = form.handleSubmit((data) => {
     updateFormData(data);
@@ -102,6 +102,18 @@ export function StepForm({ fields, useFormStore, schema }: StepFormProps) {
   return (
     <Form {...form}>
       <form className="space-y-6" onSubmit={onSubmit}>
+        {step.heading ? (
+          <h3 className="text-2xl font-semibold">
+            Acknowledgment And Commitment
+          </h3>
+        ) : null}
+        {step.list ? (
+          <ul className="list-disc">
+            {step.list.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        ) : null}
         {filteredFields.map((formField) => (
           <FormField
             key={formField.name}
@@ -109,7 +121,9 @@ export function StepForm({ fields, useFormStore, schema }: StepFormProps) {
             name={formField.name}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{formField.label}</FormLabel>
+                {formField.kind !== "checkbox" && (
+                  <FormLabel>{formField.label}</FormLabel>
+                )}
                 {formField.kind === "select" ? (
                   <FormControl>
                     <Select
@@ -128,6 +142,27 @@ export function StepForm({ fields, useFormStore, schema }: StepFormProps) {
                       </SelectContent>
                     </Select>
                   </FormControl>
+                ) : formField.kind === "checkbox" ? (
+                  <FormField
+                    control={form.control}
+                    name={formField.name}
+                    render={({ field }) => (
+                      <div>
+                        <FormControl className="me-2">
+                          <Checkbox
+                            checked={field.value}
+                            onCheckedChange={field.onChange}
+                          />
+                        </FormControl>
+                        <FormLabel>{formField.label}</FormLabel>
+                        {formField.description ? (
+                          <FormDescription>
+                            {formField.description}
+                          </FormDescription>
+                        ) : null}
+                      </div>
+                    )}
+                  />
                 ) : formField.kind === "date" ? (
                   <Popover>
                     <PopoverTrigger asChild>
