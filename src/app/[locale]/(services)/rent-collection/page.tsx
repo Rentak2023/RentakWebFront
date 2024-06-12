@@ -21,6 +21,11 @@ import { rentCollectionAction } from "../actions/rent-collection";
 import { ServiceForms } from "../service-forms";
 import { type TStep } from "../types";
 
+enum PaymentMethod {
+  Bank = "4",
+  Wallet = "5",
+}
+
 const banksPromise = getBanks();
 
 export default function RentCollection() {
@@ -81,10 +86,10 @@ export default function RentCollection() {
     },
     {
       label: "Payment method",
-      schema: variant("transfer_to", [
+      schema: variant("cash_out_payment_method_id", [
         object(
           {
-            transfer_to: literal("wallet"),
+            cash_out_payment_method_id: literal(PaymentMethod.Wallet),
             wallet_account_number: string([
               custom(
                 (input) => isMobilePhone(input, "ar-EG"),
@@ -111,7 +116,7 @@ export default function RentCollection() {
         ),
         object(
           {
-            transfer_to: literal("bank_transfer"),
+            cash_out_payment_method_id: literal(PaymentMethod.Bank),
             bank_id: picklist(
               banks.map((bank) => bank.id.toString()),
               "Bank is required",
@@ -137,12 +142,12 @@ export default function RentCollection() {
       ]),
       fields: [
         {
-          name: "transfer_to",
+          name: "cash_out_payment_method_id",
           label: "Transfer To",
           kind: "select",
           options: [
-            { value: "wallet", label: "Wallet" },
-            { value: "bank_transfer", label: "Bank Transfer" },
+            { value: PaymentMethod.Wallet, label: "Wallet" },
+            { value: PaymentMethod.Bank, label: "Bank Transfer" },
           ],
         },
         // fields if wallet
@@ -151,14 +156,16 @@ export default function RentCollection() {
           label: "Wallet Account Number",
           kind: "text",
           type: "text",
-          condition: (data) => data.transfer_to === "wallet",
+          condition: (data) =>
+            data.cash_out_payment_method_id === PaymentMethod.Wallet,
         },
         {
           name: "confirm_wallet_account_number",
           label: "Confirm Wallet Account Number",
           kind: "text",
           type: "text",
-          condition: (data) => data.transfer_to === "wallet",
+          condition: (data) =>
+            data.cash_out_payment_method_id === PaymentMethod.Wallet,
         },
         // fields if bank_transfer
         {
@@ -169,21 +176,24 @@ export default function RentCollection() {
             value: bank.id.toString(),
             label: bank.bank_name_en,
           })),
-          condition: (data) => data.transfer_to === "bank_transfer",
+          condition: (data) =>
+            data.cash_out_payment_method_id === PaymentMethod.Bank,
         },
         {
           name: "bank_account_number",
           label: "Bank Account Number",
           kind: "text",
           type: "text",
-          condition: (data) => data.transfer_to === "bank_transfer",
+          condition: (data) =>
+            data.cash_out_payment_method_id === PaymentMethod.Bank,
         },
         {
           name: "confirm_bank_account_number",
           label: "Confirm Bank Account Number",
           kind: "text",
           type: "text",
-          condition: (data) => data.transfer_to === "bank_transfer",
+          condition: (data) =>
+            data.cash_out_payment_method_id === PaymentMethod.Bank,
         },
       ],
     },
@@ -267,7 +277,6 @@ export default function RentCollection() {
 
   // eslint-disable-next-line unicorn/consistent-function-scoping
   const handleSubmit = async (data: Record<string, any>) => {
-    // await new Promise((resolve) => setTimeout(resolve, 3000));
     console.log(data);
     const res = await rentCollectionAction(data);
     console.log(res);
