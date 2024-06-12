@@ -27,10 +27,13 @@ export default function RentCollection() {
       schema: v.object({
         landlord_name: v.pipe(
           v.string(),
-          v.minLength(1, "Full name is required"),
+          v.trim(),
+          v.nonEmpty("Full name is required"),
         ),
         landlord_phone: v.pipe(
           v.string(),
+          v.trim(),
+          v.nonEmpty("Phone number is required"),
           v.check(
             (input) => isMobilePhone(input, "ar-EG"),
             "Enter a valid phone number",
@@ -57,10 +60,13 @@ export default function RentCollection() {
       schema: v.object({
         tenant_name: v.pipe(
           v.string(),
-          v.minLength(1, "Tenant name is required"),
+          v.trim(),
+          v.nonEmpty("Tenant name is required"),
         ),
         tenant_phone: v.pipe(
           v.string(),
+          v.trim(),
+          v.nonEmpty("Tenant phone number is required"),
           v.check(
             (input) => isMobilePhone(input, "ar-EG"),
             "Enter a valid phone number",
@@ -90,6 +96,8 @@ export default function RentCollection() {
             cash_out_payment_method_id: v.literal(PaymentMethod.Wallet),
             wallet_account_number: v.pipe(
               v.string(),
+              v.trim(),
+              v.nonEmpty("Wallet Account Number is required"),
               v.check(
                 (input) => isMobilePhone(input, "ar-EG"),
                 "Enter a valid phone number",
@@ -97,6 +105,8 @@ export default function RentCollection() {
             ),
             confirm_wallet_account_number: v.pipe(
               v.string(),
+              v.trim(),
+              v.nonEmpty("Confirm Wallet Account Number is required"),
               v.check(
                 (input) => isMobilePhone(input, "ar-EG"),
                 "Enter a valid phone number",
@@ -121,11 +131,13 @@ export default function RentCollection() {
             ),
             bank_account_number: v.pipe(
               v.string(),
-              v.minLength(1, "Bank Account Number is required"),
+              v.trim(),
+              v.nonEmpty("Bank Account Number is required"),
             ),
             confirm_bank_account_number: v.pipe(
               v.string(),
-              v.minLength(1, "Confirm Bank Account Number is required"),
+              v.trim(),
+              v.nonEmpty("Confirm Bank Account Number is required"),
             ),
           }),
           v.forward(
@@ -200,21 +212,26 @@ export default function RentCollection() {
       schema: v.object({
         unit_description: v.pipe(
           v.string(),
-          v.minLength(1, "Unit Description is required"),
+          v.trim(),
+          v.nonEmpty("Unit Description is required"),
         ),
         rent_amount: v.pipe(
           v.string(),
+          v.trim(),
+          v.nonEmpty("Rent Amount is required"),
           v.check(isNumeric, "Rent Amount must be a number"),
         ),
         contract_start_date: v.date("Contract Start Date is required"),
         contract_end_date: v.date("Contract End Date is required"),
         annual_increase_percentage: v.pipe(
           v.string(),
+          v.trim(),
+          v.nonEmpty("Annual Increase Percentage is required"),
           v.check(isNumeric, "Annual Increase Percentage must be a number"),
         ),
         collection_day: v.pipe(
           v.string(),
-          v.minLength(1, "Collection Day is required"),
+          v.nonEmpty("Collection Day is required"),
         ),
       }),
       fields: [
@@ -268,7 +285,9 @@ export default function RentCollection() {
         "Lorem3 ipsum dolor sit amet, consectetur adipisicing elit. Eaque ad ullam debitis, cumque omnis totam? Iusto ea distinctio tempore, corrupti consequatur provident incidunt sint recusandae debitis. Eum unde deleniti laudantium.",
       ],
       label: "Confirmation",
-      schema: v.object({ agree: v.literal(true) }),
+      schema: v.object({
+        agree: v.literal(true, "You need to agree to the terms"),
+      }),
       fields: [
         {
           name: "agree",
