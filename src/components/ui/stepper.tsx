@@ -43,21 +43,21 @@ const StepperProvider = ({ value, children }: StepperContextProviderProps) => {
 
   const [activeStep, setActiveStep] = React.useState(value.initialStep);
 
-  const nextStep = () => {
+  const nextStep = React.useCallback(() => {
     setActiveStep((prev) => prev + 1);
-  };
+  }, []);
 
-  const prevStep = () => {
+  const prevStep = React.useCallback(() => {
     setActiveStep((prev) => prev - 1);
-  };
+  }, []);
 
-  const resetSteps = () => {
+  const resetSteps = React.useCallback(() => {
     setActiveStep(value.initialStep);
-  };
+  }, [value.initialStep]);
 
-  const setStep = (step: number) => {
+  const setStep = React.useCallback((step: number) => {
     setActiveStep(step);
-  };
+  }, []);
 
   return (
     <StepperContext.Provider

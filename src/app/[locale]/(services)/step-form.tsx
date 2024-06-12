@@ -249,6 +249,7 @@ function StepperFormActions({ onPrevStep }: StepperFormActions) {
             onClick={onPrevStep}
             size="sm"
             variant="ghost"
+            type="button"
           >
             Prev
           </Button>
