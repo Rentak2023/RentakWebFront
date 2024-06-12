@@ -1,5 +1,5 @@
 import { type HTMLInputTypeAttribute } from "react";
-import { type BaseSchema } from "valibot";
+import type * as v from "valibot";
 
 export type Field = {
   name: string;
@@ -29,5 +29,5 @@ export type TStep = {
   fields: Array<Field>;
   heading?: string;
   list?: Array<string>;
-  schema: BaseSchema;
+  schema: v.GenericSchema;
 };

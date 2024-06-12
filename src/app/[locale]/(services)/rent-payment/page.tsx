@@ -1,5 +1,5 @@
 "use client";
-import { email, minLength, object, string } from "valibot";
+import * as v from "valibot";
 
 import { ServiceForms } from "../service-forms";
 import { type TStep } from "../types";
@@ -7,10 +7,10 @@ import { type TStep } from "../types";
 const steps = [
   {
     label: "Profile Info",
-    schema: object({
-      username: string([minLength(1, "Username is required")]),
-      email: string([email("A valid email address is required")]),
-      nationalId: string([minLength(5, "National ID is required")]),
+    schema: v.object({
+      username: v.pipe(v.string(), v.minLength(1, "Username is required")),
+      email: v.pipe(v.string(), v.email("A valid email address is required")),
+      nationalId: v.pipe(v.string(), v.minLength(5, "National ID is required")),
     }),
     fields: [
       {
@@ -36,9 +36,12 @@ const steps = [
   },
   {
     label: "Tenant Info",
-    schema: object({
-      tenantName: string([minLength(1, "Tenant name is required")]),
-      tenantEmail: string([email("A valid email address is required")]),
+    schema: v.object({
+      tenantName: v.pipe(v.string(), v.minLength(1, "Tenant name is required")),
+      tenantEmail: v.pipe(
+        v.string(),
+        v.email("A valid email address is required"),
+      ),
     }),
     fields: [
       {

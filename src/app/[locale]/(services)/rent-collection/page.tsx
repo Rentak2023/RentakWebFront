@@ -1,17 +1,7 @@
 "use client";
 
 import { use } from "react";
-import {
-  custom,
-  date,
-  forward,
-  literal,
-  minLength,
-  object,
-  picklist,
-  string,
-  variant,
-} from "valibot";
+import * as v from "valibot";
 import isMobilePhone from "validator/es/lib/isMobilePhone";
 import isNumeric from "validator/es/lib/isNumeric";
 
@@ -34,14 +24,18 @@ export default function RentCollection() {
   const steps = [
     {
       label: "Profile Info",
-      schema: object({
-        landlord_name: string([minLength(1, "Full name is required")]),
-        landlord_phone: string([
-          custom(
+      schema: v.object({
+        landlord_name: v.pipe(
+          v.string(),
+          v.minLength(1, "Full name is required"),
+        ),
+        landlord_phone: v.pipe(
+          v.string(),
+          v.check(
             (input) => isMobilePhone(input, "ar-EG"),
             "Enter a valid phone number",
           ),
-        ]),
+        ),
       }),
       fields: [
         {
@@ -60,14 +54,18 @@ export default function RentCollection() {
     },
     {
       label: "Tenant Info",
-      schema: object({
-        tenant_name: string([minLength(1, "Tenant name is required")]),
-        tenant_phone: string([
-          custom(
+      schema: v.object({
+        tenant_name: v.pipe(
+          v.string(),
+          v.minLength(1, "Tenant name is required"),
+        ),
+        tenant_phone: v.pipe(
+          v.string(),
+          v.check(
             (input) => isMobilePhone(input, "ar-EG"),
             "Enter a valid phone number",
           ),
-        ]),
+        ),
       }),
       fields: [
         {
@@ -86,58 +84,58 @@ export default function RentCollection() {
     },
     {
       label: "Payment method",
-      schema: variant("cash_out_payment_method_id", [
-        object(
-          {
-            cash_out_payment_method_id: literal(PaymentMethod.Wallet),
-            wallet_account_number: string([
-              custom(
+      schema: v.variant("cash_out_payment_method_id", [
+        v.pipe(
+          v.object({
+            cash_out_payment_method_id: v.literal(PaymentMethod.Wallet),
+            wallet_account_number: v.pipe(
+              v.string(),
+              v.check(
                 (input) => isMobilePhone(input, "ar-EG"),
                 "Enter a valid phone number",
               ),
-            ]),
-            confirm_wallet_account_number: string([
-              custom(
-                (input) => isMobilePhone(input, "ar-EG"),
-                "Enter a valid phone number",
-              ),
-            ]),
-          },
-          [
-            forward(
-              custom(
-                ({ wallet_account_number, confirm_wallet_account_number }) =>
-                  wallet_account_number === confirm_wallet_account_number,
-                "Wallet Account Number does not match",
-              ),
-              ["confirm_wallet_account_number"],
             ),
-          ],
+            confirm_wallet_account_number: v.pipe(
+              v.string(),
+              v.check(
+                (input) => isMobilePhone(input, "ar-EG"),
+                "Enter a valid phone number",
+              ),
+            ),
+          }),
+          v.forward(
+            v.check(
+              ({ wallet_account_number, confirm_wallet_account_number }) =>
+                wallet_account_number === confirm_wallet_account_number,
+              "Wallet Account Number does not match",
+            ),
+            ["confirm_wallet_account_number"],
+          ),
         ),
-        object(
-          {
-            cash_out_payment_method_id: literal(PaymentMethod.Bank),
-            bank_id: picklist(
+        v.pipe(
+          v.object({
+            cash_out_payment_method_id: v.literal(PaymentMethod.Bank),
+            bank_id: v.picklist(
               banks.map((bank) => bank.id.toString()),
               "Bank is required",
             ),
-            bank_account_number: string([
-              minLength(1, "Bank Account Number is required"),
-            ]),
-            confirm_bank_account_number: string([
-              minLength(1, "Confirm Bank Account Number is required"),
-            ]),
-          },
-          [
-            forward(
-              custom(
-                ({ bank_account_number, confirm_bank_account_number }) =>
-                  bank_account_number === confirm_bank_account_number,
-                "Bank Account Number does not match",
-              ),
-              ["confirm_bank_account_number"],
+            bank_account_number: v.pipe(
+              v.string(),
+              v.minLength(1, "Bank Account Number is required"),
             ),
-          ],
+            confirm_bank_account_number: v.pipe(
+              v.string(),
+              v.minLength(1, "Confirm Bank Account Number is required"),
+            ),
+          }),
+          v.forward(
+            v.check(
+              ({ bank_account_number, confirm_bank_account_number }) =>
+                bank_account_number === confirm_bank_account_number,
+              "Bank Account Number does not match",
+            ),
+            ["confirm_bank_account_number"],
+          ),
         ),
       ]),
       fields: [
@@ -199,19 +197,25 @@ export default function RentCollection() {
     },
     {
       label: "Unit description",
-      schema: object({
-        unit_description: string([
-          minLength(1, "Unit Description is required"),
-        ]),
-        rent_amount: string([
-          custom(isNumeric, "Rent Amount must be a number"),
-        ]),
-        contract_start_date: date("Contract Start Date is required"),
-        contract_end_date: date("Contract End Date is required"),
-        annual_increase_percentage: string([
-          custom(isNumeric, "Annual Increase Percentage must be a number"),
-        ]),
-        collection_day: string([minLength(1, "Collection Day is required")]),
+      schema: v.object({
+        unit_description: v.pipe(
+          v.string(),
+          v.minLength(1, "Unit Description is required"),
+        ),
+        rent_amount: v.pipe(
+          v.string(),
+          v.check(isNumeric, "Rent Amount must be a number"),
+        ),
+        contract_start_date: v.date("Contract Start Date is required"),
+        contract_end_date: v.date("Contract End Date is required"),
+        annual_increase_percentage: v.pipe(
+          v.string(),
+          v.check(isNumeric, "Annual Increase Percentage must be a number"),
+        ),
+        collection_day: v.pipe(
+          v.string(),
+          v.minLength(1, "Collection Day is required"),
+        ),
       }),
       fields: [
         {
@@ -264,7 +268,7 @@ export default function RentCollection() {
         "Lorem3 ipsum dolor sit amet, consectetur adipisicing elit. Eaque ad ullam debitis, cumque omnis totam? Iusto ea distinctio tempore, corrupti consequatur provident incidunt sint recusandae debitis. Eum unde deleniti laudantium.",
       ],
       label: "Confirmation",
-      schema: object({ agree: literal(true) }),
+      schema: v.object({ agree: v.literal(true) }),
       fields: [
         {
           name: "agree",
