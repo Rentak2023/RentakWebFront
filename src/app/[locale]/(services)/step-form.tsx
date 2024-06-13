@@ -1,6 +1,7 @@
 import { valibotResolver } from "@hookform/resolvers/valibot";
 import { format } from "date-fns";
 import { ArrowLeft, ArrowRight, CalendarIcon, Loader2 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useMemo } from "react";
 import { useForm, useFormContext, useWatch } from "react-hook-form";
 
@@ -241,6 +242,8 @@ type StepperFormActions = {
 };
 
 function StepperFormActions({ onPrevStep }: StepperFormActions) {
+  const t = useTranslations("services.actions");
+
   const {
     resetSteps,
     isDisabledStep,
@@ -252,14 +255,14 @@ function StepperFormActions({ onPrevStep }: StepperFormActions) {
   const form = useFormContext();
 
   const submitMessage = form.formState.isSubmitting
-    ? "Submitting..."
-    : "Submit";
+    ? t("submitting")
+    : t("submit");
 
   return (
     <div className="flex w-full justify-between">
       {hasCompletedAllSteps ? (
         <Button size="sm" onClick={resetSteps}>
-          Reset
+          {t("reset")}
         </Button>
       ) : (
         <>
@@ -270,8 +273,8 @@ function StepperFormActions({ onPrevStep }: StepperFormActions) {
             variant="outline"
             type="button"
           >
-            <ArrowLeft className="me-2 size-4" />
-            Prev
+            <ArrowLeft className="me-2 size-4 rtl:rotate-180" />
+            {t("previous")}
           </Button>
           <Button
             size="sm"
@@ -282,9 +285,13 @@ function StepperFormActions({ onPrevStep }: StepperFormActions) {
               <Loader2 className="mr-2 size-4 animate-spin" />
             ) : null}
 
-            {isLastStep ? submitMessage : isOptionalStep ? "Skip" : "Next"}
+            {isLastStep
+              ? submitMessage
+              : isOptionalStep
+                ? t("skip")
+                : t("next")}
             {!isLastStep && !isOptionalStep && (
-              <ArrowRight className="ms-2 size-4" />
+              <ArrowRight className="ms-2 size-4 rtl:rotate-180" />
             )}
           </Button>
         </>

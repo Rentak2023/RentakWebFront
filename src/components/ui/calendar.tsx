@@ -1,10 +1,13 @@
 "use client";
 
+import { arEG, enUS } from "date-fns/locale";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useLocale } from "next-intl";
 import type * as React from "react";
 import { DayPicker } from "react-day-picker";
 
 import { buttonVariants } from "@/components/ui/button";
+import useTextDirection from "@/hooks/text-direction";
 import { cn } from "@/lib/utils";
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>;
@@ -15,10 +18,16 @@ function Calendar({
   showOutsideDays = true,
   ...props
 }: CalendarProps) {
+  const locale = useLocale();
+  const dir = useTextDirection(locale);
+
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
       className={cn("p-3", className)}
+      locale={locale === "ar" ? arEG : enUS}
+      weekStartsOn={6}
+      dir={dir}
       classNames={{
         months: "flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0",
         month: "space-y-4",
@@ -29,8 +38,8 @@ function Calendar({
           buttonVariants({ variant: "outline" }),
           "size-7 bg-transparent p-0 opacity-50 hover:opacity-100",
         ),
-        nav_button_previous: "absolute left-1",
-        nav_button_next: "absolute right-1",
+        nav_button_previous: "absolute start-1",
+        nav_button_next: "absolute end-1",
         table: "w-full border-collapse space-y-1",
         head_row: "flex",
         head_cell: "text-slate-500 rounded-md w-9 font-normal text-[0.8rem]",

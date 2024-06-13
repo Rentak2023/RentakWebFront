@@ -16,7 +16,7 @@ export function ServiceForms({ steps, onSubmit }: ServiceForms) {
   const [useFormStore] = useState(() => createFormStore(steps));
 
   return (
-    <div className="mx-auto mt-16 flex w-full max-w-xl flex-col gap-4">
+    <div className="mx-auto mt-16 flex w-full max-w-2xl flex-col gap-4">
       <Stepper variant="circle-alt" initialStep={0} steps={steps}>
         {steps.map((stepProps) => (
           <Step key={stepProps.label} label={stepProps.label}>
