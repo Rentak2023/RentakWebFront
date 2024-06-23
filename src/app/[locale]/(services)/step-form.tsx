@@ -1,7 +1,6 @@
 import { valibotResolver } from "@hookform/resolvers/valibot";
-import { format } from "date-fns";
 import { ArrowLeft, ArrowRight, CalendarIcon, Loader2 } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useFormatter, useTranslations } from "next-intl";
 import { useMemo } from "react";
 import {
   type ControllerRenderProps,
@@ -43,7 +42,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useStepper } from "@/components/ui/stepper";
-import { toast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
 
 import { type createFormStore } from "./stepper-form-store";
@@ -93,20 +91,9 @@ export function StepForm({ useFormStore, step, onSubmit }: StepFormProps) {
 
     if (isLastStep) {
       const formData = getFormData();
-      await onSubmit(formData);
-
-      toast({
-        title: "Form submitted!",
-      });
-
-      // TODO: Submit form
-
-      return;
+      return onSubmit(formData);
     }
     nextStep();
-    toast({
-      title: "Step submitted!",
-    });
   });
 
   const handlePrevStep = () => {
@@ -171,6 +158,8 @@ function StepField({
   formField: Field;
   field: ControllerRenderProps<Partial<Record<string, any>>, string>;
 }) {
+  const format = useFormatter();
+
   switch (formField.kind) {
     case "select": {
       return (
@@ -216,9 +205,11 @@ function StepField({
                 )}
               >
                 {field.value ? (
-                  format(field.value, "PPP")
+                  format.dateTime(field.value, {
+                    dateStyle: "long",
+                  })
                 ) : (
-                  <span>Pick a date</span>
+                  <span>{formField.placeholder}</span>
                 )}
                 <CalendarIcon className="ms-auto size-4 opacity-50" />
               </Button>
