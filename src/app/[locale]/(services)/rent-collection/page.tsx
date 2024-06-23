@@ -271,7 +271,7 @@ export default function RentCollection() {
         },
         {
           name: "annual_increase_percentage",
-          label: t("fields.annual-increase-percentage.invalid"),
+          label: t("fields.annual-increase-percentage.label"),
           kind: "text",
           type: "text",
         },
