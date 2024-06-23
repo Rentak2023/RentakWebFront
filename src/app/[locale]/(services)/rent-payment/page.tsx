@@ -61,6 +61,7 @@ export default function RentPayment({
             "Phone Number is invalid",
           ),
         ),
+        otp: v.pipe(v.string(), v.trim(), v.minLength(6, "OTP is required")),
       }),
       fields: [
         {
@@ -87,7 +88,11 @@ export default function RentPayment({
           kind: "text",
           type: "tel",
         },
-        // TODO: add OTP
+        {
+          name: "otp",
+          label: "OTP",
+          kind: "otp",
+        },
       ],
     },
     {

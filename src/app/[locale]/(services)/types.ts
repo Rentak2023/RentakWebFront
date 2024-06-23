@@ -19,6 +19,9 @@ export type Field = {
       kind: "date";
     }
   | {
+      kind: "otp";
+    }
+  | {
       kind: "text";
       type: HTMLInputTypeAttribute;
     }
