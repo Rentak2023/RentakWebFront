@@ -3,7 +3,12 @@ import { format } from "date-fns";
 import { ArrowLeft, ArrowRight, CalendarIcon, Loader2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useMemo } from "react";
-import { useForm, useFormContext, useWatch } from "react-hook-form";
+import {
+  type ControllerRenderProps,
+  useForm,
+  useFormContext,
+  useWatch,
+} from "react-hook-form";
 
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -42,7 +47,7 @@ import { toast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
 
 import { type createFormStore } from "./stepper-form-store";
-import { type TStep } from "./types";
+import { type Field, type TStep } from "./types";
 
 type StepFormProps = {
   step: TStep;
@@ -140,85 +145,7 @@ export function StepForm({ useFormStore, step, onSubmit }: StepFormProps) {
                     {formField.kind !== "checkbox" && (
                       <FormLabel>{formField.label}</FormLabel>
                     )}
-                    {formField.kind === "select" ? (
-                      <FormControl>
-                        <Select
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                        >
-                          <SelectTrigger>
-                            <SelectValue placeholder={formField.placeholder} />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {formField.options.map((option) => (
-                              <SelectItem
-                                value={option.value}
-                                key={option.value}
-                              >
-                                {option.label}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </FormControl>
-                    ) : formField.kind === "checkbox" ? (
-                      <FormField
-                        control={form.control}
-                        name={formField.name}
-                        render={({ field }) => (
-                          <div>
-                            <FormControl className="me-2">
-                              <Checkbox
-                                checked={field.value}
-                                onCheckedChange={field.onChange}
-                              />
-                            </FormControl>
-                            <FormLabel>{formField.label}</FormLabel>
-                            {formField.description ? (
-                              <FormDescription>
-                                {formField.description}
-                              </FormDescription>
-                            ) : null}
-                          </div>
-                        )}
-                      />
-                    ) : formField.kind === "date" ? (
-                      <Popover>
-                        <PopoverTrigger asChild>
-                          <FormControl>
-                            <Button
-                              variant="outline"
-                              className={cn(
-                                "flex w-full ps-3 text-start font-normal",
-                                !field.value && "text-muted-foreground",
-                              )}
-                            >
-                              {field.value ? (
-                                format(field.value, "PPP")
-                              ) : (
-                                <span>Pick a date</span>
-                              )}
-                              <CalendarIcon className="ms-auto size-4 opacity-50" />
-                            </Button>
-                          </FormControl>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-auto p-0" align="start">
-                          <Calendar
-                            mode="single"
-                            selected={field.value}
-                            onSelect={field.onChange}
-                            // disabled={(date) =>
-                            //   date > new Date() || date < new Date("1900-01-01")
-                            // }
-                            initialFocus
-                          />
-                        </PopoverContent>
-                      </Popover>
-                    ) : (
-                      <FormControl>
-                        <Input type={formField.type} {...field} />
-                      </FormControl>
-                    )}
+                    <StepField formField={formField} field={field} />
                     {formField.description ? (
                       <FormDescription>{formField.description}</FormDescription>
                     ) : null}
@@ -235,6 +162,90 @@ export function StepForm({ useFormStore, step, onSubmit }: StepFormProps) {
       </Form>
     </Card>
   );
+}
+
+function StepField({
+  formField,
+  field,
+}: {
+  formField: Field;
+  field: ControllerRenderProps<Partial<Record<string, any>>, string>;
+}) {
+  switch (formField.kind) {
+    case "select": {
+      return (
+        <FormControl>
+          <Select onValueChange={field.onChange} defaultValue={field.value}>
+            <SelectTrigger>
+              <SelectValue placeholder={formField.placeholder} />
+            </SelectTrigger>
+            <SelectContent>
+              {formField.options.map((option) => (
+                <SelectItem value={option.value} key={option.value}>
+                  {option.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </FormControl>
+      );
+    }
+    case "checkbox": {
+      return (
+        <div>
+          <FormControl className="me-2">
+            <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+          </FormControl>
+          <FormLabel>{formField.label}</FormLabel>
+          {formField.description ? (
+            <FormDescription>{formField.description}</FormDescription>
+          ) : null}
+        </div>
+      );
+    }
+    case "date": {
+      return (
+        <Popover>
+          <PopoverTrigger asChild>
+            <FormControl>
+              <Button
+                variant="outline"
+                className={cn(
+                  "flex w-full ps-3 text-start font-normal",
+                  !field.value && "text-muted-foreground",
+                )}
+              >
+                {field.value ? (
+                  format(field.value, "PPP")
+                ) : (
+                  <span>Pick a date</span>
+                )}
+                <CalendarIcon className="ms-auto size-4 opacity-50" />
+              </Button>
+            </FormControl>
+          </PopoverTrigger>
+          <PopoverContent className="w-auto p-0" align="start">
+            <Calendar
+              mode="single"
+              selected={field.value}
+              onSelect={field.onChange}
+              // disabled={(date) =>
+              //   date > new Date() || date < new Date("1900-01-01")
+              // }
+              initialFocus
+            />
+          </PopoverContent>
+        </Popover>
+      );
+    }
+    case "text": {
+      return (
+        <FormControl>
+          <Input type={formField.type} {...field} />
+        </FormControl>
+      );
+    }
+  }
 }
 
 type StepperFormActions = {
