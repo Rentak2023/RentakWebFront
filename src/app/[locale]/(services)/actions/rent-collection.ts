@@ -11,11 +11,12 @@ type ContactResponse = {
 
 export const rentCollectionAction = async (data: Record<string, any>) => {
   try {
-    const res = ky
+    const res = await ky
       .post("contract/create_rent_collection_contract", {
         json: data,
       })
       .json<ContactResponse>();
+
     return {
       type: "success" as const,
       data: res,
@@ -25,7 +26,7 @@ export const rentCollectionAction = async (data: Record<string, any>) => {
       const errorRes = await error.response.json();
       return {
         type: "error" as const,
-        errors: errorRes,
+        error: errorRes,
       };
     }
   }

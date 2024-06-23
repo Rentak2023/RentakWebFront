@@ -6,6 +6,7 @@ import * as v from "valibot";
 import isMobilePhone from "validator/es/lib/isMobilePhone";
 import isNumeric from "validator/es/lib/isNumeric";
 
+import { useToast } from "@/components/ui/use-toast";
 import { getBanks } from "@/services/banks";
 
 import { rentCollectionAction } from "../actions/rent-collection";
@@ -23,6 +24,7 @@ export default function RentCollection() {
   const banks = use(banksPromise);
 
   const t = useTranslations("services");
+  const { toast } = useToast();
 
   const steps = [
     {
@@ -311,7 +313,15 @@ export default function RentCollection() {
   const handleSubmit = async (data: Record<string, any>) => {
     console.log(data);
     const res = await rentCollectionAction(data);
-    console.log(res);
+    if (res?.type === "error" && res.error.message) {
+      toast({
+        title: "Error",
+        description: res.error.message,
+        variant: "destructive",
+        duration: 5000,
+      });
+      return;
+    }
   };
 
   return (
