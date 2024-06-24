@@ -1,10 +1,13 @@
 "use client";
+import { HTTPError } from "ky";
 import { useTranslations } from "next-intl";
-import { use } from "react";
+import { use, useState } from "react";
 import * as v from "valibot";
 import isMobilePhone from "validator/es/lib/isMobilePhone";
 import isNumeric from "validator/es/lib/isNumeric";
 
+import { useToast } from "@/components/ui/use-toast";
+import { sendOTP, verifyOTP } from "@/services/auth";
 import { getBanks } from "@/services/banks";
 import { getCashInPaymentMethods } from "@/services/payment-methods";
 
@@ -32,28 +35,31 @@ export default function RentPayment({
   const paymentMethods = use(paymentMethodsPromise);
   const banks = use(banksPromise);
   const t = useTranslations("services");
+  const [userId, setUserId] = useState<number | null>(null);
+  const { toast } = useToast();
 
   const steps = [
     {
       label: "Profile Info",
       schema: v.object({
-        fullName: v.pipe(
+        user_name: v.pipe(
           v.string(),
           v.trim(),
           v.nonEmpty("Full Name is required"),
         ),
-        email: v.pipe(
+        user_email: v.pipe(
           v.string(),
           v.trim(),
           v.nonEmpty("Email is required"),
           v.email("A valid email address is required"),
         ),
-        nationalId: v.pipe(
+        national_id: v.pipe(
           v.string(),
           v.trim(),
-          v.minLength(5, "National ID is required"),
+          v.startsWith("2", "National ID is invalid"),
+          v.minLength(14, "National ID is invalid"),
         ),
-        phoneNumber: v.pipe(
+        user_phone: v.pipe(
           v.string(),
           v.trim(),
           v.check(
@@ -61,37 +67,77 @@ export default function RentPayment({
             "Phone Number is invalid",
           ),
         ),
-        otp: v.pipe(v.string(), v.trim(), v.minLength(6, "OTP is required")),
+        otp: v.pipe(v.string(), v.trim(), v.minLength(4, "OTP is required")),
       }),
       fields: [
         {
-          name: "fullName",
+          name: "user_name",
           label: "Full Name",
           kind: "text",
           type: "text",
         },
         {
-          name: "email",
+          name: "user_email",
           label: "Email",
           kind: "text",
           type: "email",
         },
         {
-          name: "nationalId",
+          name: "national_id",
           label: "National ID",
           kind: "text",
           type: "text",
         },
         {
-          name: "phoneNumber",
+          name: "user_phone",
           label: "Phone Number",
           kind: "text",
           type: "tel",
+          verifiable: true,
+          verify: async (values) => {
+            try {
+              const res = await sendOTP(values);
+              setUserId(res.userId);
+              toast({
+                title: "OTP Sent",
+                description: "OTP has been sent to your phone number",
+              });
+            } catch (error) {
+              if (error instanceof HTTPError) {
+                const errorRes = await error.response.json();
+                for (const fieldError of Object.values(errorRes.errors)) {
+                  toast({
+                    title: "Error",
+                    // @ts-expect-error TODO: add types later
+                    description: fieldError[0],
+                    variant: "destructive",
+                    duration: 5000,
+                  });
+                }
+              }
+            }
+          },
         },
         {
           name: "otp",
           label: "OTP",
           kind: "otp",
+          verifiable: true,
+          verify: async (values) => {
+            try {
+              await verifyOTP({
+                userId,
+                otp: values.otp,
+              });
+              toast({
+                title: "OTP Verified",
+                description: "OTP has been verified successfully",
+              });
+            } catch {
+              // TODO: handle error
+              console.log("something wrong happened");
+            }
+          },
         },
       ],
     },

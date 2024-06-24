@@ -20,10 +20,23 @@ export type Field = {
     }
   | {
       kind: "otp";
+      verifiable?: false;
+    }
+  | {
+      kind: "otp";
+      verifiable?: true;
+      verify: (data: Record<string, any>) => Promise<void>;
     }
   | {
       kind: "text";
       type: HTMLInputTypeAttribute;
+      verifiable?: false;
+    }
+  | {
+      kind: "text";
+      type: HTMLInputTypeAttribute;
+      verifiable: true;
+      verify: (data: Record<string, any>) => Promise<void>;
     }
 );
 

@@ -1,7 +1,7 @@
 import { valibotResolver } from "@hookform/resolvers/valibot";
 import { ArrowLeft, ArrowRight, CalendarIcon, Loader2 } from "lucide-react";
 import { useFormatter, useTranslations } from "next-intl";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import {
   type ControllerRenderProps,
   useForm,
@@ -137,7 +137,11 @@ export function StepForm({ useFormStore, step, onSubmit }: StepFormProps) {
                     {formField.kind !== "checkbox" && (
                       <FormLabel>{formField.label}</FormLabel>
                     )}
-                    <StepField formField={formField} field={field} />
+                    <StepField
+                      formField={formField}
+                      field={field}
+                      useFormStore={useFormStore}
+                    />
                     {formField.description ? (
                       <FormDescription>{formField.description}</FormDescription>
                     ) : null}
@@ -156,14 +160,20 @@ export function StepForm({ useFormStore, step, onSubmit }: StepFormProps) {
   );
 }
 
-function StepField({
-  formField,
-  field,
-}: {
+type StepFieldProps = {
   formField: Field;
   field: ControllerRenderProps<Partial<Record<string, any>>, string>;
-}) {
+  useFormStore: ReturnType<typeof createFormStore>;
+};
+
+function StepField({ formField, field, useFormStore }: StepFieldProps) {
+  const { formData } = useFormStore();
+  const form = useFormContext();
+  const currentValues = useWatch({ control: form.control });
+
   const format = useFormatter();
+
+  const [isVerifying, setIsVerifying] = useState(false);
 
   switch (formField.kind) {
     case "select": {
@@ -237,23 +247,57 @@ function StepField({
     case "otp": {
       return (
         <FormControl>
-          <InputOTP maxLength={6} {...field}>
-            <InputOTPGroup>
-              <InputOTPSlot index={0} />
-              <InputOTPSlot index={1} />
-              <InputOTPSlot index={2} />
-              <InputOTPSlot index={3} />
-              <InputOTPSlot index={4} />
-              <InputOTPSlot index={5} />
-            </InputOTPGroup>
-          </InputOTP>
+          <div className="flex items-center gap-2">
+            <InputOTP maxLength={6} {...field}>
+              <InputOTPGroup>
+                <InputOTPSlot index={0} />
+                <InputOTPSlot index={1} />
+                <InputOTPSlot index={2} />
+                <InputOTPSlot index={3} />
+              </InputOTPGroup>
+            </InputOTP>
+            {formField.verifiable ? (
+              <Button
+                type="button"
+                onClick={async () => {
+                  setIsVerifying(true);
+                  await formField.verify({ ...formData, ...currentValues });
+                  setIsVerifying(false);
+                }}
+                disabled={isVerifying}
+              >
+                {isVerifying ? (
+                  <Loader2 className="mr-2 size-4 animate-spin" />
+                ) : null}
+                {isVerifying ? "Verifying..." : "Verify"}
+              </Button>
+            ) : null}
+          </div>
         </FormControl>
       );
     }
     case "text": {
       return (
         <FormControl>
-          <Input type={formField.type} {...field} />
+          <div className="flex items-center gap-2">
+            <Input type={formField.type} {...field} />{" "}
+            {formField.verifiable ? (
+              <Button
+                type="button"
+                onClick={async () => {
+                  setIsVerifying(true);
+                  await formField.verify({ ...formData, ...currentValues });
+                  setIsVerifying(false);
+                }}
+                disabled={isVerifying}
+              >
+                {isVerifying ? (
+                  <Loader2 className="mr-2 size-4 animate-spin" />
+                ) : null}
+                {isVerifying ? "Verifying..." : "Verify"}
+              </Button>
+            ) : null}
+          </div>
         </FormControl>
       );
     }
