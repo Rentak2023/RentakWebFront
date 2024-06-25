@@ -260,6 +260,15 @@ export default function RentCollection() {
           type: "text",
         },
         {
+          name: "total_amount",
+          label: t("fields.total-amount.label"),
+          description: t("fields.total-amount.description"),
+          kind: "text",
+          type: "text",
+          readonly: true,
+          compute: (data) => (Number(data.rent_amount) * 1.025).toFixed(2),
+        },
+        {
           name: "contract_start_date",
           label: t("fields.contract-start-date.label"),
           kind: "date",

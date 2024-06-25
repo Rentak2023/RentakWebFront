@@ -9,8 +9,10 @@ export type Field = {
   label: string;
   description?: string;
   condition?: (data: Record<string, any>) => boolean;
+  compute?: (data: Record<string, any>) => any;
   placeholder?: string;
   disabled?: boolean;
+  readonly?: boolean;
 } & (
   | {
       kind: "select";

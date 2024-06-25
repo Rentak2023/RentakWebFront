@@ -261,6 +261,7 @@ function StepField({ formField, field, useFormStore }: StepFieldProps) {
               maxLength={6}
               disabled={formField.disabled}
               placeholder={formField.placeholder}
+              readOnly={formField.readonly}
               {...field}
             >
               <InputOTPGroup>
@@ -296,11 +297,17 @@ function StepField({ formField, field, useFormStore }: StepFieldProps) {
         <FormControl>
           <div className="flex items-center gap-2">
             <Input
+              {...field}
               type={formField.type}
               disabled={formField.disabled}
               autoComplete={formField.autoComplete}
               placeholder={formField.placeholder}
-              {...field}
+              readOnly={formField.readonly}
+              value={
+                formField.compute
+                  ? formField.compute(currentValues)
+                  : field.value
+              }
             />{" "}
             {formField.verify ? (
               <Button

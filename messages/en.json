@@ -222,6 +222,10 @@
         "non-empty": "Rent amount cannot be empty",
         "invalid": "Rent amount must be a number"
       },
+      "total-amount": {
+        "label": "Total Amount",
+        "description": "Total amount = rent amount + 2.5% service fees"
+      },
       "contract-start-date": {
         "label": "Contract Start Date",
         "non-empty": "Contract start date cannot be empty"
