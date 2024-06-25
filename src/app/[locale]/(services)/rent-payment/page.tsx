@@ -41,7 +41,7 @@ export default function RentPayment({
   const steps = [
     {
       label: "Profile Info",
-      schema: v.object({
+      schema: v.objectAsync({
         user_name: v.pipe(
           v.string(),
           v.trim(),
@@ -67,7 +67,23 @@ export default function RentPayment({
             "Phone Number is invalid",
           ),
         ),
-        otp: v.pipe(v.string(), v.trim(), v.minLength(4, "OTP is required")),
+        otp: v.pipeAsync(
+          v.string(),
+          v.trim(),
+          v.minLength(4, "OTP is required"),
+          v.checkAsync(async (otp) => {
+            try {
+              if (userId == null) {
+                return false;
+              }
+              await verifyOTP({ userId, otp });
+
+              return true;
+            } catch {
+              return false;
+            }
+          }, "OTP is invalid"),
+        ),
       }),
       fields: [
         {
@@ -75,12 +91,14 @@ export default function RentPayment({
           label: "Full Name",
           kind: "text",
           type: "text",
+          autoComplete: "name",
         },
         {
           name: "user_email",
           label: "Email",
           kind: "text",
           type: "email",
+          autoComplete: "email",
         },
         {
           name: "national_id",
@@ -93,7 +111,7 @@ export default function RentPayment({
           label: "Phone Number",
           kind: "text",
           type: "tel",
-          verifiable: true,
+          autoComplete: "tel",
           verify: async (values) => {
             try {
               const res = await sendOTP(values);
@@ -122,22 +140,7 @@ export default function RentPayment({
           name: "otp",
           label: "OTP",
           kind: "otp",
-          verifiable: true,
-          verify: async (values) => {
-            try {
-              await verifyOTP({
-                userId,
-                otp: values.otp,
-              });
-              toast({
-                title: "OTP Verified",
-                description: "OTP has been verified successfully",
-              });
-            } catch {
-              // TODO: handle error
-              console.log("something wrong happened");
-            }
-          },
+          disabled: userId == null,
         },
       ],
     },
@@ -249,12 +252,14 @@ export default function RentPayment({
           label: "Owner's Full Name",
           kind: "text",
           type: "text",
+          autoComplete: "name",
         },
         {
           name: "ownerPhoneNumber",
           label: "Owner's Phone Number",
           kind: "text",
           type: "tel",
+          autoComplete: "tel",
         },
         {
           name: "cash_out_payment_method_id",
@@ -277,6 +282,7 @@ export default function RentPayment({
           label: t("fields.wallet-number.label"),
           kind: "text",
           type: "tel",
+          autoComplete: "tel",
           condition: (data) =>
             data.cash_out_payment_method_id === PaymentMethod.Wallet,
         },
@@ -285,6 +291,7 @@ export default function RentPayment({
           label: t("fields.confirm-wallet-number.label"),
           kind: "text",
           type: "tel",
+          autoComplete: "tel",
           condition: (data) =>
             data.cash_out_payment_method_id === PaymentMethod.Wallet,
         },

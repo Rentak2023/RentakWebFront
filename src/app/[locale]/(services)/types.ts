@@ -1,4 +1,7 @@
-import { type HTMLInputTypeAttribute } from "react";
+import {
+  type HTMLInputAutoCompleteAttribute,
+  type HTMLInputTypeAttribute,
+} from "react";
 import type * as v from "valibot";
 
 export type Field = {
@@ -7,6 +10,7 @@ export type Field = {
   description?: string;
   condition?: (data: Record<string, any>) => boolean;
   placeholder?: string;
+  disabled?: boolean;
 } & (
   | {
       kind: "select";
@@ -20,23 +24,13 @@ export type Field = {
     }
   | {
       kind: "otp";
-      verifiable?: false;
-    }
-  | {
-      kind: "otp";
-      verifiable?: true;
-      verify: (data: Record<string, any>) => Promise<void>;
+      verify?: (data: Record<string, any>) => Promise<void>;
     }
   | {
       kind: "text";
       type: HTMLInputTypeAttribute;
-      verifiable?: false;
-    }
-  | {
-      kind: "text";
-      type: HTMLInputTypeAttribute;
-      verifiable: true;
-      verify: (data: Record<string, any>) => Promise<void>;
+      autoComplete?: HTMLInputAutoCompleteAttribute;
+      verify?: (data: Record<string, any>) => Promise<void>;
     }
 );
 
@@ -45,5 +39,5 @@ export type TStep = {
   fields: Array<Field>;
   heading?: string;
   list?: Array<string>;
-  schema: v.GenericSchema;
+  schema: v.GenericSchema | v.GenericSchemaAsync;
 };

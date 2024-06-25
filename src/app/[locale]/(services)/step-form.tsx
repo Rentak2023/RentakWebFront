@@ -179,7 +179,11 @@ function StepField({ formField, field, useFormStore }: StepFieldProps) {
     case "select": {
       return (
         <FormControl>
-          <Select onValueChange={field.onChange} defaultValue={field.value}>
+          <Select
+            onValueChange={field.onChange}
+            defaultValue={field.value}
+            disabled={formField.disabled}
+          >
             <SelectTrigger>
               <SelectValue placeholder={formField.placeholder} />
             </SelectTrigger>
@@ -198,7 +202,11 @@ function StepField({ formField, field, useFormStore }: StepFieldProps) {
       return (
         <div>
           <FormControl className="me-2">
-            <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+            <Checkbox
+              checked={field.value}
+              onCheckedChange={field.onChange}
+              disabled={formField.disabled}
+            />
           </FormControl>
           <FormLabel>{formField.label}</FormLabel>
           {formField.description ? (
@@ -210,7 +218,7 @@ function StepField({ formField, field, useFormStore }: StepFieldProps) {
     case "date": {
       return (
         <Popover>
-          <PopoverTrigger asChild>
+          <PopoverTrigger asChild disabled={formField.disabled}>
             <FormControl>
               <Button
                 variant="outline"
@@ -218,6 +226,7 @@ function StepField({ formField, field, useFormStore }: StepFieldProps) {
                   "flex w-full ps-3 text-start font-normal",
                   !field.value && "text-muted-foreground",
                 )}
+                disabled={formField.disabled}
               >
                 {field.value ? (
                   format.dateTime(field.value, {
@@ -248,7 +257,12 @@ function StepField({ formField, field, useFormStore }: StepFieldProps) {
       return (
         <FormControl>
           <div className="flex items-center gap-2">
-            <InputOTP maxLength={6} {...field}>
+            <InputOTP
+              maxLength={6}
+              disabled={formField.disabled}
+              placeholder={formField.placeholder}
+              {...field}
+            >
               <InputOTPGroup>
                 <InputOTPSlot index={0} />
                 <InputOTPSlot index={1} />
@@ -256,10 +270,11 @@ function StepField({ formField, field, useFormStore }: StepFieldProps) {
                 <InputOTPSlot index={3} />
               </InputOTPGroup>
             </InputOTP>
-            {formField.verifiable ? (
+            {formField.verify ? (
               <Button
                 type="button"
                 onClick={async () => {
+                  if (!formField.verify) return;
                   setIsVerifying(true);
                   await formField.verify({ ...formData, ...currentValues });
                   setIsVerifying(false);
@@ -280,11 +295,18 @@ function StepField({ formField, field, useFormStore }: StepFieldProps) {
       return (
         <FormControl>
           <div className="flex items-center gap-2">
-            <Input type={formField.type} {...field} />{" "}
-            {formField.verifiable ? (
+            <Input
+              type={formField.type}
+              disabled={formField.disabled}
+              autoComplete={formField.autoComplete}
+              placeholder={formField.placeholder}
+              {...field}
+            />{" "}
+            {formField.verify ? (
               <Button
                 type="button"
                 onClick={async () => {
+                  if (!formField.verify) return;
                   setIsVerifying(true);
                   await formField.verify({ ...formData, ...currentValues });
                   setIsVerifying(false);
