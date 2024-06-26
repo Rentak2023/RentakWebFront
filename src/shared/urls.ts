@@ -1,5 +1,6 @@
-// append urls here, DO NOT remove this line
+import { type Unit as TUnit } from "@/services/types";
 
+// append urls here, DO NOT remove this line
 const URLS = {
   home: "/",
   notFound: "/404",
@@ -19,7 +20,11 @@ const URLS = {
   rentPayment: "/rent-payment",
   rentCollection: "/rent-collection",
   maintenancePayment: "/maintenance-payment",
+
+  //Properties
   units: "/units",
+  unit: "/units/:id",
+  viewUnit: (property: TUnit) => `/units/${property.id}`,
 
   pages: {
     aboutUs: "/about-us",
@@ -47,11 +52,6 @@ const URLS = {
   serviceThree: "",
   serviceFour: "",
 
-  //Properties
-  unit: "/unit/:id",
-  property: (property: { id: string }) =>
-    `/unit/${property.id}` ||
-    `https://rent-ak.com/Listing/Details/${property.id}`,
   //Contract
   contract: "/contract",
   survey: "/survey/:id",

@@ -7,7 +7,8 @@ import BedIcon from "@/app/[locale]/assets/svgs/bed-icon";
 import LinkIcon from "@/app/[locale]/assets/svgs/link-icon";
 import { getImage } from "@/lib/image";
 import { Link } from "@/navigation";
-import { type Unit as TUnit } from "@/services/units";
+import { type Unit as TUnit } from "@/services/types";
+import URLS from "@/shared/urls";
 
 type UnitProps = {
   item: TUnit;
@@ -27,31 +28,33 @@ async function Unit({ item }: UnitProps) {
 
   return (
     <div className="group overflow-hidden rounded-xl bg-white shadow duration-300 ease-in-out hover:shadow-xl">
-      <div className="relative h-80">
-        <Image
-          src={item.picture}
-          className="object-cover"
-          blurDataURL={base64}
-          placeholder="blur"
-          fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          alt=""
-        />
+      <Link href={URLS.viewUnit(item)}>
+        <div className="relative h-80">
+          <Image
+            src={item.picture}
+            className="object-cover"
+            blurDataURL={base64}
+            placeholder="blur"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            alt=""
+          />
 
-        <div className="absolute bottom-4 end-4">
-          <div className="btn rounded-full bg-white">
-            <p className="font-semibold text-slate-800">
-              {item.price} {t("egp")} /{" "}
-              <span className="font-normal">{t("month")}</span>
-            </p>
+          <div className="absolute bottom-4 end-4">
+            <div className="btn rounded-full bg-white">
+              <p className="font-semibold text-slate-800">
+                {item.price} {t("egp")} /{" "}
+                <span className="font-normal">{t("month")}</span>
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+      </Link>
 
       <div className="p-6">
         <div className="flex flex-col">
           <Link
-            href={`/property-detail/${item.id}`}
+            href={URLS.viewUnit(item)}
             className="truncate text-base font-semibold duration-500 ease-in-out hover:text-primary-800"
           >
             {item.property_name}
@@ -86,7 +89,7 @@ async function Unit({ item }: UnitProps) {
         </ul>
 
         <Link
-          href={`/property-detail/${item.id}`}
+          href={URLS.viewUnit(item)}
           className="duration-300 ease-in-out hover:text-primary-800"
         >
           <ul className="flex list-none items-center justify-between pt-6">
