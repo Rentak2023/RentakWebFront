@@ -429,7 +429,10 @@ export default function RentPayment({
   ] as const satisfies Array<TStep>;
 
   const handleSubmit = async (data: Record<string, any>) => {
-    const res = await rentPaymentAction(data);
+    const res = await rentPaymentAction({
+      ...data,
+      lang: locale,
+    });
     if (res?.type === "success") {
       toast({
         title: "Success",

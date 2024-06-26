@@ -12,6 +12,7 @@ import { getBanks } from "@/services/banks";
 import { getCashInPaymentMethods } from "@/services/payment-methods";
 import { checkPromoCode } from "@/services/promo";
 
+import { maintenancePaymentAction } from "../actions/maintenance-payment";
 import { ServiceForms } from "../service-forms";
 import { type TStep } from "../types";
 
@@ -22,11 +23,6 @@ enum PaymentMethod {
   Bank = "4",
   Wallet = "5",
 }
-
-const handleSubmit = async (data: Record<string, any>) => {
-  console.log(data);
-  await new Promise((resolve) => setTimeout(resolve, 2000));
-};
 
 export default function RentPayment({
   params: { locale },
@@ -44,25 +40,25 @@ export default function RentPayment({
     {
       label: t("steps.profile-info.label"),
       schema: v.objectAsync({
-        user_name: v.pipe(
+        tenant_name: v.pipe(
           v.string(),
           v.trim(),
           v.nonEmpty(t("fields.user-name.non-empty")),
         ),
-        user_email: v.pipe(
+        tenant_email: v.pipe(
           v.string(),
           v.trim(),
           v.nonEmpty(t("fields.user-email.non-empty")),
           v.email(t("fields.user-email.invalid")),
         ),
-        national_id: v.pipe(
+        tenant_national_id: v.pipe(
           v.string(),
           v.trim(),
           v.nonEmpty(t("fields.national-id.non-empty")),
           v.startsWith("2", t("fields.national-id.invalid")),
           v.length(14, t("fields.national-id.invalid")),
         ),
-        user_phone: v.pipe(
+        tenant_phone: v.pipe(
           v.string(),
           v.trim(),
           v.nonEmpty(t("fields.user-phone.non-empty")),
@@ -92,27 +88,27 @@ export default function RentPayment({
       }),
       fields: [
         {
-          name: "user_name",
+          name: "tenant_name",
           label: t("fields.user-name.label"),
           kind: "text",
           type: "text",
           autoComplete: "name",
         },
         {
-          name: "user_email",
+          name: "tenant_email",
           label: t("fields.user-email.label"),
           kind: "text",
           type: "email",
           autoComplete: "email",
         },
         {
-          name: "national_id",
+          name: "tenant_national_id",
           label: t("fields.national-id.label"),
           kind: "text",
           type: "text",
         },
         {
-          name: "user_phone",
+          name: "tenant_phone",
           label: t("fields.user-phone.label"),
           kind: "text",
           type: "tel",
@@ -120,7 +116,12 @@ export default function RentPayment({
           actionText: t("fields.user-phone.action-text"),
           action: async (values) => {
             try {
-              const res = await sendOTP(values);
+              const res = await sendOTP({
+                user_name: values.tenant_name,
+                user_email: values.tenant_email,
+                user_phone: values.tenant_phone,
+                national_id: values.tenant_national_id,
+              });
               setUserId(res.userId);
               toast({
                 title: "OTP Sent",
@@ -426,6 +427,34 @@ export default function RentPayment({
       ],
     },
   ] as const satisfies Array<TStep>;
+
+  const handleSubmit = async (data: Record<string, any>) => {
+    const res = await maintenancePaymentAction({
+      ...data,
+      lang: locale,
+    });
+    if (res?.type === "success") {
+      toast({
+        title: "Success",
+        description: "Payment Request created successfully",
+      });
+      setTimeout(() => {
+        if (res.data.payment_data.redirect_url) {
+          window.location.href = res.data.payment_data.redirect_url;
+        }
+      }, 1000);
+    }
+    if (res?.type === "error" && res.error.message) {
+      toast({
+        title: "Error",
+        description: res.error.message,
+        variant: "destructive",
+        duration: 5000,
+      });
+      return;
+    }
+  };
+
   return (
     <main className="pt-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
