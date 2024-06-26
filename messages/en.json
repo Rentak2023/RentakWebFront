@@ -263,9 +263,14 @@
         "non-empty": "Rent amount cannot be empty",
         "invalid": "Rent amount must be a number"
       },
+      "promo-code": {
+        "label": "Promo Code",
+        "description": "Enter promo code if you have one",
+        "action-text": "Apply"
+      },
       "total-amount": {
         "label": "Total Amount",
-        "description": "Total amount = rent amount + 2.5% service fees"
+        "description": "Total amount = rent amount + {fees}% service fees"
       },
       "contract-start-date": {
         "label": "Contract Start Date",

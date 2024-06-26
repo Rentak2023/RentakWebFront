@@ -10,6 +10,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { sendOTP, verifyOTP } from "@/services/auth";
 import { getBanks } from "@/services/banks";
 import { getCashInPaymentMethods } from "@/services/payment-methods";
+import { checkPromoCode } from "@/services/promo";
 
 import { ServiceForms } from "../service-forms";
 import { type TStep } from "../types";
@@ -36,6 +37,7 @@ export default function RentPayment({
   const banks = use(banksPromise);
   const t = useTranslations("services");
   const [userId, setUserId] = useState<number | null>(null);
+  const [discount, setDiscount] = useState<number>(0);
   const { toast } = useToast();
 
   const steps = [
@@ -151,14 +153,14 @@ export default function RentPayment({
     {
       label: t("steps.payment-method.label"),
       schema: v.object({
-        paymentMethod: v.picklist(
+        cash_in_payment_method_id: v.picklist(
           paymentMethods.map((paymentMethod) => paymentMethod.id.toString()),
           t("fields.payment-method.non-empty"),
         ),
       }),
       fields: [
         {
-          name: "paymentMethod",
+          name: "cash_in_payment_method_id",
           label: t("fields.payment-method.label"),
           kind: "select",
           options: paymentMethods.map((paymentMethod) => ({
@@ -175,12 +177,12 @@ export default function RentPayment({
       label: t("steps.owner-info.label"),
       schema: v.intersect([
         v.object({
-          ownerName: v.pipe(
+          landlord_name: v.pipe(
             v.string(),
             v.trim(),
             v.nonEmpty(t("fields.owner-name.non-empty")),
           ),
-          ownerPhoneNumber: v.pipe(
+          landlord_phone: v.pipe(
             v.string(),
             v.trim(),
             v.nonEmpty(t("fields.owner-phone.non-empty")),
@@ -253,14 +255,14 @@ export default function RentPayment({
       ]),
       fields: [
         {
-          name: "ownerName",
+          name: "landlord_name",
           label: t("fields.owner-name.label"),
           kind: "text",
           type: "text",
           autoComplete: "name",
         },
         {
-          name: "ownerPhoneNumber",
+          name: "landlord_phone",
           label: t("fields.owner-phone.label"),
           kind: "text",
           type: "tel",
@@ -333,7 +335,7 @@ export default function RentPayment({
     {
       label: t("steps.unit-description.label"),
       schema: v.object({
-        unit_description: v.pipe(
+        property_description: v.pipe(
           v.string(),
           v.trim(),
           v.nonEmpty(t("fields.unit-description.non-empty")),
@@ -344,11 +346,11 @@ export default function RentPayment({
           v.nonEmpty(t("fields.rent-amount.non-empty")),
           v.check(isNumeric, t("fields.rent-amount.invalid")),
         ),
-        // TODO: add promo code
+        promo_code: v.optional(v.string()),
       }),
       fields: [
         {
-          name: "unit_description",
+          name: "property_description",
           label: t("fields.unit-description.label"),
           description: t("fields.unit-description.description"),
           kind: "text",
@@ -359,6 +361,46 @@ export default function RentPayment({
           label: t("fields.rent-amount.label"),
           kind: "text",
           type: "text",
+        },
+        {
+          name: "promo_code",
+          label: t("fields.promo-code.label"),
+          kind: "text",
+          type: "text",
+          description: t("fields.promo-code.description"),
+          actionText: t("fields.promo-code.action-text"),
+          action: async (data) => {
+            try {
+              const res = await checkPromoCode(data.promo_code);
+              setDiscount(res.promocode.discount);
+              toast({
+                title: "Success",
+                description: "Promo code applied",
+              });
+            } catch {
+              toast({
+                title: "Error",
+                description: "Invalid Promo Code",
+                variant: "destructive",
+              });
+            }
+          },
+        },
+        {
+          name: "total_amount",
+          label: t("fields.total-amount.label"),
+          description: t("fields.total-amount.description", {
+            fees: "5",
+          }),
+          kind: "text",
+          type: "text",
+          readonly: true,
+          compute: (data) => {
+            const fees = Number(data.rent_amount) * 0.05;
+            const discountedFees = fees - (discount * fees) / 100;
+
+            return (Number(data.rent_amount) + discountedFees).toFixed(2);
+          },
         },
       ],
     },

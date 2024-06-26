@@ -262,7 +262,9 @@ export default function RentCollection() {
         {
           name: "total_amount",
           label: t("fields.total-amount.label"),
-          description: t("fields.total-amount.description"),
+          description: t("fields.total-amount.description", {
+            fees: "2.5",
+          }),
           kind: "text",
           type: "text",
           readonly: true,
