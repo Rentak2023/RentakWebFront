@@ -49,15 +49,15 @@ export default function Navbar({ navClass, topnavClass }: NavbarProps) {
       subRoutes: [
         {
           name: t("manage-property"),
-          path: "/service-1",
+          path: "/maintenance-payment",
         },
         {
           name: t("rent-collection"),
-          path: "/service-2",
+          path: "/rent-collection",
         },
         {
           name: t("rent-payment"),
-          path: "/service-2",
+          path: "/rent-payment",
         },
         {
           name: t("free-contract"),
