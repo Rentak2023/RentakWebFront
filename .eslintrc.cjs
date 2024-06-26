@@ -54,6 +54,7 @@ const config = {
     "react/self-closing-comp": "error",
     "unicorn/prevent-abbreviations": "off",
     "unicorn/no-null": "off",
+    "unicorn/no-array-reduce": "off",
     "barrel-files/avoid-namespace-import": [
       "error",
       {

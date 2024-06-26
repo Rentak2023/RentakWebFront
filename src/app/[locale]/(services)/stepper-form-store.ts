@@ -14,7 +14,6 @@ type FormStore<T = Record<string, any>> = {
 export function createFormStore<T extends Array<TStep> = Array<TStep>>(
   steps: T,
 ) {
-  // eslint-disable-next-line unicorn/no-array-reduce
   const initialData = steps.reduce<Record<string, any>>((acc, step) => {
     return {
       ...acc,

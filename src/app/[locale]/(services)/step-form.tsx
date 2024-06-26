@@ -92,7 +92,18 @@ export function StepForm({ useFormStore, step, onSubmit }: StepFormProps) {
   }, [step.fields, formData, currentValues]);
 
   const handleSubmit = form.handleSubmit(async (data) => {
-    updateFormData(data);
+    const computedFields = step.fields
+      .filter((field) => field.compute != undefined)
+      .map((field) => ({
+        // @ts-expect-error for some reason it thinks compute can be undefined
+        [field.name]: field.compute({ ...formData, ...currentValues }),
+      }))
+      .reduce((acc, obj) => ({ ...acc, ...obj }), {});
+
+    updateFormData({
+      ...data,
+      ...computedFields,
+    });
 
     if (isLastStep) {
       const formData = getFormData();

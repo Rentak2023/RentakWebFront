@@ -320,7 +320,6 @@ export default function RentCollection() {
     },
   ] as const satisfies Array<TStep>;
 
-  // eslint-disable-next-line unicorn/consistent-function-scoping
   const handleSubmit = async (data: Record<string, any>) => {
     console.log(data);
     const res = await rentCollectionAction(data);
