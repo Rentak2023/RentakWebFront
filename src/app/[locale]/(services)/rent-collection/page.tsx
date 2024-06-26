@@ -158,16 +158,16 @@ export default function RentCollection() {
       fields: [
         {
           name: "cash_out_payment_method_id",
-          label: t("fields.payment-method.label"),
+          label: t("fields.transfer-to.label"),
           kind: "select",
           options: [
             {
               value: PaymentMethod.Wallet,
-              label: t("fields.payment-method.wallet"),
+              label: t("fields.transfer-to.wallet"),
             },
             {
               value: PaymentMethod.Bank,
-              label: t("fields.payment-method.bank"),
+              label: t("fields.transfer-to.bank"),
             },
           ],
         },

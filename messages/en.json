@@ -156,6 +156,9 @@
       "payment-method": {
         "label": "Payment Method"
       },
+      "owner-info": {
+        "label": "Owner Info"
+      },
       "unit-description": {
         "label": "Unit Description"
       },
@@ -183,10 +186,47 @@
         "non-empty": "Tenant phone number cannot be empty",
         "invalid": "Invalid phone number"
       },
-      "payment-method": {
+      "user-name": {
+        "label": "Full Name",
+        "non-empty": "Full name cannot be empty"
+      },
+      "user-phone": {
+        "label": "Phone Number",
+        "non-empty": "Phone number cannot be empty",
+        "invalid": "Invalid phone number"
+      },
+      "user-email": {
+        "label": "Email Address",
+        "non-empty": "Email address cannot be empty",
+        "invalid": "Invalid email address"
+      },
+      "national-id": {
+        "label": "National ID",
+        "non-empty": "National ID cannot be empty",
+        "invalid": "Invalid National ID"
+      },
+      "otp": {
+        "label": "OTP",
+        "non-empty": "OTP cannot be empty",
+        "invalid": "Invalid OTP"
+      },
+      "owner-name": {
+        "label": "Owner's Full Name",
+        "non-empty": "Owner's full name cannot be empty"
+      },
+      "owner-phone": {
+        "label": "Owner's Phone Number",
+        "non-empty": "Owner's Phone Number cannot be empty",
+        "invalid": "Invalid phone number"
+      },
+      "transfer-to": {
         "label": "Transfer To",
         "wallet": "Wallet",
         "bank": "Bank Transfer"
+      },
+      "payment-method": {
+        "label": "Payment Method",
+        "non-empty": "Payment method cannot be empty"
       },
       "wallet-number": {
         "label": "Wallet Account Number",

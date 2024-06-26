@@ -40,37 +40,40 @@ export default function RentPayment({
 
   const steps = [
     {
-      label: "Profile Info",
+      label: t("steps.profile-info.label"),
       schema: v.objectAsync({
         user_name: v.pipe(
           v.string(),
           v.trim(),
-          v.nonEmpty("Full Name is required"),
+          v.nonEmpty(t("fields.user-name.non-empty")),
         ),
         user_email: v.pipe(
           v.string(),
           v.trim(),
-          v.nonEmpty("Email is required"),
-          v.email("A valid email address is required"),
+          v.nonEmpty(t("fields.user-email.non-empty")),
+          v.email(t("fields.user-email.invalid")),
         ),
         national_id: v.pipe(
           v.string(),
           v.trim(),
-          v.startsWith("2", "National ID is invalid"),
-          v.minLength(14, "National ID is invalid"),
+          v.nonEmpty(t("fields.national-id.non-empty")),
+          v.startsWith("2", t("fields.national-id.invalid")),
+          v.length(14, t("fields.national-id.invalid")),
         ),
         user_phone: v.pipe(
           v.string(),
           v.trim(),
+          v.nonEmpty(t("fields.user-phone.non-empty")),
           v.check(
             (input) => isMobilePhone(input, "ar-EG"),
-            "Phone Number is invalid",
+            t("fields.user-phone.invalid"),
           ),
         ),
         otp: v.pipeAsync(
           v.string(),
           v.trim(),
-          v.minLength(4, "OTP is required"),
+          v.nonEmpty(t("fields.otp.non-empty")),
+          v.length(4, t("fields.otp.non-empty")),
           v.checkAsync(async (otp) => {
             try {
               if (userId == null) {
@@ -82,33 +85,33 @@ export default function RentPayment({
             } catch {
               return false;
             }
-          }, "OTP is invalid"),
+          }, t("fields.otp.invalid")),
         ),
       }),
       fields: [
         {
           name: "user_name",
-          label: "Full Name",
+          label: t("fields.user-name.label"),
           kind: "text",
           type: "text",
           autoComplete: "name",
         },
         {
           name: "user_email",
-          label: "Email",
+          label: t("fields.user-email.label"),
           kind: "text",
           type: "email",
           autoComplete: "email",
         },
         {
           name: "national_id",
-          label: "National ID",
+          label: t("fields.national-id.label"),
           kind: "text",
           type: "text",
         },
         {
           name: "user_phone",
-          label: "Phone Number",
+          label: t("fields.user-phone.label"),
           kind: "text",
           type: "tel",
           autoComplete: "tel",
@@ -138,24 +141,24 @@ export default function RentPayment({
         },
         {
           name: "otp",
-          label: "OTP",
+          label: t("fields.otp.label"),
           kind: "otp",
           disabled: userId == null,
         },
       ],
     },
     {
-      label: "Payment Method",
+      label: t("steps.payment-method.label"),
       schema: v.object({
         paymentMethod: v.picklist(
           paymentMethods.map((paymentMethod) => paymentMethod.id.toString()),
-          "Payment Method is required",
+          t("fields.payment-method.non-empty"),
         ),
       }),
       fields: [
         {
           name: "paymentMethod",
-          label: "Payment Method",
+          label: t("fields.payment-method.label"),
           kind: "select",
           options: paymentMethods.map((paymentMethod) => ({
             value: paymentMethod.id.toString(),
@@ -168,20 +171,21 @@ export default function RentPayment({
       ],
     },
     {
-      label: "Owner Info",
+      label: t("steps.owner-info.label"),
       schema: v.intersect([
         v.object({
           ownerName: v.pipe(
             v.string(),
             v.trim(),
-            v.nonEmpty("Owner Name is required"),
+            v.nonEmpty(t("fields.owner-name.non-empty")),
           ),
           ownerPhoneNumber: v.pipe(
             v.string(),
             v.trim(),
+            v.nonEmpty(t("fields.owner-phone.non-empty")),
             v.check(
               (input) => isMobilePhone(input, "ar-EG"),
-              "Phone Number is invalid",
+              t("fields.owner-phone.invalid"),
             ),
           ),
         }),
@@ -249,30 +253,30 @@ export default function RentPayment({
       fields: [
         {
           name: "ownerName",
-          label: "Owner's Full Name",
+          label: t("fields.owner-name.label"),
           kind: "text",
           type: "text",
           autoComplete: "name",
         },
         {
           name: "ownerPhoneNumber",
-          label: "Owner's Phone Number",
+          label: t("fields.owner-phone.label"),
           kind: "text",
           type: "tel",
           autoComplete: "tel",
         },
         {
           name: "cash_out_payment_method_id",
-          label: t("fields.payment-method.label"),
+          label: t("fields.transfer-to.label"),
           kind: "select",
           options: [
             {
               value: PaymentMethod.Wallet,
-              label: t("fields.payment-method.wallet"),
+              label: t("fields.transfer-to.wallet"),
             },
             {
               value: PaymentMethod.Bank,
-              label: t("fields.payment-method.bank"),
+              label: t("fields.transfer-to.bank"),
             },
           ],
         },
