@@ -22,9 +22,9 @@ enum PaymentMethod {
   Wallet = "5",
 }
 
-// eslint-disable-next-line @typescript-eslint/require-await
 const handleSubmit = async (data: Record<string, any>) => {
   console.log(data);
+  await new Promise((resolve) => setTimeout(resolve, 2000));
 };
 
 export default function RentPayment({
@@ -115,7 +115,8 @@ export default function RentPayment({
           kind: "text",
           type: "tel",
           autoComplete: "tel",
-          verify: async (values) => {
+          actionText: t("fields.user-phone.action-text"),
+          action: async (values) => {
             try {
               const res = await sendOTP(values);
               setUserId(res.userId);

@@ -193,7 +193,8 @@
       "user-phone": {
         "label": "Phone Number",
         "non-empty": "Phone number cannot be empty",
-        "invalid": "Invalid phone number"
+        "invalid": "Invalid phone number",
+        "action-text": "Send OTP"
       },
       "user-email": {
         "label": "Email Address",

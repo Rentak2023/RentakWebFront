@@ -26,15 +26,23 @@ export type Field = {
     }
   | {
       kind: "otp";
-      verify?: (data: Record<string, any>) => Promise<void>;
     }
   | {
       kind: "text";
       type: HTMLInputTypeAttribute;
       autoComplete?: HTMLInputAutoCompleteAttribute;
-      verify?: (data: Record<string, any>) => Promise<void>;
     }
-);
+) &
+  (
+    | {
+        action: (data: Record<string, any>) => Promise<void>;
+        actionText: string;
+      }
+    | {
+        action?: never;
+        actionText?: never;
+      }
+  );
 
 export type TStep = {
   label: string;

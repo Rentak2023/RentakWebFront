@@ -173,7 +173,7 @@ function StepField({ formField, field, useFormStore }: StepFieldProps) {
 
   const format = useFormatter();
 
-  const [isVerifying, setIsVerifying] = useState(false);
+  const [actionPending, setActionPending] = useState(false);
 
   switch (formField.kind) {
     case "select": {
@@ -271,21 +271,20 @@ function StepField({ formField, field, useFormStore }: StepFieldProps) {
                 <InputOTPSlot index={3} />
               </InputOTPGroup>
             </InputOTP>
-            {formField.verify ? (
+            {formField.action ? (
               <Button
                 type="button"
                 onClick={async () => {
-                  if (!formField.verify) return;
-                  setIsVerifying(true);
-                  await formField.verify({ ...formData, ...currentValues });
-                  setIsVerifying(false);
+                  setActionPending(true);
+                  await formField.action({ ...formData, ...currentValues });
+                  setActionPending(false);
                 }}
-                disabled={isVerifying}
+                disabled={actionPending}
               >
-                {isVerifying ? (
+                {actionPending ? (
                   <Loader2 className="mr-2 size-4 animate-spin" />
                 ) : null}
-                {isVerifying ? "Verifying..." : "Verify"}
+                {formField.actionText}
               </Button>
             ) : null}
           </div>
@@ -309,21 +308,20 @@ function StepField({ formField, field, useFormStore }: StepFieldProps) {
                   : field.value
               }
             />{" "}
-            {formField.verify ? (
+            {formField.action ? (
               <Button
                 type="button"
                 onClick={async () => {
-                  if (!formField.verify) return;
-                  setIsVerifying(true);
-                  await formField.verify({ ...formData, ...currentValues });
-                  setIsVerifying(false);
+                  setActionPending(true);
+                  await formField.action({ ...formData, ...currentValues });
+                  setActionPending(false);
                 }}
-                disabled={isVerifying}
+                disabled={actionPending}
               >
-                {isVerifying ? (
+                {actionPending ? (
                   <Loader2 className="mr-2 size-4 animate-spin" />
                 ) : null}
-                {isVerifying ? "Verifying..." : "Verify"}
+                {formField.actionText}
               </Button>
             ) : null}
           </div>
