@@ -1,6 +1,8 @@
 import { BriefcaseIcon, HomeIcon, KeyIcon } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
+import { Link } from "@/navigation";
+
 import { Button } from "../ui/button";
 import SectionTitle from "./components/section-title";
 
@@ -9,6 +11,7 @@ type Service = {
   description: string;
   icon: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
   cta: string;
+  href: string;
 };
 
 export async function Services() {
@@ -20,18 +23,21 @@ export async function Services() {
       description: t("rent-management.description"),
       icon: HomeIcon,
       cta: t("rent-management.cta"),
+      href: "/maintenance-payment",
     },
     {
       title: t("rent-collection.title"),
       description: t("rent-collection.description"),
       icon: BriefcaseIcon,
       cta: t("rent-collection.cta"),
+      href: "/rent-collection",
     },
     {
       title: t("rent-payment.title"),
       description: t("rent-payment.description"),
       icon: KeyIcon,
       cta: t("rent-payment.cta"),
+      href: "/rent-payment",
     },
   ];
 
@@ -50,7 +56,7 @@ export async function Services() {
   );
 }
 
-function Service({ title, description, icon: Icon, cta }: Service) {
+function Service({ title, description, icon: Icon, cta, href }: Service) {
   return (
     <div className="flex max-w-96 flex-col items-center justify-center gap-4">
       <div className="hexagon flex h-28 w-24 items-center justify-center bg-primary-600/5">
@@ -62,7 +68,9 @@ function Service({ title, description, icon: Icon, cta }: Service) {
       <p className="text-balance text-center text-base text-slate-600">
         {description}
       </p>
-      <Button className="mt-4">{cta}</Button>
+      <Button className="mt-4" asChild>
+        <Link href={href}>{cta}</Link>
+      </Button>
     </div>
   );
 }

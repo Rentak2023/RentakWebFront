@@ -1000,7 +1000,7 @@
     z-index: 10;
     height: 2rem;
     width: 2rem;
-    @apply bg-whitetext-lg absolute top-1/2 -translate-y-1/2  border-0;
+    @apply bg-whitetext-lg absolute top-1/2 -translate-y-1/2 border-0;
 
     --tw-text-opacity: 1;
 
