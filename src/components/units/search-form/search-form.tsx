@@ -78,9 +78,14 @@ export default function SearchForm() {
         searchParamsObj.delete(name, value);
       }
 
-      router.push(`${pathname}?${searchParamsObj.toString()}`);
+      // router.push(`${pathname}?${searchParamsObj.toString()}`);
+      history.replaceState(
+        null,
+        "",
+        `${pathname}?${searchParamsObj.toString()}`,
+      );
     },
-    [searchParams, pathname, router],
+    [pathname, searchParams],
   );
 
   const clearSearchParams = () => {
@@ -122,7 +127,6 @@ export default function SearchForm() {
               />
               <RoomsAndToilets control={form.control} onChange={handleSearch} />
             </div>
-
             <div className="mb-5 grid grid-cols-1 gap-3">
               <FinishingTypes control={form.control} onChange={handleSearch} />
             </div>

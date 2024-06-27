@@ -80,8 +80,9 @@ const CitiesAndRegions = ({
     onChange("city_id", String(option?.value));
   };
 
-  if (cities.length === 0 || (government !== "" && districts.length === 0))
-    return <LoadingSpinner />;
+  if (cities.length === 0) return <LoadingSpinner />;
+
+  // if (government !== "" && districts.length === 0) return null;
 
   return (
     <>
@@ -106,7 +107,6 @@ const CitiesAndRegions = ({
                         return city.value === +field.value;
                       })}
                       onChange={(e) => {
-                        console.log(e);
                         onChangeCity(e);
                       }}
                     />
