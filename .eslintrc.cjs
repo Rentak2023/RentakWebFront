@@ -67,6 +67,7 @@ const config = {
           "@radix-ui/react-popover",
           "@radix-ui/react-checkbox",
           "@radix-ui/react-radio-group",
+          "@radix-ui/react-slider",
           "valibot",
         ],
       },

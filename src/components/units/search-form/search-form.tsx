@@ -31,8 +31,12 @@ export default function SearchForm() {
       keyword: searchParams.get("keyword") ?? "",
       governoment_id: searchParams.get("governoment_id") ?? "",
       city_id: searchParams.get("city_id") ?? "",
-      price_from: minMaxPrice.min_price,
-      price_to: minMaxPrice.max_price,
+      price_from: searchParams.get("price_from")
+        ? Number(searchParams.get("price_from"))
+        : minMaxPrice.min_price,
+      price_to: searchParams.get("price_to")
+        ? Number(searchParams.get("price_to"))
+        : minMaxPrice.max_price,
       finish_type: searchParams.get("finish_type") ?? "",
       property_type: searchParams.getAll("property_type"),
       bathroom_numbers: searchParams.get("bathroom_numbers") ?? "",
