@@ -3,6 +3,7 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 import { Form } from "@/components/ui/form";
@@ -40,32 +41,27 @@ export default function SearchForm() {
     },
   });
 
-  const handleSearch = (
-    name: string,
-    value: string | undefined,
-    isSelected = true,
-  ) => {
+  const currentValues = form.watch();
+
+  useEffect(() => {
     const searchParamsObj = new URLSearchParams(searchParams.toString());
 
-    if (value === undefined) {
-      searchParamsObj.delete(name);
-      return;
+    for (const [key, value] of Object.entries(currentValues)) {
+      if (Array.isArray(value)) {
+        for (const item of value) {
+          searchParamsObj.append(key, item.toString());
+        }
+      } else if (value == null || value === "") {
+        searchParamsObj.delete(key);
+      } else {
+        searchParamsObj.set(key, value.toString());
+      }
     }
 
-    if (isSelected) {
-      if (name === "property_type") {
-        searchParamsObj.append(name, value);
-      } else {
-        searchParamsObj.set(name, value);
-      }
-    } else {
-      searchParamsObj.delete(name, value);
-    }
     router.replace(pathname + "?" + searchParamsObj.toString());
-  };
+  }, [currentValues, pathname, router, searchParams]);
 
   const clearSearchParams = () => {
-    router.replace(URLS.units);
     form.reset({
       keyword: "",
       governoment_id: "",
@@ -88,25 +84,20 @@ export default function SearchForm() {
         <Form {...form}>
           <form>
             <div className="mb-5 grid grid-cols-1 gap-3">
-              <KeywordInput control={form.control} onChange={handleSearch} />
-              <CitiesAndRegions
-                control={form.control}
-                onChange={handleSearch}
-              />
-              <RoomsAndToilets control={form.control} onChange={handleSearch} />
+              <KeywordInput />
+              <CitiesAndRegions />
+              <RoomsAndToilets />
             </div>
             <div className="mb-5 grid grid-cols-1 gap-3">
-              <FinishingTypes control={form.control} onChange={handleSearch} />
+              <FinishingTypes />
             </div>
             <div className="mb-5 grid grid-cols-1 gap-3">
-              <PropertyTypes control={form.control} onChange={handleSearch} />
+              <PropertyTypes />
             </div>
             <div className="mb-5 grid grid-cols-1 gap-3">
               <MultiRangeSlider
                 min={minMaxPrice.min_price}
                 max={minMaxPrice.max_price}
-                onChange={handleSearch}
-                control={form.control}
               />
             </div>
             <div className="mt-8 grid grid-cols-1 gap-3">

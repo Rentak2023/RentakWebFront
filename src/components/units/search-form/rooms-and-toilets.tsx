@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import { type Control } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import Select from "react-select";
 
 import {
@@ -9,14 +9,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-const RoomsAndToilets = ({
-  control,
-  onChange,
-}: {
-  control: Control;
-  onChange: (name: string, value: string) => void;
-}) => {
+const RoomsAndToilets = () => {
   const t = useTranslations("units");
+
+  const form = useFormContext();
 
   const roomOptions = [
     { label: 1, value: "1" },
@@ -38,25 +34,24 @@ const RoomsAndToilets = ({
 
         <div className="filter-search-form relative mt-2">
           <FormField
-            control={control}
+            control={form.control}
             name="room_numers"
             render={({ field }) => (
               <FormItem>
                 <FormControl>
                   <div className="flex flex-row items-center">
                     <Select
+                      {...field}
                       isClearable
                       classNamePrefix="react-select"
                       placeholder={t("selectRooms")}
                       className="form-input filter-input-box border-0"
                       options={roomOptions}
-                      {...field}
                       value={roomOptions.find(
                         (option) => option.value === field.value,
                       )}
                       onChange={(option) => {
                         field.onChange(option?.value);
-                        onChange("room_numers", String(option?.value));
                       }}
                     />
                   </div>
@@ -70,25 +65,24 @@ const RoomsAndToilets = ({
       <div>
         <div className="relative mt-2">
           <FormField
-            control={control}
+            control={form.control}
             name="bathroom_numbers"
             render={({ field }) => (
               <FormItem>
                 <FormControl>
                   <div className="flex flex-row items-center">
                     <Select
+                      {...field}
                       isClearable
                       classNamePrefix="react-select"
                       placeholder={t("selectToilets")}
                       className="form-input filter-input-box border-0"
                       options={bathroomOptions}
-                      {...field}
                       value={bathroomOptions.find(
                         (option) => option.value === field.value,
                       )}
                       onChange={(option) => {
                         field.onChange(option?.value);
-                        onChange("bathroom_numbers", String(option?.value));
                       }}
                     />
                   </div>

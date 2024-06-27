@@ -1,7 +1,7 @@
 import { useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
-import { type Control } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 
 import {
   FormControl,
@@ -13,16 +13,11 @@ import { getPropertyTypes } from "@/services/properties";
 
 import { type UnitTypeTypes } from "../types";
 
-const PropertyTypes = ({
-  control,
-  onChange,
-}: {
-  control: Control;
-  onChange: (name: string, value: string, isSelected: boolean) => void;
-}) => {
+const PropertyTypes = () => {
   const t = useTranslations("units");
   const locale = useLocale();
   const searchParams = useSearchParams();
+  const form = useFormContext();
 
   const [propertyTypes, setPropertyTypes] = useState<Array<UnitTypeTypes>>([]);
   const [selectedTypes, setSelectedTypes] = useState<Array<string>>(() => {
@@ -51,17 +46,16 @@ const PropertyTypes = ({
       updatedSelectedTypes = updatedSelectedTypes.filter((id) => id !== typeId);
     }
     setSelectedTypes(updatedSelectedTypes);
-    onChange("property_type", typeId, isChecked);
   };
 
   return (
     <div>
       <p className="mb-5 font-semibold text-[#777777]">{t("finishingTypes")}</p>
       <div className="flex flex-row flex-wrap gap-[20px]">
-        {propertyTypes.map((type, index) => (
+        {propertyTypes.map((type) => (
           <div key={`property-type-${type.id}`} className="relative sm:flex">
             <FormField
-              control={control}
+              control={form.control}
               name="property_type"
               render={({ field }) => (
                 <FormItem>

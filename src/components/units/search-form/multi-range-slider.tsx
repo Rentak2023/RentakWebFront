@@ -7,7 +7,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { type Control, useController } from "react-hook-form";
+import { useController, useFormContext } from "react-hook-form";
 
 import {
   FormControl,
@@ -20,31 +20,25 @@ import { cn } from "@/lib/utils";
 type MultiRangeSliderProps = {
   min: number;
   max: number;
-  onChange: (name: string, value: string) => void;
-  control: Control;
 };
 
-const MultiRangeSlider: FC<MultiRangeSliderProps> = ({
-  min,
-  max,
-  onChange,
-  control,
-}) => {
+const MultiRangeSlider: FC<MultiRangeSliderProps> = ({ min, max }) => {
   const t = useTranslations("units");
   const [minVal, setMinVal] = useState(min);
   const [maxVal, setMaxVal] = useState(max);
   const minValRef = useRef<HTMLInputElement>(null);
   const maxValRef = useRef<HTMLInputElement>(null);
   const range = useRef<HTMLDivElement>(null);
+  const form = useFormContext();
 
   const { field: minField } = useController({
     name: "price_from",
-    control,
+    control: form.control,
   });
 
   const { field: maxField } = useController({
     name: "price_to",
-    control,
+    control: form.control,
   });
 
   // Convert to percentage
@@ -66,12 +60,10 @@ const MultiRangeSlider: FC<MultiRangeSliderProps> = ({
   // Update form values only when minVal or maxVal change
   useEffect(() => {
     minField.onChange(minVal);
-    onChange("price_from", String(minVal));
   }, [minVal]);
 
   useEffect(() => {
     maxField.onChange(maxVal);
-    onChange("price_to", String(maxVal));
   }, [maxVal]);
 
   const handleMinChange = useCallback(
@@ -97,7 +89,7 @@ const MultiRangeSlider: FC<MultiRangeSliderProps> = ({
       <div className="filter-search-form relative mt-2">
         <div className="multi-range-slider-container">
           <FormField
-            control={control}
+            control={form.control}
             name="price_from"
             render={({ field }) => (
               <FormItem>
@@ -120,7 +112,7 @@ const MultiRangeSlider: FC<MultiRangeSliderProps> = ({
             )}
           />
           <FormField
-            control={control}
+            control={form.control}
             name="price_to"
             render={({ field }) => (
               <FormItem>

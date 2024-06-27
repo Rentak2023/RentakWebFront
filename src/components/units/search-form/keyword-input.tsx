@@ -1,7 +1,7 @@
 "use client";
 import { SearchIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { type Control } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 
 import {
   FormControl,
@@ -11,21 +11,14 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
-import { type FormValues } from "../types";
-
-const KeywordInput = ({
-  control,
-  onChange,
-}: {
-  control: Control<FormValues>;
-  onChange: (name: string, value: string) => void;
-}) => {
+const KeywordInput = () => {
   const t = useTranslations("units");
+  const form = useFormContext();
 
   return (
     <div className="relative mt-2">
       <FormField
-        control={control}
+        control={form.control}
         name="keyword"
         render={({ field }) => (
           <FormItem>
@@ -43,10 +36,6 @@ const KeywordInput = ({
                   type="search"
                   className="form-input border-0 bg-gray-50 ps-10"
                   placeholder={t("searchKeyword")}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                    field.onChange(e);
-                    onChange("keyword", e.currentTarget.value);
-                  }}
                 />
               </div>
             </FormControl>

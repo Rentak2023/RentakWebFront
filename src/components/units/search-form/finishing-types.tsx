@@ -1,7 +1,7 @@
 import { useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
-import { type Control } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 
 import {
   FormControl,
@@ -13,16 +13,11 @@ import { getFinishingTypes } from "@/services/properties";
 
 import { type UnitTypeTypes } from "../types";
 
-const FinishingTypes = ({
-  control,
-  onChange,
-}: {
-  control: Control;
-  onChange: (name: string, value: string) => void;
-}) => {
+const FinishingTypes = () => {
   const t = useTranslations("units");
   const locale = useLocale();
   const searchParams = useSearchParams();
+  const form = useFormContext();
 
   const [finishingTypeValue, setFinishingTypeValue] = useState<string | number>(
     searchParams.get("finish_type") ?? "",
@@ -46,7 +41,6 @@ const FinishingTypes = ({
 
   const handleRadioChange = (typeId: string) => {
     setFinishingTypeValue(typeId);
-    onChange("finish_type", typeId);
   };
 
   return (
@@ -56,7 +50,7 @@ const FinishingTypes = ({
         {finishingTypes.map((type, index) => (
           <div key={`finish-type-${type.id}`} className="relative sm:flex">
             <FormField
-              control={control}
+              control={form.control}
               name="finish_type"
               render={({ field }) => (
                 <FormItem>
