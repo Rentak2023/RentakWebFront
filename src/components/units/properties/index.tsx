@@ -40,6 +40,10 @@ async function fetchProperties(searchParams: string, locale: string) {
   const params = new URLSearchParams(searchParams);
   params.append("lang", locale);
 
+  if (!params.has("page")) {
+    params.append("page", "1");
+  }
+
   const response = await getProperties(params);
   return response;
 }

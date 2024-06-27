@@ -1,8 +1,16 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 
-import Units from "@/components/units";
+import PropertiesPage from "@/components/units/properties";
+import SearchForm from "@/components/units/search-form/search-form";
+import { getMinMaxPrice } from "@/services/properties";
 
-export default function UnitsPage({
+const getMinMaxPriceHandler = async () => {
+  const minMaxPrice = await getMinMaxPrice();
+
+  return [minMaxPrice.min_price, minMaxPrice.max_price] as const;
+};
+
+export default async function UnitsPage({
   params: { locale },
   searchParams,
 }: Readonly<{
@@ -10,10 +18,20 @@ export default function UnitsPage({
   searchParams: Record<string, string | Array<string>>;
 }>) {
   unstable_setRequestLocale(locale);
+  const params = new URLSearchParams(searchParams as Record<string, string>);
+
+  const [minPrice, maxPrice] = await getMinMaxPriceHandler();
 
   return (
     <main className="min-h-screen">
-      <Units searchParams={searchParams} />
+      <section className="relative py-16 lg:py-24">
+        <div className="container">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-12">
+            <SearchForm minPrice={minPrice} maxPrice={maxPrice} />
+            <PropertiesPage searchParams={params.toString()} locale={locale} />
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
