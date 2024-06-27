@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
+import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { usePathname, useRouter } from "@/navigation";
 import { minMaxPriceQuery } from "@/queries/units";
@@ -115,14 +116,9 @@ export default function SearchForm() {
             </div>
             <div className="mt-8 grid grid-cols-1 gap-3">
               <div className="lg:mt-6">
-                <input
-                  type="button"
-                  id="search-buy"
-                  name="search"
-                  className="btn !h-12 cursor-pointer rounded border border-[#777777] bg-white text-[#777777] shadow drop-shadow-xl hover:border-primary-700 hover:text-primary-700"
-                  value={t("clear")}
-                  onClick={clearSearchParams}
-                />
+                <Button onClick={clearSearchParams} variant="outline" size="lg">
+                  {t("clear")}
+                </Button>
               </div>
             </div>
           </form>
