@@ -32,7 +32,7 @@ const PropertyTypes = () => {
                 <FormField
                   key={item.id}
                   control={form.control}
-                  name="items"
+                  name="property_type"
                   render={({ field }) => {
                     return (
                       <FormItem
@@ -43,11 +43,13 @@ const PropertyTypes = () => {
                           <Checkbox
                             checked={field.value?.includes(item.id.toString())}
                             onCheckedChange={(checked) => {
-                              const value = field.value || [];
                               checked
-                                ? field.onChange([...value, item.id.toString()])
+                                ? field.onChange([
+                                    ...field.value,
+                                    item.id.toString(),
+                                  ])
                                 : field.onChange(
-                                    value?.filter(
+                                    field.value?.filter(
                                       (value: string) =>
                                         value !== item.id.toString(),
                                     ),

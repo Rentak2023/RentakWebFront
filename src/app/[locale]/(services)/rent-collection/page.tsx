@@ -321,7 +321,6 @@ export default function RentCollection() {
   ] as const satisfies Array<TStep>;
 
   const handleSubmit = async (data: Record<string, any>) => {
-    console.log(data);
     const res = await rentCollectionAction(data);
     if (res?.type === "error" && res.error.message) {
       toast({

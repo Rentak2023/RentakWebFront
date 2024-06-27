@@ -45,21 +45,29 @@ export default function SearchForm() {
   useEffect(() => {
     const searchParamsObj = new URLSearchParams(searchParams.toString());
 
+    let changed = false;
     for (const [key, value] of Object.entries(currentValues)) {
       if (Array.isArray(value)) {
         for (const item of value) {
           if (!searchParamsObj.getAll(key).includes(item.toString())) {
             searchParamsObj.append(key, item.toString());
+            changed = true;
           }
         }
-      } else if (value == null || value === "") {
+      } else if (value == null || (value === "" && searchParamsObj.has(key))) {
         searchParamsObj.delete(key);
-      } else {
+        changed = true;
+      } else if (
+        value !== "" &&
+        searchParamsObj.get(key) !== value.toString()
+      ) {
         searchParamsObj.set(key, value.toString());
+        changed = true;
       }
     }
-
-    router.replace(pathname + "?" + searchParamsObj.toString());
+    if (changed) {
+      router.replace(pathname + "?" + searchParamsObj.toString());
+    }
   }, [currentValues, pathname, router, searchParams]);
 
   const clearSearchParams = () => {
