@@ -1,11 +1,13 @@
 "use client";
 
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 
 import { Form } from "@/components/ui/form";
 import { usePathname, useRouter } from "@/navigation";
+import { minMaxPriceQuery } from "@/queries/units";
 import URLS from "@/shared/urls";
 
 import { type FormValues } from "../types";
@@ -16,32 +18,21 @@ import MultiRangeSlider from "./multi-range-slider";
 import PropertyTypes from "./property-types";
 import RoomsAndToilets from "./rooms-and-toilets";
 
-type SearchFormProps = {
-  minPrice: number;
-  maxPrice: number;
-  cities: Array<{
-    label: string;
-    value: number;
-  }>;
-};
-
-export default function SearchForm({
-  minPrice,
-  maxPrice,
-  cities,
-}: SearchFormProps) {
+export default function SearchForm() {
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
   const t = useTranslations("units");
+
+  const { data: minMaxPrice } = useSuspenseQuery(minMaxPriceQuery);
 
   const form = useForm<FormValues>({
     defaultValues: {
       keyword: searchParams.get("keyword") ?? "",
       governoment_id: searchParams.get("governoment_id") ?? "",
       city_id: searchParams.get("city_id") ?? "",
-      price_from: minPrice,
-      price_to: maxPrice,
+      price_from: minMaxPrice.min_price,
+      price_to: minMaxPrice.max_price,
       finish_type: searchParams.get("finish_type") ?? "",
       property_type: searchParams.getAll("property_type"),
       bathroom_numbers: searchParams.get("bathroom_numbers") ?? "",
@@ -79,8 +70,8 @@ export default function SearchForm({
       keyword: "",
       governoment_id: "",
       city_id: "",
-      price_from: minPrice,
-      price_to: maxPrice,
+      price_from: minMaxPrice.min_price,
+      price_to: minMaxPrice.max_price,
       finish_type: "",
       property_type: [],
       bathroom_numbers: "",
@@ -101,7 +92,6 @@ export default function SearchForm({
               <CitiesAndRegions
                 control={form.control}
                 onChange={handleSearch}
-                cities={cities}
               />
               <RoomsAndToilets control={form.control} onChange={handleSearch} />
             </div>
@@ -113,8 +103,8 @@ export default function SearchForm({
             </div>
             <div className="mb-5 grid grid-cols-1 gap-3">
               <MultiRangeSlider
-                min={minPrice}
-                max={maxPrice}
+                min={minMaxPrice.min_price}
+                max={minMaxPrice.max_price}
                 onChange={handleSearch}
                 control={form.control}
               />

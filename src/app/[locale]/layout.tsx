@@ -16,6 +16,8 @@ import { Toaster } from "@/components/ui/toaster";
 import useTextDirection from "@/hooks/text-direction";
 import { locales } from "@/navigation";
 
+import { Providers } from "./providers";
+
 const notoSans = Noto_Sans_Arabic({
   subsets: ["arabic"],
   variable: "--font-noto-sans",
@@ -63,10 +65,12 @@ export default async function RootLayout({
         className={`${generalSans.variable} ${notoSans.variable} font-sans`}
       >
         <NextIntlClientProvider messages={messages}>
-          <Navbar />
-          {children}
-          <Footer />
-          <Toaster />
+          <Providers>
+            <Navbar />
+            {children}
+            <Footer />
+            <Toaster />
+          </Providers>
         </NextIntlClientProvider>
       </body>
     </html>

@@ -1,3 +1,5 @@
+import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
+import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { type Control } from "react-hook-form";
@@ -9,51 +11,35 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
-import LoadingSpinner from "@/components/ui/loading-spinner";
-import { getDistricts } from "@/services/properties";
+import { citiesQuery, districtsQuery } from "@/queries/location";
 
-import { type DistrictTypes, type SelectOptionsTypes } from "../types";
+import { type SelectOptionsTypes } from "../types";
 
 type CitiesAndRegionsProps = {
   control: Control;
   onChange: (name: string, value: string, isSelected?: boolean) => void;
-  cities: Array<{
-    label: string;
-    value: number;
-  }>;
 };
 
-const CitiesAndRegions = ({
-  control,
-  onChange,
-  cities,
-}: CitiesAndRegionsProps) => {
+const CitiesAndRegions = ({ control, onChange }: CitiesAndRegionsProps) => {
+  const searchParams = useSearchParams();
   const t = useTranslations("units");
+  const [governorate, setGovernorate] = useState<string | number | null>(() =>
+    searchParams.get("governoment_id"),
+  );
 
-  const [districts, setDistricts] = useState<Array<SelectOptionsTypes>>([]);
+  const { data: cities } = useSuspenseQuery(citiesQuery);
+  const { data: districts } = useQuery(districtsQuery(governorate));
 
-  const onChangeCity = async (option: SingleValue<SelectOptionsTypes>) => {
+  const onChangeCity = (option: SingleValue<SelectOptionsTypes>) => {
     if (option?.value) {
       onChange("governoment_id", String(option.value));
-
-      await getDistrictsHandler(option.value);
+      setGovernorate(option.value);
     }
-  };
-
-  const getDistrictsHandler = async (government: string | number) => {
-    const districts = await getDistricts(government);
-    const formattedDistricts = districts.map((district: DistrictTypes) => ({
-      label: district.city_name,
-      value: district.city_id,
-    }));
-    setDistricts(formattedDistricts);
   };
 
   const onChangeDistrict = (option: SingleValue<SelectOptionsTypes>) => {
     onChange("city_id", String(option?.value));
   };
-
-  if (cities.length === 0) return <LoadingSpinner />;
 
   return (
     <>
@@ -105,7 +91,7 @@ const CitiesAndRegions = ({
                       className="form-input filter-input-box"
                       options={districts}
                       {...field}
-                      value={districts.find((district) => {
+                      value={districts?.find((district) => {
                         return district.value === +field.value;
                       })}
                       onChange={(e) => {

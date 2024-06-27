@@ -1,23 +1,17 @@
-import { headers } from "next/headers";
-
-import { getProperties } from "@/services/properties";
 import { type Unit as UnitType } from "@/services/types";
 
 import Unit from "../../unit";
 import Properties from "./properties";
 
 type PropertiesPageProps = {
-  searchParams: string;
-  locale: string;
+  properties: Array<UnitType>;
+  totalProperties: number;
 };
 
-const PropertiesPage = async ({
-  searchParams,
-  locale,
+const PropertiesPage = ({
+  properties,
+  totalProperties,
 }: PropertiesPageProps) => {
-  const response = await fetchProperties(searchParams, locale);
-  const totalProperties = response.total_count;
-  const properties: Array<UnitType> = response.items;
   const totalPages = Math.floor(totalProperties / 10);
 
   const renderUnit = (item: UnitType) => {
@@ -35,15 +29,3 @@ const PropertiesPage = async ({
 };
 
 export default PropertiesPage;
-
-async function fetchProperties(searchParams: string, locale: string) {
-  const params = new URLSearchParams(searchParams);
-  params.append("lang", locale);
-
-  if (!params.has("page")) {
-    params.append("page", "1");
-  }
-
-  const response = await getProperties(params);
-  return response;
-}
