@@ -1,6 +1,5 @@
-import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { type Control } from "react-hook-form";
 import Select, { type SingleValue } from "react-select";
 
@@ -11,78 +10,50 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import LoadingSpinner from "@/components/ui/loading-spinner";
-import { getCities, getDistricts } from "@/services/properties";
+import { getDistricts } from "@/services/properties";
 
-import {
-  type CityTypes,
-  type DistrictTypes,
-  type SelectOptionsTypes,
-} from "../types";
+import { type DistrictTypes, type SelectOptionsTypes } from "../types";
+
+type CitiesAndRegionsProps = {
+  control: Control;
+  onChange: (name: string, value: string, isSelected?: boolean) => void;
+  cities: Array<{
+    label: string;
+    value: number;
+  }>;
+};
 
 const CitiesAndRegions = ({
   control,
   onChange,
-}: {
-  control: Control;
-  onChange: (name: string, value: string, isSelected?: boolean) => void;
-}) => {
+  cities,
+}: CitiesAndRegionsProps) => {
   const t = useTranslations("units");
-  const searchParams = useSearchParams();
 
-  const [cities, setCities] = useState<Array<SelectOptionsTypes>>([]);
   const [districts, setDistricts] = useState<Array<SelectOptionsTypes>>([]);
-  const [government, setGovernment] = useState<string | number>(
-    searchParams.get("governoment_id") ?? "",
-  );
 
-  const getCitiesHandler = async () => {
-    try {
-      const cities = await getCities();
-      const formattedCities = cities.map((city: CityTypes) => ({
-        label: city.governorate_name,
-        value: city.governorate_id,
-      }));
-      setCities(formattedCities);
-    } catch (error) {
-      console.log(error);
+  const onChangeCity = async (option: SingleValue<SelectOptionsTypes>) => {
+    if (option?.value) {
+      onChange("governoment_id", String(option.value));
+
+      await getDistrictsHandler(option.value);
     }
   };
 
-  useEffect(() => {
-    getCitiesHandler();
-  }, []);
-
-  const onChangeCity = (option: SingleValue<SelectOptionsTypes>) => {
-    setGovernment(Number(option?.value));
-    onChange("governoment_id", String(option?.value));
+  const getDistrictsHandler = async (government: string | number) => {
+    const districts = await getDistricts(government);
+    const formattedDistricts = districts.map((district: DistrictTypes) => ({
+      label: district.city_name,
+      value: district.city_id,
+    }));
+    setDistricts(formattedDistricts);
   };
-
-  const getDistrictsHandler = async () => {
-    if (government !== "") {
-      try {
-        const districts = await getDistricts(government);
-        const formattedDistricts = districts.map((district: DistrictTypes) => ({
-          label: district.city_name,
-          value: district.city_id,
-        }));
-        setDistricts(formattedDistricts);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  };
-
-  useEffect(() => {
-    getDistrictsHandler();
-  }, [government]);
 
   const onChangeDistrict = (option: SingleValue<SelectOptionsTypes>) => {
     onChange("city_id", String(option?.value));
   };
 
   if (cities.length === 0) return <LoadingSpinner />;
-
-  // if (government !== "" && districts.length === 0) return null;
 
   return (
     <>

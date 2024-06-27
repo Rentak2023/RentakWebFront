@@ -19,9 +19,17 @@ import RoomsAndToilets from "./rooms-and-toilets";
 type SearchFormProps = {
   minPrice: number;
   maxPrice: number;
+  cities: Array<{
+    label: string;
+    value: number;
+  }>;
 };
 
-export default function SearchForm({ minPrice, maxPrice }: SearchFormProps) {
+export default function SearchForm({
+  minPrice,
+  maxPrice,
+  cities,
+}: SearchFormProps) {
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -93,6 +101,7 @@ export default function SearchForm({ minPrice, maxPrice }: SearchFormProps) {
               <CitiesAndRegions
                 control={form.control}
                 onChange={handleSearch}
+                cities={cities}
               />
               <RoomsAndToilets control={form.control} onChange={handleSearch} />
             </div>

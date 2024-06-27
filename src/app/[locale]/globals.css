@@ -1048,17 +1048,6 @@
   /*           Choices             */
 
   /* =============================== */
-  .filter-search-form .icons {
-    @apply absolute;
-    top: 48%;
-    inset-inline-start: 0.75rem;
-    z-index: 1;
-
-    @apply -translate-y-1/2;
-    font-size: 20px;
-
-    @apply text-blue-600;
-  }
 
   .registration-form {
     @apply relative;
