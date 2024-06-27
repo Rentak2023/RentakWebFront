@@ -3,7 +3,11 @@ import { unstable_setRequestLocale } from "next-intl/server";
 import PropertiesPage from "@/components/units/properties";
 import SearchForm from "@/components/units/search-form/search-form";
 import { citiesQuery, districtsQuery } from "@/queries/location";
-import { minMaxPriceQuery } from "@/queries/units";
+import {
+  finishTypesQuery,
+  minMaxPriceQuery,
+  propertyTypesQuery,
+} from "@/queries/units";
 import { getProperties } from "@/services/properties";
 
 import { makeQueryClient } from "../get-query-client";
@@ -39,7 +43,13 @@ export default async function UnitsPage({
 
   await queryClient.prefetchQuery(minMaxPriceQuery);
   await queryClient.prefetchQuery(citiesQuery);
-  await queryClient.prefetchQuery(districtsQuery(searchParams.governoment_id));
+  await queryClient.prefetchQuery(finishTypesQuery(locale));
+  await queryClient.prefetchQuery(propertyTypesQuery(locale));
+  if (searchParams.governoment_id) {
+    await queryClient.prefetchQuery(
+      districtsQuery(searchParams.governoment_id),
+    );
+  }
 
   return (
     <main className="min-h-screen">

@@ -9,7 +9,6 @@ import { useForm } from "react-hook-form";
 import { Form } from "@/components/ui/form";
 import { usePathname, useRouter } from "@/navigation";
 import { minMaxPriceQuery } from "@/queries/units";
-import URLS from "@/shared/urls";
 
 import { type FormValues } from "../types";
 import CitiesAndRegions from "./cities-and-regions";
@@ -49,7 +48,9 @@ export default function SearchForm() {
     for (const [key, value] of Object.entries(currentValues)) {
       if (Array.isArray(value)) {
         for (const item of value) {
-          searchParamsObj.append(key, item.toString());
+          if (!searchParamsObj.getAll(key).includes(item.toString())) {
+            searchParamsObj.append(key, item.toString());
+          }
         }
       } else if (value == null || value === "") {
         searchParamsObj.delete(key);
