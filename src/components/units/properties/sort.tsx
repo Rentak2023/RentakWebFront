@@ -2,6 +2,7 @@
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 
+import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
@@ -23,9 +24,14 @@ const Sort = () => {
     { label: t("lowToHigh"), value: "low-to-high" },
   ];
 
-  const onChange = (value: string) => {
+  const onChange = (value: string | null) => {
     const searchParamsObj = new URLSearchParams(searchParams.toString());
-    if (value !== "" && searchParamsObj.get("sort_by") !== value.toString()) {
+    if (value == null || (value === "" && searchParamsObj.has("sort_by"))) {
+      searchParamsObj.delete("sort_by");
+    } else if (
+      value !== "" &&
+      searchParamsObj.get("sort_by") !== value.toString()
+    ) {
       searchParamsObj.set("sort_by", value.toString());
     }
     router.replace(pathname + "?" + searchParamsObj.toString(), {
@@ -35,7 +41,10 @@ const Sort = () => {
 
   return (
     <div className="my-7">
-      <Select onValueChange={onChange}>
+      <Select
+        onValueChange={onChange}
+        defaultValue={searchParams.get("sort_by") ?? ""}
+      >
         <SelectTrigger>
           <SelectValue placeholder={t("sort")} />
         </SelectTrigger>
@@ -45,6 +54,16 @@ const Sort = () => {
               {sort.label}
             </SelectItem>
           ))}
+          <Button
+            className="w-full px-2"
+            variant="secondary"
+            size="sm"
+            onClick={() => {
+              onChange(null);
+            }}
+          >
+            {t("clear")}
+          </Button>
         </SelectContent>
       </Select>
     </div>

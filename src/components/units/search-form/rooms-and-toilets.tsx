@@ -64,7 +64,7 @@ const RoomsAndToilets = () => {
                       field.onChange(null);
                     }}
                   >
-                    Clear
+                    {t("clear")}
                   </Button>
                 </SelectContent>
               </Select>
@@ -99,7 +99,7 @@ const RoomsAndToilets = () => {
                       field.onChange(null);
                     }}
                   >
-                    Clear
+                    {t("clear")}
                   </Button>
                 </SelectContent>
               </Select>

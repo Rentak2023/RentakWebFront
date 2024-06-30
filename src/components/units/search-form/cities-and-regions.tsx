@@ -57,7 +57,7 @@ const CitiesAndRegions = () => {
                       field.onChange(null);
                     }}
                   >
-                    Clear
+                    {t("clear")}
                   </Button>
                 </SelectContent>
               </Select>
@@ -95,7 +95,7 @@ const CitiesAndRegions = () => {
                       field.onChange(null);
                     }}
                   >
-                    Clear
+                    {t("clear")}
                   </Button>
                 </SelectContent>
               </Select>
