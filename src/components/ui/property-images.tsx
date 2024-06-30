@@ -60,7 +60,7 @@ export default function PropertyImages({ images }: PropertyImagesTypes) {
 
       <div className="md:w-1/2 lg:w-1/2">
         <div className="flex flex-wrap">
-          {otherImages.map((image, index) => (
+          {otherImages.map((image) => (
             <div key={image.id} className="w-1/2 p-1">
               <div className="group relative overflow-hidden rounded-[8px]">
                 <Image
@@ -92,9 +92,11 @@ export default function PropertyImages({ images }: PropertyImagesTypes) {
 
       {isOpen ? (
         <Lightbox
-          mainSrc={images[photoIndex].url}
-          nextSrc={images[(photoIndex + 1) % images.length].url}
-          prevSrc={images[(photoIndex + images.length - 1) % images.length].url}
+          mainSrc={images.at(photoIndex)?.url ?? ""}
+          nextSrc={images.at((photoIndex + 1) % images.length)?.url}
+          prevSrc={
+            images.at((photoIndex + images.length - 1) % images.length)?.url
+          }
           onCloseRequest={() => {
             setIsOpen(false);
           }}
