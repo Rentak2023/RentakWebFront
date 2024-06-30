@@ -29,90 +29,83 @@ const CitiesAndRegions = () => {
   const { data: districts } = useQuery(districtsQuery(governorate));
 
   return (
-    <>
-      <div>
-        <p className="mb-5 font-semibold text-slate-600">{t("findPlace")}</p>
-        <div className="relative mt-2">
-          <FormField
-            control={form.control}
-            name="governoment_id"
-            render={({ field }) => (
-              <FormItem>
-                <Select onValueChange={field.onChange} value={field.value}>
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder={t("selectCity")} />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {cities.map((city) => (
-                      <SelectItem
-                        key={city.value}
-                        value={city.value.toString()}
-                      >
-                        {city.label}
-                      </SelectItem>
-                    ))}
-                    <Button
-                      className="w-full px-2"
-                      variant="secondary"
-                      size="sm"
-                      onClick={() => {
-                        field.onChange(null);
-                      }}
-                    >
-                      Clear
-                    </Button>
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
+    <div>
+      <p className="font-medium text-slate-600">{t("findPlace")}</p>
+      <div className="relative mt-2">
+        <FormField
+          control={form.control}
+          name="governoment_id"
+          render={({ field }) => (
+            <FormItem>
+              <Select onValueChange={field.onChange} value={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder={t("selectCity")} />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {cities.map((city) => (
+                    <SelectItem key={city.value} value={city.value.toString()}>
+                      {city.label}
+                    </SelectItem>
+                  ))}
+                  <Button
+                    className="w-full px-2"
+                    variant="secondary"
+                    size="sm"
+                    onClick={() => {
+                      field.onChange(null);
+                    }}
+                  >
+                    Clear
+                  </Button>
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
       </div>
-      <div>
-        <div className="relative mt-2">
-          <FormField
-            control={form.control}
-            name="city_id"
-            render={({ field }) => (
-              <FormItem>
-                <Select onValueChange={field.onChange} value={field.value}>
-                  <FormControl>
-                    <SelectTrigger disabled={!governorate}>
-                      <SelectValue placeholder={t("selectDistrict")} />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {districts?.map((district) => (
-                      <SelectItem
-                        key={district.value}
-                        value={district.value.toString()}
-                      >
-                        {district.label}
-                      </SelectItem>
-                    ))}
-                    <Button
-                      className="w-full px-2"
-                      variant="secondary"
-                      size="sm"
-                      onClick={() => {
-                        field.onChange(null);
-                      }}
+      <div className="relative mt-2">
+        <FormField
+          control={form.control}
+          name="city_id"
+          render={({ field }) => (
+            <FormItem>
+              <Select onValueChange={field.onChange} value={field.value}>
+                <FormControl>
+                  <SelectTrigger disabled={!governorate}>
+                    <SelectValue placeholder={t("selectDistrict")} />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {districts?.map((district) => (
+                    <SelectItem
+                      key={district.value}
+                      value={district.value.toString()}
                     >
-                      Clear
-                    </Button>
-                  </SelectContent>
-                </Select>
+                      {district.label}
+                    </SelectItem>
+                  ))}
+                  <Button
+                    className="w-full px-2"
+                    variant="secondary"
+                    size="sm"
+                    onClick={() => {
+                      field.onChange(null);
+                    }}
+                  >
+                    Clear
+                  </Button>
+                </SelectContent>
+              </Select>
 
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
       </div>
-    </>
+    </div>
   );
 };
 

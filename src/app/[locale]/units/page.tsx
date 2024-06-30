@@ -53,7 +53,7 @@ export default async function UnitsPage({
 
   return (
     <main className="min-h-screen">
-      <div className="flex flex-col gap-8 lg:flex-row">
+      <div className="flex flex-col lg:flex-row">
         <SearchForm />
         <Properties
           properties={properties.items}

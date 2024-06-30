@@ -21,12 +21,12 @@ const FinishingTypes = () => {
 
   return (
     <div>
-      <p className="mb-5 font-semibold text-slate-600">{t("finishingTypes")}</p>
+      <p className="font-medium text-slate-600">{t("finishingTypes")}</p>
       <FormField
         control={form.control}
         name="finish_type"
         render={({ field }) => (
-          <FormItem className="space-y-3">
+          <FormItem className="mt-2 space-y-3">
             <FormControl>
               <RadioGroup
                 onValueChange={field.onChange}

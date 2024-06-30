@@ -35,90 +35,80 @@ const RoomsAndToilets = () => {
   ];
 
   return (
-    <>
-      <div>
-        <p className="mb-5 font-semibold text-slate-600">{t("countUnit")}</p>
+    <div>
+      <p className="font-medium text-slate-600">{t("countUnit")}</p>
 
-        <div className="relative mt-2">
-          <FormField
-            control={form.control}
-            name="room_numers"
-            render={({ field }) => (
-              <FormItem>
-                <Select onValueChange={field.onChange} value={field.value}>
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder={t("selectRooms")} />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {roomOptions.map((room) => (
-                      <SelectItem
-                        key={room.value}
-                        value={room.value.toString()}
-                      >
-                        {room.label}
-                      </SelectItem>
-                    ))}
-                    <Button
-                      className="w-full px-2"
-                      variant="secondary"
-                      size="sm"
-                      onClick={() => {
-                        field.onChange(null);
-                      }}
-                    >
-                      Clear
-                    </Button>
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
+      <div className="relative mt-2">
+        <FormField
+          control={form.control}
+          name="room_numers"
+          render={({ field }) => (
+            <FormItem>
+              <Select onValueChange={field.onChange} value={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder={t("selectRooms")} />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {roomOptions.map((room) => (
+                    <SelectItem key={room.value} value={room.value.toString()}>
+                      {room.label}
+                    </SelectItem>
+                  ))}
+                  <Button
+                    className="w-full px-2"
+                    variant="secondary"
+                    size="sm"
+                    onClick={() => {
+                      field.onChange(null);
+                    }}
+                  >
+                    Clear
+                  </Button>
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
       </div>
-      <div>
-        <div className="relative mt-2">
-          <FormField
-            control={form.control}
-            name="bathroom_numbers"
-            render={({ field }) => (
-              <FormItem>
-                <Select onValueChange={field.onChange} value={field.value}>
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder={t("selectToilets")} />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {bathroomOptions.map((room) => (
-                      <SelectItem
-                        key={room.value}
-                        value={room.value.toString()}
-                      >
-                        {room.label}
-                      </SelectItem>
-                    ))}
-                    <Button
-                      className="w-full px-2"
-                      variant="secondary"
-                      size="sm"
-                      onClick={() => {
-                        field.onChange(null);
-                      }}
-                    >
-                      Clear
-                    </Button>
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
+      <div className="relative mt-2">
+        <FormField
+          control={form.control}
+          name="bathroom_numbers"
+          render={({ field }) => (
+            <FormItem>
+              <Select onValueChange={field.onChange} value={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder={t("selectToilets")} />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {bathroomOptions.map((room) => (
+                    <SelectItem key={room.value} value={room.value.toString()}>
+                      {room.label}
+                    </SelectItem>
+                  ))}
+                  <Button
+                    className="w-full px-2"
+                    variant="secondary"
+                    size="sm"
+                    onClick={() => {
+                      field.onChange(null);
+                    }}
+                  >
+                    Clear
+                  </Button>
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
       </div>
-    </>
+    </div>
   );
 };
 

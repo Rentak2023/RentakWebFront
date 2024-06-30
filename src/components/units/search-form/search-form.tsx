@@ -90,36 +90,34 @@ export default function SearchForm() {
   };
 
   return (
-    <div className="pt-16 lg:max-w-6xl lg:border-e lg:border-e-slate-200">
+    <div className="flex w-[28rem] flex-col pt-16 lg:max-w-6xl lg:border-e lg:border-e-slate-200">
       <div className="p-6">
         <div className="border-b border-b-slate-900">
           <p className="mb-3 font-medium text-slate-700">{t("filter")}</p>
         </div>
         <Form {...form}>
           <form>
-            <div className="mb-5 flex flex-col gap-3">
+            <div className="flex flex-col gap-3">
               <KeywordInput />
               <CitiesAndRegions />
               <RoomsAndToilets />
             </div>
-            <div className="mb-5 flex flex-col gap-3">
+            <div className="mt-5 flex flex-col gap-3">
               <FinishingTypes />
             </div>
-            <div className="mb-5 flex flex-col gap-3">
+            <div className="mt-5 flex flex-col gap-3">
               <PropertyTypes />
             </div>
-            <div className="mb-5 flex flex-col gap-3">
+            <div className="mt-5 flex flex-col gap-3">
               <MultiRangeSlider
                 min={minMaxPrice.min_price}
                 max={minMaxPrice.max_price}
               />
             </div>
-            <div className="mt-8 flex flex-col gap-3">
-              <div className="lg:mt-6">
-                <Button onClick={clearSearchParams} variant="outline" size="lg">
-                  {t("clear")}
-                </Button>
-              </div>
+            <div className="mt-5">
+              <Button onClick={clearSearchParams} variant="outline" size="lg">
+                {t("clear")}
+              </Button>
             </div>
           </form>
         </Form>
