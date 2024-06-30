@@ -78,7 +78,9 @@ export default function SearchForm() {
         searchParamsObj.delete(name, value);
       }
 
-      // router.push(`${pathname}?${searchParamsObj.toString()}`);
+      // router.push(`${pathname}?${searchParamsObj.toString()}`, {
+      //   scroll: false,
+      // });
       history.replaceState(
         null,
         "",
