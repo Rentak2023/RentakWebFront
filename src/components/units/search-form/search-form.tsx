@@ -90,7 +90,7 @@ export default function SearchForm() {
   };
 
   return (
-    <div className="border-e border-e-[#E5E7EB] md:col-span-6 lg:col-span-4">
+    <div className="pt-16 lg:max-w-6xl lg:border-e lg:border-e-slate-200 lg:pt-24">
       <div className="top-20 bg-white p-6">
         <div className="border-b border-b-[#011435]">
           <p className="mb-3 font-medium text-[#41454D]">{t("filter")}</p>

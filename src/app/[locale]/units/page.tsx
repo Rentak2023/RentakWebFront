@@ -1,6 +1,6 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 
-import PropertiesPage from "@/components/units/properties";
+import Properties from "@/components/units/properties/properties";
 import SearchForm from "@/components/units/search-form/search-form";
 import { citiesQuery, districtsQuery } from "@/queries/location";
 import {
@@ -53,17 +53,14 @@ export default async function UnitsPage({
 
   return (
     <main className="min-h-screen">
-      <section className="relative py-16 lg:py-24">
-        <div className="container">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-12">
-            <SearchForm />
-            <PropertiesPage
-              properties={properties.items}
-              totalProperties={properties.total_count}
-            />
-          </div>
-        </div>
-      </section>
+      <div className="flex flex-col gap-8 lg:flex-row">
+        <SearchForm />
+        <Properties
+          properties={properties.items}
+          totalProperties={properties.total_count}
+          totalPages={Math.floor(properties.total_count / 10)}
+        />
+      </div>
     </main>
   );
 }
