@@ -1,5 +1,5 @@
 "use server";
-import { type Input, safeParse } from "valibot";
+import * as v from "valibot";
 
 import ky from "@/lib/ky";
 import { contactSchema } from "@/schema/contact";
@@ -8,8 +8,8 @@ type ContactResponse = {
   message: string;
 };
 
-export const contactAction = (data: Input<typeof contactSchema>) => {
-  const validatedFields = safeParse(contactSchema, data);
+export const contactAction = (data: v.InferInput<typeof contactSchema>) => {
+  const validatedFields = v.safeParse(contactSchema, data);
 
   if (!validatedFields.success) {
     console.error(validatedFields.issues);

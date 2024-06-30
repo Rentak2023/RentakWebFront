@@ -1,155 +1,111 @@
-import { useSearchParams } from "next/navigation";
+import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
-import { type Control } from "react-hook-form";
-import Select, { type SingleValue } from "react-select";
+import { useFormContext } from "react-hook-form";
 
+import { Button } from "@/components/ui/button";
 import {
   FormControl,
   FormField,
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
-import LoadingSpinner from "@/components/ui/loading-spinner";
-import { getCities, getDistricts } from "@/services/properties";
-
 import {
-  type CityTypes,
-  type DistrictTypes,
-  type SelectOptionsTypes,
-} from "../types";
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { citiesQuery, districtsQuery } from "@/queries/location";
 
-const CitiesAndRegions = ({
-  control,
-  onChange,
-}: {
-  control: Control;
-  onChange: (name: string, value: string, isSelected?: boolean) => void;
-}) => {
+const CitiesAndRegions = () => {
   const t = useTranslations("units");
-  const searchParams = useSearchParams();
 
-  const [cities, setCities] = useState<Array<SelectOptionsTypes>>([]);
-  const [districts, setDistricts] = useState<Array<SelectOptionsTypes>>([]);
-  const [government, setGovernment] = useState<string | number>(
-    searchParams.get("governoment_id") ?? "",
-  );
+  const form = useFormContext();
 
-  const getCitiesHandler = async () => {
-    try {
-      const cities = await getCities();
-      const formattedCities = cities.map((city: CityTypes) => ({
-        label: city.governorate_name,
-        value: city.governorate_id,
-      }));
-      setCities(formattedCities);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const governorate = form.watch("governoment_id");
 
-  useEffect(() => {
-    getCitiesHandler();
-  }, []);
-
-  const onChangeCity = (option: SingleValue<SelectOptionsTypes>) => {
-    setGovernment(Number(option?.value));
-    onChange("governoment_id", String(option?.value));
-  };
-
-  const getDistrictsHandler = async () => {
-    if (government !== "") {
-      try {
-        const districts = await getDistricts(government);
-        const formattedDistricts = districts.map((district: DistrictTypes) => ({
-          label: district.city_name,
-          value: district.city_id,
-        }));
-        setDistricts(formattedDistricts);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  };
-
-  useEffect(() => {
-    getDistrictsHandler();
-  }, [government]);
-
-  const onChangeDistrict = (option: SingleValue<SelectOptionsTypes>) => {
-    onChange("city_id", String(option?.value));
-  };
-
-  if (cities.length === 0) return <LoadingSpinner />;
-
-  // if (government !== "" && districts.length === 0) return null;
+  const { data: cities } = useSuspenseQuery(citiesQuery);
+  const { data: districts } = useQuery(districtsQuery(governorate));
 
   return (
-    <>
-      <div>
-        <p className="mb-5 font-semibold text-[#777777]">{t("findPlace")}</p>
-        <div className="filter-search-form relative mt-2">
-          <FormField
-            control={control}
-            name="governoment_id"
-            render={({ field }) => (
-              <FormItem>
+    <div>
+      <p className="font-medium text-slate-600">{t("findPlace")}</p>
+      <div className="mt-4">
+        <FormField
+          control={form.control}
+          name="governoment_id"
+          render={({ field }) => (
+            <FormItem>
+              <Select onValueChange={field.onChange} value={field.value}>
                 <FormControl>
-                  <div className="flex flex-row items-center">
-                    <Select
-                      classNamePrefix="react-select"
-                      placeholder={t("selectCity")}
-                      isClearable
-                      className="form-input filter-input-box border-0"
-                      options={cities}
-                      {...field}
-                      value={cities.find((city) => {
-                        return city.value === +field.value;
-                      })}
-                      onChange={(e) => {
-                        onChangeCity(e);
-                      }}
-                    />
-                  </div>
+                  <SelectTrigger>
+                    <SelectValue placeholder={t("selectCity")} />
+                  </SelectTrigger>
                 </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
+                <SelectContent>
+                  {cities.map((city) => (
+                    <SelectItem key={city.value} value={city.value.toString()}>
+                      {city.label}
+                    </SelectItem>
+                  ))}
+                  <Button
+                    className="w-full px-2"
+                    variant="secondary"
+                    size="sm"
+                    onClick={() => {
+                      field.onChange(null);
+                    }}
+                  >
+                    Clear
+                  </Button>
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
       </div>
-      <div>
-        <div className="filter-search-form relative mt-2">
-          <FormField
-            control={control}
-            name="city_id"
-            render={({ field }) => (
-              <FormItem>
+      <div className="mt-2">
+        <FormField
+          control={form.control}
+          name="city_id"
+          render={({ field }) => (
+            <FormItem>
+              <Select onValueChange={field.onChange} value={field.value}>
                 <FormControl>
-                  <div className="flex flex-row items-center">
-                    <Select
-                      classNamePrefix="react-select"
-                      placeholder={t("selectDistrict")}
-                      isClearable
-                      className="form-input filter-input-box"
-                      options={districts}
-                      {...field}
-                      value={districts.find((district) => {
-                        return district.value === +field.value;
-                      })}
-                      onChange={(e) => {
-                        onChangeDistrict(e);
-                      }}
-                    />
-                  </div>
+                  <SelectTrigger disabled={!governorate}>
+                    <SelectValue placeholder={t("selectDistrict")} />
+                  </SelectTrigger>
                 </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
+                <SelectContent>
+                  {districts?.map((district) => (
+                    <SelectItem
+                      key={district.value}
+                      value={district.value.toString()}
+                    >
+                      {district.label}
+                    </SelectItem>
+                  ))}
+                  <Button
+                    className="w-full px-2"
+                    variant="secondary"
+                    size="sm"
+                    onClick={() => {
+                      field.onChange(null);
+                    }}
+                  >
+                    Clear
+                  </Button>
+                </SelectContent>
+              </Select>
+
+              <FormMessage />
+            </FormItem>
+          )}
+        />
       </div>
-    </>
+    </div>
   );
 };
 

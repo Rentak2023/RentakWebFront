@@ -145,6 +145,167 @@
       "message": "Message"
     }
   },
+  "services": {
+    "steps": {
+      "profile-info": {
+        "label": "Profile Info"
+      },
+      "tenant-info": {
+        "label": "Tenant Info"
+      },
+      "payment-method": {
+        "label": "Payment Method"
+      },
+      "owner-info": {
+        "label": "Owner Info"
+      },
+      "unit-description": {
+        "label": "Unit Description"
+      },
+      "confirmation": {
+        "label": "Confirmation",
+        "heading": "Acknowledgment And Commitment"
+      }
+    },
+    "fields": {
+      "landlord-name": {
+        "label": "Full Name",
+        "non-empty": "Full name cannot be empty"
+      },
+      "landlord-phone": {
+        "label": "Phone Number",
+        "non-empty": "Phone number cannot be empty",
+        "invalid": "Invalid phone number"
+      },
+      "tenant-name": {
+        "label": "Tenant Full Name",
+        "non-empty": "Tenant full name cannot be empty"
+      },
+      "tenant-phone": {
+        "label": "Tenant Phone Number",
+        "non-empty": "Tenant phone number cannot be empty",
+        "invalid": "Invalid phone number"
+      },
+      "user-name": {
+        "label": "Full Name",
+        "non-empty": "Full name cannot be empty"
+      },
+      "user-phone": {
+        "label": "Phone Number",
+        "non-empty": "Phone number cannot be empty",
+        "invalid": "Invalid phone number",
+        "action-text": "Send OTP"
+      },
+      "user-email": {
+        "label": "Email Address",
+        "non-empty": "Email address cannot be empty",
+        "invalid": "Invalid email address"
+      },
+      "national-id": {
+        "label": "National ID",
+        "non-empty": "National ID cannot be empty",
+        "invalid": "Invalid National ID"
+      },
+      "otp": {
+        "label": "OTP",
+        "non-empty": "OTP cannot be empty",
+        "invalid": "Invalid OTP"
+      },
+      "owner-name": {
+        "label": "Owner's Full Name",
+        "non-empty": "Owner's full name cannot be empty"
+      },
+      "owner-phone": {
+        "label": "Owner's Phone Number",
+        "non-empty": "Owner's Phone Number cannot be empty",
+        "invalid": "Invalid phone number"
+      },
+      "transfer-to": {
+        "label": "Transfer To",
+        "wallet": "Wallet",
+        "bank": "Bank Transfer"
+      },
+      "payment-method": {
+        "label": "Payment Method",
+        "non-empty": "Payment method cannot be empty"
+      },
+      "wallet-number": {
+        "label": "Wallet Account Number",
+        "non-empty": "Wallet account number cannot be empty",
+        "invalid": "Invalid phone number"
+      },
+      "confirm-wallet-number": {
+        "label": "Confirm Wallet Account Number",
+        "non-empty": "Confirm wallet account number cannot be empty",
+        "invalid": "Invalid phone number",
+        "mismatch": "Wallet account number does not match"
+      },
+      "bank": {
+        "label": "Bank Name",
+        "non-empty": "Bank name cannot be empty"
+      },
+      "bank-account-number": {
+        "label": "Bank Account Number",
+        "non-empty": "Bank account number cannot be empty"
+      },
+      "confirm-bank-account-number": {
+        "label": "Confirm Bank Account Number",
+        "non-empty": "Confirm bank account number cannot be empty",
+        "mismatch": "Bank account number does not match"
+      },
+      "unit-description": {
+        "label": "Unit Description",
+        "description": "Type the unit description as you want it to appear on the transfer form",
+        "non-empty": "Unit description cannot be empty"
+      },
+      "rent-amount": {
+        "label": "Rent Amount",
+        "non-empty": "Rent amount cannot be empty",
+        "invalid": "Rent amount must be a number"
+      },
+      "promo-code": {
+        "label": "Promo Code",
+        "description": "Enter promo code if you have one",
+        "action-text": "Apply"
+      },
+      "total-amount": {
+        "label": "Total Amount",
+        "description": "Total amount = rent amount + {fees}% service fees"
+      },
+      "contract-start-date": {
+        "label": "Contract Start Date",
+        "non-empty": "Contract start date cannot be empty"
+      },
+      "contract-end-date": {
+        "label": "Contract End Date",
+        "non-empty": "Contract end date cannot be empty"
+      },
+      "annual-increase-percentage": {
+        "label": "Annual increase percentage",
+        "non-empty": "Annual increase percentage cannot be empty",
+        "invalid": "Annual increase percentage must be a number"
+      },
+      "collection-day": {
+        "label": "Collection Day",
+        "non-empty": "Collection day cannot be empty"
+      },
+      "agree": {
+        "label": "Agree",
+        "non-empty": "You need to agree to the terms"
+      }
+    },
+    "rent-collection": {
+      "title": "Rent Collection"
+    },
+    "actions": {
+      "submit": "Submit",
+      "submitting": "Submitting...",
+      "reset": "Reset",
+      "previous": "Previous",
+      "next": "Next",
+      "skip": "Skip"
+    }
+  },
   "unit": {
     "egp": "EGP",
     "month": "mo",
@@ -180,8 +341,12 @@
     "toilets": "Toilets",
     "status": "Status",
     "availableNow": "Available Now",
-    "sponsered": "Sponsered",
+    "sponsored": "Sponsored",
     "requestATour": "Request A Tour",
-    "contactUs": "Contact Us"
+    "contactUs": "Contact Us",
+    "sort": "Sort",
+    "newest": "Newest",
+    "highToLow": "High To Low",
+    "lowToHigh": "Low To High"
   }
 }

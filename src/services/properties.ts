@@ -1,8 +1,4 @@
-import {
-  type CityTypes,
-  type DistrictTypes,
-  type UnitTypeTypes,
-} from "@/components/units/types";
+import { type UnitTypeTypes } from "@/components/units/types";
 import ky from "@/lib/ky";
 
 import { type PropertiesDataTypes, type Unit as TUnit } from "./types";
@@ -12,45 +8,38 @@ type PropertiesResponse = {
   data: PropertiesDataTypes;
 };
 
-export async function getProperties(params: URLSearchParams) {
-  // Convert URLSearchParams to a plain object
-  const plainParams = Object.fromEntries(params.entries());
+type PropertiesSearchParams = {
+  governoment_id?: number;
+  city_id?: number;
+  finish_type?: number;
+  bathroom_numbers?: number;
+  room_numers?: number;
+  property_type?: Array<number>;
+  keyword?: string;
+  price_to?: number;
+  price_from?: number;
+  page?: number;
+  lang: string;
+};
+
+export async function getProperties(params: PropertiesSearchParams) {
+  const searchParams = new URLSearchParams();
+
+  for (const [key, value] of Object.entries(params)) {
+    if (Array.isArray(value)) {
+      for (const item of value) {
+        searchParams.append(key, item.toString());
+      }
+    } else {
+      searchParams.append(key, value.toString());
+    }
+  }
 
   const res = await ky
     .get("unit/get-all-units", {
-      searchParams: plainParams,
+      searchParams,
     })
     .json<PropertiesResponse>();
-
-  return res.data;
-}
-
-type CitiesResponse = {
-  message: string;
-  data: Array<CityTypes>;
-};
-
-export async function getCities() {
-  const res = await ky
-    .get("location/get-all-governorates")
-    .json<CitiesResponse>();
-
-  return res.data;
-}
-
-type DistrictsResponse = {
-  message: string;
-  data: Array<DistrictTypes>;
-};
-
-export async function getDistricts(governorate_id: number | string) {
-  const res = await ky
-    .get("location/get-all-cities", {
-      searchParams: {
-        governorate_id: governorate_id,
-      },
-    })
-    .json<DistrictsResponse>();
 
   return res.data;
 }

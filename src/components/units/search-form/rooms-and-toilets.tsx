@@ -1,22 +1,25 @@
 import { useTranslations } from "next-intl";
-import { type Control } from "react-hook-form";
-import Select from "react-select";
+import { useFormContext } from "react-hook-form";
 
+import { Button } from "@/components/ui/button";
 import {
   FormControl,
   FormField,
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
-const RoomsAndToilets = ({
-  control,
-  onChange,
-}: {
-  control: Control;
-  onChange: (name: string, value: string) => void;
-}) => {
+const RoomsAndToilets = () => {
   const t = useTranslations("units");
+
+  const form = useFormContext();
 
   const roomOptions = [
     { label: 1, value: "1" },
@@ -32,74 +35,80 @@ const RoomsAndToilets = ({
   ];
 
   return (
-    <>
-      <div>
-        <p className="mb-5 font-semibold text-[#777777]">{t("countUnit")}</p>
+    <div>
+      <p className="font-medium text-slate-600">{t("countUnit")}</p>
 
-        <div className="filter-search-form relative mt-2">
-          <FormField
-            control={control}
-            name="room_numers"
-            render={({ field }) => (
-              <FormItem>
+      <div className="mt-4">
+        <FormField
+          control={form.control}
+          name="room_numers"
+          render={({ field }) => (
+            <FormItem>
+              <Select onValueChange={field.onChange} value={field.value}>
                 <FormControl>
-                  <div className="flex flex-row items-center">
-                    <Select
-                      isClearable
-                      classNamePrefix="react-select"
-                      placeholder={t("selectRooms")}
-                      className="form-input filter-input-box border-0"
-                      options={roomOptions}
-                      {...field}
-                      value={roomOptions.find(
-                        (option) => option.value === field.value,
-                      )}
-                      onChange={(option) => {
-                        field.onChange(option?.value);
-                        onChange("room_numers", String(option?.value));
-                      }}
-                    />
-                  </div>
+                  <SelectTrigger>
+                    <SelectValue placeholder={t("selectRooms")} />
+                  </SelectTrigger>
                 </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
+                <SelectContent>
+                  {roomOptions.map((room) => (
+                    <SelectItem key={room.value} value={room.value.toString()}>
+                      {room.label}
+                    </SelectItem>
+                  ))}
+                  <Button
+                    className="w-full px-2"
+                    variant="secondary"
+                    size="sm"
+                    onClick={() => {
+                      field.onChange(null);
+                    }}
+                  >
+                    Clear
+                  </Button>
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
       </div>
-      <div>
-        <div className="relative mt-2">
-          <FormField
-            control={control}
-            name="bathroom_numbers"
-            render={({ field }) => (
-              <FormItem>
+      <div className="mt-2">
+        <FormField
+          control={form.control}
+          name="bathroom_numbers"
+          render={({ field }) => (
+            <FormItem>
+              <Select onValueChange={field.onChange} value={field.value}>
                 <FormControl>
-                  <div className="flex flex-row items-center">
-                    <Select
-                      isClearable
-                      classNamePrefix="react-select"
-                      placeholder={t("selectToilets")}
-                      className="form-input filter-input-box border-0"
-                      options={bathroomOptions}
-                      {...field}
-                      value={bathroomOptions.find(
-                        (option) => option.value === field.value,
-                      )}
-                      onChange={(option) => {
-                        field.onChange(option?.value);
-                        onChange("bathroom_numbers", String(option?.value));
-                      }}
-                    />
-                  </div>
+                  <SelectTrigger>
+                    <SelectValue placeholder={t("selectToilets")} />
+                  </SelectTrigger>
                 </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
+                <SelectContent>
+                  {bathroomOptions.map((room) => (
+                    <SelectItem key={room.value} value={room.value.toString()}>
+                      {room.label}
+                    </SelectItem>
+                  ))}
+                  <Button
+                    className="w-full px-2"
+                    variant="secondary"
+                    size="sm"
+                    onClick={() => {
+                      field.onChange(null);
+                    }}
+                  >
+                    Clear
+                  </Button>
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
       </div>
-    </>
+    </div>
   );
 };
 

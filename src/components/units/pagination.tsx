@@ -45,6 +45,10 @@ const Pagination = ({ totalPages }: { totalPages: number }) => {
     return pages;
   };
 
+  if (totalPages < 1) {
+    return null;
+  }
+
   return (
     <div className="mt-8 grid grid-cols-1 md:grid-cols-12">
       <div className="text-center md:col-span-12">

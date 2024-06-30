@@ -1,19 +1,66 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 
-import Units from "@/components/units";
+import Properties from "@/components/units/properties/properties";
+import SearchForm from "@/components/units/search-form/search-form";
+import { citiesQuery, districtsQuery } from "@/queries/location";
+import {
+  finishTypesQuery,
+  minMaxPriceQuery,
+  propertyTypesQuery,
+} from "@/queries/units";
+import { getProperties } from "@/services/properties";
 
-export default function UnitsPage({
+import { makeQueryClient } from "../get-query-client";
+
+type UnitsSearchParams = {
+  governoment_id?: number;
+  city_id?: number;
+  finish_type?: number;
+  bathroom_numbers?: number;
+  room_numers?: number;
+  property_type?: Array<number>;
+  keyword?: string;
+  price_to?: number;
+  price_from?: number;
+  page?: number;
+};
+
+export default async function UnitsPage({
   params: { locale },
   searchParams,
 }: Readonly<{
   params: { locale: string };
-  searchParams: Record<string, string | Array<string>>;
+  searchParams: UnitsSearchParams;
 }>) {
   unstable_setRequestLocale(locale);
+  const queryClient = makeQueryClient();
+
+  const properties = await getProperties({
+    ...searchParams,
+    lang: locale,
+    page: searchParams.page ?? 1,
+  });
+
+  await queryClient.prefetchQuery(minMaxPriceQuery);
+  await queryClient.prefetchQuery(citiesQuery);
+  await queryClient.prefetchQuery(finishTypesQuery(locale));
+  await queryClient.prefetchQuery(propertyTypesQuery(locale));
+  if (searchParams.governoment_id) {
+    await queryClient.prefetchQuery(
+      districtsQuery(searchParams.governoment_id),
+    );
+  }
 
   return (
     <main className="min-h-screen">
-      <Units searchParams={searchParams} />
+      <div className="flex flex-col lg:flex-row">
+        <SearchForm />
+        <Properties
+          properties={properties.items}
+          totalProperties={properties.total_count}
+          totalPages={Math.floor(properties.total_count / 10)}
+        />
+      </div>
     </main>
   );
 }

@@ -175,7 +175,7 @@ const Property = async ({ params }: PropertyProps) => {
                         </div>
                         <div className="flex flex-col">
                           <p className="text-base font-medium text-primary-900">
-                            {t("sponsered")}
+                            {t("sponsored")}
                           </p>
                           <p className="font-regular text-base text-primary-900">
                             {property.location.governorate_name}

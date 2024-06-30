@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 
 function UnitSkeleton({ className }: { className?: string }) {
   return (
-    <div className={cn("rounded-xl mb-14 border border-slate-100", className)}>
+    <div className={cn("mb-14 rounded-xl border border-slate-100", className)}>
       <Skeleton className="h-80" />
 
       <div className="p-6">

@@ -1,8 +1,7 @@
 "use client";
-import { Search } from "lucide-react";
-import { useSearchParams } from "next/navigation";
+import { SearchIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { type Control } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 
 import {
   FormControl,
@@ -10,49 +9,40 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 
-import { type FormValues } from "../types";
-
-const KeywordInput = ({
-  control,
-  onChange,
-}: {
-  control: Control<FormValues>;
-  onChange: (name: string, value: string) => void;
-}) => {
+const KeywordInput = () => {
   const t = useTranslations("units");
-  const searchParams = useSearchParams();
+  const form = useFormContext();
 
   return (
-    <div>
-      <div className="filter-search-form relative mt-2">
-        <FormField
-          control={control}
-          name="keyword"
-          render={({ field }) => (
-            <FormItem>
-              <FormControl>
-                <div className="flex flex-row items-center">
-                  <Search className="icons !text-[#41454D]" width={18} />
-                  <input
-                    type="text"
-                    id="keyword"
-                    className="form-input filter-input-box border-0 bg-gray-50"
-                    placeholder={t("searchKeyword")}
-                    {...field}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                      field.onChange(e);
-                      onChange("keyword", e.currentTarget.value);
-                    }}
-                    defaultValue={searchParams.get("keyword")?.toString()}
+    <div className="relative mt-2">
+      <FormField
+        control={form.control}
+        name="keyword"
+        render={({ field }) => (
+          <FormItem>
+            <FormControl>
+              <div className="flex flex-row items-center">
+                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                  <SearchIcon
+                    className="size-5 text-slate-400"
+                    aria-hidden="true"
                   />
                 </div>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-      </div>
+
+                <Input
+                  {...field}
+                  type="search"
+                  className="form-input border-0 bg-gray-50 ps-10"
+                  placeholder={t("searchKeyword")}
+                />
+              </div>
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
     </div>
   );
 };
