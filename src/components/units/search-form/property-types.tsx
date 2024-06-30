@@ -21,8 +21,8 @@ const PropertyTypes = () => {
 
   return (
     <div>
-      <p className="mb-5 font-semibold text-[#777777]">{t("propertyType")}</p>
-      <div className="flex flex-row flex-wrap gap-[20px]">
+      <p className="mb-5 font-semibold text-slate-600">{t("propertyType")}</p>
+      <div className="flex flex-row gap-4">
         <FormField
           control={form.control}
           name="property_type"

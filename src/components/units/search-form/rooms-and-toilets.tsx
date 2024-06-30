@@ -37,7 +37,7 @@ const RoomsAndToilets = () => {
   return (
     <>
       <div>
-        <p className="mb-5 font-semibold text-[#777777]">{t("countUnit")}</p>
+        <p className="mb-5 font-semibold text-slate-600">{t("countUnit")}</p>
 
         <div className="relative mt-2">
           <FormField

@@ -21,7 +21,7 @@ const FinishingTypes = () => {
 
   return (
     <div>
-      <p className="mb-5 font-semibold text-[#777777]">{t("finishingTypes")}</p>
+      <p className="mb-5 font-semibold text-slate-600">{t("finishingTypes")}</p>
       <FormField
         control={form.control}
         name="finish_type"

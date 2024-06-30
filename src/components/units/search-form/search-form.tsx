@@ -90,31 +90,31 @@ export default function SearchForm() {
   };
 
   return (
-    <div className="pt-16 lg:max-w-6xl lg:border-e lg:border-e-slate-200 lg:pt-24">
-      <div className="top-20 bg-white p-6">
-        <div className="border-b border-b-[#011435]">
-          <p className="mb-3 font-medium text-[#41454D]">{t("filter")}</p>
+    <div className="pt-16 lg:max-w-6xl lg:border-e lg:border-e-slate-200">
+      <div className="p-6">
+        <div className="border-b border-b-slate-900">
+          <p className="mb-3 font-medium text-slate-700">{t("filter")}</p>
         </div>
         <Form {...form}>
           <form>
-            <div className="mb-5 grid grid-cols-1 gap-3">
+            <div className="mb-5 flex flex-col gap-3">
               <KeywordInput />
               <CitiesAndRegions />
               <RoomsAndToilets />
             </div>
-            <div className="mb-5 grid grid-cols-1 gap-3">
+            <div className="mb-5 flex flex-col gap-3">
               <FinishingTypes />
             </div>
-            <div className="mb-5 grid grid-cols-1 gap-3">
+            <div className="mb-5 flex flex-col gap-3">
               <PropertyTypes />
             </div>
-            <div className="mb-5 grid grid-cols-1 gap-3">
+            <div className="mb-5 flex flex-col gap-3">
               <MultiRangeSlider
                 min={minMaxPrice.min_price}
                 max={minMaxPrice.max_price}
               />
             </div>
-            <div className="mt-8 grid grid-cols-1 gap-3">
+            <div className="mt-8 flex flex-col gap-3">
               <div className="lg:mt-6">
                 <Button onClick={clearSearchParams} variant="outline" size="lg">
                   {t("clear")}

@@ -27,7 +27,7 @@ const MultiRangeSlider: FC<MultiRangeSliderProps> = ({ min, max }) => {
 
   return (
     <div>
-      <p className="mb-5 font-semibold text-[#777777]">{t("priceRange")}</p>
+      <p className="mb-5 font-semibold text-slate-600">{t("priceRange")}</p>
 
       <div>
         <Slider
