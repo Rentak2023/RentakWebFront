@@ -26,7 +26,7 @@ const FinishingTypes = () => {
         control={form.control}
         name="finish_type"
         render={({ field }) => (
-          <FormItem className="mt-2 space-y-3">
+          <FormItem className="mt-4 space-y-3">
             <FormControl>
               <RadioGroup
                 onValueChange={field.onChange}

@@ -38,7 +38,7 @@ const RoomsAndToilets = () => {
     <div>
       <p className="font-medium text-slate-600">{t("countUnit")}</p>
 
-      <div className="relative mt-2">
+      <div className="mt-4">
         <FormField
           control={form.control}
           name="room_numers"
@@ -73,7 +73,7 @@ const RoomsAndToilets = () => {
           )}
         />
       </div>
-      <div className="relative mt-2">
+      <div className="mt-2">
         <FormField
           control={form.control}
           name="bathroom_numbers"

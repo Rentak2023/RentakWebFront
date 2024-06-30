@@ -22,7 +22,7 @@ const PropertyTypes = () => {
   return (
     <div>
       <p className="font-medium text-slate-600">{t("propertyType")}</p>
-      <div className="mt-2 flex flex-row gap-4">
+      <div className="mt-4 flex flex-row gap-4">
         <FormField
           control={form.control}
           name="property_type"

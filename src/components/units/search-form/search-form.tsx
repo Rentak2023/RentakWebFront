@@ -96,29 +96,19 @@ export default function SearchForm() {
           <p className="mb-3 font-medium text-slate-700">{t("filter")}</p>
         </div>
         <Form {...form}>
-          <form>
-            <div className="flex flex-col gap-3">
-              <KeywordInput />
-              <CitiesAndRegions />
-              <RoomsAndToilets />
-            </div>
-            <div className="mt-5 flex flex-col gap-3">
-              <FinishingTypes />
-            </div>
-            <div className="mt-5 flex flex-col gap-3">
-              <PropertyTypes />
-            </div>
-            <div className="mt-5 flex flex-col gap-3">
-              <MultiRangeSlider
-                min={minMaxPrice.min_price}
-                max={minMaxPrice.max_price}
-              />
-            </div>
-            <div className="mt-5">
-              <Button onClick={clearSearchParams} variant="outline" size="lg">
-                {t("clear")}
-              </Button>
-            </div>
+          <form className="flex flex-col gap-10">
+            <KeywordInput />
+            <CitiesAndRegions />
+            <RoomsAndToilets />
+            <FinishingTypes />
+            <PropertyTypes />
+            <MultiRangeSlider
+              min={minMaxPrice.min_price}
+              max={minMaxPrice.max_price}
+            />
+            <Button onClick={clearSearchParams} variant="outline" size="lg">
+              {t("clear")}
+            </Button>
           </form>
         </Form>
       </div>

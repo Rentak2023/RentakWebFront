@@ -29,7 +29,7 @@ const MultiRangeSlider: FC<MultiRangeSliderProps> = ({ min, max }) => {
     <div>
       <p className="font-medium text-slate-600">{t("priceRange")}</p>
 
-      <div className="mt-2">
+      <div className="mt-4">
         <Slider
           defaultValue={localValues}
           minStepsBetweenThumbs={10}

@@ -31,7 +31,7 @@ const CitiesAndRegions = () => {
   return (
     <div>
       <p className="font-medium text-slate-600">{t("findPlace")}</p>
-      <div className="relative mt-2">
+      <div className="mt-4">
         <FormField
           control={form.control}
           name="governoment_id"
@@ -66,7 +66,7 @@ const CitiesAndRegions = () => {
           )}
         />
       </div>
-      <div className="relative mt-2">
+      <div className="mt-2">
         <FormField
           control={form.control}
           name="city_id"
