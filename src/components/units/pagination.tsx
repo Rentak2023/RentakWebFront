@@ -59,7 +59,7 @@ const Pagination = ({ totalPages }: { totalPages: number }) => {
                 href={createPageURL(currentPage - 1)}
                 className={`mx-1 inline-flex size-10 items-center justify-center rounded-full bg-white text-slate-400 shadow-sm ${currentPage === 1 ? "cursor-not-allowed opacity-50" : "hover:border-primary-900 hover:bg-primary-900 hover:text-white"}`}
               >
-                <ArrowLeft className="text-[20px]" />
+                <ArrowLeft className="text-xl" />
               </Link>
             </li>
             {renderPageNumbers()}
@@ -68,7 +68,7 @@ const Pagination = ({ totalPages }: { totalPages: number }) => {
                 href={createPageURL(currentPage + 1)}
                 className={`mx-1 inline-flex size-10 items-center justify-center rounded-full bg-white text-slate-400 shadow-sm ${currentPage === totalPages ? "cursor-not-allowed opacity-50" : "hover:border-primary-900 hover:bg-primary-900 hover:text-white"} `}
               >
-                <ArrowRight className="text-[20px]" />
+                <ArrowRight className="text-xl" />
               </Link>
             </li>
           </ul>

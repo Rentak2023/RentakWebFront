@@ -68,6 +68,7 @@ const config = {
           "@radix-ui/react-checkbox",
           "@radix-ui/react-radio-group",
           "@radix-ui/react-slider",
+          "@radix-ui/react-separator",
           "valibot",
         ],
       },

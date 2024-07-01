@@ -32,7 +32,7 @@ export default function PropertyImages({ images }: PropertyImagesTypes) {
     <div className="mt-4 md:flex">
       {mainImage ? (
         <div className="p-1 md:w-1/2 lg:w-1/2">
-          <div className="group relative overflow-hidden rounded-[8px]">
+          <div className="group relative overflow-hidden rounded-lg">
             <Image
               src={mainImage.url}
               alt=""
@@ -62,7 +62,7 @@ export default function PropertyImages({ images }: PropertyImagesTypes) {
         <div className="flex flex-wrap">
           {otherImages.map((image) => (
             <div key={image.id} className="w-1/2 p-1">
-              <div className="group relative overflow-hidden rounded-[8px]">
+              <div className="group relative overflow-hidden rounded-lg">
                 <Image
                   src={image.url}
                   alt=""
