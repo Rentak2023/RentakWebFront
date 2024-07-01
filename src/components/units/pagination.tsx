@@ -31,7 +31,7 @@ const Pagination = ({ totalPages }: { totalPages: number }) => {
           <li key={i}>
             <Link
               href={createPageURL(i)}
-              className={`mx-1 inline-flex size-10 items-center justify-center rounded-full ${i === currentPage ? "bg-primary-900 text-white" : "bg-white text-slate-400"} shadow-sm hover:border-primary-900 hover:bg-primary-900 hover:text-white dark:bg-slate-900 dark:shadow-gray-700 dark:hover:border-green-600 dark:hover:bg-green-600`}
+              className={`mx-1 inline-flex size-10 items-center justify-center rounded-full ${i === currentPage ? "bg-primary-900 text-white" : "bg-white text-slate-400"} shadow-sm hover:border-primary-900 hover:bg-primary-900 hover:text-white dark:bg-slate-900 dark:shadow-slate-700 dark:hover:border-green-600 dark:hover:bg-green-600`}
             >
               {i}
             </Link>

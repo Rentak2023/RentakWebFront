@@ -30,10 +30,10 @@ const Properties = async ({
         </div>
         <Sort />
       </div>
-      <div className="grid grid-cols-1 gap-[30px] lg:grid-cols-2 xl:grid-cols-3">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
         {properties.length === 0 ? (
           <div className="flex h-96 items-center justify-center">
-            <p className="text-lg text-gray-600">{t("noProperties")}</p>
+            <p className="text-lg text-slate-600">{t("noProperties")}</p>
           </div>
         ) : (
           properties.map((item) => <Unit key={item.id} item={item} />)

@@ -60,7 +60,7 @@ async function Unit({ item }: UnitProps) {
             {item.property_name}
           </Link>
           {item.property_type.type_name ? (
-            <p className="inline-block text-sm text-gray-500">
+            <p className="inline-block text-sm text-slate-500">
               {item.property_type.type_name}
             </p>
           ) : (
