@@ -59,6 +59,13 @@ export default function SearchForm() {
             changed = true;
           }
         }
+
+        for (const item of searchParamsObj.getAll(key)) {
+          if (!value.includes(item)) {
+            searchParamsObj.delete(key, item);
+            changed = true;
+          }
+        }
       } else if (value == null || (value === "" && searchParamsObj.has(key))) {
         searchParamsObj.delete(key);
         changed = true;

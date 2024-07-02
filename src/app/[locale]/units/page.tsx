@@ -35,12 +35,6 @@ export default async function UnitsPage({
   unstable_setRequestLocale(locale);
   const queryClient = makeQueryClient();
 
-  const properties = await getProperties({
-    ...searchParams,
-    lang: locale,
-    page: searchParams.page ?? 1,
-  });
-
   await queryClient.prefetchQuery(minMaxPriceQuery);
   await queryClient.prefetchQuery(citiesQuery);
   await queryClient.prefetchQuery(finishTypesQuery(locale));
@@ -55,11 +49,7 @@ export default async function UnitsPage({
     <main className="min-h-screen">
       <div className="flex flex-col lg:flex-row">
         <SearchForm />
-        <Properties
-          properties={properties.items}
-          totalProperties={properties.total_count}
-          totalPages={Math.floor(properties.total_count / 10)}
-        />
+        <Properties searchParams={searchParams} />
       </div>
     </main>
   );
