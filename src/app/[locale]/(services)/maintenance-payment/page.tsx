@@ -1,25 +1,23 @@
 "use client";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { HTTPError } from "ky";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { use, useState } from "react";
+import { useState } from "react";
 import * as v from "valibot";
 import isMobilePhone from "validator/es/lib/isMobilePhone";
 import isNumeric from "validator/es/lib/isNumeric";
 
 import bannerImage from "@/app/[locale]/assets/images/rent-payment-banner.png";
 import { useToast } from "@/components/ui/use-toast";
+import { banksQuery } from "@/queries/banks";
+import { cashInPaymentMethodsQuery } from "@/queries/payment-methods";
 import { sendOTP, verifyOTP } from "@/services/auth";
-import { getBanks } from "@/services/banks";
-import { getCashInPaymentMethods } from "@/services/payment-methods";
 import { checkPromoCode } from "@/services/promo";
 
 import { maintenancePaymentAction } from "../actions/maintenance-payment";
 import { ServiceForms } from "../service-forms";
 import { type TStep } from "../types";
-
-const paymentMethodsPromise = getCashInPaymentMethods();
-const banksPromise = getBanks();
 
 enum PaymentMethod {
   Bank = "4",
@@ -31,8 +29,8 @@ export default function RentPayment({
 }: Readonly<{
   params: { locale: string };
 }>) {
-  const paymentMethods = use(paymentMethodsPromise);
-  const banks = use(banksPromise);
+  const { data: paymentMethods } = useSuspenseQuery(cashInPaymentMethodsQuery);
+  const { data: banks } = useSuspenseQuery(banksQuery);
   const t = useTranslations("services");
   const [userId, setUserId] = useState<number | null>(null);
   const [discount, setDiscount] = useState<number>(0);

@@ -1,7 +1,8 @@
 import { valibotResolver } from "@hookform/resolvers/valibot";
+import { useMutation } from "@tanstack/react-query";
 import { ArrowLeft, ArrowRight, CalendarIcon, Loader2 } from "lucide-react";
 import { useFormatter, useTranslations } from "next-intl";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import {
   type ControllerRenderProps,
   useForm,
@@ -184,7 +185,10 @@ function StepField({ formField, field, useFormStore }: StepFieldProps) {
 
   const format = useFormatter();
 
-  const [actionPending, setActionPending] = useState(false);
+  const actionMutation = useMutation({
+    mutationFn: (data: Record<string, any>) =>
+      formField.action ? formField.action(data) : Promise.resolve(),
+  });
 
   switch (formField.kind) {
     case "select": {
@@ -285,14 +289,12 @@ function StepField({ formField, field, useFormStore }: StepFieldProps) {
             {formField.action ? (
               <Button
                 type="button"
-                onClick={async () => {
-                  setActionPending(true);
-                  await formField.action({ ...formData, ...currentValues });
-                  setActionPending(false);
+                onClick={() => {
+                  actionMutation.mutate({ ...formData, ...currentValues });
                 }}
-                disabled={actionPending}
+                disabled={actionMutation.isPending}
               >
-                {actionPending ? (
+                {actionMutation.isPending ? (
                   <Loader2 className="mr-2 size-4 animate-spin" />
                 ) : null}
                 {formField.actionText}
@@ -322,14 +324,12 @@ function StepField({ formField, field, useFormStore }: StepFieldProps) {
             {formField.action ? (
               <Button
                 type="button"
-                onClick={async () => {
-                  setActionPending(true);
-                  await formField.action({ ...formData, ...currentValues });
-                  setActionPending(false);
+                onClick={() => {
+                  actionMutation.mutate({ ...formData, ...currentValues });
                 }}
-                disabled={actionPending}
+                disabled={actionMutation.isPending}
               >
-                {actionPending ? (
+                {actionMutation.isPending ? (
                   <Loader2 className="mr-2 size-4 animate-spin" />
                 ) : null}
                 {formField.actionText}

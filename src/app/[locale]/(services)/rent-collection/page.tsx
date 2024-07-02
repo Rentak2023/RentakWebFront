@@ -1,15 +1,15 @@
 "use client";
 
+import { useSuspenseQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { use } from "react";
 import * as v from "valibot";
 import isMobilePhone from "validator/es/lib/isMobilePhone";
 import isNumeric from "validator/es/lib/isNumeric";
 
 import bannerImage from "@/app/[locale]/assets/images/rent-payment-banner.png";
 import { useToast } from "@/components/ui/use-toast";
-import { getBanks } from "@/services/banks";
+import { banksQuery } from "@/queries/banks";
 
 import { rentCollectionAction } from "../actions/rent-collection";
 import { ServiceForms } from "../service-forms";
@@ -20,10 +20,8 @@ enum PaymentMethod {
   Wallet = "5",
 }
 
-const banksPromise = getBanks();
-
 export default function RentCollection() {
-  const banks = use(banksPromise);
+  const { data: banks } = useSuspenseQuery(banksQuery);
 
   const t = useTranslations("services");
   const { toast } = useToast();
