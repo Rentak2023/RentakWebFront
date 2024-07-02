@@ -23,23 +23,22 @@ export default async function UnitsPage({
   unstable_setRequestLocale(locale);
   const queryClient = makeQueryClient();
 
-  await queryClient.prefetchQuery(minMaxPriceQuery);
-  await queryClient.prefetchQuery(citiesQuery);
-  await queryClient.prefetchQuery(finishTypesQuery(locale));
-  await queryClient.prefetchQuery(propertyTypesQuery(locale));
-
-  await queryClient.prefetchQuery(
-    unitsQuery({
-      ...searchParams,
-      lang: locale,
-      page: searchParams.page ?? 1,
-    }),
-  );
+  await Promise.all([
+    queryClient.prefetchQuery(minMaxPriceQuery),
+    queryClient.prefetchQuery(citiesQuery),
+    queryClient.prefetchQuery(finishTypesQuery(locale)),
+    queryClient.prefetchQuery(propertyTypesQuery(locale)),
+    queryClient.prefetchQuery(
+      unitsQuery({
+        ...searchParams,
+        lang: locale,
+        page: searchParams.page ?? 1,
+      }),
+    ),
+  ]);
 
   if (searchParams.governoment_id) {
-    await queryClient.prefetchQuery(
-      districtsQuery(searchParams.governoment_id),
-    );
+    queryClient.prefetchQuery(districtsQuery(searchParams.governoment_id));
   }
 
   return (
