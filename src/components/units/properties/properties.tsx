@@ -1,41 +1,19 @@
-import { getLocale, getTranslations } from "next-intl/server";
+"use client";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { useSearchParams } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
 import { Suspense } from "react";
 
 import UnitsSkeleton from "@/components/home/units/units-skeleton";
 import { Skeleton } from "@/components/ui/skeleton";
 import Unit from "@/components/unit";
-import { getProperties } from "@/services/properties";
+import { unitsQuery } from "@/queries/units";
 
 import Pagination from "../pagination";
 import PropertiesHeader from "./properties-header";
 import Sort from "./sort";
 
-type UnitsSearchParams = {
-  governoment_id?: number;
-  city_id?: number;
-  finish_type?: number;
-  bathroom_numbers?: number;
-  room_numers?: number;
-  property_type?: Array<number>;
-  keyword?: string;
-  price_to?: number;
-  price_from?: number;
-  page?: number;
-};
-
-type PropertiesProps = {
-  searchParams: UnitsSearchParams;
-};
-
-const Properties = async ({ searchParams }: PropertiesProps) => {
-  const locale = await getLocale();
-
-  const propertiesPromise = getProperties({
-    ...searchParams,
-    lang: locale,
-    page: searchParams.page ?? 1,
-  });
-
+const Properties = () => {
   return (
     <div className="container mx-auto mt-4 px-8 md:mt-16 lg:mt-24">
       <PropertiesHeader />
@@ -47,24 +25,28 @@ const Properties = async ({ searchParams }: PropertiesProps) => {
             </div>
           }
         >
-          <UnitsCount propertiesPromise={propertiesPromise} />
+          <UnitsCount />
         </Suspense>
         <Sort />
       </div>
       <Suspense fallback={<UnitsSkeleton />}>
-        <Units propertiesPromise={propertiesPromise} />
+        <Units />
       </Suspense>
     </div>
   );
 };
 
-async function UnitsCount({
-  propertiesPromise,
-}: {
-  propertiesPromise: ReturnType<typeof getProperties>;
-}) {
-  const properties = await propertiesPromise;
-  const t = await getTranslations("units");
+function UnitsCount() {
+  const t = useTranslations("units");
+  const searchParams = useSearchParams();
+  const locale = useLocale();
+  const { data: properties } = useSuspenseQuery(
+    unitsQuery({
+      ...Object.fromEntries(searchParams.entries()),
+      lang: locale,
+      page: searchParams.get("page") ? Number(searchParams.get("page")) : 1,
+    }),
+  );
 
   return (
     <div className="my-7 text-lg font-medium">
@@ -74,13 +56,17 @@ async function UnitsCount({
   );
 }
 
-async function Units({
-  propertiesPromise,
-}: {
-  propertiesPromise: ReturnType<typeof getProperties>;
-}) {
-  const t = await getTranslations("units");
-  const properties = await propertiesPromise;
+function Units() {
+  const t = useTranslations("units");
+  const searchParams = useSearchParams();
+  const locale = useLocale();
+  const { data: properties } = useSuspenseQuery(
+    unitsQuery({
+      ...Object.fromEntries(searchParams.entries()),
+      lang: locale,
+      page: searchParams.get("page") ? Number(searchParams.get("page")) : 1,
+    }),
+  );
 
   return (
     <>

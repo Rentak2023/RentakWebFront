@@ -10,13 +10,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { usePathname, useRouter } from "@/navigation";
 
 const Sort = () => {
   const t = useTranslations("units");
   const searchParams = useSearchParams();
-  const pathname = usePathname();
-  const router = useRouter();
 
   const sortOptions = [
     { label: t("newest"), value: "newest" },
@@ -34,16 +31,15 @@ const Sort = () => {
     ) {
       searchParamsObj.set("sort_by", value.toString());
     }
-    router.replace(pathname + "?" + searchParamsObj.toString(), {
-      scroll: false,
-    });
+
+    window.history.pushState(null, "", `?${searchParamsObj.toString()}`);
   };
 
   return (
     <div className="my-7">
       <Select
         onValueChange={onChange}
-        defaultValue={searchParams.get("sort_by") ?? ""}
+        value={searchParams.get("sort_by") ?? ""}
       >
         <SelectTrigger>
           <SelectValue placeholder={t("sort")} />

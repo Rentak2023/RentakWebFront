@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 
 import AreaIcon from "@/app/[locale]/assets/svgs/area-icon";
 import BathIcon from "@/app/[locale]/assets/svgs/bath-icon";
@@ -14,10 +14,10 @@ type UnitProps = {
   item: TUnit;
 };
 
-async function Unit({ item }: UnitProps) {
-  const t = await getTranslations("unit");
+function Unit({ item }: UnitProps) {
+  const t = useTranslations("unit");
 
-  const { base64 } = await getImage(item.picture);
+  // const { base64 } = await getImage(item.picture);
 
   const bedroom = item.rooms.find(
     (room: { room_name: string }) => room.room_name === "Bedroom",
@@ -33,8 +33,8 @@ async function Unit({ item }: UnitProps) {
           <Image
             src={item.picture}
             className="object-cover"
-            blurDataURL={base64}
-            placeholder="blur"
+            // blurDataURL={base64}
+            // placeholder="blur"
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             alt=""

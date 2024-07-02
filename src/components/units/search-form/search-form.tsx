@@ -8,7 +8,6 @@ import { useForm } from "react-hook-form";
 
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
-import { usePathname, useRouter } from "@/navigation";
 import { minMaxPriceQuery } from "@/queries/units";
 
 import { type FormValues } from "../types";
@@ -20,8 +19,6 @@ import PropertyTypes from "./property-types";
 import RoomsAndToilets from "./rooms-and-toilets";
 
 export default function SearchForm() {
-  const pathname = usePathname();
-  const router = useRouter();
   const searchParams = useSearchParams();
   const t = useTranslations("units");
 
@@ -78,11 +75,9 @@ export default function SearchForm() {
       }
     }
     if (changed) {
-      router.replace(pathname + "?" + searchParamsObj.toString(), {
-        scroll: false,
-      });
+      window.history.pushState(null, "", `?${searchParamsObj.toString()}`);
     }
-  }, [currentValues, pathname, router, searchParams]);
+  }, [currentValues, searchParams]);
 
   const clearSearchParams = () => {
     form.reset({

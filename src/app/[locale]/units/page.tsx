@@ -7,30 +7,18 @@ import {
   finishTypesQuery,
   minMaxPriceQuery,
   propertyTypesQuery,
+  unitsQuery,
 } from "@/queries/units";
-import { getProperties } from "@/services/properties";
+import { type PropertiesSearchParams } from "@/services/properties";
 
 import { makeQueryClient } from "../get-query-client";
-
-type UnitsSearchParams = {
-  governoment_id?: number;
-  city_id?: number;
-  finish_type?: number;
-  bathroom_numbers?: number;
-  room_numers?: number;
-  property_type?: Array<number>;
-  keyword?: string;
-  price_to?: number;
-  price_from?: number;
-  page?: number;
-};
 
 export default async function UnitsPage({
   params: { locale },
   searchParams,
 }: Readonly<{
   params: { locale: string };
-  searchParams: UnitsSearchParams;
+  searchParams: Exclude<PropertiesSearchParams, "lang">;
 }>) {
   unstable_setRequestLocale(locale);
   const queryClient = makeQueryClient();
@@ -39,6 +27,15 @@ export default async function UnitsPage({
   await queryClient.prefetchQuery(citiesQuery);
   await queryClient.prefetchQuery(finishTypesQuery(locale));
   await queryClient.prefetchQuery(propertyTypesQuery(locale));
+
+  await queryClient.prefetchQuery(
+    unitsQuery({
+      ...searchParams,
+      lang: locale,
+      page: searchParams.page ?? 1,
+    }),
+  );
+
   if (searchParams.governoment_id) {
     await queryClient.prefetchQuery(
       districtsQuery(searchParams.governoment_id),
@@ -49,7 +46,7 @@ export default async function UnitsPage({
     <main className="min-h-screen">
       <div className="flex flex-col lg:flex-row">
         <SearchForm />
-        <Properties searchParams={searchParams} />
+        <Properties />
       </div>
     </main>
   );

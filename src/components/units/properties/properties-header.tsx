@@ -1,7 +1,7 @@
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 
-const PropertiesHeader = async () => {
-  const t = await getTranslations("units");
+const PropertiesHeader = () => {
+  const t = useTranslations("units");
 
   return (
     <div className="mx-auto max-w-7xl px-4 pb-6 pt-12 text-center sm:px-6 lg:px-8">

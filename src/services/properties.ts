@@ -8,7 +8,7 @@ type PropertiesResponse = {
   data: PropertiesDataTypes;
 };
 
-type PropertiesSearchParams = {
+export type PropertiesSearchParams = {
   governoment_id?: number;
   city_id?: number;
   finish_type?: number;
