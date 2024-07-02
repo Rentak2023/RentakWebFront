@@ -92,28 +92,26 @@ export default function SearchForm() {
   };
 
   return (
-    <div className="mx-auto flex flex-col pt-16 lg:max-w-6xl lg:border-e lg:border-e-slate-200">
-      <div className="p-6">
-        <div className="border-b border-b-slate-900">
-          <p className="mb-3 font-medium text-slate-700">{t("filter")}</p>
-        </div>
-        <Form {...form}>
-          <form className="flex flex-col gap-10">
-            <KeywordInput />
-            <CitiesAndRegions />
-            <RoomsAndToilets />
-            <FinishingTypes />
-            <PropertyTypes />
-            <MultiRangeSlider
-              min={minMaxPrice.min_price}
-              max={minMaxPrice.max_price}
-            />
-            <Button onClick={clearSearchParams} variant="outline" size="lg">
-              {t("clear")}
-            </Button>
-          </form>
-        </Form>
+    <div className="flex flex-col p-6 pt-24 lg:max-w-6xl lg:border-e lg:border-e-slate-200">
+      <div className="border-b border-b-slate-900">
+        <h3 className="mb-3 font-medium text-slate-700">{t("filter")}</h3>
       </div>
+      <Form {...form}>
+        <form className="flex flex-col gap-10">
+          <KeywordInput />
+          <CitiesAndRegions />
+          <RoomsAndToilets />
+          <FinishingTypes />
+          <PropertyTypes />
+          <MultiRangeSlider
+            min={minMaxPrice.min_price}
+            max={minMaxPrice.max_price}
+          />
+          <Button onClick={clearSearchParams} variant="outline" size="lg">
+            {t("clear")}
+          </Button>
+        </form>
+      </Form>
     </div>
   );
 }
