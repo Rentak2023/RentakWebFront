@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.6.0",
-    "@plaiceholder/next": "^3.0.0",
     "@radix-ui/react-checkbox": "^1.1.0",
     "@radix-ui/react-collapsible": "^1.1.0",
     "@radix-ui/react-label": "^2.1.0",
@@ -38,7 +37,6 @@
     "lucide-react": "^0.397.0",
     "next": "14.2.4",
     "next-intl": "^3.15.3",
-    "plaiceholder": "^3.0.0",
     "react": "^18.3.1",
     "react-18-image-lightbox": "^5.1.4",
     "react-day-picker": "^8.10.1",
