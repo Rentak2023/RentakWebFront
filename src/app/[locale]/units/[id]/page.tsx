@@ -25,8 +25,8 @@ export default async function UnitPage({
 
   return (
     <main className="min-h-screen">
-      <section className="relative mt-20 pb-16 md:pb-24">
-        <div className="container mx-auto">
+      <section className="relative mt-24 pb-16 md:pb-24">
+        <div className="container mx-auto px-4">
           <PropertyImages images={property.gallary} />
           <div className="mt-4 flex flex-row items-center gap-1 px-3">
             <StatusIcon />
