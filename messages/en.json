@@ -330,7 +330,7 @@
     "title": "Find a <colored>Perfect Home</colored> <wbr></wbr>That You Love",
     "description": "Most bookkeeping software is accurate, but hard to use. We make the opposite trade-off, and hope you don't get audited.",
     "noProperties": "No properties found.",
-    "propertiesFound": "Listing found",
+    "propertiesFound": "{count, plural, =0 {No Listing Found} =1 {<colored>1</colored> Listing found} other {<colored>#</colored> Listings Found}}",
     "availableForRent": "Available For Rent",
     "propertyDescription": "Property Description",
     "m2": "m²",

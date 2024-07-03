@@ -49,9 +49,13 @@ function UnitsCount() {
   );
 
   return (
-    <div className="my-7 text-lg font-medium">
-      <span className="text-primary-600">{properties.total_count}</span>{" "}
-      <span className="text-sm md:text-base">{t("propertiesFound")}</span>
+    <div className="my-7 text-sm font-medium md:text-base">
+      {t.rich("propertiesFound", {
+        count: properties.total_count,
+        colored: (text) => (
+          <span className="text-lg text-primary-600">{text}</span>
+        ),
+      })}
     </div>
   );
 }
