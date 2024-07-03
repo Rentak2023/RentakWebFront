@@ -1,5 +1,9 @@
 import { HeartIcon } from "lucide-react";
-import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import {
+  getFormatter,
+  getTranslations,
+  unstable_setRequestLocale,
+} from "next-intl/server";
 
 import AreaIcon from "@/app/[locale]/assets/svgs/area-icon";
 import AvailableIcon from "@/app/[locale]/assets/svgs/available-icon";
@@ -22,6 +26,13 @@ export default async function UnitPage({
   unstable_setRequestLocale(locale);
   const property = await getProperty(id, locale);
   const t = await getTranslations("units");
+  const formatter = await getFormatter();
+
+  const formatCurrency = (amount: number) => {
+    return formatter
+      .number(amount, "money")
+      .replace(/^([A-Z]{3})\s*(.+)$/, "$2 $1");
+  };
 
   return (
     <main className="min-h-screen">
@@ -36,7 +47,7 @@ export default async function UnitPage({
           </div>
         </div>
 
-        <div className="container mx-auto mt-16 md:mt-24">
+        <div className="container mx-auto mt-6">
           <div className="md:flex">
             <div className="px-3 md:w-1/2 md:p-4 lg:w-2/3">
               <div className="flex flex-row items-center gap-1">
@@ -48,7 +59,7 @@ export default async function UnitPage({
               <ul className="flex list-none items-center py-6">
                 <li className="me-4 flex items-center gap-1 lg:me-6">
                   <span className="text-xl font-medium text-primary-900 lg:text-3xl">
-                    {property.price} EGP
+                    {formatCurrency(property.price)}
                   </span>
                 </li>
                 <li className="me-4 flex items-center gap-1 lg:me-6">
@@ -87,8 +98,8 @@ export default async function UnitPage({
             <div className="mt-8 px-3 md:mt-0 md:w-1/2 md:p-4 lg:w-1/2">
               <div className="sticky top-20 rounded-lg bg-slate-100/80 shadow">
                 <div className="p-6">
-                  <h5 className="text-xl font-semibold lg:text-4xl">
-                    {property.price}
+                  <h5 className="text-xl font-medium lg:text-4xl">
+                    {formatCurrency(property.price)}
                   </h5>
                   <p className="font-regular mt-3 flex items-center gap-1 text-base text-slate-500">
                     <LocationIcon color="currentColor" />

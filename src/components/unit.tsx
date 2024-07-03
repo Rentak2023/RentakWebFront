@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useFormatter, useTranslations } from "next-intl";
 
 import AreaIcon from "@/app/[locale]/assets/svgs/area-icon";
 import BathIcon from "@/app/[locale]/assets/svgs/bath-icon";
@@ -15,6 +15,13 @@ type UnitProps = {
 
 function Unit({ item }: UnitProps) {
   const t = useTranslations("unit");
+  const formatter = useFormatter();
+
+  const formatCurrency = (amount: number) => {
+    return formatter
+      .number(amount, "money")
+      .replace(/^([A-Z]{3})\s*(.+)$/, "$2 $1");
+  };
 
   const bedroom = item.rooms.find(
     (room: { room_name: string }) => room.room_name === "Bedroom",
@@ -38,7 +45,7 @@ function Unit({ item }: UnitProps) {
           <div className="absolute bottom-4 end-4">
             <div className="btn rounded-full bg-white">
               <p className="font-semibold text-slate-800">
-                {item.price} {t("egp")} /{" "}
+                {formatCurrency(item.price)} /{" "}
                 <span className="font-normal">{t("month")}</span>
               </p>
             </div>
@@ -67,19 +74,23 @@ function Unit({ item }: UnitProps) {
           <li className="flex items-center gap-1">
             <BedIcon />
             <span>
-              {bedroom ? bedroom.num_of_rooms : 0} {t("beds")}
+              {t("bedrooms", {
+                count: bedroom ? bedroom.num_of_rooms : 0,
+              })}
             </span>
           </li>
 
           <li className="flex items-center gap-1">
             <BathIcon />
             <span>
-              {bathroom ? bathroom.num_of_rooms : 0} {t("baths")}
+              {t("bathrooms", {
+                count: bathroom ? bathroom.num_of_rooms : 0,
+              })}
             </span>
           </li>
           <li className="flex items-center gap-1">
             <AreaIcon />
-            <span>{item.area}</span>
+            <span>{formatter.number(item.area)}</span>
           </li>
         </ul>
 

@@ -309,10 +309,9 @@
     }
   },
   "unit": {
-    "egp": "EGP",
     "month": "شهر",
-    "beds": "غرفة نوم",
-    "baths": "حمام",
+    "bedrooms": "{count, plural, =0 {لا يوجد غرف نوم} =1 {غرفة نوم واحدة} other {# غرف نوم}}",
+    "bathrooms": "{count, plural, =0 {لا يوجد حمامات} =1 {حمام واحد} other {# حمامات}}",
     "availableNow": "متاح الآن"
   },
   "units": {

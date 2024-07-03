@@ -309,8 +309,8 @@
   "unit": {
     "egp": "EGP",
     "month": "mo",
-    "beds": "Beds",
-    "baths": "Baths",
+    "bedrooms": "{count, plural, =0 {No Beds} =1 {1 Bed} other {# Beds}}",
+    "bathrooms": "{count, plural, =0 {No Baths} =1 {1 Bath} other {# Baths}}",
     "availableNow": "Available Now"
   },
   "units": {

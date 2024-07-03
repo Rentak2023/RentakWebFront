@@ -14,5 +14,14 @@ export default getRequestConfig(async ({ locale }) => {
 
   return {
     messages,
+    formats: {
+      number: {
+        money: {
+          style: "currency",
+          currency: "EGP",
+          minimumFractionDigits: 0,
+        },
+      },
+    },
   };
 });

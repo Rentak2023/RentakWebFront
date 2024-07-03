@@ -64,7 +64,18 @@ export default async function RootLayout({
       <body
         className={`${generalSans.variable} ${notoSans.variable} font-sans`}
       >
-        <NextIntlClientProvider messages={messages}>
+        <NextIntlClientProvider
+          messages={messages}
+          formats={{
+            number: {
+              money: {
+                style: "currency",
+                currency: "EGP",
+                minimumFractionDigits: 0,
+              },
+            },
+          }}
+        >
           <Providers>
             <Navbar />
             {children}
