@@ -167,9 +167,9 @@ export default function RentPayment({
           options: paymentMethods.map((paymentMethod) => ({
             value: paymentMethod.id.toString(),
             label:
-              locale === "ar"
-                ? paymentMethod.method_name_ar
-                : paymentMethod.method_name_en,
+              locale === "en"
+                ? paymentMethod.method_name_en
+                : paymentMethod.method_name_ar,
           })),
         },
       ],

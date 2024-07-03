@@ -193,8 +193,8 @@ export default function Navbar({ navClass, topnavClass }: NavbarProps) {
           <ul className="mb-0 ms-auto flex list-none items-center justify-center">
             <li className="mb-0 inline">
               <Button asChild className="rounded-full" size="icon">
-                <Link locale={locale === "ar" ? "en" : "ar"} href={pathname}>
-                  {locale === "ar" ? "EN" : "ع"}
+                <Link locale={locale === "en" ? "ar-EG" : "en"} href={pathname}>
+                  {locale === "e" ? "ع" : "EN"}
                 </Link>
               </Button>
             </li>
