@@ -64,20 +64,26 @@ export default async function UnitPage({
                 </li>
                 <li className="me-4 flex items-center gap-1 lg:me-6">
                   <AreaIcon size={40} color="#0066CC" />
-                  <span className="text-xl lg:text-2xl">{property.area}</span>
+                  <span className="text-xl lg:text-2xl">
+                    {formatter.number(property.area)}
+                  </span>
                 </li>
 
                 <li className="me-4 flex items-center gap-1 lg:me-6">
                   <BedIcon size={40} color="#0066CC" />
                   <span className="text-xl lg:text-2xl">
-                    {property.room_numbers} Beds
+                    {t("bedrooms", {
+                      count: property.room_numbers,
+                    })}
                   </span>
                 </li>
 
                 <li className="flex items-center gap-1">
                   <BathIcon size={40} color="#0066CC" />
                   <span className="text-xl lg:text-2xl">
-                    {property.bathrom_numbers} Baths
+                    {t("bathrooms", {
+                      count: property.bathrom_numbers,
+                    })}
                   </span>
                 </li>
               </ul>
@@ -133,7 +139,7 @@ export default async function UnitPage({
                             {t("m2")}
                           </p>
                           <p className="font-regular text-base text-primary-900">
-                            {property.area}
+                            {formatter.number(property.area)}
                           </p>
                         </div>
                       </div>
@@ -149,7 +155,7 @@ export default async function UnitPage({
                             {t("rooms")}
                           </p>
                           <p className="font-regular text-base text-primary-900">
-                            {property.room_numbers}
+                            {formatter.number(property.room_numbers)}
                           </p>
                         </div>
                       </div>
@@ -163,7 +169,7 @@ export default async function UnitPage({
                             {t("toilets")}
                           </p>
                           <p className="font-regular text-base text-primary-900">
-                            {property.bathrom_numbers}
+                            {formatter.number(property.bathrom_numbers)}
                           </p>
                         </div>
                       </div>

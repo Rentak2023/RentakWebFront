@@ -307,7 +307,6 @@
     }
   },
   "unit": {
-    "egp": "EGP",
     "month": "mo",
     "bedrooms": "{count, plural, =0 {No Beds} =1 {1 Bed} other {# Beds}}",
     "bathrooms": "{count, plural, =0 {No Baths} =1 {1 Bath} other {# Baths}}",
@@ -334,9 +333,11 @@
     "propertiesFound": "Listing found",
     "availableForRent": "Available For Rent",
     "propertyDescription": "Property Description",
-    "m2": "m2",
+    "m2": "m²",
     "rooms": "Rooms",
     "toilets": "Toilets",
+    "bedrooms": "{count, plural, =0 {No Beds} =1 {1 Bed} other {# Beds}}",
+    "bathrooms": "{count, plural, =0 {No Baths} =1 {1 Bath} other {# Baths}}",
     "status": "Status",
     "availableNow": "Available Now",
     "sponsored": "Sponsored",
