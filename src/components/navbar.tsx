@@ -35,7 +35,7 @@ export default function Navbar({ navClass, topnavClass }: NavbarProps) {
       subRoutes: [
         {
           name: t("long-term"),
-          path: "/service-1",
+          path: "/units",
         },
         {
           name: t("short-term"),
@@ -67,7 +67,7 @@ export default function Navbar({ navClass, topnavClass }: NavbarProps) {
     },
     {
       name: t("contact"),
-      path: "/contact",
+      path: "/#contact",
     },
   ];
 

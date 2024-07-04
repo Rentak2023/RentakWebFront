@@ -9,7 +9,7 @@ async function Contact() {
   const t = await getTranslations("home.contact");
 
   return (
-    <section className="relative py-16 lg:py-24">
+    <section id="contact" className="relative py-16 lg:py-24">
       <div className="container mx-auto px-4">
         <SectionTitle text={t("title")} />
         <div className="mt-12 flex flex-col items-stretch lg:grid lg:grid-cols-2 lg:items-start">
