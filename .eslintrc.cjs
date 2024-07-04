@@ -15,6 +15,7 @@ const config = {
     "plugin:tailwindcss/recommended",
     "plugin:barrel-files/recommended",
     "plugin:unicorn/recommended",
+    "plugin:@tanstack/eslint-plugin-query/recommended",
     "prettier",
   ],
   plugins: ["simple-import-sort"],
