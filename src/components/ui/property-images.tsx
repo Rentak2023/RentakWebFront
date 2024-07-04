@@ -33,7 +33,7 @@ export default function PropertyImages({ images }: PropertyImagesTypes) {
           className={cn(
             "group relative h-72 overflow-hidden rounded-lg",
             index === 0
-              ? "md:col-span-2 md:h-[36rem] lg:row-span-2 lg:h-auto"
+              ? "md:col-span-2 md:h-[36rem] lg:row-span-2 lg:h-[37.5rem]"
               : "",
           )}
           onClick={() => {
