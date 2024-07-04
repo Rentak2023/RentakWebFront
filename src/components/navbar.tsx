@@ -75,6 +75,10 @@ export default function Navbar({ navClass, topnavClass }: NavbarProps) {
     setMenu(pathname);
     setSubMenu(pathname);
 
+    if (pathname !== "/") {
+      setTopNavBar(true);
+    }
+
     function windowScroll() {
       if (pathname === "/") {
         setTopNavBar(window.scrollY >= 50);
