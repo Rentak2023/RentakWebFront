@@ -91,7 +91,7 @@ async function Links() {
                   {link.icon}
                 </span>
               ) : null}
-              <span>{link.text}</span>
+              <span dir="auto">{link.text}</span>
             </Link>
           </li>
         ))}
