@@ -296,9 +296,6 @@
         "non-empty": "يجب الموافقة على الشروط"
       }
     },
-    "rent-collection": {
-      "title": "تحصيل الإيجار"
-    },
     "actions": {
       "submit": "تأكيد",
       "submitting": "جاري التأكيد...",

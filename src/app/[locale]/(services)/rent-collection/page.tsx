@@ -357,10 +357,6 @@ export default function RentCollection() {
         </div>
       </div>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-center text-7xl font-semibold">
-          {t("rent-collection.title")}
-        </h1>
-
         <ServiceForms steps={steps} onSubmit={handleSubmit} />
       </div>
     </main>
