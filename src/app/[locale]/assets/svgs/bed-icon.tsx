@@ -1,6 +1,6 @@
 import type { SvgsTypes } from "./types";
 
-const BedIcon = ({ size, color }: SvgsTypes) => {
+function BedIcon({ size, color }: SvgsTypes) {
   return (
     <svg
       width={size ?? "14"}
@@ -27,6 +27,6 @@ const BedIcon = ({ size, color }: SvgsTypes) => {
       </defs>
     </svg>
   );
-};
+}
 
 export default BedIcon;

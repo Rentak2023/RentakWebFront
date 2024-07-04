@@ -1,6 +1,6 @@
 import { type SvgsTypes } from "./types";
 
-const AvailableIcon = ({ size, color }: SvgsTypes) => {
+function AvailableIcon({ size, color }: SvgsTypes) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -21,6 +21,6 @@ const AvailableIcon = ({ size, color }: SvgsTypes) => {
       />
     </svg>
   );
-};
+}
 
 export default AvailableIcon;

@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import { type FC, useState } from "react";
+import { useState } from "react";
 import { useFormContext } from "react-hook-form";
 
 import { Slider } from "@/components/ui/slider";
@@ -10,7 +10,7 @@ type MultiRangeSliderProps = {
   max: number;
 };
 
-const MultiRangeSlider: FC<MultiRangeSliderProps> = ({ min, max }) => {
+function MultiRangeSlider({ min, max }: MultiRangeSliderProps) {
   const t = useTranslations("units");
   const form = useFormContext();
 
@@ -55,6 +55,6 @@ const MultiRangeSlider: FC<MultiRangeSliderProps> = ({ min, max }) => {
       </div>
     </div>
   );
-};
+}
 
 export default MultiRangeSlider;

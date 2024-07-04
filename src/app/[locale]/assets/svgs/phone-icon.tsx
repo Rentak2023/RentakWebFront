@@ -1,6 +1,6 @@
 import type { SvgsTypes } from "./types";
 
-const PhoneIcon = ({ size, color }: SvgsTypes) => {
+function PhoneIcon({ size, color }: SvgsTypes) {
   return (
     <svg
       width={size ?? "20"}
@@ -27,6 +27,6 @@ const PhoneIcon = ({ size, color }: SvgsTypes) => {
       </defs>
     </svg>
   );
-};
+}
 
 export default PhoneIcon;

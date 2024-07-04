@@ -16,7 +16,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-const RoomsAndToilets = () => {
+function RoomsAndToilets() {
   const t = useTranslations("units");
 
   const form = useFormContext();
@@ -110,6 +110,6 @@ const RoomsAndToilets = () => {
       </div>
     </div>
   );
-};
+}
 
 export default RoomsAndToilets;

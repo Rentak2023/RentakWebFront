@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 
-const PropertiesHeader = () => {
+function PropertiesHeader() {
   const t = useTranslations("units");
 
   return (
@@ -28,6 +28,6 @@ const PropertiesHeader = () => {
       </p>
     </div>
   );
-};
+}
 
 export default PropertiesHeader;

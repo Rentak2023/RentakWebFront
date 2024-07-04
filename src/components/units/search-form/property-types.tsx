@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/form";
 import { propertyTypesQuery } from "@/queries/units";
 
-const PropertyTypes = () => {
+function PropertyTypes() {
   const t = useTranslations("units");
   const locale = useLocale();
   const form = useFormContext();
@@ -72,6 +72,6 @@ const PropertyTypes = () => {
       </div>
     </div>
   );
-};
+}
 
 export default PropertyTypes;

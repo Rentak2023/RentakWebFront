@@ -1,6 +1,6 @@
 import type { SvgsTypes } from "./types";
 
-const AreaIcon = ({ size, color }: SvgsTypes) => {
+function AreaIcon({ size, color }: SvgsTypes) {
   return (
     <svg
       width={size ?? "14"}
@@ -27,6 +27,6 @@ const AreaIcon = ({ size, color }: SvgsTypes) => {
       </defs>
     </svg>
   );
-};
+}
 
 export default AreaIcon;

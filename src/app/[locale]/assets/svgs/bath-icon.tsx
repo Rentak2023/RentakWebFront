@@ -1,6 +1,6 @@
 import type { SvgsTypes } from "./types";
 
-const BathIcon = ({ size, color }: SvgsTypes) => {
+function BathIcon({ size, color }: SvgsTypes) {
   return (
     <svg
       width={size ?? "14"}
@@ -27,6 +27,6 @@ const BathIcon = ({ size, color }: SvgsTypes) => {
       </defs>
     </svg>
   );
-};
+}
 
 export default BathIcon;

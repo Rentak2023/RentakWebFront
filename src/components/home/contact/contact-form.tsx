@@ -20,7 +20,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import { contactSchema } from "@/schema/contact";
 
-const ContactForm = () => {
+function ContactForm() {
   const t = useTranslations("home.contact");
   const { toast } = useToast();
 
@@ -131,6 +131,6 @@ const ContactForm = () => {
       </form>
     </Form>
   );
-};
+}
 
 export default ContactForm;

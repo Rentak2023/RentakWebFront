@@ -1,6 +1,6 @@
 import type { SvgsTypes } from "./types";
 
-const TwitterIcon = ({ size, color }: SvgsTypes) => {
+function TwitterIcon({ size, color }: SvgsTypes) {
   return (
     <svg
       width={size ?? "24"}
@@ -15,6 +15,6 @@ const TwitterIcon = ({ size, color }: SvgsTypes) => {
       />
     </svg>
   );
-};
+}
 
 export default TwitterIcon;

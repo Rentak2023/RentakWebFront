@@ -1,6 +1,6 @@
 import type { SvgsTypes } from "./types";
 
-const LinkedinIcon = ({ size, color }: SvgsTypes) => {
+function LinkedinIcon({ size, color }: SvgsTypes) {
   return (
     <svg
       width={size ?? "24"}
@@ -17,6 +17,6 @@ const LinkedinIcon = ({ size, color }: SvgsTypes) => {
       />
     </svg>
   );
-};
+}
 
 export default LinkedinIcon;

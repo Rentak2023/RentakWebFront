@@ -11,7 +11,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-const Sort = () => {
+function Sort() {
   const t = useTranslations("units");
   const searchParams = useSearchParams();
 
@@ -64,6 +64,6 @@ const Sort = () => {
       </Select>
     </div>
   );
-};
+}
 
 export default Sort;

@@ -37,7 +37,7 @@ type StepperContextProviderProps = {
   children: React.ReactNode;
 };
 
-const StepperProvider = ({ value, children }: StepperContextProviderProps) => {
+function StepperProvider({ value, children }: StepperContextProviderProps) {
   const isError = value.state === "error";
   const isLoading = value.state === "loading";
 
@@ -75,7 +75,7 @@ const StepperProvider = ({ value, children }: StepperContextProviderProps) => {
       {children}
     </StepperContext.Provider>
   );
-};
+}
 
 // <---------- HOOKS ---------->
 
@@ -305,7 +305,9 @@ const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
   },
 );
 
-const VerticalContent = ({ children }: { children: React.ReactNode }) => {
+Stepper.displayName = "Stepper";
+
+function VerticalContent({ children }: { children: React.ReactNode }) {
   const { activeStep } = useStepper();
 
   const childArr = React.Children.toArray(children);
@@ -334,9 +336,9 @@ const VerticalContent = ({ children }: { children: React.ReactNode }) => {
       })}
     </>
   );
-};
+}
 
-const HorizontalContent = ({ children }: { children: React.ReactNode }) => {
+function HorizontalContent({ children }: { children: React.ReactNode }) {
   const { activeStep } = useStepper();
   const childArr = React.Children.toArray(children);
 
@@ -359,7 +361,7 @@ const HorizontalContent = ({ children }: { children: React.ReactNode }) => {
       })}
     </>
   );
-};
+}
 
 // <---------- STEP ---------->
 
@@ -751,14 +753,14 @@ type StepButtonContainerProps = StepSharedProps & {
   children?: React.ReactNode;
 };
 
-const StepButtonContainer = ({
+function StepButtonContainer({
   isCurrentStep,
   isCompletedStep,
   children,
   isError,
   isLoading: isLoadingProp,
   onClickStep,
-}: StepButtonContainerProps) => {
+}: StepButtonContainerProps) {
   const {
     clickable,
     isLoading: isLoadingContext,
@@ -799,7 +801,7 @@ const StepButtonContainer = ({
       {children}
     </Button>
   );
-};
+}
 
 // <---------- STEP ICON ---------->
 
@@ -962,12 +964,12 @@ const descriptionVariants = cva("", {
   },
 });
 
-const StepLabel = ({
+function StepLabel({
   isCurrentStep,
   opacity,
   label,
   description,
-}: StepLabelProps) => {
+}: StepLabelProps) {
   const { variant, styles, size, orientation } = useStepper();
   const shouldRender = !!label || !!description;
 
@@ -1012,7 +1014,7 @@ const StepLabel = ({
       )}
     </div>
   ) : null;
-};
+}
 
 export { Step, Stepper, useStepper };
 export type { StepItem, StepperProps, StepProps };

@@ -1,6 +1,6 @@
 import type { SvgsTypes } from "./types";
 
-const WhatsappIcon = ({ size, color }: SvgsTypes) => {
+function WhatsappIcon({ size, color }: SvgsTypes) {
   return (
     <svg
       width={size ?? "24"}
@@ -15,6 +15,6 @@ const WhatsappIcon = ({ size, color }: SvgsTypes) => {
       />
     </svg>
   );
-};
+}
 
 export default WhatsappIcon;

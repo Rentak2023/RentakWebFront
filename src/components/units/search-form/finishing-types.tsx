@@ -12,7 +12,7 @@ import {
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { finishTypesQuery } from "@/queries/units";
 
-const FinishingTypes = () => {
+function FinishingTypes() {
   const t = useTranslations("units");
   const locale = useLocale();
   const form = useFormContext();
@@ -54,6 +54,6 @@ const FinishingTypes = () => {
       />
     </div>
   );
-};
+}
 
 export default FinishingTypes;

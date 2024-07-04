@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/select";
 import { citiesQuery, districtsQuery } from "@/queries/location";
 
-const CitiesAndRegions = () => {
+function CitiesAndRegions() {
   const t = useTranslations("units");
 
   const form = useFormContext();
@@ -107,6 +107,6 @@ const CitiesAndRegions = () => {
       </div>
     </div>
   );
-};
+}
 
 export default CitiesAndRegions;

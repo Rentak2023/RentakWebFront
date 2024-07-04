@@ -1,6 +1,6 @@
 import type { SvgsTypes } from "./types";
 
-const ArrowIcon = ({ size, color, type }: SvgsTypes) => {
+function ArrowIcon({ size, color, type }: SvgsTypes) {
   switch (type) {
     case "right": {
       return (
@@ -49,6 +49,6 @@ const ArrowIcon = ({ size, color, type }: SvgsTypes) => {
       );
     }
   }
-};
+}
 
 export default ArrowIcon;

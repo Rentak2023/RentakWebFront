@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 
 import { Link, usePathname } from "@/navigation";
 
-const Pagination = ({ totalPages }: { totalPages: number }) => {
+function Pagination({ totalPages }: { totalPages: number }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const currentPage = Number(searchParams.get("page")) || 1;
@@ -76,6 +76,6 @@ const Pagination = ({ totalPages }: { totalPages: number }) => {
       </div>
     </div>
   );
-};
+}
 
 export default Pagination;

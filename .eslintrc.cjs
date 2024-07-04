@@ -19,6 +19,15 @@ const config = {
   ],
   plugins: ["simple-import-sort"],
   rules: {
+    "react/function-component-definition": [
+      "error",
+      {
+        namedComponents: "function-declaration",
+        unnamedComponents: "arrow-function",
+      },
+    ],
+    "func-style": ["error", "declaration", { allowArrowFunctions: true }],
+    "prefer-arrow-callback": "error",
     "no-restricted-imports": [
       "error",
       {

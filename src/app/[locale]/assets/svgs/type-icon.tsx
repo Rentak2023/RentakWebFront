@@ -1,6 +1,6 @@
 import { type SvgsTypes } from "./types";
 
-const TypeIcon = ({ size, color }: SvgsTypes) => {
+function TypeIcon({ size, color }: SvgsTypes) {
   return (
     <svg
       width="19"
@@ -15,6 +15,6 @@ const TypeIcon = ({ size, color }: SvgsTypes) => {
       />
     </svg>
   );
-};
+}
 
 export default TypeIcon;

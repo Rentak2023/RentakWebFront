@@ -1,6 +1,6 @@
 import type { SvgsTypes } from "./types";
 
-const InstagramIcon = ({ size, color }: SvgsTypes) => {
+function InstagramIcon({ size, color }: SvgsTypes) {
   return (
     <svg
       width={size ?? "24"}
@@ -17,6 +17,6 @@ const InstagramIcon = ({ size, color }: SvgsTypes) => {
       />
     </svg>
   );
-};
+}
 
 export default InstagramIcon;

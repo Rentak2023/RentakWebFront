@@ -5,7 +5,7 @@ type SectionTitleProps = {
   className?: string;
 };
 
-const SectionTitle = ({ text, className }: SectionTitleProps) => {
+function SectionTitle({ text, className }: SectionTitleProps) {
   return (
     <h2
       className={cn(
@@ -16,6 +16,6 @@ const SectionTitle = ({ text, className }: SectionTitleProps) => {
       {text}
     </h2>
   );
-};
+}
 
 export default SectionTitle;

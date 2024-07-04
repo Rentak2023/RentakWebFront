@@ -13,7 +13,7 @@ import Pagination from "../pagination";
 import PropertiesHeader from "./properties-header";
 import Sort from "./sort";
 
-const Properties = () => {
+function Properties() {
   return (
     <div className="container mx-auto mt-4 px-8 md:mt-16 lg:mt-24">
       <PropertiesHeader />
@@ -34,7 +34,7 @@ const Properties = () => {
       </Suspense>
     </div>
   );
-};
+}
 
 function UnitsCount() {
   const t = useTranslations("units");

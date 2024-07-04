@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
-const KeywordInput = () => {
+function KeywordInput() {
   const t = useTranslations("units");
   const form = useFormContext();
 
@@ -45,6 +45,6 @@ const KeywordInput = () => {
       />
     </div>
   );
-};
+}
 
 export default KeywordInput;

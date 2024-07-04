@@ -1,6 +1,6 @@
 import type { SvgsTypes } from "./types";
 
-const StatusIcon = ({ size, color }: SvgsTypes) => {
+function StatusIcon({ size, color }: SvgsTypes) {
   return (
     <svg
       width="24"
@@ -25,6 +25,6 @@ const StatusIcon = ({ size, color }: SvgsTypes) => {
       </defs>
     </svg>
   );
-};
+}
 
 export default StatusIcon;

@@ -1,6 +1,6 @@
 import type { SvgsTypes } from "./types";
 
-const FacebookIcon = ({ size, color }: SvgsTypes) => {
+function FacebookIcon({ size, color }: SvgsTypes) {
   return (
     <svg
       width={size ?? "24"}
@@ -15,6 +15,6 @@ const FacebookIcon = ({ size, color }: SvgsTypes) => {
       />
     </svg>
   );
-};
+}
 
 export default FacebookIcon;

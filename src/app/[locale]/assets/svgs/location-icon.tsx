@@ -1,6 +1,6 @@
 import type { SvgsTypes } from "./types";
 
-const LocationIcon = ({ size, color }: SvgsTypes) => {
+function LocationIcon({ size, color }: SvgsTypes) {
   return (
     <svg
       width={size ?? "24"}
@@ -15,6 +15,6 @@ const LocationIcon = ({ size, color }: SvgsTypes) => {
       />
     </svg>
   );
-};
+}
 
 export default LocationIcon;

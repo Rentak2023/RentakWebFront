@@ -1,6 +1,6 @@
 import type { SvgsTypes } from "./types";
 
-const MailOutlineIcon = ({ size, color }: SvgsTypes) => {
+function MailOutlineIcon({ size, color }: SvgsTypes) {
   return (
     <svg
       width={size ?? "20"}
@@ -27,6 +27,6 @@ const MailOutlineIcon = ({ size, color }: SvgsTypes) => {
       </defs>
     </svg>
   );
-};
+}
 
 export default MailOutlineIcon;
