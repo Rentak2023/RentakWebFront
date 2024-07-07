@@ -18,6 +18,8 @@ import { Separator } from "@/components/ui/separator";
 import { Link } from "@/navigation";
 import { getProperty } from "@/services/properties";
 
+import { ArrangeVisit } from "./arrange-visit";
+
 export default async function UnitPage({
   params: { locale, id },
 }: Readonly<{
@@ -209,9 +211,8 @@ export default async function UnitPage({
                   <Separator className="my-4" />
 
                   <div className="flex gap-2">
-                    <Button className="flex-1" asChild>
-                      <Link href="#">{t("requestATour")}</Link>
-                    </Button>
+                    <ArrangeVisit unitId={property.id} />
+
                     <Button className="flex-1" variant="outline" asChild>
                       <Link href="#">{t("contactUs")}</Link>
                     </Button>
