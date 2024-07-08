@@ -350,7 +350,7 @@
     "description": "Easily create contract by filling data and we will create to you a contract document",
     "personal-info": "Personal Info",
     "unit-description": "Unit Description",
-    "create-contract": "إنشاء العقد",
+    "create-contract": "Create Contract",
     "fields": {
       "landlord-identity-image": {
         "label": "Landlord Identity Front Image"
