@@ -2,8 +2,7 @@
 import { valibotResolver } from "@hookform/resolvers/valibot";
 import { CalendarIcon, Loader2 } from "lucide-react";
 import Image from "next/image";
-import { useFormatter } from "next-intl";
-import { useRef } from "react";
+import { useFormatter, useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import type * as v from "valibot";
 
@@ -41,18 +40,13 @@ import { createContractAction } from "../actions/create-contract";
 
 function Contract() {
   const formatter = useFormatter();
+  const t = useTranslations("contract");
 
   const form = useForm<v.InferOutput<typeof contractSchema>>({
     resolver: valibotResolver(contractSchema),
     defaultValues: {
-      // landlord_name: "",
       landlord_phone: "",
-      // landlord_address: "",
-      // landlord_national_id: "",
-      // tenant_name: "",
       tenant_phone: "",
-      // tenant_address: "",
-      // tenant_national_id: "",
       unit_description: "",
       unit_area: "",
       rent_amount: "",
@@ -83,11 +77,10 @@ function Contract() {
       <div className="container mx-auto grid px-4 md:grid-cols-3 xl:max-w-5xl">
         <div className="col-span-2 flex flex-col justify-center">
           <h3 className="mt-10 text-7xl font-medium text-slate-800">
-            Contract Info
+            {t("title")}
           </h3>
           <p className="mt-6 max-w-lg text-2xl text-slate-600">
-            Easily create contract by filling data and we will create to you a
-            contract document
+            {t("description")}
           </p>
         </div>
         <div className="flex items-center justify-center">
@@ -99,17 +92,20 @@ function Contract() {
           <Form {...form}>
             <form onSubmit={onSubmit} encType="multipart/form-data">
               <fieldset className="flex flex-col gap-6">
-                <h3 className="text-2xl font-medium">Personal Info</h3>
+                <h3 className="text-2xl font-medium">{t("personal-info")}</h3>
                 <div className="grid gap-6 lg:grid-cols-2">
                   <FormField
                     control={form.control}
                     name="landlord_identity_image"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Landlord Identity Front Image</FormLabel>
+                        <FormLabel>
+                          {t("fields.landlord-identity-image.label")}
+                        </FormLabel>
                         <FormControl>
                           <Input
                             type="file"
+                            accept="image/*"
                             onChange={(e) => {
                               field.onChange(e.target.files?.[0]);
                             }}
@@ -125,10 +121,13 @@ function Contract() {
                     name="tenant_identity_image"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Tenant Identity Front Image</FormLabel>
+                        <FormLabel>
+                          {t("fields.tenant-identity-image.label")}
+                        </FormLabel>
                         <FormControl>
                           <Input
                             type="file"
+                            accept="image/*"
                             onChange={(e) => {
                               field.onChange(e.target.files?.[0]);
                             }}
@@ -145,7 +144,9 @@ function Contract() {
                     name="landlord_phone"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Landlord Phone</FormLabel>
+                        <FormLabel>
+                          {t("fields.landlord-phone.label")}
+                        </FormLabel>
                         <FormControl>
                           <Input type="tel" {...field} />
                         </FormControl>
@@ -159,7 +160,7 @@ function Contract() {
                     name="tenant_phone"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Tenant Phone</FormLabel>
+                        <FormLabel>{t("fields.tenant-phone.label")}</FormLabel>
                         <FormControl>
                           <Input type="tel" {...field} />
                         </FormControl>
@@ -172,7 +173,9 @@ function Contract() {
 
               <Separator className="my-6" />
               <fieldset className="flex flex-col gap-6">
-                <h3 className="text-2xl font-medium">Unit description</h3>
+                <h3 className="text-2xl font-medium">
+                  {t("unit-description")}
+                </h3>
 
                 <div className="grid gap-6 lg:grid-cols-2">
                   <FormField
@@ -180,7 +183,9 @@ function Contract() {
                     name="unit_description"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Unit description</FormLabel>
+                        <FormLabel>
+                          {t("fields.unit-description.label")}
+                        </FormLabel>
                         <FormControl>
                           <Input {...field} />
                         </FormControl>
@@ -194,7 +199,7 @@ function Contract() {
                     name="unit_area"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Unit Area</FormLabel>
+                        <FormLabel>{t("fields.unit-area.label")}</FormLabel>
                         <FormControl>
                           <Input {...field} />
                         </FormControl>
@@ -209,7 +214,9 @@ function Contract() {
                     name="contract_period_in_months"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Contract duration (In Months)</FormLabel>
+                        <FormLabel>
+                          {t("fields.contract-duration.label")}
+                        </FormLabel>
                         <FormControl>
                           <Input {...field} />
                         </FormControl>
@@ -223,7 +230,9 @@ function Contract() {
                     name="contract_start_date"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Contract start date</FormLabel>
+                        <FormLabel>
+                          {t("fields.contract-start-date.label")}
+                        </FormLabel>
                         <Popover>
                           <FormControl>
                             <PopoverTrigger asChild>
@@ -242,7 +251,11 @@ function Contract() {
                                     dateStyle: "long",
                                   })
                                 ) : (
-                                  <span>Pick a date</span>
+                                  <span>
+                                    {t(
+                                      "fields.contract-start-date.placeholder",
+                                    )}
+                                  </span>
                                 )}
                                 <CalendarIcon className="ms-auto size-4 opacity-50" />
                               </Button>
@@ -269,7 +282,9 @@ function Contract() {
                     name="purpose_of_renting"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Purpose of renting</FormLabel>
+                        <FormLabel>
+                          {t("fields.renting-purpose.label")}
+                        </FormLabel>
                         <Select
                           onValueChange={field.onChange}
                           defaultValue={field.value}
@@ -281,10 +296,10 @@ function Contract() {
                           </FormControl>
                           <SelectContent>
                             <SelectItem value="Residential">
-                              Residential
+                              {t("fields.renting-purpose.residential")}
                             </SelectItem>
                             <SelectItem value="Administrative">
-                              Administrative
+                              {t("fields.renting-purpose.administrative")}
                             </SelectItem>
                           </SelectContent>
                         </Select>
@@ -298,7 +313,7 @@ function Contract() {
                     name="rent_amount"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Rent Amount</FormLabel>
+                        <FormLabel>{t("fields.rent-amount.label")}</FormLabel>
                         <FormControl>
                           <Input {...field} />
                         </FormControl>
@@ -312,7 +327,9 @@ function Contract() {
                   name="insurance_amount"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Insurance Amount</FormLabel>
+                      <FormLabel>
+                        {t("fields.insurance-amount.label")}
+                      </FormLabel>
                       <FormControl>
                         <Input {...field} />
                       </FormControl>
@@ -329,7 +346,7 @@ function Contract() {
             {form.formState.isSubmitting ? (
               <Loader2 className="mr-2 size-4 animate-spin" />
             ) : null}{" "}
-            Create Contract
+            {t("create-contract")}
           </Button>
         </CardFooter>
       </Card>

@@ -346,5 +346,50 @@
     "newest": "الأحدث",
     "highToLow": "من الأعلى إلى الأقل",
     "lowToHigh": "من الأقل إلى الأعلى"
+  },
+  "contract": {
+    "title": "معلومات العقد",
+    "description": "أنشئ عقدًا بسهولة عن طريق ملء البيانات وسنقوم بإنشاء مستند عقد لك",
+    "personal-info": "معلومات شخصية",
+    "unit-description": "وصف الوحدة",
+    "create-contract": "إنشاء العقد",
+    "fields": {
+      "landlord-identity-image": {
+        "label": "الصورة الأمامية لهوية المالك"
+      },
+      "tenant-identity-image": {
+        "label": "الصورة الأمامية لهوية المستأجر"
+      },
+      "landlord-phone": {
+        "label": "هاتف المالك"
+      },
+      "tenant-phone": {
+        "label": "هاتف المستأجر"
+      },
+      "unit-description": {
+        "label": "وصف الوحدة"
+      },
+      "unit-area": {
+        "label": "مساحة الوحدة"
+      },
+      "contract-duration": {
+        "label": "مدة العقد (بالشهور)"
+      },
+      "contract-start-date": {
+        "label": "تاريخ بدء العقد",
+        "placeholder": "اختر تاريخ"
+      },
+      "renting-purpose": {
+        "label": "الغرض من الإيجار",
+        "residential": "سكني",
+        "administrative": "إداري"
+      },
+      "rent-amount": {
+        "label": "مقدار الايجار"
+      },
+      "insurance-amount": {
+        "label": "مبلغ التأمين"
+      }
+    }
   }
 }

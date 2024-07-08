@@ -344,5 +344,50 @@
     "newest": "Newest",
     "highToLow": "High To Low",
     "lowToHigh": "Low To High"
+  },
+  "contract": {
+    "title": "Contract Info",
+    "description": "Easily create contract by filling data and we will create to you a contract document",
+    "personal-info": "Personal Info",
+    "unit-description": "Unit Description",
+    "create-contract": "إنشاء العقد",
+    "fields": {
+      "landlord-identity-image": {
+        "label": "Landlord Identity Front Image"
+      },
+      "tenant-identity-image": {
+        "label": "Tenant Identity Front Image"
+      },
+      "landlord-phone": {
+        "label": "Landlord Phone"
+      },
+      "tenant-phone": {
+        "label": "Tenant Phone"
+      },
+      "unit-description": {
+        "label": "Unit Description"
+      },
+      "unit-area": {
+        "label": "Unit Area"
+      },
+      "contract-duration": {
+        "label": "Contract Duration (In Months)"
+      },
+      "contract-start-date": {
+        "label": "Contract Start Date",
+        "placeholder": "Pick a date"
+      },
+      "renting-purpose": {
+        "label": "Purpose of renting",
+        "residential": "Residential",
+        "administrative": "Administrative"
+      },
+      "rent-amount": {
+        "label": "Rent Amount"
+      },
+      "insurance-amount": {
+        "label": "Insurance Amount"
+      }
+    }
   }
 }
