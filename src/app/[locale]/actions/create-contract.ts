@@ -1,4 +1,3 @@
-"use server";
 import { HTTPError } from "ky";
 import * as v from "valibot";
 
@@ -45,6 +44,14 @@ export const createContractAction = async (
       return {
         type: "error" as const,
         error: errorRes,
+      };
+    } else {
+      console.error(error);
+      return {
+        type: "error" as const,
+        error: {
+          message: "Something went wrong",
+        },
       };
     }
   }

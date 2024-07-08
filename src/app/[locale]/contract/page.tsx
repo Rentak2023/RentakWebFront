@@ -42,8 +42,6 @@ import { createContractAction } from "../actions/create-contract";
 function Contract() {
   const formatter = useFormatter();
 
-  const formRef = useRef<HTMLFormElement>(null);
-
   const form = useForm<v.InferOutput<typeof contractSchema>>({
     resolver: valibotResolver(contractSchema),
     defaultValues: {
@@ -65,10 +63,11 @@ function Contract() {
 
   const onSubmit = form.handleSubmit(async (data) => {
     const res = await createContractAction(data);
-    if (res?.type === "success" && res.data.url) {
+
+    if (res.type === "success" && res.data.url) {
       window.location.href = res.data.url;
     }
-    if (res?.type === "error" && res.error.message) {
+    if (res.type === "error" && res.error.message) {
       toast({
         title: "Error",
         description: res.error.message ?? "Something went wrong",
@@ -98,9 +97,48 @@ function Contract() {
       <Card className="container mx-auto xl:max-w-5xl">
         <CardContent className="mt-6">
           <Form {...form}>
-            <form onSubmit={onSubmit} ref={formRef}>
-              <fieldset>
+            <form onSubmit={onSubmit} encType="multipart/form-data">
+              <fieldset className="flex flex-col gap-6">
                 <h3 className="text-2xl font-medium">Personal Info</h3>
+                <div className="grid gap-6 lg:grid-cols-2">
+                  <FormField
+                    control={form.control}
+                    name="landlord_identity_image"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Landlord Identity Front Image</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="file"
+                            onChange={(e) => {
+                              field.onChange(e.target.files?.[0]);
+                            }}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="tenant_identity_image"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Tenant Identity Front Image</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="file"
+                            onChange={(e) => {
+                              field.onChange(e.target.files?.[0]);
+                            }}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
                 <div className="mt-6 grid gap-6 lg:grid-cols-2">
                   <FormField
                     control={form.control}
@@ -136,7 +174,7 @@ function Contract() {
               <fieldset className="flex flex-col gap-6">
                 <h3 className="text-2xl font-medium">Unit description</h3>
 
-                <div className="mt-6 grid gap-6 lg:grid-cols-2">
+                <div className="grid gap-6 lg:grid-cols-2">
                   <FormField
                     control={form.control}
                     name="unit_description"

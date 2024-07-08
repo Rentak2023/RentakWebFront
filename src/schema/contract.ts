@@ -29,7 +29,7 @@ export const contractSchema = v.object({
   //   v.startsWith("2", "National ID is invalid"),
   //   v.length(14, "National ID is invalid"),
   // ),
-  // landlord_identity_image
+  landlord_identity_image: v.optional(v.file()),
   // tenant_name: v.pipe(v.string(), v.trim(), v.nonEmpty("Name cannot be empty")),
   tenant_phone: v.pipe(
     v.string(),
@@ -52,7 +52,7 @@ export const contractSchema = v.object({
   //   v.startsWith("2", "National ID is invalid"),
   //   v.length(14, "National ID is invalid"),
   // ),
-  // tenant_identity_image
+  tenant_identity_image: v.optional(v.file()),
   unit_description: v.pipe(
     v.string(),
     v.trim(),
