@@ -61,7 +61,7 @@ export default function Navbar({ navClass, topnavClass }: NavbarProps) {
         },
         {
           name: t("free-contract"),
-          path: "/service-2",
+          path: "/contract",
         },
       ],
     },
