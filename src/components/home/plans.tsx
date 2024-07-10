@@ -12,14 +12,14 @@ export async function Plans() {
   const plans = {
     plans: [
       {
-        id: "traditional",
-        name: t("traditional-rent"),
-        featured: false,
-      },
-      {
         id: "rentak",
         name: "Rentak",
         featured: true,
+      },
+      {
+        id: "traditional",
+        name: t("traditional-rent"),
+        featured: false,
       },
     ],
     features: [
