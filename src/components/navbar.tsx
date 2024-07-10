@@ -198,7 +198,7 @@ export default function Navbar({ navClass, topnavClass }: NavbarProps) {
             <li className="mb-0 inline">
               <Button asChild className="rounded-full" size="icon">
                 <Link locale={locale === "en" ? "ar-EG" : "en"} href={pathname}>
-                  {locale === "e" ? "ع" : "EN"}
+                  {locale === "en" ? "ع" : "EN"}
                 </Link>
               </Button>
             </li>
