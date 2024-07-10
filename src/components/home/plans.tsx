@@ -71,14 +71,14 @@ export async function Plans() {
   return (
     <div className="relative pt-24 sm:pt-32">
       <SectionTitle
-        className="items-center justify-center gap-1.5"
+        className="flex flex-wrap items-center justify-center gap-2"
         text={t.rich("title", {
           rentak: () => (
             <Image
-              className="ms-1.5 inline"
+              className="inline-block"
               src={logo}
               alt="Rentak"
-              height={28}
+              height={32}
             />
           ),
         })}
