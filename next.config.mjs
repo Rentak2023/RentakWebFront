@@ -21,6 +21,16 @@ const nextConfig = {
       fullUrl: true,
     },
   },
+  async redirects() {
+    return [
+      // Wildcard path matching
+      {
+        source: "/unit/:id",
+        destination: "/units/:id",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default withNextIntl(nextConfig);
