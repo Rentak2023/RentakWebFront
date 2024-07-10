@@ -20,11 +20,9 @@ async function Contact() {
             <ContactImage className="h-80" />
           </div>
 
-          <div className="">
-            <div className="lg:me-5">
-              <div className="rounded-md bg-white p-6 shadow">
-                <ContactForm />
-              </div>
+          <div className="lg:me-5">
+            <div className="rounded-md bg-white p-6 shadow">
+              <ContactForm />
             </div>
           </div>
         </div>
