@@ -65,14 +65,14 @@ export default async function UnitPage({
                   </span>
                 </li>
                 <li className="me-4 flex items-center gap-1 lg:me-6">
-                  <AreaIcon size={40} color="#0066CC" />
+                  <AreaIcon className="size-10 text-primary-600" />
                   <span className="text-xl lg:text-2xl">
                     {formatter.number(property.area)}
                   </span>
                 </li>
 
                 <li className="me-4 flex items-center gap-1 lg:me-6">
-                  <BedIcon size={40} color="#0066CC" />
+                  <BedIcon className="size-10 text-primary-600" />
                   <span className="text-xl lg:text-2xl">
                     {t("bedrooms", {
                       count: property.room_numbers,
@@ -81,7 +81,7 @@ export default async function UnitPage({
                 </li>
 
                 <li className="flex items-center gap-1">
-                  <BathIcon size={40} color="#0066CC" />
+                  <BathIcon className="size-10 text-primary-600" />
                   <span className="text-xl lg:text-2xl">
                     {t("bathrooms", {
                       count: property.bathrom_numbers,
@@ -110,7 +110,7 @@ export default async function UnitPage({
                     {formatCurrency(property.price)}
                   </h5>
                   <p className="font-regular mt-3 flex items-center gap-1 text-base text-slate-500">
-                    <LocationIcon color="currentColor" />
+                    <LocationIcon />
                     <span>{property.location.address_in_detail}</span>
                   </p>
 
@@ -134,7 +134,7 @@ export default async function UnitPage({
 
                       <div className="flex w-1/2 items-center gap-2">
                         <div className="item-center flex justify-items-center rounded-lg border border-slate-300 p-3">
-                          <AreaIcon size={21} />
+                          <AreaIcon className="size-6" />
                         </div>
                         <div className="flex flex-col">
                           <p className="text-base font-medium text-primary-900">
@@ -150,7 +150,7 @@ export default async function UnitPage({
                     <li className="flex items-center justify-between py-3">
                       <div className="flex w-1/2 items-center gap-2">
                         <div className="item-center flex justify-items-center rounded-lg border border-slate-300 p-3">
-                          <BedIcon size={21} />
+                          <BedIcon className="size-6" />
                         </div>
                         <div className="flex flex-col">
                           <p className="text-base font-medium text-primary-900">
@@ -164,7 +164,7 @@ export default async function UnitPage({
 
                       <div className="flex w-1/2 items-center gap-2">
                         <div className="item-center flex justify-items-center rounded-lg border border-slate-300 p-3">
-                          <BathIcon size={21} />
+                          <BathIcon className="size-6" />
                         </div>
                         <div className="flex flex-col">
                           <p className="text-base font-medium text-primary-900">
@@ -180,7 +180,7 @@ export default async function UnitPage({
                     <li className="flex items-center justify-between py-3">
                       <div className="flex w-1/2 items-center gap-2">
                         <div className="item-center flex justify-items-center rounded-lg border border-slate-300 p-3">
-                          <HeartIcon />
+                          <HeartIcon className="size-6" />
                         </div>
                         <div className="flex flex-col">
                           <p className="text-base font-medium text-primary-900">
@@ -194,7 +194,7 @@ export default async function UnitPage({
 
                       <div className="flex w-1/2 items-center gap-2">
                         <div className="item-center flex justify-items-center rounded-lg border border-slate-300 p-3">
-                          <AvailableIcon />
+                          <AvailableIcon className="size-6" />
                         </div>
                         <div className="flex flex-col">
                           <p className="text-base font-medium text-primary-900">

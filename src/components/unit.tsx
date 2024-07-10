@@ -94,7 +94,7 @@ function Unit({ item }: UnitProps) {
           <div className="flex list-none items-center justify-between">
             <span className="text-sm font-normal">{t("availableNow")}</span>
 
-            <LinkIcon />
+            <LinkIcon className="size-4" />
           </div>
         </CardContent>
       </Link>
