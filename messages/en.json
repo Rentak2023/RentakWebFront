@@ -71,7 +71,7 @@
       }
     },
     "plans": {
-      "title": "Traditional Renting vs. Rentak",
+      "title": "Traditional Renting vs. <rentak></rentak>",
       "subtitle": "Enhancing Your Rental Experience",
       "feature-comparison": "Feature comparison",
       "traditional-rent": "Traditional rent",

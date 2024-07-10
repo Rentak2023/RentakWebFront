@@ -70,7 +70,19 @@ export async function Plans() {
 
   return (
     <div className="relative pt-24 sm:pt-32">
-      <SectionTitle text={t("title")} />
+      <SectionTitle
+        className="items-center justify-center gap-1.5"
+        text={t.rich("title", {
+          rentak: () => (
+            <Image
+              className="ms-1.5 inline"
+              src={logo}
+              alt="Rentak"
+              height={28}
+            />
+          ),
+        })}
+      />
 
       <p className="mt-4 text-center text-lg text-slate-600">{t("subtitle")}</p>
 
