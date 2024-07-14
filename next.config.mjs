@@ -23,7 +23,7 @@ const nextConfig = {
   },
   async redirects() {
     return [
-      // Wildcard path matching
+      // old unit url
       {
         source: "/unit/:id",
         destination: "/units/:id",
