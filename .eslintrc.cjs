@@ -79,6 +79,7 @@ const config = {
           "@radix-ui/react-select",
           "@radix-ui/react-separator",
           "@radix-ui/react-slider",
+          "@radix-ui/react-tabs",
           "@radix-ui/react-toast",
           "valibot",
         ],

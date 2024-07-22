@@ -389,5 +389,33 @@
         "label": "Insurance Amount"
       }
     }
+  },
+  "auth": {
+    "fields": {
+      "username": {
+        "label": "Email or Phone Number",
+        "placeholder": "Enter email or phone number"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "Enter password"
+      },
+      "full-name": {
+        "label": "Full Name",
+        "placeholder": "Enter full name"
+      },
+      "phone": {
+        "label": "Phone Number",
+        "placeholder": "Enter phone number"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Enter email"
+      }
+    },
+    "cta": {
+      "login": "Login",
+      "sign-up": "Sign Up"
+    }
   }
 }

@@ -204,7 +204,7 @@ export default function Navbar({ navClass, topnavClass }: NavbarProps) {
             </li>
             <li className="mb-0 ms-2 hidden sm:inline">
               <Button asChild size="lg" className="rounded-full">
-                <Link href="/auth-signup">Login/Signup</Link>
+                <Link href="/login-register">Login/Signup</Link>
               </Button>
             </li>
           </ul>
