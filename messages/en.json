@@ -71,8 +71,8 @@
       }
     },
     "plans": {
-      "title": "Traditional Renting vs. Rentak",
-      "subtitle": "Enhancing Your Rental Experience",
+      "title": "Rentak vs. Traditional renting",
+      "subtitle": "Elevate Your Rental Experience",
       "feature-comparison": "Feature comparison",
       "traditional-rent": "Traditional rent",
       "finding-tenants": {
@@ -294,9 +294,6 @@
         "non-empty": "You need to agree to the terms"
       }
     },
-    "rent-collection": {
-      "title": "Rent Collection"
-    },
     "actions": {
       "submit": "Submit",
       "submitting": "Submitting...",
@@ -307,10 +304,118 @@
     }
   },
   "unit": {
-    "egp": "EGP",
     "month": "mo",
-    "beds": "Beds",
-    "baths": "Baths",
+    "bedrooms": "{count, plural, =0 {No Beds} =1 {1 Bed} other {# Beds}}",
+    "bathrooms": "{count, plural, =0 {No Baths} =1 {1 Bath} other {# Baths}}",
     "availableNow": "Available Now"
+  },
+  "units": {
+    "units": "Units",
+    "search": "Search",
+    "searchKeyword": "Search your Keywords",
+    "selectCity": "Select City",
+    "selectDistrict": "Select District",
+    "finishingTypes": "Finishing Types",
+    "propertyType": "Property Type",
+    "priceRange": "Price Range",
+    "selectToilets": "Select Number of Toilets",
+    "selectRooms": "Select Number of Rooms",
+    "filter": "Filter",
+    "findPlace": "Find Place",
+    "countUnit": "Count Unit",
+    "clear": "Clear",
+    "title": "Find a <colored>Perfect Home</colored> <wbr></wbr>That You Love",
+    "description": "Most bookkeeping software is accurate, but hard to use. We make the opposite trade-off, and hope you don't get audited.",
+    "noProperties": "No properties found.",
+    "propertiesFound": "{count, plural, =0 {No Listing Found} =1 {<colored>1</colored> Listing found} other {<colored>#</colored> Listings Found}}",
+    "availableForRent": "Available For Rent",
+    "propertyDescription": "Property Description",
+    "m2": "m²",
+    "rooms": "Rooms",
+    "toilets": "Toilets",
+    "bedrooms": "{count, plural, =0 {No Beds} =1 {1 Bed} other {# Beds}}",
+    "bathrooms": "{count, plural, =0 {No Baths} =1 {1 Bath} other {# Baths}}",
+    "status": "Status",
+    "availableNow": "Available Now",
+    "sponsored": "Sponsored",
+    "requestATour": "Request A Tour",
+    "contactUs": "Contact Us",
+    "sort": "Sort",
+    "newest": "Newest",
+    "highToLow": "High To Low",
+    "lowToHigh": "Low To High"
+  },
+  "contract": {
+    "title": "Contract Info",
+    "description": "Easily create contract by filling data and we will create to you a contract document",
+    "personal-info": "Personal Info",
+    "unit-description": "Unit Description",
+    "create-contract": "Create Contract",
+    "fields": {
+      "landlord-identity-image": {
+        "label": "Landlord Identity Front Image"
+      },
+      "tenant-identity-image": {
+        "label": "Tenant Identity Front Image"
+      },
+      "landlord-phone": {
+        "label": "Landlord Phone"
+      },
+      "tenant-phone": {
+        "label": "Tenant Phone"
+      },
+      "unit-description": {
+        "label": "Unit Description"
+      },
+      "unit-area": {
+        "label": "Unit Area"
+      },
+      "contract-duration": {
+        "label": "Contract Duration (In Months)"
+      },
+      "contract-start-date": {
+        "label": "Contract Start Date",
+        "placeholder": "Pick a date"
+      },
+      "renting-purpose": {
+        "label": "Purpose of renting",
+        "residential": "Residential",
+        "administrative": "Administrative"
+      },
+      "rent-amount": {
+        "label": "Rent Amount"
+      },
+      "insurance-amount": {
+        "label": "Insurance Amount"
+      }
+    }
+  },
+  "auth": {
+    "fields": {
+      "username": {
+        "label": "Email or Phone Number",
+        "placeholder": "Enter email or phone number"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "Enter password"
+      },
+      "full-name": {
+        "label": "Full Name",
+        "placeholder": "Enter full name"
+      },
+      "phone": {
+        "label": "Phone Number",
+        "placeholder": "Enter phone number"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Enter email"
+      }
+    },
+    "cta": {
+      "login": "Login",
+      "sign-up": "Sign Up"
+    }
   }
 }

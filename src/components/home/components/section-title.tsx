@@ -1,11 +1,13 @@
+import type React from "react";
+
 import { cn } from "@/lib/utils";
 
 type SectionTitleProps = {
-  text: string;
+  text: React.ReactNode;
   className?: string;
 };
 
-const SectionTitle = ({ text, className }: SectionTitleProps) => {
+function SectionTitle({ text, className }: SectionTitleProps) {
   return (
     <h2
       className={cn(
@@ -16,6 +18,6 @@ const SectionTitle = ({ text, className }: SectionTitleProps) => {
       {text}
     </h2>
   );
-};
+}
 
 export default SectionTitle;

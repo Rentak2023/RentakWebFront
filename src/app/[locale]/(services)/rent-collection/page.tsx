@@ -1,13 +1,15 @@
 "use client";
 
+import { useSuspenseQuery } from "@tanstack/react-query";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { use } from "react";
 import * as v from "valibot";
 import isMobilePhone from "validator/es/lib/isMobilePhone";
 import isNumeric from "validator/es/lib/isNumeric";
 
+import bannerImage from "@/app/[locale]/assets/images/rent-payment-banner.png";
 import { useToast } from "@/components/ui/use-toast";
-import { getBanks } from "@/services/banks";
+import { banksQuery } from "@/queries/banks";
 
 import { rentCollectionAction } from "../actions/rent-collection";
 import { ServiceForms } from "../service-forms";
@@ -18,10 +20,8 @@ enum PaymentMethod {
   Wallet = "5",
 }
 
-const banksPromise = getBanks();
-
 export default function RentCollection() {
-  const banks = use(banksPromise);
+  const { data: banks } = useSuspenseQuery(banksQuery);
 
   const t = useTranslations("services");
   const { toast } = useToast();
@@ -321,7 +321,6 @@ export default function RentCollection() {
   ] as const satisfies Array<TStep>;
 
   const handleSubmit = async (data: Record<string, any>) => {
-    console.log(data);
     const res = await rentCollectionAction(data);
     if (res?.type === "error" && res.error.message) {
       toast({
@@ -335,12 +334,29 @@ export default function RentCollection() {
   };
 
   return (
-    <main className="pt-24">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-center text-7xl font-semibold">
-          {t("rent-collection.title")}
-        </h1>
+    <main className="pt-20">
+      <div className="relative isolate py-16">
+        <Image
+          src={bannerImage}
+          alt=""
+          className="absolute inset-0 -z-20 size-full object-cover"
+          fill
+        />
+        <div className="absolute inset-0 -z-10 bg-slate-900/20" />
 
+        <div className="mx-auto max-w-lg">
+          <h1 className="text-center text-5xl font-semibold text-slate-50">
+            Vacay Now, Pay Later!
+          </h1>
+          <p className="mt-6 text-balance text-center text-lg text-slate-50">
+            Choose a chalet from any platform you prefer, agree on the price,
+            provide owner&apos;s bank details, and fill out our form. Rentak
+            handles the rest, including transferring the amount within 4 working
+            days.
+          </p>
+        </div>
+      </div>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <ServiceForms steps={steps} onSubmit={handleSubmit} />
       </div>
     </main>

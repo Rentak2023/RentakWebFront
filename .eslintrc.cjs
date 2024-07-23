@@ -15,10 +15,20 @@ const config = {
     "plugin:tailwindcss/recommended",
     "plugin:barrel-files/recommended",
     "plugin:unicorn/recommended",
+    "plugin:@tanstack/eslint-plugin-query/recommended",
     "prettier",
   ],
   plugins: ["simple-import-sort"],
   rules: {
+    "react/function-component-definition": [
+      "error",
+      {
+        namedComponents: "function-declaration",
+        unnamedComponents: "arrow-function",
+      },
+    ],
+    "func-style": ["error", "declaration", { allowArrowFunctions: true }],
+    "prefer-arrow-callback": "error",
     "no-restricted-imports": [
       "error",
       {
@@ -60,12 +70,17 @@ const config = {
       {
         allowList: [
           "react",
-          "@radix-ui/react-toast",
-          "@radix-ui/react-label",
-          "@radix-ui/react-collapsible",
-          "@radix-ui/react-select",
-          "@radix-ui/react-popover",
           "@radix-ui/react-checkbox",
+          "@radix-ui/react-collapsible",
+          "@radix-ui/react-dialog",
+          "@radix-ui/react-label",
+          "@radix-ui/react-popover",
+          "@radix-ui/react-radio-group",
+          "@radix-ui/react-select",
+          "@radix-ui/react-separator",
+          "@radix-ui/react-slider",
+          "@radix-ui/react-tabs",
+          "@radix-ui/react-toast",
           "valibot",
         ],
       },

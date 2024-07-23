@@ -1,3 +1,3 @@
 export default function useTextDirection(locale: string) {
-  return locale === "ar" ? "rtl" : "ltr";
+  return locale === "en" ? "ltr" : "rtl";
 }

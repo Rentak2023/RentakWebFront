@@ -1,23 +1,23 @@
 "use client";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { HTTPError } from "ky";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { use, useState } from "react";
+import { useState } from "react";
 import * as v from "valibot";
 import isMobilePhone from "validator/es/lib/isMobilePhone";
 import isNumeric from "validator/es/lib/isNumeric";
 
+import bannerImage from "@/app/[locale]/assets/images/rent-payment-banner.png";
 import { useToast } from "@/components/ui/use-toast";
+import { banksQuery } from "@/queries/banks";
+import { cashInPaymentMethodsQuery } from "@/queries/payment-methods";
 import { sendOTP, verifyOTP } from "@/services/auth";
-import { getBanks } from "@/services/banks";
-import { getCashInPaymentMethods } from "@/services/payment-methods";
 import { checkPromoCode } from "@/services/promo";
 
 import { rentPaymentAction } from "../actions/rent-payment";
 import { ServiceForms } from "../service-forms";
 import { type TStep } from "../types";
-
-const paymentMethodsPromise = getCashInPaymentMethods();
-const banksPromise = getBanks();
 
 enum PaymentMethod {
   Bank = "4",
@@ -29,8 +29,8 @@ export default function RentPayment({
 }: Readonly<{
   params: { locale: string };
 }>) {
-  const paymentMethods = use(paymentMethodsPromise);
-  const banks = use(banksPromise);
+  const { data: paymentMethods } = useSuspenseQuery(cashInPaymentMethodsQuery);
+  const { data: banks } = useSuspenseQuery(banksQuery);
   const t = useTranslations("services");
   const [userId, setUserId] = useState<number | null>(null);
   const [discount, setDiscount] = useState<number>(0);
@@ -167,9 +167,9 @@ export default function RentPayment({
           options: paymentMethods.map((paymentMethod) => ({
             value: paymentMethod.id.toString(),
             label:
-              locale === "ar"
-                ? paymentMethod.method_name_ar
-                : paymentMethod.method_name_en,
+              locale === "en"
+                ? paymentMethod.method_name_en
+                : paymentMethod.method_name_ar,
           })),
         },
       ],
@@ -456,10 +456,29 @@ export default function RentPayment({
   };
 
   return (
-    <main className="pt-24">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-center text-7xl font-semibold">Rent Payment</h1>
+    <main className="pt-20">
+      <div className="relative isolate py-16">
+        <Image
+          src={bannerImage}
+          alt=""
+          className="absolute inset-0 -z-20 size-full object-cover"
+          fill
+        />
+        <div className="absolute inset-0 -z-10 bg-slate-900/20" />
 
+        <div className="mx-auto max-w-lg">
+          <h1 className="text-center text-5xl font-semibold text-slate-50">
+            Vacay Now, Pay Later!
+          </h1>
+          <p className="mt-6 text-balance text-center text-lg text-slate-50">
+            Choose a chalet from any platform you prefer, agree on the price,
+            provide owner&apos;s bank details, and fill out our form. Rentak
+            handles the rest, including transferring the amount within 4 working
+            days.
+          </p>
+        </div>
+      </div>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <ServiceForms steps={steps} onSubmit={handleSubmit} />
       </div>
     </main>

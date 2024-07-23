@@ -4,6 +4,7 @@ import { HTTPError } from "ky";
 import { Loader2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
+import type * as v from "valibot";
 
 import { contactAction } from "@/app/[locale]/actions/contact";
 import { Button } from "@/components/ui/button";
@@ -20,11 +21,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import { contactSchema } from "@/schema/contact";
 
-const ContactForm = () => {
+function ContactForm() {
   const t = useTranslations("home.contact");
   const { toast } = useToast();
 
-  const form = useForm({
+  const form = useForm<v.InferOutput<typeof contactSchema>>({
     resolver: valibotResolver(contactSchema),
     defaultValues: {
       full_name: "",
@@ -131,6 +132,6 @@ const ContactForm = () => {
       </form>
     </Form>
   );
-};
+}
 
 export default ContactForm;

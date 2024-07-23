@@ -14,19 +14,19 @@ async function Copyright() {
   const socialMediaLinks = [
     {
       url: URLS.facebook,
-      icon: <FacebookIcon />,
+      icon: <FacebookIcon className="size-6 text-slate-800" />,
     },
     {
       url: URLS.whatsapp,
-      icon: <WhatsappIcon />,
+      icon: <WhatsappIcon className="size-6 text-slate-800" />,
     },
     {
       url: URLS.linkedin,
-      icon: <LinkedinIcon />,
+      icon: <LinkedinIcon className="size-6 text-slate-800" />,
     },
     {
       url: URLS.instagram,
-      icon: <InstagramIcon />,
+      icon: <InstagramIcon className="size-6 text-slate-800" />,
     },
   ];
 

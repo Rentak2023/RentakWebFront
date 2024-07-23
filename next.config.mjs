@@ -1,4 +1,3 @@
-import withPlaiceholder from "@plaiceholder/next";
 import createNextIntlPlugin from "next-intl/plugin";
 
 const withNextIntl = createNextIntlPlugin();
@@ -22,6 +21,16 @@ const nextConfig = {
       fullUrl: true,
     },
   },
+  async redirects() {
+    return [
+      // old unit url
+      {
+        source: "/unit/:id",
+        destination: "/units/:id",
+        permanent: true,
+      },
+    ];
+  },
 };
 
-export default withPlaiceholder(withNextIntl(nextConfig));
+export default withNextIntl(nextConfig);

@@ -12,14 +12,14 @@ export async function Plans() {
   const plans = {
     plans: [
       {
-        id: "traditional",
-        name: t("traditional-rent"),
-        featured: false,
-      },
-      {
         id: "rentak",
         name: "Rentak",
         featured: true,
+      },
+      {
+        id: "traditional",
+        name: t("traditional-rent"),
+        featured: false,
       },
     ],
     features: [
@@ -70,7 +70,19 @@ export async function Plans() {
 
   return (
     <div className="relative pt-24 sm:pt-32">
-      <SectionTitle text={t("title")} />
+      <SectionTitle
+        className="flex flex-wrap items-center justify-center gap-2"
+        text={t.rich("title", {
+          rentak: () => (
+            <Image
+              className="inline-block"
+              src={logo}
+              alt="Rentak"
+              height={32}
+            />
+          ),
+        })}
+      />
 
       <p className="mt-4 text-center text-lg text-slate-600">{t("subtitle")}</p>
 

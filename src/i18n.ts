@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { getRequestConfig } from "next-intl/server";
 
 // Can be imported from a shared config
-const locales = new Set(["en", "ar"]);
+const locales = new Set(["en", "ar-EG"]);
 
 export default getRequestConfig(async ({ locale }) => {
   // Validate that the incoming `locale` parameter is valid
@@ -14,5 +14,14 @@ export default getRequestConfig(async ({ locale }) => {
 
   return {
     messages,
+    formats: {
+      number: {
+        money: {
+          style: "currency",
+          currency: "EGP",
+          minimumFractionDigits: 0,
+        },
+      },
+    },
   };
 });

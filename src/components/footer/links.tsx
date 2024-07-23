@@ -59,19 +59,19 @@ async function Links() {
           id: "address",
           url: URLS.address,
           text: "Smart Village, Linx Business Park, B115, Giza, Egypt.",
-          icon: <LocationIcon color="#737373" />,
+          icon: <LocationIcon className="size-6" />,
         },
         {
           id: "mail-to",
           url: URLS.mailTo,
           text: "Info@rent-ak.com",
-          icon: <MailOutlineIcon />,
+          icon: <MailOutlineIcon className="size-6" />,
         },
         {
           id: "tel",
           url: URLS.tel,
           text: "(+20) 111111 - 1541",
-          icon: <PhoneIcon />,
+          icon: <PhoneIcon className="size-6" />,
         },
       ],
     },
@@ -91,7 +91,7 @@ async function Links() {
                   {link.icon}
                 </span>
               ) : null}
-              <span>{link.text}</span>
+              <span dir="auto">{link.text}</span>
             </Link>
           </li>
         ))}

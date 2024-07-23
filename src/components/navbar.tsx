@@ -35,7 +35,7 @@ export default function Navbar({ navClass, topnavClass }: NavbarProps) {
       subRoutes: [
         {
           name: t("long-term"),
-          path: "/service-1",
+          path: "/units",
         },
         {
           name: t("short-term"),
@@ -61,19 +61,23 @@ export default function Navbar({ navClass, topnavClass }: NavbarProps) {
         },
         {
           name: t("free-contract"),
-          path: "/service-2",
+          path: "/contract",
         },
       ],
     },
     {
       name: t("contact"),
-      path: "/contact",
+      path: "/#contact",
     },
   ];
 
   useEffect(() => {
     setMenu(pathname);
     setSubMenu(pathname);
+
+    if (pathname !== "/") {
+      setTopNavBar(true);
+    }
 
     function windowScroll() {
       if (pathname === "/") {
@@ -135,7 +139,7 @@ export default function Navbar({ navClass, topnavClass }: NavbarProps) {
             {/* <!-- Navigation Menu--> */}
 
             <ul
-              className={`navigation-menu  ${navClass === "" || navClass === undefined ? "" : "nav-light"}   ${topnavClass !== "" && topnavClass !== undefined ? "justify-center" : "justify-end"}`}
+              className={`navigation-menu ${navClass === "" || navClass === undefined ? "" : "nav-light"} ${topnavClass !== "" && topnavClass !== undefined ? "justify-center" : "justify-end"}`}
             >
               {routes.map((route) => {
                 const hasSubmenu = !!route.subRoutes;
@@ -193,14 +197,14 @@ export default function Navbar({ navClass, topnavClass }: NavbarProps) {
           <ul className="mb-0 ms-auto flex list-none items-center justify-center">
             <li className="mb-0 inline">
               <Button asChild className="rounded-full" size="icon">
-                <Link locale={locale === "ar" ? "en" : "ar"} href={pathname}>
-                  {locale === "ar" ? "EN" : "ع"}
+                <Link locale={locale === "en" ? "ar-EG" : "en"} href={pathname}>
+                  {locale === "en" ? "ع" : "EN"}
                 </Link>
               </Button>
             </li>
             <li className="mb-0 ms-2 hidden sm:inline">
               <Button asChild size="lg" className="rounded-full">
-                <Link href="/auth-signup">Login/Signup</Link>
+                <Link href="/login-register">Login/Signup</Link>
               </Button>
             </li>
           </ul>

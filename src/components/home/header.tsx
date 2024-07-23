@@ -2,6 +2,7 @@ import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 
 import headerBackground from "@/app/[locale]/assets/images/header-background.png";
+import { Link } from "@/navigation";
 
 import { Button } from "../ui/button";
 
@@ -30,7 +31,7 @@ export async function Header() {
             </p>
             <div className="mt-14 flex items-center justify-start gap-x-6">
               <Button asChild size="lg">
-                <a href="#">{t("cta")}</a>
+                <Link href="/units">{t("cta")}</Link>
               </Button>
             </div>
           </div>

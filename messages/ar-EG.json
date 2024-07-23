@@ -16,7 +16,7 @@
     "manage-property": "إدارة عقار",
     "rent-collection": "تحصيل الإيجار",
     "rent-payment": "دفع الإيجار",
-    "free-contract": "انشئ عقد مجاني",
+    "free-contract": "انشئ عقد ايجار",
     "contact": "تواصل معنا"
   },
   "footer": {
@@ -71,7 +71,7 @@
       }
     },
     "plans": {
-      "title": "مقارنة بين الإيجار التقليدي ورينتك",
+      "title": "مقارنة بين الإيجار التقليدي و <rentak></rentak>",
       "subtitle": "ارتقِ بتجربة إيجارك",
       "feature-comparison": "مقارنة الميزات",
       "traditional-rent": "الإيجار التقليدي",
@@ -212,6 +212,16 @@
         "non-empty": "كود التحقق لا يمكن ان يكون فارغا",
         "invalid": "كود التحقق غير صالح"
       },
+      "owner-name": {
+        "label": "اسم المالك",
+        "non-empty": "اسم المالك لا يمكن ان يكون فارغا",
+        "invalid": "اسم المالك غير صالح"
+      },
+      "owner-phone": {
+        "label": "رقم هاتف المالك",
+        "non-empty": "رقم هاتف المالك لا يمكن ان يكون فارغا",
+        "invalid": "رقم هاتف المالك غير صالح"
+      },
       "transfer-to": {
         "label": "تحويل إلى",
         "wallet": "محفظة إلكترونية",
@@ -286,9 +296,6 @@
         "non-empty": "يجب الموافقة على الشروط"
       }
     },
-    "rent-collection": {
-      "title": "تحصيل الإيجار"
-    },
     "actions": {
       "submit": "تأكيد",
       "submitting": "جاري التأكيد...",
@@ -299,10 +306,90 @@
     }
   },
   "unit": {
-    "egp": "EGP",
     "month": "شهر",
-    "beds": "غرفة نوم",
-    "baths": "حمام",
+    "bedrooms": "{count, plural, =0 {لا يوجد غرف نوم} =1 {غرفة نوم واحدة} other {# غرف نوم}}",
+    "bathrooms": "{count, plural, =0 {لا يوجد حمامات} =1 {حمام واحد} other {# حمامات}}",
     "availableNow": "متاح الآن"
+  },
+  "units": {
+    "units": "الوحدات",
+    "search": "بحث",
+    "searchKeyword": "ابحث عن كلماتك الرئيسية",
+    "selectCity": "اختر مدينة",
+    "selectDistrict": "اختر المنطقة",
+    "finishingTypes": "أنواع التشطيب",
+    "propertyType": "نوع الخاصية",
+    "priceRange": "نطاق السعر",
+    "selectToilets": "اختر عدد الحمامات",
+    "selectRooms": "اختر عدد الغرف",
+    "filter": "فلتر",
+    "findPlace": "البحث عن مكان",
+    "countUnit": "وحدة العد",
+    "clear": "مسح",
+    "title": "اعثر على <colored>المنزل المثالي</colored> <wbr></wbr>الذي تحبه",
+    "description": "Most bookkeeping software is accurate, but hard to use. We make the opposite trade-off, and hope you don’t get audited.",
+    "noProperties": "لم يتم العثور على أي عقارات.",
+    "propertiesFound": "{count, plural, =0 {لم يتم العثور على عقارات} =1 { تم العثور على <colored>عقار واحد</colored>} other {تم العثور على <colored>#</colored> عقار}}",
+    "availableForRent": "متاح للإيجار",
+    "propertyDescription": "وصف الوحدة",
+    "m2": "م²",
+    "rooms": "غرف",
+    "toilets": "الحمامات",
+    "bedrooms": "{count, plural, =0 {لا يوجد غرف نوم} =1 {غرفة نوم واحدة} other {# غرف نوم}}",
+    "bathrooms": "{count, plural, =0 {لا يوجد حمامات} =1 {حمام واحد} other {# حمامات}}",
+    "status": "الحالة",
+    "availableNow": "متاح الآن",
+    "sponsored": "برعاية",
+    "requestATour": "اطلب جولة",
+    "contactUs": "تواصل معنا",
+    "sort": "فرز",
+    "newest": "الأحدث",
+    "highToLow": "من الأعلى إلى الأقل",
+    "lowToHigh": "من الأقل إلى الأعلى"
+  },
+  "contract": {
+    "title": "معلومات العقد",
+    "description": "أنشئ عقدًا بسهولة عن طريق ملء البيانات وسنقوم بإنشاء مستند عقد لك",
+    "personal-info": "معلومات شخصية",
+    "unit-description": "وصف الوحدة",
+    "create-contract": "إنشاء العقد",
+    "fields": {
+      "landlord-identity-image": {
+        "label": "الصورة الأمامية لهوية المالك"
+      },
+      "tenant-identity-image": {
+        "label": "الصورة الأمامية لهوية المستأجر"
+      },
+      "landlord-phone": {
+        "label": "هاتف المالك"
+      },
+      "tenant-phone": {
+        "label": "هاتف المستأجر"
+      },
+      "unit-description": {
+        "label": "وصف الوحدة"
+      },
+      "unit-area": {
+        "label": "مساحة الوحدة"
+      },
+      "contract-duration": {
+        "label": "مدة العقد (بالشهور)"
+      },
+      "contract-start-date": {
+        "label": "تاريخ بدء العقد",
+        "placeholder": "اختر تاريخ"
+      },
+      "renting-purpose": {
+        "label": "الغرض من الإيجار",
+        "residential": "سكني",
+        "administrative": "إداري"
+      },
+      "rent-amount": {
+        "label": "مقدار الايجار"
+      },
+      "insurance-amount": {
+        "label": "مبلغ التأمين"
+      }
+    }
   }
 }

@@ -99,7 +99,7 @@
   }
 
   .btn.btn-link::after {
-    @apply absolute bottom-0 inset-x-0 h-px w-0 transition-all duration-500;
+    @apply absolute inset-x-0 bottom-0 h-px w-0 transition-all duration-500;
 
     --tw-content: "";
 
@@ -108,7 +108,7 @@
 
   .btn.btn-link:hover::after {
     content: var(--tw-content);
-    @apply w-full end-auto;
+    @apply end-auto w-full;
   }
 
   /********************************   */
@@ -117,7 +117,7 @@
 
   /* =============================== */
   #topnav {
-    @apply fixed inset-x-0 top-0 border-0 duration-300 transition-all bg-transparent z-50;
+    @apply fixed inset-x-0 top-0 z-50 border-0 bg-transparent transition-all duration-300;
   }
 
   #topnav .has-submenu {
@@ -129,7 +129,7 @@
   }
 
   #topnav.nav-sticky .has-submenu.active a {
-    @apply text-slate-900 font-semibold;
+    @apply font-semibold text-slate-900;
   }
 
   #topnav .has-submenu.active .submenu li.active > a {
@@ -141,7 +141,7 @@
   }
 
   #topnav .has-submenu .submenu .submenu-arrow {
-    @apply absolute inline-block ltr:-rotate-45 rtl:rotate-[135deg] border-slate-300;
+    @apply absolute inline-block border-slate-300 ltr:-rotate-45 rtl:rotate-[135deg];
     border-width: 0 0.125rem 0.125rem 0;
     inset-inline-end: 1.25rem;
     top: 0.8125rem;
@@ -213,12 +213,12 @@
   }
 
   #topnav .navigation-menu > li {
-    @apply relative block float-start;
+    @apply relative float-start block;
     margin: 0 10px;
   }
 
   #topnav .navigation-menu > li > a {
-    @apply block bg-transparent font-medium text-slate-300 text-lg px-4;
+    @apply block bg-transparent px-4 text-lg font-medium text-slate-300;
   }
 
   #topnav.nav-sticky .navigation-menu > li > a {
@@ -226,7 +226,7 @@
   }
 
   #topnav.nav-sticky .navigation-menu > li.active > a {
-    @apply text-slate-900 font-semibold;
+    @apply font-semibold text-slate-900;
   }
 
   #topnav .navigation-menu > li > a:hover,
@@ -246,7 +246,7 @@
   }
 
   #topnav .navigation-menu .has-submenu .menu-arrow {
-    @apply absolute inline-block rotate-45 transition-all duration-300 border-slate-300;
+    @apply absolute inline-block rotate-45 border-slate-300 transition-all duration-300;
     border-width: 0 2px 2px 0;
     inset-inline-end: 0;
     top: 2.25rem;
@@ -928,7 +928,7 @@
     border-style: solid;
     border-top-color: transparent;
 
-    @apply border-e-white border-b-white;
+    @apply border-b-white border-e-white;
 
     border-inline-start-color: transparent;
     @apply shadow;
@@ -951,7 +951,7 @@
     @apply rotate-45;
     border-width: 8px;
     border-top-color: transparent;
-    @apply border-e-white border-b-white;
+    @apply border-b-white border-e-white;
     border-inline-start-color: transparent;
 
     --tw-shadow: 2px 2px 2px -1px rgb(60 72 88 / 15%);
@@ -1000,7 +1000,7 @@
     z-index: 10;
     height: 2rem;
     width: 2rem;
-    @apply absolute top-1/2 -translate-y-1/2 border-0  bg-whitetext-lg;
+    @apply bg-whitetext-lg absolute top-1/2 -translate-y-1/2 border-0;
 
     --tw-text-opacity: 1;
 
@@ -1048,17 +1048,6 @@
   /*           Choices             */
 
   /* =============================== */
-  .filter-search-form .icons {
-    @apply absolute;
-    top: 48%;
-    inset-inline-start: 0.75rem;
-    z-index: 1;
-
-    @apply -translate-y-1/2;
-    font-size: 20px;
-
-    @apply text-blue-600;
-  }
 
   .registration-form {
     @apply relative;
