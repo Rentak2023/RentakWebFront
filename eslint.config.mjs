@@ -11,6 +11,7 @@ import reactPlugin from "eslint-plugin-react";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
 import tailwind from "eslint-plugin-tailwindcss";
 import unicorn from "eslint-plugin-unicorn";
+import globals from "globals";
 import ts from "typescript-eslint";
 
 const baseDirectory = path.dirname(fileURLToPath(import.meta.url));
@@ -151,6 +152,10 @@ export default ts.config(
       parserOptions: {
         projectService: true,
         tsconfigRootDir: import.meta.dirname,
+      },
+      globals: {
+        ...globals.browser,
+        ...globals.node,
       },
     },
     settings: {
