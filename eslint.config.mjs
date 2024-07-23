@@ -6,6 +6,7 @@ import { FlatCompat } from "@eslint/eslintrc";
 import js from "@eslint/js";
 import tanStackQuery from "@tanstack/eslint-plugin-query";
 import configPrettier from "eslint-config-prettier";
+import importX from "eslint-plugin-import-x";
 import promise from "eslint-plugin-promise";
 import reactPlugin from "eslint-plugin-react";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
@@ -40,13 +41,14 @@ export default ts.config(
       "plugin:@next/next/recommended",
       "plugin:react-hooks/recommended",
       "plugin:barrel-files/recommended",
-      // "plugin:import/recommended"
-      // "plugin:import/typescript"
     ),
   ),
+  ...compat.config(importX.configs.recommended),
+  importX.configs.typescript,
   {
     plugins: {
       "simple-import-sort": simpleImportSort,
+      "import-x": importX,
     },
     rules: {
       "react/function-component-definition": [
@@ -165,6 +167,10 @@ export default ts.config(
       linkComponents: ["Link"],
       tailwindcss: {
         callees: ["cn"],
+      },
+      "import-x/resolver": {
+        typescript: true,
+        node: true,
       },
     },
     linterOptions: {
