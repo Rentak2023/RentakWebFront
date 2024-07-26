@@ -129,7 +129,7 @@ export default function RentPayment({
               });
             } catch (error) {
               if (error instanceof HTTPError) {
-                const errorRes = await error.response.json();
+                const errorRes = await error.response.json<any>();
                 for (const fieldError of Object.values(errorRes.errors)) {
                   toast({
                     title: "Error",

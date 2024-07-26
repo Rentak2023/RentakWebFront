@@ -45,7 +45,7 @@ function ContactForm() {
       });
     } catch (error) {
       if (error instanceof HTTPError && error.response.status === 400) {
-        const errors = await error.response.json();
+        const errors = await error.response.json<any>();
 
         Object.entries(errors.errors).map(([_key, value]: any) => {
           return toast({

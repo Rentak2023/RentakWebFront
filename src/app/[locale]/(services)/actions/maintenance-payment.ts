@@ -33,7 +33,7 @@ export const maintenancePaymentAction = async (data: Record<string, any>) => {
     };
   } catch (error) {
     if (error instanceof HTTPError) {
-      const errorRes = await error.response.json();
+      const errorRes = await error.response.json<any>();
       return {
         type: "error" as const,
         error: errorRes,
