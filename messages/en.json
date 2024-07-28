@@ -32,8 +32,25 @@
     "contact": "Contact"
   },
   "home": {
+    "people": {
+      "title": "People That We Help",
+      "subtitle": "A great platform to buy, sell and rent your properties without any agent or commissions.",
+      "landlords": {
+        "title": "Landlords",
+        "description": "Guaranteed rent collection, Bill payment, Unit conditions and more."
+      },
+      "tenants": {
+        "title": "Tenants",
+        "description": "For home owners, remind your tenants paying rent on time, with multiple payment options."
+      },
+      "brokers": {
+        "title": "Brokers",
+        "description": "for tenants, multiple payment and financing options to any rent all-over Egypt."
+      }
+    },
     "our-services": {
       "title": "Main Services",
+      "subtitle": "We provide to you the best choices for you. Adjust it to your health needs and make sure your undergo treatment with our highly qualified doctors you can consult with us which type of service is suitable for your health",
       "rent-management": {
         "title": "Manage Your Property",
         "description": "Unlock the full potential of your property with our comprehensive management services—simplify every aspect of being a landlord.",

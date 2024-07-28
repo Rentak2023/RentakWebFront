@@ -51,10 +51,7 @@ export async function Services() {
         <hr className="mt-8 h-0.5 w-14 bg-slate-800" />
 
         <p className="mx-auto mt-8 max-w-6xl text-balance text-center text-lg text-slate-500">
-          We provide to you the best choiches for you. Adjust it to your health
-          needs and make sure your undergo treatment with our highly qualified
-          doctors you can consult with us which type of service is suitable for
-          your health
+          {t("subtitle")}
         </p>
 
         <div className="mt-12 flex w-full flex-col items-stretch justify-between gap-6 md:flex-row">
