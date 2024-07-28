@@ -2,7 +2,7 @@ import clsx from "clsx";
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 
-import logo from "@/app/[locale]/assets/images/Logo.png";
+import logo from "@/app/[locale]/assets/images/logo-blue.png";
 
 import SectionTitle from "./components/section-title";
 

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import React, { useEffect, useState } from "react";
 
-import logo from "@/app/[locale]/assets/images/Logo.png";
+import logo from "@/app/[locale]/assets/images/logo-blue.png";
 import { Button } from "@/components/ui/button";
 import { Link, usePathname } from "@/navigation";
 
