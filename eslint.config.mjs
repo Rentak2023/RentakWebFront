@@ -39,6 +39,7 @@ export default ts.config(
   ...fixupConfigRules(
     compat.extends(
       "plugin:@next/next/recommended",
+      "plugin:@next/next/core-web-vitals",
       "plugin:react-hooks/recommended",
       "plugin:barrel-files/recommended",
     ),
