@@ -8,5 +8,12 @@
     "**/app/**/[[]*[]]/[[]*[]]/{route,page,default,layout,template,error}.{js,jsx,ts,tsx}": "${dirname(2)}/${dirname(1)}/${dirname} • ${filename}",
     "**/app/**/[[]*[]]/{route,page,default,layout,template,error}.{js,jsx,ts,tsx}": "${dirname(1)}/${dirname} • ${filename}",
     "**/app/**/{route,page,default,layout,template,error}.{js,jsx,ts,tsx}": "${dirname} • ${filename}"
-  }
+  },
+  "appService.zipIgnorePattern": [
+    "node_modules{,/**}",
+    ".vscode{,/**}",
+    ".next"
+  ],
+  "appService.defaultWebAppToDeploy": "/subscriptions/d2138248-deb8-4175-828c-c8031070884c/resourceGroups/RentakLiveEnvironment/providers/Microsoft.Web/sites/RentakWebsite",
+  "appService.deploySubpath": "."
 }
