@@ -16,7 +16,7 @@
     "manage-property": "Manage Your Property",
     "rent-collection": "Rent Collection",
     "rent-payment": "Pay Your Rent",
-    "free-contract": "Create Free Rent Contract",
+    "free-contract": "Create Rent Contract",
     "contact": "Contact"
   },
   "footer": {
@@ -72,7 +72,7 @@
     },
     "plans": {
       "title": "Rentak vs. Traditional renting",
-      "subtitle": "Elevate Your Rental Experience",
+      "subtitle": "Elevate Your Rental Experiences",
       "feature-comparison": "Feature comparison",
       "traditional-rent": "Traditional rent",
       "finding-tenants": {
