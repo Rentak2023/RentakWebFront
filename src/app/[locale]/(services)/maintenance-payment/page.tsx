@@ -434,15 +434,22 @@ export default function RentPayment({
       lang: locale,
     });
     if (res?.type === "success") {
-      toast({
-        title: "Success",
-        description: "Payment Request created successfully",
-      });
-      setTimeout(() => {
-        if (res.data.payment_data.redirect_url) {
-          window.location.href = res.data.payment_data.redirect_url;
-        }
-      }, 1000);
+      if (res.data.redirect) {
+        toast({
+          title: "Success",
+          description: "Payment Request created successfully",
+        });
+        setTimeout(() => {
+          if (res.data.payment_data?.redirect_url) {
+            window.location.href = res.data.payment_data.redirect_url;
+          }
+        }, 1000);
+      } else {
+        toast({
+          title: "Success",
+          description: t("messages.service-request-success"),
+        });
+      }
     }
     if (res?.type === "error" && res.error.message) {
       toast({

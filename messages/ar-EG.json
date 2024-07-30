@@ -140,10 +140,10 @@
       "email": "الايميل",
       "yourPhone": "هاتفك",
       "phone": "رقم الهاتف",
-      "yourQuestion": "سؤالك",
-      "subject": "العنوان",
       "yourMessage": "رسالتك",
-      "message": "الرسالة"
+      "message": "الرسالة",
+      "yourQuestion": "سؤالك",
+      "subject": "العنوان"
     }
   },
   "services": {
@@ -303,6 +303,9 @@
       "previous": "السابق",
       "next": "التالي",
       "skip": "تخطي"
+    },
+    "messages": {
+      "service-request-success": "تم تقديم الطلب بنجاح. سوف تتلقى رسالة من فريق الخدمة في اقرب وقت."
     }
   },
   "unit": {

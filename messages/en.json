@@ -301,6 +301,9 @@
       "previous": "Previous",
       "next": "Next",
       "skip": "Skip"
+    },
+    "messages": {
+      "service-request-success": "Request made successfully. someone will contact you shortly."
     }
   },
   "unit": {

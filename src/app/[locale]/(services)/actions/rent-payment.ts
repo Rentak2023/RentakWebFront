@@ -13,8 +13,16 @@ type PaymentData = {
 
 type RentPaymentResponse = {
   message: string;
-  payment_data: PaymentData;
-};
+} & (
+  | {
+      redirect: true;
+      payment_data: PaymentData;
+    }
+  | {
+      redirect: false;
+      payment_data: null;
+    }
+);
 
 export const rentPaymentAction = async (data: Record<string, any>) => {
   try {
