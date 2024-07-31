@@ -16,8 +16,9 @@
     "manage-property": "Manage Your Property",
     "rent-collection": "Rent Collection",
     "rent-payment": "Pay Your Rent",
+    "maintenance-payment": "Pay Your Maintenance",
     "free-contract": "Create Rent Contract",
-    "contact": "Contact"
+    "contact": "Contact Us"
   },
   "footer": {
     "copyright": "All right reserved",
@@ -29,7 +30,7 @@
     "rentPayment": "Rent Payment",
     "rentCollection": "Rent Collection",
     "units": "Units",
-    "contact": "Contact"
+    "contact": "Contact Us"
   },
   "home": {
     "our-services": {
@@ -37,7 +38,7 @@
       "rent-management": {
         "title": "Manage Your Property",
         "description": "Unlock the full potential of your property with our comprehensive management services—simplify every aspect of being a landlord.",
-        "cta": "Submit Property"
+        "cta": "Submit"
       },
       "rent-collection": {
         "title": "Rent Collection",
@@ -304,6 +305,18 @@
     },
     "messages": {
       "service-request-success": "Request made successfully. someone will contact you shortly."
+    },
+    "rent-collection": {
+      "title": "Rent Collection",
+      "description": "Ensure timely rent collection with our automated systems that guarantee peace of mind for landlords and ease for tenants."
+    },
+    "maintenance-payment": {
+      "title": "Pay Maintenance with Ease!",
+      "description": "Handle your property's maintenance fees effortlessly. Enter the maintenance amount, and choose your preferred payment method. Rentak will transfer the amount to the beneficiary within 4 working days."
+    },
+    "rent-payment": {
+      "title": "Vacay Now, Pay Later!",
+      "description": "Choose a chalet from any platform you prefer, agree on the price, provide owner's bank details, and fill out our form. Rentak handles the rest, including transferring the amount within 4 working days."
     }
   },
   "unit": {

@@ -475,13 +475,10 @@ export default function RentPayment({
 
         <div className="mx-auto max-w-lg">
           <h1 className="text-center text-5xl font-semibold text-slate-50">
-            Vacay Now, Pay Later!
+            {t("rent-payment.title")}
           </h1>
           <p className="mt-6 text-balance text-center text-lg text-slate-50">
-            Choose a chalet from any platform you prefer, agree on the price,
-            provide owner&apos;s bank details, and fill out our form. Rentak
-            handles the rest, including transferring the amount within 4 working
-            days.
+            {t("rent-payment.description")}
           </p>
         </div>
       </div>
