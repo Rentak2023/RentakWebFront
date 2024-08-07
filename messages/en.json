@@ -9,7 +9,7 @@
   },
   "navbar": {
     "home": "Home",
-    "listing": "Find units",
+    "listing": "Discover Units",
     "long-term": "Long-term",
     "short-term": "Short-term",
     "services": "Services",
@@ -38,7 +38,7 @@
       "rent-management": {
         "title": "Manage Your Property",
         "description": "Unlock the full potential of your property with our comprehensive management services—simplify every aspect of being a landlord.",
-        "cta": "Submit"
+        "cta": "Rent Your Property"
       },
       "rent-collection": {
         "title": "Rent Collection",
