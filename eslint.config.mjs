@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 import { fixupConfigRules } from "@eslint/compat";
 import { FlatCompat } from "@eslint/eslintrc";
 import js from "@eslint/js";
+import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
 import react from "@eslint-react/eslint-plugin";
 import tanStackQuery from "@tanstack/eslint-plugin-query";
 import configPrettier from "eslint-config-prettier";
@@ -45,6 +46,7 @@ export default ts.config(
   ),
   ...compat.config(importX.configs.recommended),
   importX.configs.typescript,
+  comments.recommended,
   {
     plugins: {
       "simple-import-sort": simpleImportSort,
@@ -123,7 +125,15 @@ export default ts.config(
       ],
       "@typescript-eslint/no-unused-vars": [
         "warn",
-        { argsIgnorePattern: "^_" },
+        {
+          args: "all",
+          argsIgnorePattern: "^_",
+          caughtErrors: "all",
+          caughtErrorsIgnorePattern: "^_",
+          destructuredArrayIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+          ignoreRestSiblings: true,
+        },
       ],
       "@typescript-eslint/no-explicit-any": "off",
       "@typescript-eslint/no-unsafe-call": "off",
@@ -137,6 +147,11 @@ export default ts.config(
           allowNumber: true,
         },
       ],
+      "@eslint-community/eslint-comments/disable-enable-pair": [
+        "error",
+        { allowWholeFile: true },
+      ],
+      "@eslint-community/eslint-comments/no-unused-disable": "error",
     },
     languageOptions: {
       parserOptions: {

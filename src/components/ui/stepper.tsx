@@ -1,3 +1,4 @@
+/* eslint-disable @eslint-react/no-children-map,  @eslint-react/no-clone-element, @eslint-react/no-children-to-array */
 "use client";
 
 import { cva } from "class-variance-authority";
