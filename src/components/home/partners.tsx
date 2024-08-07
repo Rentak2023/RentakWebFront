@@ -57,16 +57,15 @@ export function Partners() {
       <h3 className="text-center text-xl font-medium text-slate-700">
         {t("title")}
       </h3>
-      <div className="mt-8 grid items-center justify-items-center gap-12 lg:grid-cols-9">
+      <div className="mt-8 grid grid-cols-3 items-center justify-items-center gap-6 lg:grid-cols-9 lg:flex-row xl:gap-12">
         {partners.map((partner) => (
-          <Image
-            key={partner.name}
-            src={partner.logo}
-            alt={partner.name}
-            // width={200}
-            height={80}
-            className="block object-contain"
-          />
+          <div key={partner.name} className="flex-1">
+            <Image
+              src={partner.logo}
+              alt={partner.name}
+              className="object-contain"
+            />
+          </div>
         ))}
       </div>
     </div>
