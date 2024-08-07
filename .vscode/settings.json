@@ -7,7 +7,8 @@
   "workbench.editor.customLabels.patterns": {
     "**/app/**/[[]*[]]/[[]*[]]/{route,page,default,layout,template,error}.{js,jsx,ts,tsx}": "${dirname(2)}/${dirname(1)}/${dirname} • ${filename}",
     "**/app/**/[[]*[]]/{route,page,default,layout,template,error}.{js,jsx,ts,tsx}": "${dirname(1)}/${dirname} • ${filename}",
-    "**/app/**/{route,page,default,layout,template,error}.{js,jsx,ts,tsx}": "${dirname} • ${filename}"
+    "**/app/**/{route,page,default,layout,template,error}.{js,jsx,ts,tsx}": "${dirname} • ${filename}",
+    "**/index.{js,jsx,ts,tsx}": "${dirname} • ${filename}"
   },
   "appService.zipIgnorePattern": [
     "node_modules{,/**}",
