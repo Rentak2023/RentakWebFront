@@ -169,22 +169,37 @@ const Carousel = React.forwardRef<
       };
     }, [api, onSelect]);
 
+    const value = React.useMemo(
+      () => ({
+        carouselRef,
+        api,
+        opts,
+        orientation,
+        scrollPrev,
+        scrollNext,
+        canScrollPrev,
+        canScrollNext,
+        selectedIndex,
+        scrollSnaps,
+        onDotButtonClick,
+      }),
+      [
+        carouselRef,
+        api,
+        opts,
+        orientation,
+        scrollPrev,
+        scrollNext,
+        canScrollPrev,
+        canScrollNext,
+        selectedIndex,
+        scrollSnaps,
+        onDotButtonClick,
+      ],
+    );
+
     return (
-      <CarouselContext.Provider
-        value={{
-          carouselRef,
-          api: api,
-          opts,
-          orientation,
-          scrollPrev,
-          scrollNext,
-          canScrollPrev,
-          canScrollNext,
-          selectedIndex,
-          scrollSnaps,
-          onDotButtonClick,
-        }}
-      >
+      <CarouselContext.Provider value={value}>
         <div
           ref={ref}
           onKeyDownCapture={handleKeyDown}
@@ -313,10 +328,11 @@ const CarouselDots = React.forwardRef<
 
   return (
     <div className={cn("flex gap-3", className)} ref={ref} {...props}>
-      {scrollSnaps.map((_, index) => (
+      {scrollSnaps.map((n, index) => (
         <button
-          key={index}
+          key={n}
           aria-label={`Slide - ${index}`}
+          type="button"
           className={cn(
             "size-2.5 cursor-pointer rounded-full",
             index === selectedIndex

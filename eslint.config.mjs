@@ -1,14 +1,15 @@
+/* eslint-disable import-x/no-named-as-default-member */
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { fixupConfigRules } from "@eslint/compat";
 import { FlatCompat } from "@eslint/eslintrc";
 import js from "@eslint/js";
+import react from "@eslint-react/eslint-plugin";
 import tanStackQuery from "@tanstack/eslint-plugin-query";
 import configPrettier from "eslint-config-prettier";
 import importX from "eslint-plugin-import-x";
 import promise from "eslint-plugin-promise";
-import reactPlugin from "eslint-plugin-react";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
 import tailwind from "eslint-plugin-tailwindcss";
 import unicorn from "eslint-plugin-unicorn";
@@ -29,8 +30,6 @@ export default ts.config(
   js.configs.recommended,
   ...ts.configs.strictTypeChecked,
   ...ts.configs.stylisticTypeChecked,
-  reactPlugin.configs.flat.recommended,
-  reactPlugin.configs.flat["jsx-runtime"],
   ...tailwind.configs["flat/recommended"],
   unicorn.configs["flat/recommended"],
   promise.configs["flat/recommended"],
@@ -52,13 +51,6 @@ export default ts.config(
       "import-x": importX,
     },
     rules: {
-      "react/function-component-definition": [
-        "error",
-        {
-          namedComponents: "function-declaration",
-          unnamedComponents: "arrow-function",
-        },
-      ],
       "func-style": ["error", "declaration", { allowArrowFunctions: true }],
       "prefer-arrow-callback": "error",
       "unicorn/prevent-abbreviations": "off",
@@ -89,11 +81,6 @@ export default ts.config(
           ignoreLastCallback: true,
         },
       ],
-      "react/prop-types": "off",
-      "react/jsx-no-useless-fragment": "error",
-      "react/jsx-no-leaked-render": "error",
-      "react/jsx-curly-brace-presence": "error",
-      "react/self-closing-comp": "error",
       "tailwindcss/no-custom-classname": "off",
       // Gives false positive for overflow-clip
       "tailwindcss/migration-from-tailwind-2": "off",
@@ -178,6 +165,11 @@ export default ts.config(
       reportUnusedDisableDirectives: "warn",
     },
   },
+  {
+    files: ["**/*.{ts,tsx}"],
+    ...react.configs["recommended-type-checked"],
+  },
+  react.configs.dom,
   {
     files: ["**/*.js", "**/*.jsx", "**/*.mjs", "**/*.cjs"],
     extends: [ts.configs.disableTypeChecked],

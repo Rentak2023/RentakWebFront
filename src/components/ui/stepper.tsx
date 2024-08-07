@@ -59,19 +59,31 @@ function StepperProvider({ value, children }: StepperContextProviderProps) {
     setActiveStep(step);
   }, []);
 
+  const contextValue = React.useMemo(
+    () => ({
+      ...value,
+      isError,
+      isLoading,
+      activeStep,
+      nextStep,
+      prevStep,
+      resetSteps,
+      setStep,
+    }),
+    [
+      value,
+      isError,
+      isLoading,
+      activeStep,
+      nextStep,
+      prevStep,
+      resetSteps,
+      setStep,
+    ],
+  );
+
   return (
-    <StepperContext.Provider
-      value={{
-        ...value,
-        isError,
-        isLoading,
-        activeStep,
-        nextStep,
-        prevStep,
-        resetSteps,
-        setStep,
-      }}
-    >
+    <StepperContext.Provider value={contextValue}>
       {children}
     </StepperContext.Provider>
   );
@@ -530,7 +542,7 @@ const VerticalStep = React.forwardRef<HTMLDivElement, VerticalStepProps>(
     const isLastStep = index === steps.length - 1;
 
     const active =
-      variant === "line" ? isCompletedStep ?? isCurrentStep : isCompletedStep;
+      variant === "line" ? (isCompletedStep ?? isCurrentStep) : isCompletedStep;
     const checkIcon = checkIconProp ?? checkIconContext;
     const errorIcon = errorIconProp ?? errorIconContext;
 
@@ -676,7 +688,7 @@ const HorizontalStep = React.forwardRef<HTMLDivElement, StepSharedProps>(
     const opacity = hasVisited ? 1 : 0.8;
 
     const active =
-      variant === "line" ? isCompletedStep ?? isCurrentStep : isCompletedStep;
+      variant === "line" ? (isCompletedStep ?? isCurrentStep) : isCompletedStep;
 
     const checkIcon = checkIconProp ?? checkIconContext;
     const errorIcon = errorIconProp ?? errorIconContext;
@@ -793,10 +805,10 @@ function StepButtonContainer({
       )}
       aria-current={isCurrentStep ? "step" : undefined}
       data-current={isCurrentStep}
-      data-invalid={isError ? isCurrentStep ?? isCompletedStep : null}
+      data-invalid={isError ? (isCurrentStep ?? isCompletedStep) : null}
       data-active={isCompletedStep}
       data-clickable={currentStepClickable}
-      data-loading={isLoading ? isCurrentStep ?? isCompletedStep : null}
+      data-loading={isLoading ? (isCurrentStep ?? isCompletedStep) : null}
     >
       {children}
     </Button>
