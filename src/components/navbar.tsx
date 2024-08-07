@@ -8,17 +8,11 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Link, usePathname } from "@/navigation";
 
-type NavbarProps = {
-  navClass?: string;
-  topnavClass?: string;
-};
-
-export default function Navbar({ navClass, topnavClass }: NavbarProps) {
+export default function Navbar() {
   const pathname = usePathname();
   const locale = useLocale();
 
   const [isOpen, setIsOpen] = useState(true);
-  const [topNavbar, setTopNavBar] = useState(pathname !== "/");
 
   const [menu, setMenu] = useState("");
   const [subMenu, setSubMenu] = useState("");
@@ -89,24 +83,6 @@ export default function Navbar({ navClass, topnavClass }: NavbarProps) {
   useEffect(() => {
     setMenu(pathname);
     setSubMenu(pathname);
-
-    if (pathname !== "/") {
-      setTopNavBar(true);
-    }
-
-    function windowScroll() {
-      if (pathname === "/") {
-        setTopNavBar(window.scrollY >= 50);
-      }
-    }
-
-    windowScroll();
-
-    window.addEventListener("scroll", windowScroll);
-
-    return () => {
-      window.removeEventListener("scroll", windowScroll);
-    };
   }, [pathname]);
 
   const toggleMenu = () => {
@@ -115,10 +91,7 @@ export default function Navbar({ navClass, topnavClass }: NavbarProps) {
 
   return (
     <React.Fragment>
-      <nav
-        id="topnav"
-        className={`${topNavbar ? "nav-sticky" : ""} ${topnavClass ?? ""}`}
-      >
+      <nav id="topnav" className="nav-sticky">
         <div className="container mx-auto flex px-4">
           {/* <!-- Start Mobile Toggle --> */}
           <div className="me-4 lg:hidden">
@@ -153,9 +126,7 @@ export default function Navbar({ navClass, topnavClass }: NavbarProps) {
           >
             {/* <!-- Navigation Menu--> */}
 
-            <ul
-              className={`navigation-menu ${navClass === "" || navClass === undefined ? "" : "nav-light"} ${topnavClass !== "" && topnavClass !== undefined ? "justify-center" : "justify-end"}`}
-            >
+            <ul className="navigation-menu">
               {routes.map((route) => {
                 const hasSubmenu = Boolean(route.subRoutes);
                 const checkedRoutes = route.subRoutes
