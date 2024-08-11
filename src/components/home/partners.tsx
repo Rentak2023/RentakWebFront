@@ -1,12 +1,12 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 
-import forsaLogo from "@/app/[locale]/assets/images/logos/forsa.jpg";
+import forsaLogo from "@/app/[locale]/assets/images/logos/forsa.png";
 import halanLogo from "@/app/[locale]/assets/images/logos/halan.png";
 import mastercardLogo from "@/app/[locale]/assets/images/logos/mastercard.png";
 import orionLogo from "@/app/[locale]/assets/images/logos/orion.png";
-import palmHillsLogo from "@/app/[locale]/assets/images/logos/palm-hills.png";
-import paytabsLogo from "@/app/[locale]/assets/images/logos/paytabs.jpg";
+import palmHillsLogo from "@/app/[locale]/assets/images/logos/palm-hills.jpg";
+import paytabsLogo from "@/app/[locale]/assets/images/logos/paytabs.svg";
 import souhoolaLogo from "@/app/[locale]/assets/images/logos/souhoola.png";
 import valuLogo from "@/app/[locale]/assets/images/logos/valu.png";
 import visaLogo from "@/app/[locale]/assets/images/logos/visa.png";
@@ -63,7 +63,7 @@ export function Partners() {
             <Image
               src={partner.logo}
               alt={partner.name}
-              className="object-contain"
+              className="max-h-14 object-contain"
             />
           </div>
         ))}
