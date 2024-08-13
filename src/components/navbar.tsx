@@ -53,8 +53,7 @@ export default function Navbar() {
       subRoutes: [
         {
           name: t("manage-property"),
-          path: "/property-management",
-          disabled: true,
+          path: "/rent-management",
         },
         {
           name: t("rent-payment"),

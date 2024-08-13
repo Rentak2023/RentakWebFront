@@ -296,6 +296,20 @@
       "agree": {
         "label": "Agree",
         "non-empty": "You need to agree to the terms"
+      },
+      "full-name": {
+        "label": "Full Name",
+        "non-empty": "Full name cannot be empty"
+      },
+      "phone-number": {
+        "label": "Phone Number",
+        "non-empty": "Phone number cannot be empty",
+        "invalid": "Invalid phone number"
+      },
+      "email-address": {
+        "label": "Email Address",
+        "non-empty": "Email address cannot be empty",
+        "invalid": "Invalid email address"
       }
     },
     "actions": {
@@ -320,6 +334,10 @@
     "rent-payment": {
       "title": "Vacay Now, Pay Later!",
       "description": "Choose a chalet from any platform you prefer, agree on the price, provide owner's bank details, and fill out our form. Rentak handles the rest, including transferring the amount within 4 working days."
+    },
+    "rent-management": {
+      "title": "Manage Your Property",
+      "description": "Unlock the full potential of your property with our comprehensive management services—simplify every aspect of being a landlord."
     }
   },
   "unit": {
