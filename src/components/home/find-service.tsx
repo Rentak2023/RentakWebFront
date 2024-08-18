@@ -153,7 +153,7 @@ const questions: Question = {
       arLabel: "بروكر",
       question: {
         title:
-          "Are you looking for Exclusive Listings or facilitate you rental deal?",
+          "Are you looking for Exclusive Listings or facilitate your rental deal?",
         arTitle: "هل تبحث عن قوائم حصرية أم تسهيل صفقة الإيجار؟",
         answers: [
           {
@@ -182,7 +182,7 @@ const questions: Question = {
             },
           },
           {
-            label: "Facilitate you rental deal",
+            label: "Facilitate your rental deal",
             arLabel: "تسهيل صفقة الإيجار",
             question: {
               title: "Services",
@@ -213,8 +213,8 @@ export function FindService() {
   const locale = useLocale();
 
   return (
-    <div className="mb-12 flex-1 rounded-3xl bg-white/85 p-6 text-center lg:mb-0">
-      <h3 className="text-xl font-medium text-primary-800">
+    <div className="mb-12 flex-1 rounded-3xl bg-white/70 p-6 text-center lg:mb-0">
+      <h3 className="text-xl font-medium capitalize text-primary-800">
         {t.rich("title", {
           bold: (text) => <span className="font-bold">{text}</span>,
         })}
@@ -236,13 +236,15 @@ export function FindService() {
             <span className="flex size-8 items-center justify-center rounded-full border border-slate-700 bg-white p-2 leading-8 text-slate-700">
               {String.fromCodePoint(65 + index)}
             </span>
-            <span>{locale === "en" ? answer.label : answer.arLabel}</span>
+            <span className="capitalize">
+              {locale === "en" ? answer.label : answer.arLabel}
+            </span>
           </button>
         ))}
         {currentQuestion.services?.map((answer) => (
           <Link
             key={answer.title}
-            className="flex items-center justify-start gap-2 rounded-3xl bg-white p-4 text-slate-700 transition duration-300 hover:bg-primary-800/80 hover:text-white"
+            className="flex items-center justify-start gap-2 rounded-3xl bg-white p-4 capitalize text-slate-700 transition duration-300 hover:bg-primary-800/80 hover:text-white"
             href={answer.href}
           >
             <SquareCheckBigIcon className="size-6" />
