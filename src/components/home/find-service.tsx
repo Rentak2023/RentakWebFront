@@ -43,8 +43,8 @@ const questions: Question = {
                   href: "/rent-collection",
                 },
                 {
-                  title: "Pay/Finance Annual Maintenance",
-                  arTitle: "دفع تقسيط الصيانة السنوية",
+                  title: "Finance Annual Maintenance",
+                  arTitle: "تقسيط الصيانة السنوية",
                   href: "/maintenance-payment",
                 },
                 {
@@ -63,13 +63,13 @@ const questions: Question = {
               arTitle: "الخدمات",
               services: [
                 {
-                  title: "Construct Free Contract",
+                  title: "Create Rent Contract",
                   arTitle: "إنشاء عقد ايجار",
                   href: "/contract",
                 },
                 {
-                  title: "Pay/Finance Annual Maintenance",
-                  arTitle: "دفع/تمويل الصيانة السنوية",
+                  title: "Finance Annual Maintenance",
+                  arTitle: "تمويل الصيانة السنوية",
                   href: "/maintenance-payment",
                 },
                 {
@@ -189,7 +189,7 @@ const questions: Question = {
               arTitle: "الخدمات",
               services: [
                 {
-                  title: "Construct Free Contract",
+                  title: "Construct Rent Contract",
                   arTitle: "إنشاء عقد ايجار",
                   href: "/contract",
                 },
