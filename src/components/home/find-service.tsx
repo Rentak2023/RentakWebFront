@@ -214,12 +214,12 @@ export function FindService() {
 
   return (
     <div className="mb-12 flex-1 rounded-3xl bg-white/70 p-6 text-center lg:mb-0">
-      <h3 className="text-xl font-medium capitalize text-primary-800">
+      <h3 className="text-xl font-medium capitalize text-slate-800">
         {t.rich("title", {
           bold: (text) => <span className="font-bold">{text}</span>,
         })}
       </h3>
-      <h2 className="mt-4 text-3xl font-semibold text-primary-900">
+      <h2 className="mt-4 text-2xl font-semibold text-primary-800">
         {locale === "en" ? currentQuestion.title : currentQuestion.arTitle}
       </h2>
       <div className="mt-12 flex flex-col gap-3">
