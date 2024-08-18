@@ -1,5 +1,6 @@
 "use client";
 
+import { SquareCheckBigIcon } from "lucide-react";
 import { useState } from "react";
 
 type Question = {
@@ -204,7 +205,7 @@ export function FindService() {
       <h2 className="mt-4 text-3xl font-semibold text-primary-900">
         {currentQuestion.title}
       </h2>
-      <div className="mt-12 flex gap-3">
+      <div className="mt-12 flex flex-col gap-3">
         {currentQuestion.answers?.map((answer, index) => (
           <button
             onClick={() => {
@@ -212,10 +213,10 @@ export function FindService() {
                 setCurrentQuestion(answer.question);
               }
             }}
-            className="flex flex-1 flex-row items-center justify-center gap-2 rounded-3xl bg-white p-4 text-slate-700 transition duration-300 hover:bg-primary-800/80 hover:text-white"
+            className="flex flex-row items-center justify-start gap-2 rounded-3xl bg-white p-4 text-slate-700 transition duration-300 hover:bg-primary-800/80 hover:text-white"
             key={answer.label}
           >
-            <span className="flex size-8 flex-shrink-0 items-center justify-center rounded-full border border-slate-700 bg-white p-2 leading-8 text-slate-700">
+            <span className="flex size-8 items-center justify-center rounded-full border border-slate-700 bg-white p-2 leading-8 text-slate-700">
               {String.fromCodePoint(65 + index)}
             </span>
             <span>{answer.label}</span>
@@ -223,9 +224,10 @@ export function FindService() {
         ))}
         {currentQuestion.services?.map((answer) => (
           <button
-            className="flex-grow rounded-3xl bg-white p-4 text-slate-700 transition duration-300 hover:bg-primary-800/80 hover:text-white"
+            className="flex items-center justify-start gap-2 rounded-3xl bg-white p-4 text-slate-700 transition duration-300 hover:bg-primary-800/80 hover:text-white"
             key={answer.title}
           >
+            <SquareCheckBigIcon className="size-6" />
             {answer.title}
           </button>
         ))}

@@ -31,11 +31,11 @@ export async function Header() {
             <p className="mt-4 text-balance text-lg leading-8 text-slate-300">
               {t("subtitle")}
             </p>
-            <div className="mt-14 flex items-center justify-start gap-x-6">
+            {/* <div className="mt-14 flex items-center justify-start gap-x-6">
               <Button asChild size="lg">
                 <Link href="/units">{t("cta")}</Link>
               </Button>
-            </div>
+            </div> */}
           </div>
         </div>
         <FindService />
