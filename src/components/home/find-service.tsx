@@ -4,6 +4,8 @@ import { SquareCheckBigIcon } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 
+import { Link } from "@/navigation";
+
 type Question = {
   title: string;
   arTitle: string;
@@ -14,7 +16,7 @@ type Question = {
 type Service = {
   title: string;
   arTitle: string;
-  // href: string;
+  href: string;
 };
 
 const questions: Question = {
@@ -38,14 +40,17 @@ const questions: Question = {
                 {
                   title: "Rent Collection",
                   arTitle: "تحصيل الإيجار",
+                  href: "/rent-collection",
                 },
                 {
                   title: "Pay/Finance Annual Maintenance",
                   arTitle: "دفع تقسيط الصيانة السنوية",
+                  href: "/maintenance-payment",
                 },
                 {
                   title: "Evaluate My Property",
                   arTitle: "تقييم الوحدة",
+                  href: "/",
                 },
               ],
             },
@@ -60,18 +65,22 @@ const questions: Question = {
                 {
                   title: "Construct Free Contract",
                   arTitle: "إنشاء عقد ايجار",
+                  href: "/contract",
                 },
                 {
                   title: "Pay/Finance Annual Maintenance",
                   arTitle: "دفع/تمويل الصيانة السنوية",
+                  href: "/maintenance-payment",
                 },
                 {
                   title: "Evaluate My Property",
                   arTitle: "تقييم عقاري",
+                  href: "/",
                 },
                 {
                   title: "Rent My Unit",
                   arTitle: "تأجير وحدتي",
+                  href: "/",
                 },
               ],
             },
@@ -98,10 +107,12 @@ const questions: Question = {
                 {
                   title: "Listing Platform",
                   arTitle: "منصة القوائم",
+                  href: "/units",
                 },
                 {
                   title: "Request Property",
                   arTitle: "طلب عقار",
+                  href: "/",
                 },
               ],
             },
@@ -116,10 +127,12 @@ const questions: Question = {
                 {
                   title: "Pay Rent",
                   arTitle: "دفع الإيجار",
+                  href: "/rent-payment",
                 },
                 {
                   title: "Pay Maintenance",
                   arTitle: "دفع الصيانة",
+                  href: "/maintenance-payment",
                 },
                 // {
                 //   // TODO: disable this option
@@ -153,14 +166,17 @@ const questions: Question = {
                 {
                   title: "Access Exclusive Listings",
                   arTitle: "الوصول إلى القوائم الحصرية",
+                  href: "/",
                 },
                 {
                   title: "Promote Properties",
                   arTitle: "ترويج العقارات",
+                  href: "/",
                 },
                 {
                   title: "Request Property",
                   arTitle: "طلب عقار",
+                  href: "/",
                 },
               ],
             },
@@ -175,10 +191,12 @@ const questions: Question = {
                 {
                   title: "Construct Free Contract",
                   arTitle: "إنشاء عقد ايجار",
+                  href: "/contract",
                 },
                 {
                   title: "Finance Brokerage Commission",
                   arTitle: "تمويل عمولة الوساطة",
+                  href: "/",
                 },
               ],
             },
@@ -222,13 +240,14 @@ export function FindService() {
           </button>
         ))}
         {currentQuestion.services?.map((answer) => (
-          <button
-            className="flex items-center justify-start gap-2 rounded-3xl bg-white p-4 text-slate-700 transition duration-300 hover:bg-primary-800/80 hover:text-white"
+          <Link
             key={answer.title}
+            className="flex items-center justify-start gap-2 rounded-3xl bg-white p-4 text-slate-700 transition duration-300 hover:bg-primary-800/80 hover:text-white"
+            href={answer.href}
           >
             <SquareCheckBigIcon className="size-6" />
             {locale === "en" ? answer.title : answer.arTitle}
-          </button>
+          </Link>
         ))}
       </div>
     </div>
