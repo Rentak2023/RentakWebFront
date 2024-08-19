@@ -20,7 +20,7 @@ type Service = {
 };
 
 const questions: Question = {
-  title: "Are you a property Owner, a Tenant or a Broker?",
+  title: "Are you a property Owner, Tenant or Broker?",
   arTitle: "هل أنت مالك، مستأجر، أو بروكر؟",
   answers: [
     {
@@ -118,7 +118,7 @@ const questions: Question = {
             },
           },
           {
-            label: "Need Help with Current Rental",
+            label: "Pay My Rent",
             arLabel: "تحتاج إلى مساعدة في إيجارك الحالي",
             question: {
               title: "Services",
