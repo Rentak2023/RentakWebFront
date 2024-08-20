@@ -1,6 +1,6 @@
 "use client";
 
-import { SquareCheckBigIcon } from "lucide-react";
+import { MoveLeftIcon } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 
@@ -224,6 +224,7 @@ const questions: Question = {
 
 export function FindService() {
   const [currentQuestion, setCurrentQuestion] = useState(questions);
+  const [previousQuestion, setPreviousQuestion] = useState<Question>();
   const t = useTranslations("find-service");
   const locale = useLocale();
 
@@ -233,16 +234,16 @@ export function FindService() {
   ];
 
   return (
-    <div className="mb-12 flex-1 rounded-3xl bg-white/70 p-6 text-center lg:mb-0">
-      <h3 className="text-xl font-medium capitalize text-slate-800">
+    <div className="mb-12 max-w-[26rem] flex-1 rounded-3xl bg-white/70 p-6 text-center lg:mb-0">
+      <h3 className="text-sm capitalize text-slate-800">
         {t.rich("title", {
-          bold: (text) => <span className="font-bold">{text}</span>,
+          bold: (text) => <span className="font-semibold">{text}</span>,
         })}
       </h3>
-      <h2 className="mt-4 text-2xl font-semibold text-primary-800">
+      <h2 className="mt-2 text-2xl font-semibold text-primary-900">
         {locale === "en" ? currentQuestion.title : currentQuestion.arTitle}
       </h2>
-      <div className="mt-12 flex flex-col gap-3">
+      <div className="mt-6 flex flex-col gap-3">
         {options.map((option, index) =>
           isService(option) ? (
             <Link
@@ -261,6 +262,7 @@ export function FindService() {
             <button
               onClick={() => {
                 if (option.question) {
+                  setPreviousQuestion(currentQuestion);
                   setCurrentQuestion(option.question);
                 }
               }}
@@ -277,6 +279,16 @@ export function FindService() {
           ),
         )}
       </div>
+      <button
+        className="ml-4 mt-6 flex items-center justify-center gap-2 text-slate-800"
+        onClick={() => {
+          setCurrentQuestion(previousQuestion ?? questions);
+          setPreviousQuestion(questions);
+        }}
+      >
+        <MoveLeftIcon className="size-6 rounded-full" />
+        <span className="text-sm">Previous</span>
+      </button>
     </div>
   );
 }
