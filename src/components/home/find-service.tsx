@@ -58,7 +58,7 @@ const questions: Question = {
                 {
                   title: "Evaluate My Property",
                   arTitle: "تقييم الوحدة",
-                  href: "/",
+                  href: "/evaluate-property",
                 },
               ],
             },
@@ -88,7 +88,7 @@ const questions: Question = {
                 {
                   title: "Evaluate My Property",
                   arTitle: "تقييم عقاري",
-                  href: "/",
+                  href: "/evaluate-property",
                 },
               ],
             },
@@ -186,12 +186,12 @@ const questions: Question = {
                 {
                   title: "Promote Properties",
                   arTitle: "ترويج العقارات",
-                  href: "/",
+                  href: "/promote-properties",
                 },
                 {
                   title: "Request Property",
                   arTitle: "طلب عقار",
-                  href: "/",
+                  href: "/request-property",
                 },
               ],
             },
@@ -211,7 +211,7 @@ const questions: Question = {
                 {
                   title: "Finance Brokerage Commission",
                   arTitle: "تمويل عمولة الوساطة",
-                  href: "/",
+                  href: "/brokerage-commission",
                 },
               ],
             },
