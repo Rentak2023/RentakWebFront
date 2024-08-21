@@ -234,7 +234,7 @@ export function FindService() {
   ];
 
   return (
-    <div className="mb-12 max-w-[26rem] flex-1 rounded-3xl bg-white/70 p-6 text-center lg:mb-0">
+    <div className="mb-12 flex-1 rounded-3xl bg-white/70 p-6 text-center lg:mb-0 lg:max-w-[26rem] xl:max-w-md">
       <h3 className="text-sm capitalize text-slate-800">
         {t.rich("title", {
           bold: (text) => <span className="font-semibold">{text}</span>,
