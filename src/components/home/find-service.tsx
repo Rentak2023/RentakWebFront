@@ -181,7 +181,7 @@ const questions: Question = {
                 {
                   title: "Access Exclusive Listings",
                   arTitle: "الوصول إلى القوائم الحصرية",
-                  href: "/",
+                  href: "/units",
                 },
                 {
                   title: "Promote Properties",
