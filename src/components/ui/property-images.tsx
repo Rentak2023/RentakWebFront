@@ -30,6 +30,7 @@ export default function PropertyImages({ images }: PropertyImagesTypes) {
       {images.map((image, index) => (
         <button
           key={image.id}
+          type="button"
           className={cn(
             "group relative h-72 overflow-hidden rounded-lg",
             index === 0

@@ -14,7 +14,7 @@ import {
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import { Toaster } from "@/components/ui/toaster";
-import useTextDirection from "@/hooks/text-direction";
+import getLocaleDirection from "@/lib/utils";
 import { locales } from "@/navigation";
 
 import { Providers } from "./providers";
@@ -57,7 +57,7 @@ export default async function RootLayout({
   params: { locale: string };
 }>) {
   unstable_setRequestLocale(locale);
-  const direction = useTextDirection(locale);
+  const direction = getLocaleDirection(locale);
   const messages = await getMessages();
 
   return (

@@ -7,10 +7,17 @@ import type * as React from "react";
 import { DayPicker } from "react-day-picker";
 
 import { buttonVariants } from "@/components/ui/button";
-import useTextDirection from "@/hooks/text-direction";
-import { cn } from "@/lib/utils";
+import getLocaleDirection, { cn } from "@/lib/utils";
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>;
+
+function IconLeft() {
+  return <ChevronLeft className="size-4" />;
+}
+
+function IconRight() {
+  return <ChevronRight className="size-4" />;
+}
 
 function Calendar({
   className,
@@ -19,7 +26,7 @@ function Calendar({
   ...props
 }: CalendarProps) {
   const locale = useLocale();
-  const dir = useTextDirection(locale);
+  const dir = getLocaleDirection(locale);
 
   return (
     <DayPicker
@@ -62,8 +69,8 @@ function Calendar({
         ...classNames,
       }}
       components={{
-        IconLeft: () => <ChevronLeft className="size-4" />,
-        IconRight: () => <ChevronRight className="size-4" />,
+        IconLeft,
+        IconRight,
       }}
       {...props}
     />

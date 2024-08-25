@@ -43,17 +43,19 @@ function PropertyTypes() {
                           <Checkbox
                             checked={field.value?.includes(item.id.toString())}
                             onCheckedChange={(checked) => {
-                              checked
-                                ? field.onChange([
-                                    ...field.value,
-                                    item.id.toString(),
-                                  ])
-                                : field.onChange(
-                                    field.value?.filter(
-                                      (value: string) =>
-                                        value !== item.id.toString(),
-                                    ),
-                                  );
+                              if (checked) {
+                                field.onChange([
+                                  ...field.value,
+                                  item.id.toString(),
+                                ]);
+                              } else {
+                                field.onChange(
+                                  field.value?.filter(
+                                    (value: string) =>
+                                      value !== item.id.toString(),
+                                  ),
+                                );
+                              }
                             }}
                           />
                         </FormControl>

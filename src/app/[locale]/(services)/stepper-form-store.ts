@@ -11,6 +11,7 @@ type FormStore<T = Record<string, any>> = {
   };
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
 export function createFormStore<T extends Array<TStep> = Array<TStep>>(
   steps: T,
 ) {

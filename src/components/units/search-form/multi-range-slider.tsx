@@ -42,9 +42,9 @@ function MultiRangeSlider({ min, max }: MultiRangeSliderProps) {
       </div>
       <div className="flex flex-wrap gap-2">
         <ol className="flex w-full items-center gap-3">
-          {localValues.map((_, index) => (
+          {localValues.map((val, index) => (
             <li
-              key={index}
+              key={val}
               className="flex h-10 w-full items-center justify-between rounded-md border px-3"
             >
               <span>{localValues[index]}</span>

@@ -9,12 +9,12 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Unit from "@/components/unit";
-import useTextDirection from "@/hooks/text-direction";
+import getLocaleDirection from "@/lib/utils";
 import { getUnits } from "@/services/units";
 
 async function UnitsSlider() {
   const locale = await getLocale();
-  const direction = useTextDirection(locale);
+  const direction = getLocaleDirection(locale);
   const units = await getUnits({ locale });
 
   return (

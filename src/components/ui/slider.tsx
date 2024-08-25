@@ -26,8 +26,8 @@ const Slider = React.forwardRef<
         <SliderPrimitive.Range className="absolute h-full bg-primary-800" />
       </SliderPrimitive.Track>
 
-      {initialValue.map((value, index) => (
-        <React.Fragment key={index}>
+      {initialValue.map((value) => (
+        <React.Fragment key={value}>
           <SliderPrimitive.Thumb className="block size-5 rounded-full border-2 border-primary-800 bg-white ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-800 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50" />
         </React.Fragment>
       ))}
