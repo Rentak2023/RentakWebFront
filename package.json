@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "startAzure": "node .next/standalone/server.js",
+    "startAzure": "cp -r .next/static .next/standalone/.next/ && node .next/standalone/server.js",
     "lint": "eslint .",
     "prepare": "husky"
   },
