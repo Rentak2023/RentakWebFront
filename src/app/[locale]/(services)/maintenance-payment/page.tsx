@@ -217,7 +217,8 @@ export default function RentPayment({
               ),
             }),
             v.forward(
-              v.check(
+              v.partialCheck(
+                [["wallet_account_number"], ["confirm_wallet_account_number"]],
                 ({ wallet_account_number, confirm_wallet_account_number }) =>
                   wallet_account_number === confirm_wallet_account_number,
                 t("fields.confirm-wallet-number.mismatch"),
@@ -225,6 +226,7 @@ export default function RentPayment({
               ["confirm_wallet_account_number"],
             ),
           ),
+          // @ts-expect-error TODO: figure out the type
           v.pipe(
             v.object({
               cash_out_payment_method_id: v.literal(PaymentMethod.Bank),
@@ -243,8 +245,11 @@ export default function RentPayment({
                 v.nonEmpty(t("fields.confirm-bank-account-number.non-empty")),
               ),
             }),
+            // @ts-expect-error TODO: figure out the type
             v.forward(
-              v.check(
+              // @ts-expect-error TODO: figure out the type
+              v.partialCheck(
+                [["bank_account_number"], ["confirm_bank_account_number"]],
                 ({ bank_account_number, confirm_bank_account_number }) =>
                   bank_account_number === confirm_bank_account_number,
                 t("fields.confirm-bank-account-number.mismatch"),
