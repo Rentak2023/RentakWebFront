@@ -7,6 +7,9 @@
     "subtitle": "At Rentak, we simplify and secure the rental process, offering tailored solutions for landlords, tenants, and brokers. Experience seamless property management, transparent transactions, and flexible payment options that transform real estate into a hassle-free world.",
     "cta": "Discover Units"
   },
+  "find-service": {
+    "title": "Find the perfect service with <bold>Rentak</bold>"
+  },
   "navbar": {
     "home": "Home",
     "listing": "Discover Units",
@@ -338,6 +341,22 @@
     "rent-management": {
       "title": "Manage Your Property",
       "description": "Unlock the full potential of your property with our comprehensive management services—simplify every aspect of being a landlord."
+    },
+    "evalute-property": {
+      "title": "Evaluate Your Property",
+      "description": "Get a professional evaluation of your property’s rental value."
+    },
+    "brokerage-commission": {
+      "title": "Finance Brokerage Commission",
+      "description": "Ensure you earn your full brokerage commissions by financing the amount to landlords and tenants, with Rentak transferring the amount directly to your bank."
+    },
+    "request-property": {
+      "title": "Request Property",
+      "description": "Submit your preferences and let Rentak match you with suitable listings."
+    },
+    "promote-properties": {
+      "title": "Promote Properties",
+      "description": "Use Rentak’s marketing tools to promote properties effectively."
     }
   },
   "unit": {
