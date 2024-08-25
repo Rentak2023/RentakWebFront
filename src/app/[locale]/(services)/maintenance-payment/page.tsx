@@ -434,15 +434,22 @@ export default function RentPayment({
       lang: locale,
     });
     if (res?.type === "success") {
-      toast({
-        title: "Success",
-        description: "Payment Request created successfully",
-      });
-      setTimeout(() => {
-        if (res.data.payment_data.redirect_url) {
-          window.location.href = res.data.payment_data.redirect_url;
-        }
-      }, 1000);
+      if (res.data.redirect) {
+        toast({
+          title: "Success",
+          description: "Payment Request created successfully",
+        });
+        setTimeout(() => {
+          if (res.data.payment_data?.redirect_url) {
+            window.location.href = res.data.payment_data.redirect_url;
+          }
+        }, 1000);
+      } else {
+        toast({
+          title: "Success",
+          description: t("messages.service-request-success"),
+        });
+      }
     }
     if (res?.type === "error" && res.error.message) {
       toast({
@@ -456,27 +463,14 @@ export default function RentPayment({
   };
 
   return (
-    <main className="pt-20">
-      <div className="relative isolate py-16">
-        <Image
-          src={bannerImage}
-          alt=""
-          className="absolute inset-0 -z-20 size-full object-cover"
-          fill
-        />
-        <div className="absolute inset-0 -z-10 bg-slate-900/20" />
-
-        <div className="mx-auto max-w-lg">
-          <h1 className="text-center text-5xl font-semibold text-slate-50">
-            Vacay Now, Pay Later!
-          </h1>
-          <p className="mt-6 text-balance text-center text-lg text-slate-50">
-            Choose a chalet from any platform you prefer, agree on the price,
-            provide owner&apos;s bank details, and fill out our form. Rentak
-            handles the rest, including transferring the amount within 4 working
-            days.
-          </p>
-        </div>
+    <main className="pt-32">
+      <div className="mx-auto max-w-7xl text-center sm:px-6 lg:px-8">
+        <h1 className="mx-auto max-w-4xl text-balance text-5xl font-medium tracking-tight text-slate-900 sm:text-6xl">
+          {t("maintenance-payment.title")}
+        </h1>
+        <p className="mx-auto mt-6 max-w-2xl text-lg tracking-tight text-slate-700">
+          {t("maintenance-payment.description")}
+        </p>
       </div>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <ServiceForms steps={steps} onSubmit={handleSubmit} />

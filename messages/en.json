@@ -7,17 +7,21 @@
     "subtitle": "At Rentak, we simplify and secure the rental process, offering tailored solutions for landlords, tenants, and brokers. Experience seamless property management, transparent transactions, and flexible payment options that transform real estate into a hassle-free world.",
     "cta": "Discover Units"
   },
+  "find-service": {
+    "title": "Find the perfect service with <bold>Rentak</bold>"
+  },
   "navbar": {
     "home": "Home",
-    "listing": "Find units",
+    "listing": "Discover Units",
     "long-term": "Long-term",
     "short-term": "Short-term",
     "services": "Services",
     "manage-property": "Manage Your Property",
     "rent-collection": "Rent Collection",
     "rent-payment": "Pay Your Rent",
-    "free-contract": "Create Free Rent Contract",
-    "contact": "Contact"
+    "maintenance-payment": "Pay Your Maintenance",
+    "free-contract": "Create Rent Contract",
+    "contact": "Contact Us"
   },
   "footer": {
     "copyright": "All right reserved",
@@ -29,7 +33,7 @@
     "rentPayment": "Rent Payment",
     "rentCollection": "Rent Collection",
     "units": "Units",
-    "contact": "Contact"
+    "contact": "Contact Us"
   },
   "home": {
     "our-services": {
@@ -37,7 +41,7 @@
       "rent-management": {
         "title": "Manage Your Property",
         "description": "Unlock the full potential of your property with our comprehensive management services—simplify every aspect of being a landlord.",
-        "cta": "Submit Property"
+        "cta": "Rent Your Property"
       },
       "rent-collection": {
         "title": "Rent Collection",
@@ -72,7 +76,7 @@
     },
     "plans": {
       "title": "Rentak vs. Traditional renting",
-      "subtitle": "Elevate Your Rental Experience",
+      "subtitle": "Elevate Your Rental Experiences",
       "feature-comparison": "Feature comparison",
       "traditional-rent": "Traditional rent",
       "finding-tenants": {
@@ -130,6 +134,9 @@
       "subtitle": "Browse our up-to-date inventory of available rental units, showcasing a variety of properties that cater to diverse preferences and needs.",
       "recentUnits": "Recent Units",
       "viewAll": "View All Units"
+    },
+    "partners": {
+      "title": "Our Partners"
     },
     "contact": {
       "title": "Contact Us",
@@ -292,6 +299,20 @@
       "agree": {
         "label": "Agree",
         "non-empty": "You need to agree to the terms"
+      },
+      "full-name": {
+        "label": "Full Name",
+        "non-empty": "Full name cannot be empty"
+      },
+      "phone-number": {
+        "label": "Phone Number",
+        "non-empty": "Phone number cannot be empty",
+        "invalid": "Invalid phone number"
+      },
+      "email-address": {
+        "label": "Email Address",
+        "non-empty": "Email address cannot be empty",
+        "invalid": "Invalid email address"
       }
     },
     "actions": {
@@ -301,6 +322,41 @@
       "previous": "Previous",
       "next": "Next",
       "skip": "Skip"
+    },
+    "messages": {
+      "service-request-success": "Request made successfully. someone will contact you shortly."
+    },
+    "rent-collection": {
+      "title": "Rent Collection",
+      "description": "Ensure timely rent collection with our automated systems that guarantee peace of mind for landlords and ease for tenants."
+    },
+    "maintenance-payment": {
+      "title": "Pay Maintenance with Ease!",
+      "description": "Handle your property's maintenance fees effortlessly. Enter the maintenance amount, and choose your preferred payment method. Rentak will transfer the amount to the beneficiary within 4 working days."
+    },
+    "rent-payment": {
+      "title": "Vacay Now, Pay Later!",
+      "description": "Choose a chalet from any platform you prefer, agree on the price, provide owner's bank details, and fill out our form. Rentak handles the rest, including transferring the amount within 4 working days."
+    },
+    "rent-management": {
+      "title": "Manage Your Property",
+      "description": "Unlock the full potential of your property with our comprehensive management services—simplify every aspect of being a landlord."
+    },
+    "evalute-property": {
+      "title": "Evaluate Your Property",
+      "description": "Get a professional evaluation of your property’s rental value."
+    },
+    "brokerage-commission": {
+      "title": "Finance Brokerage Commission",
+      "description": "Ensure you earn your full brokerage commissions by financing the amount to landlords and tenants, with Rentak transferring the amount directly to your bank."
+    },
+    "request-property": {
+      "title": "Request Property",
+      "description": "Submit your preferences and let Rentak match you with suitable listings."
+    },
+    "promote-properties": {
+      "title": "Promote Properties",
+      "description": "Use Rentak’s marketing tools to promote properties effectively."
     }
   },
   "unit": {

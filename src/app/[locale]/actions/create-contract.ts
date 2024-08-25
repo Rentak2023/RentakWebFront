@@ -1,3 +1,4 @@
+import { endOfDay, format } from "date-fns";
 import { HTTPError } from "ky";
 import * as v from "valibot";
 
@@ -21,7 +22,7 @@ export const createContractAction = async (
   const formData = new FormData();
   for (const [key, value] of Object.entries(data)) {
     if (value instanceof Date) {
-      formData.append(key, value.toISOString());
+      formData.append(key, format(endOfDay(value), "yyyy-MM-dd"));
     } else if (value) {
       formData.append(key, value);
     }

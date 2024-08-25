@@ -5,26 +5,29 @@ import React, { useEffect, useState } from "react";
 
 import logo from "@/app/[locale]/assets/images/Logo.png";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { Link, usePathname } from "@/navigation";
 
-type NavbarProps = {
-  navClass?: string;
-  topnavClass?: string;
-};
-
-export default function Navbar({ navClass, topnavClass }: NavbarProps) {
+export default function Navbar() {
   const pathname = usePathname();
   const locale = useLocale();
 
   const [isOpen, setIsOpen] = useState(true);
-  const [topNavbar, setTopNavBar] = useState(pathname !== "/");
 
   const [menu, setMenu] = useState("");
   const [subMenu, setSubMenu] = useState("");
 
   const t = useTranslations("navbar");
 
-  const routes = [
+  const routes: Array<{
+    name: string;
+    path: string;
+    subRoutes?: Array<{
+      name: string;
+      path: string;
+      disabled?: boolean;
+    }>;
+  }> = [
     {
       name: t("home"),
       path: "/",
@@ -40,6 +43,7 @@ export default function Navbar({ navClass, topnavClass }: NavbarProps) {
         {
           name: t("short-term"),
           path: "/service-2",
+          disabled: true,
         },
       ],
     },
@@ -49,15 +53,19 @@ export default function Navbar({ navClass, topnavClass }: NavbarProps) {
       subRoutes: [
         {
           name: t("manage-property"),
+          path: "/rent-management",
+        },
+        {
+          name: t("rent-payment"),
+          path: "/rent-payment",
+        },
+        {
+          name: t("maintenance-payment"),
           path: "/maintenance-payment",
         },
         {
           name: t("rent-collection"),
           path: "/rent-collection",
-        },
-        {
-          name: t("rent-payment"),
-          path: "/rent-payment",
         },
         {
           name: t("free-contract"),
@@ -74,24 +82,6 @@ export default function Navbar({ navClass, topnavClass }: NavbarProps) {
   useEffect(() => {
     setMenu(pathname);
     setSubMenu(pathname);
-
-    if (pathname !== "/") {
-      setTopNavBar(true);
-    }
-
-    function windowScroll() {
-      if (pathname === "/") {
-        setTopNavBar(window.scrollY >= 50);
-      }
-    }
-
-    windowScroll();
-
-    window.addEventListener("scroll", windowScroll);
-
-    return () => {
-      window.removeEventListener("scroll", windowScroll);
-    };
   }, [pathname]);
 
   const toggleMenu = () => {
@@ -100,10 +90,7 @@ export default function Navbar({ navClass, topnavClass }: NavbarProps) {
 
   return (
     <React.Fragment>
-      <nav
-        id="topnav"
-        className={`${topNavbar ? "nav-sticky" : ""} ${topnavClass ?? ""}`}
-      >
+      <nav id="topnav" className="nav-sticky">
         <div className="container mx-auto flex px-4">
           {/* <!-- Start Mobile Toggle --> */}
           <div className="me-4 lg:hidden">
@@ -138,12 +125,10 @@ export default function Navbar({ navClass, topnavClass }: NavbarProps) {
           >
             {/* <!-- Navigation Menu--> */}
 
-            <ul
-              className={`navigation-menu ${navClass === "" || navClass === undefined ? "" : "nav-light"} ${topnavClass !== "" && topnavClass !== undefined ? "justify-center" : "justify-end"}`}
-            >
+            <ul className="navigation-menu">
               {routes.map((route) => {
-                const hasSubmenu = !!route.subRoutes;
-                const checkedRoutes = hasSubmenu
+                const hasSubmenu = Boolean(route.subRoutes);
+                const checkedRoutes = route.subRoutes
                   ? [route.path, ...route.subRoutes.map((route) => route.path)]
                   : [route.path];
 
@@ -167,7 +152,7 @@ export default function Navbar({ navClass, topnavClass }: NavbarProps) {
                     >
                       {route.name}
                     </Link>
-                    {hasSubmenu ? (
+                    {route.subRoutes ? (
                       <>
                         <span className="menu-arrow" />
                         <ul
@@ -180,7 +165,13 @@ export default function Navbar({ navClass, topnavClass }: NavbarProps) {
                             >
                               <Link
                                 href={subRoute.path}
-                                className="sub-menu-item"
+                                className={cn(
+                                  "sub-menu-item",
+                                  subRoute.disabled &&
+                                    "disabled pointer-events-none !text-slate-400",
+                                )}
+                                aria-disabled={subRoute.disabled}
+                                tabIndex={subRoute.disabled ? -1 : undefined}
                               >
                                 {subRoute.name}
                               </Link>

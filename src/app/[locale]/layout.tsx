@@ -1,5 +1,6 @@
 import "./globals.css";
 
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { type Metadata } from "next";
 import { Noto_Sans_Arabic } from "next/font/google";
 import localFont from "next/font/local";
@@ -61,6 +62,8 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} dir={direction}>
+      {/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */}
+      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID!} />
       <body
         className={`${generalSans.variable} ${notoSans.variable} font-sans`}
       >

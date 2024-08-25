@@ -13,8 +13,16 @@ type PaymentData = {
 
 type MaintenancePaymentResponse = {
   message: string;
-  payment_data: PaymentData;
-};
+} & (
+  | {
+      redirect: true;
+      payment_data: PaymentData;
+    }
+  | {
+      redirect: false;
+      payment_data: null;
+    }
+);
 
 export const maintenancePaymentAction = async (data: Record<string, any>) => {
   try {

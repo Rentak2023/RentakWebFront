@@ -23,7 +23,7 @@ export async function Services() {
       description: t("rent-management.description"),
       icon: HomeIcon,
       cta: t("rent-management.cta"),
-      href: "/maintenance-payment",
+      href: "/rent-management",
     },
     {
       title: t("rent-collection.title"),
