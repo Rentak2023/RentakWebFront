@@ -32,6 +32,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
 import { arrangeVisitSchema } from "@/schema/arrange-visit";
 
@@ -53,10 +54,23 @@ export function ArrangeVisit({ unitId }: ArrangeVisitProps) {
   const formatter = useFormatter();
   const t = useTranslations("units");
   const locale = useLocale();
+  const { toast } = useToast();
 
   const onSubmit = form.handleSubmit(async (data) => {
-    // TODO: handle success and failure
-    await arrangeVisitAction(data, unitId, locale);
+    const res = await arrangeVisitAction(data, unitId, locale);
+    if (res.type === "success") {
+      toast({
+        title: "Success",
+        description: res.data.message,
+      });
+    } else {
+      toast({
+        title: "Error",
+        description: res.error.message ?? "Something went wrong",
+        variant: "destructive",
+        duration: 5000,
+      });
+    }
   });
 
   return (

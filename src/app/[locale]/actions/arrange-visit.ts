@@ -1,4 +1,5 @@
 "use server";
+import { HTTPError } from "ky";
 import * as v from "valibot";
 
 import ky from "@/lib/ky";
@@ -19,14 +20,36 @@ export const arrangeVisitAction = async (
     console.error(validatedFields.issues);
     throw new Error("Invalid fields");
   }
+  try {
+    const res = await ky
+      .post("unit/visit", {
+        json: {
+          ...data,
+          lang,
+          unit_id: unitId,
+        },
+      })
+      .json<ArrangeVisitResponse>();
 
-  return ky
-    .post("unit/visit", {
-      json: {
-        ...data,
-        lang,
-        unit_id: unitId,
-      },
-    })
-    .json<ArrangeVisitResponse>();
+    return {
+      type: "success" as const,
+      data: res,
+    };
+  } catch (error) {
+    if (error instanceof HTTPError) {
+      const errorRes = await error.response.json<any>();
+      return {
+        type: "error" as const,
+        error: errorRes,
+      };
+    } else {
+      console.error(error);
+      return {
+        type: "error" as const,
+        error: {
+          message: "Something went wrong",
+        },
+      };
+    }
+  }
 };
