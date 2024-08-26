@@ -1,10 +1,10 @@
 import { withSentryConfig } from "@sentry/nextjs";
+import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
 
 const withNextIntl = createNextIntlPlugin();
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig: NextConfig = {
   output: "standalone",
   images: {
     formats: ["image/avif", "image/webp"],
@@ -24,14 +24,12 @@ const nextConfig = {
   },
   experimental: {
     reactCompiler: true,
+    ppr: true,
+    turbo: {
+      treeShaking: true,
+    },
   },
-  typescript: {
-    // !! WARN !!
-    // Dangerously allow production builds to successfully complete even if
-    // your project has type errors.
-    // !! WARN !!
-    ignoreBuildErrors: true,
-  },
+  // eslint-disable-next-line @typescript-eslint/require-await -- nextjs type require async
   async redirects() {
     return [
       // old unit url
