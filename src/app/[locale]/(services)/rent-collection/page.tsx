@@ -325,10 +325,11 @@ export default function RentCollection() {
 
   const handleSubmit = async (data: Record<string, any>) => {
     const res = await rentCollectionAction(data);
-    if (res?.type === "error" && res.error.message) {
+    if (res?.type === "error") {
       toast({
         title: "Error",
-        description: res.error.message,
+        description:
+          res.error.message ?? "Something went wrong. Please try again later.",
         variant: "destructive",
         duration: 5000,
       });

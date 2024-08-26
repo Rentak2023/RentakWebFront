@@ -454,10 +454,11 @@ export default function RentPayment({
         });
       }
     }
-    if (res?.type === "error" && res.error.message) {
+    if (res?.type === "error") {
       toast({
         title: "Error",
-        description: res.error.message,
+        description:
+          res.error.message ?? "Something went wrong. Please try again later.",
         variant: "destructive",
         duration: 5000,
       });
