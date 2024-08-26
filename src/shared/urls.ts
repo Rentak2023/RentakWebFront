@@ -64,7 +64,7 @@ const URLS = {
   //Contact Info
   mailTo: "mailto:Info@rent-ak.com",
   tel: "tel:+201111111541",
-  address: `https://www.google.com/maps/@30.080352032099128,31.01614931151753,10z`,
+  address: `https://maps.app.goo.gl/B28qPdtzBoW9FCmv6`,
 };
 
 export default URLS;
