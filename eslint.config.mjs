@@ -101,6 +101,7 @@ export default ts.config(
             "@radix-ui/react-slider",
             "@radix-ui/react-tabs",
             "@radix-ui/react-toast",
+            "@sentry/nextjs",
             "react",
             "valibot",
           ],
