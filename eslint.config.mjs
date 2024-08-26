@@ -11,6 +11,7 @@ import tanStackQuery from "@tanstack/eslint-plugin-query";
 import configPrettier from "eslint-config-prettier";
 import importX from "eslint-plugin-import-x";
 import promise from "eslint-plugin-promise";
+import reactCompiler from "eslint-plugin-react-compiler";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
 import tailwind from "eslint-plugin-tailwindcss";
 import unicorn from "eslint-plugin-unicorn";
@@ -51,6 +52,7 @@ export default ts.config(
     plugins: {
       "simple-import-sort": simpleImportSort,
       "import-x": importX,
+      "react-compiler": reactCompiler,
     },
     rules: {
       "func-style": ["error", "declaration", { allowArrowFunctions: true }],
@@ -153,6 +155,7 @@ export default ts.config(
         { allowWholeFile: true },
       ],
       "@eslint-community/eslint-comments/no-unused-disable": "error",
+      "react-compiler/react-compiler": "error",
     },
     languageOptions: {
       parserOptions: {

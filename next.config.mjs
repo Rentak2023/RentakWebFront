@@ -22,6 +22,9 @@ const nextConfig = {
       fullUrl: true,
     },
   },
+  experimental: {
+    reactCompiler: true,
+  },
   typescript: {
     // !! WARN !!
     // Dangerously allow production builds to successfully complete even if

@@ -92,13 +92,14 @@ function StepperProvider({ value, children }: StepperContextProviderProps) {
 
 // <---------- HOOKS ---------->
 
-function usePrevious<T>(value: T): T | undefined {
-  const ref = React.useRef<T>();
+function usePrevious<T>(value: T): T | null {
+  const ref = React.useRef<T>(null);
 
   React.useEffect(() => {
     ref.current = value;
   }, [value]);
 
+  // eslint-disable-next-line react-compiler/react-compiler
   return ref.current;
 }
 
@@ -330,6 +331,7 @@ function VerticalContent({ children }: { children: React.ReactNode }) {
     <>
       {React.Children.map(children, (child, i) => {
         const isCompletedStep =
+          // @ts-expect-error react types changed
           (React.isValidElement(child) && child.props.isCompletedStep) ??
           i < activeStep;
         const isLastStep = i === stepCount - 1;
@@ -367,6 +369,7 @@ function HorizontalContent({ children }: { children: React.ReactNode }) {
         }
         // eslint-disable-next-line @typescript-eslint/no-unsafe-return
         return React.Children.map(
+          // @ts-expect-error react types changed
           node.props.children,
           // eslint-disable-next-line @typescript-eslint/no-unsafe-return
           (childNode) => childNode,

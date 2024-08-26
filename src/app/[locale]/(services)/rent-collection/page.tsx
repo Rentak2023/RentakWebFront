@@ -122,11 +122,14 @@ export default function RentCollection() {
               ({ wallet_account_number, confirm_wallet_account_number }) =>
                 wallet_account_number === confirm_wallet_account_number,
               t("fields.confirm-wallet-number.mismatch"),
-            ),
+            ) as v.GenericValidation<{
+              cash_out_payment_method_id: PaymentMethod.Wallet;
+              wallet_account_number: string;
+              confirm_wallet_account_number: string;
+            }>,
             ["confirm_wallet_account_number"],
           ),
         ),
-        // @ts-expect-error TODO: figure out the type
         v.pipe(
           v.object({
             cash_out_payment_method_id: v.literal(PaymentMethod.Bank),
@@ -145,15 +148,18 @@ export default function RentCollection() {
               v.nonEmpty(t("fields.confirm-bank-account-number.non-empty")),
             ),
           }),
-          // @ts-expect-error TODO: figure out the type
           v.forward(
-            // @ts-expect-error TODO: figure out the type
             v.partialCheck(
               [["bank_account_number"], ["confirm_bank_account_number"]],
               ({ bank_account_number, confirm_bank_account_number }) =>
                 bank_account_number === confirm_bank_account_number,
               t("fields.confirm-bank-account-number.mismatch"),
-            ),
+            ) as v.GenericValidation<{
+              cash_out_payment_method_id: PaymentMethod.Bank;
+              bank_id: string;
+              bank_account_number: string;
+              confirm_bank_account_number: string;
+            }>,
             ["confirm_bank_account_number"],
           ),
         ),

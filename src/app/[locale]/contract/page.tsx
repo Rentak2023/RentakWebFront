@@ -59,6 +59,7 @@ function Contract() {
     const res = await createContractAction(data);
 
     if (res.type === "success" && res.data.url) {
+      // eslint-disable-next-line react-compiler/react-compiler -- It's just a redirect
       window.location.href = res.data.url;
     }
     if (res.type === "error" && res.error.message) {
