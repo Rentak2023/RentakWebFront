@@ -36,7 +36,7 @@ function FinishingTypes() {
                 {finishingTypes.map((type) => (
                   <FormItem
                     key={type.id}
-                    className="flex items-center space-x-3 space-y-0"
+                    className="flex items-center gap-3 space-y-0"
                   >
                     <FormControl>
                       <RadioGroupItem value={type.id.toString()} />

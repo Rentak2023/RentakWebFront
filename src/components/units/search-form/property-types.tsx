@@ -37,7 +37,7 @@ function PropertyTypes() {
                     return (
                       <FormItem
                         key={item.id}
-                        className="flex flex-row items-start space-x-3 space-y-0"
+                        className="flex items-center gap-3 space-y-0"
                       >
                         <FormControl>
                           <Checkbox
