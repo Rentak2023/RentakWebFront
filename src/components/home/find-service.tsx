@@ -73,7 +73,7 @@ const questions: Question = {
                 {
                   title: "Rent My Unit",
                   arTitle: "تأجير وحدتي",
-                  href: "/",
+                  href: "/rent-management",
                 },
                 {
                   title: "Create Rent Contract",
