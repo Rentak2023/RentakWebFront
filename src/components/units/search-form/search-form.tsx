@@ -75,7 +75,7 @@ export default function SearchForm() {
       }
     }
     if (changed) {
-      window.history.pushState(null, "", `?${searchParamsObj.toString()}`);
+      window.history.replaceState(null, "", `?${searchParamsObj.toString()}`);
     }
   }, [currentValues, searchParams]);
 

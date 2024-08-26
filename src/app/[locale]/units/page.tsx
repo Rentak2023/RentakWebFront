@@ -13,7 +13,7 @@ import { type PropertiesSearchParams } from "@/services/properties";
 
 import { makeQueryClient } from "../get-query-client";
 
-export default async function UnitsPage({
+export default function UnitsPage({
   params: { locale },
   searchParams,
 }: Readonly<{
@@ -23,19 +23,17 @@ export default async function UnitsPage({
   unstable_setRequestLocale(locale);
   const queryClient = makeQueryClient();
 
-  await Promise.all([
-    queryClient.prefetchQuery(minMaxPriceQuery),
-    queryClient.prefetchQuery(citiesQuery),
-    queryClient.prefetchQuery(finishTypesQuery(locale)),
-    queryClient.prefetchQuery(propertyTypesQuery(locale)),
-    queryClient.prefetchQuery(
-      unitsQuery({
-        ...searchParams,
-        lang: locale,
-        page: searchParams.page ?? 1,
-      }),
-    ),
-  ]);
+  queryClient.prefetchQuery(minMaxPriceQuery);
+  queryClient.prefetchQuery(citiesQuery);
+  queryClient.prefetchQuery(finishTypesQuery(locale));
+  queryClient.prefetchQuery(propertyTypesQuery(locale));
+  queryClient.prefetchQuery(
+    unitsQuery({
+      ...searchParams,
+      lang: locale,
+      page: searchParams.page ?? 1,
+    }),
+  );
 
   if (searchParams.governoment_id) {
     queryClient.prefetchQuery(districtsQuery(searchParams.governoment_id));
