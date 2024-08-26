@@ -268,6 +268,7 @@ export function FindService() {
               }}
               className="flex flex-row items-center justify-start gap-2 rounded-3xl bg-white p-4 text-slate-700 transition duration-300 hover:bg-primary-800/80 hover:text-white"
               key={option.title}
+              type="button"
             >
               <span className="flex size-8 items-center justify-center rounded-full border border-slate-700 bg-white p-2 leading-8 text-slate-700">
                 {String.fromCodePoint(65 + index)}
@@ -285,6 +286,7 @@ export function FindService() {
           setCurrentQuestion(previousQuestion ?? questions);
           setPreviousQuestion(questions);
         }}
+        type="button"
       >
         <MoveLeftIcon className="size-6 rounded-full" />
         <span className="text-sm">Previous</span>

@@ -80,8 +80,10 @@ export function ArrangeVisit({ unitId }: ArrangeVisitProps) {
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Arrange A Visit</DialogTitle>
-          <DialogDescription>Submit a Visit Request</DialogDescription>
+          <DialogTitle>{t("arrange-visit.title")}</DialogTitle>
+          <DialogDescription>
+            {t("arrange-visit.description")}
+          </DialogDescription>
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={onSubmit} className="space-y-8">
@@ -90,7 +92,7 @@ export function ArrangeVisit({ unitId }: ArrangeVisitProps) {
               name="datetime"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Date</FormLabel>
+                  <FormLabel>{t("fields.date.label")}</FormLabel>
                   <Popover modal>
                     <FormControl>
                       <PopoverTrigger asChild>
@@ -109,7 +111,7 @@ export function ArrangeVisit({ unitId }: ArrangeVisitProps) {
                               dateStyle: "long",
                             })
                           ) : (
-                            <span>Pick a date</span>
+                            <span>{t("fields.date.placeholder")}</span>
                           )}
                           <CalendarIcon className="ms-auto size-4 opacity-50" />
                         </Button>
@@ -134,7 +136,7 @@ export function ArrangeVisit({ unitId }: ArrangeVisitProps) {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>{t("fields.name.label")}</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
@@ -147,7 +149,7 @@ export function ArrangeVisit({ unitId }: ArrangeVisitProps) {
               name="phone"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Phone Number</FormLabel>
+                  <FormLabel>{t("fields.phone.label")}</FormLabel>
                   <FormControl>
                     <Input type="tel" {...field} />
                   </FormControl>
@@ -160,7 +162,7 @@ export function ArrangeVisit({ unitId }: ArrangeVisitProps) {
               name="message"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Special Request</FormLabel>
+                  <FormLabel>{t("fields.message.label")}</FormLabel>
                   <FormControl>
                     <Textarea {...field} />
                   </FormControl>
@@ -173,7 +175,7 @@ export function ArrangeVisit({ unitId }: ArrangeVisitProps) {
                 {form.formState.isSubmitting ? (
                   <Loader2 className="mr-2 size-4 animate-spin" />
                 ) : null}
-                Submit
+                {t("fields.submit")}
               </Button>
             </DialogFooter>
           </form>

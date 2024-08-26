@@ -399,7 +399,27 @@
     "sort": "Sort",
     "newest": "Newest",
     "highToLow": "High To Low",
-    "lowToHigh": "Low To High"
+    "lowToHigh": "Low To High",
+    "arrange-visit": {
+      "title": "Arrange A Visit",
+      "description": "Submit a Visit Request"
+    },
+    "fields": {
+      "date": {
+        "label": "Date",
+        "placeholder": "Pick a date"
+      },
+      "name": {
+        "label": "Name"
+      },
+      "phone": {
+        "label": "Phone Number"
+      },
+      "message": {
+        "label": "Special Request"
+      },
+      "submit": "Submit"
+    }
   },
   "contract": {
     "title": "Contract Info",

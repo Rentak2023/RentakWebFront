@@ -401,7 +401,27 @@
     "sort": "فرز",
     "newest": "الأحدث",
     "highToLow": "من الأعلى إلى الأقل",
-    "lowToHigh": "من الأقل إلى الأعلى"
+    "lowToHigh": "من الأقل إلى الأعلى",
+    "arrange-visit": {
+      "title": "اطلب جولة",
+      "description": "ارسل طلب جولة"
+    },
+    "fields": {
+      "date": {
+        "label": "التاريخ",
+        "placeholder": "اختر التاريخ"
+      },
+      "name": {
+        "label": "الاسم"
+      },
+      "phone": {
+        "label": "رقم الهاتف"
+      },
+      "message": {
+        "label": "طلبات خاصة"
+      },
+      "submit": "إرسال"
+    }
   },
   "contract": {
     "title": "معلومات العقد",

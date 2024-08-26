@@ -2,9 +2,7 @@ import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 
 import headerBackground from "@/app/[locale]/assets/images/header-background.png";
-import { Link } from "@/navigation";
 
-import { Button } from "../ui/button";
 import { FindService } from "./find-service";
 
 export async function Header() {
