@@ -120,7 +120,7 @@ const questions: Question = {
                 {
                   title: "Request Property",
                   arTitle: "طلب عقار",
-                  href: "/",
+                  href: "/request-property",
                 },
               ],
             },
