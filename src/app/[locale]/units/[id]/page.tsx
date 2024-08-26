@@ -214,7 +214,9 @@ export default async function UnitPage({
                     <ArrangeVisit unitId={property.id} />
 
                     <Button className="flex-1" variant="outline" asChild>
-                      <Link href="#">{t("contactUs")}</Link>
+                      <Link href="https://rent-ak.com/Home/ContactUs">
+                        {t("contactUs")}
+                      </Link>
                     </Button>
                   </div>
                 </div>
