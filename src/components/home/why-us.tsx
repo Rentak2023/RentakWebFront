@@ -1,8 +1,11 @@
-import { BriefcaseIcon, HomeIcon, KeyIcon, TruckIcon } from "lucide-react";
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 
 import whyUsBackground from "@/app/[locale]/assets/images/why-choose-us.png";
+import CertificateIcon from "@/app/[locale]/assets/svgs/certificate-icon";
+import CertifiedHomeIcon from "@/app/[locale]/assets/svgs/certified-home-icon";
+import PaymentOptionsIcon from "@/app/[locale]/assets/svgs/payment-options-icon";
+import RentIcon from "@/app/[locale]/assets/svgs/rent-icon";
 
 export async function WhyUs() {
   const t = await getTranslations("home.why-us");
@@ -11,22 +14,22 @@ export async function WhyUs() {
     {
       name: t("guaranteed-rent.title"),
       description: t("guaranteed-rent.description"),
-      icon: TruckIcon,
+      icon: CertificateIcon,
     },
     {
       name: t("unit-condition.title"),
       description: t("unit-condition.description"),
-      icon: KeyIcon,
+      icon: CertifiedHomeIcon,
     },
     {
       name: t("flexible-payment.title"),
       description: t("flexible-payment.description"),
-      icon: HomeIcon,
+      icon: PaymentOptionsIcon,
     },
     {
       name: t("easy-move-in.title"),
       description: t("easy-move-in.description"),
-      icon: BriefcaseIcon,
+      icon: RentIcon,
     },
   ];
 
@@ -47,9 +50,9 @@ export async function WhyUs() {
               {features.map((feature) => (
                 <div key={feature.name} className="mx-auto flex flex-col">
                   <dt className="flex text-base/7 font-semibold text-primary-800">
-                    <div className="relative me-3 flex size-8 items-center justify-center rounded-full bg-primary-800/20">
+                    <div className="me-3 flex items-center justify-center rounded-full bg-primary-800/20 p-1.5">
                       <feature.icon
-                        className="absolute -start-2 -top-2 size-8 text-primary-800"
+                        className="size-6 text-primary-800"
                         aria-hidden="true"
                       />
                     </div>
