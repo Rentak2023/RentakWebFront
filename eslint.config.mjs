@@ -1,4 +1,3 @@
-/* eslint-disable import-x/no-named-as-default-member */
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -44,13 +43,13 @@ export default ts.config(
       "plugin:barrel-files/recommended",
     ),
   ),
-  ...compat.config(importX.configs.recommended),
+  importX.flatConfigs.recommended,
+  importX.flatConfigs.react,
   importX.configs.typescript,
   comments.recommended,
   {
     plugins: {
       "simple-import-sort": simpleImportSort,
-      "import-x": importX,
     },
     rules: {
       "func-style": ["error", "declaration", { allowArrowFunctions: true }],
@@ -171,10 +170,6 @@ export default ts.config(
       linkComponents: ["Link"],
       tailwindcss: {
         callees: ["cn"],
-      },
-      "import-x/resolver": {
-        typescript: true,
-        node: true,
       },
     },
     linterOptions: {
