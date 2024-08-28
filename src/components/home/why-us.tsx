@@ -49,8 +49,8 @@ export async function WhyUs() {
             <dl className="mt-14 grid grid-cols-1 gap-x-24 gap-y-10 sm:grid-cols-2">
               {features.map((feature) => (
                 <div key={feature.name} className="mx-auto flex flex-col">
-                  <dt className="flex text-base/7 font-semibold text-primary-800">
-                    <div className="me-3 flex items-center justify-center rounded-full bg-primary-800/20 p-1.5">
+                  <dt className="flex flex-col items-start justify-start gap-3 text-base/7 font-semibold text-primary-800">
+                    <div className="flex items-center justify-center rounded-full bg-primary-800/20 p-2">
                       <feature.icon
                         className="size-6 text-primary-800"
                         aria-hidden="true"
