@@ -171,6 +171,10 @@ export default ts.config(
       tailwindcss: {
         callees: ["cn"],
       },
+      "import-x/resolver": {
+        typescript: true,
+        node: true,
+      },
     },
     linterOptions: {
       reportUnusedDisableDirectives: "warn",
