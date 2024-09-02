@@ -14,8 +14,8 @@ import {
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import { Toaster } from "@/components/ui/toaster";
+import { locales } from "@/config";
 import getLocaleDirection from "@/lib/utils";
-import { locales } from "@/navigation";
 
 import { Providers } from "./providers";
 
