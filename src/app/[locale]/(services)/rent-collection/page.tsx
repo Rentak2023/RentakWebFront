@@ -126,7 +126,6 @@ export default function RentCollection() {
             ["confirm_wallet_account_number"],
           ),
         ),
-        // @ts-expect-error TODO: figure out the type
         v.pipe(
           v.object({
             cash_out_payment_method_id: v.literal(PaymentMethod.Bank),
@@ -145,9 +144,7 @@ export default function RentCollection() {
               v.nonEmpty(t("fields.confirm-bank-account-number.non-empty")),
             ),
           }),
-          // @ts-expect-error TODO: figure out the type
           v.forward(
-            // @ts-expect-error TODO: figure out the type
             v.partialCheck(
               [["bank_account_number"], ["confirm_bank_account_number"]],
               ({ bank_account_number, confirm_bank_account_number }) =>
