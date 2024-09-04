@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useDebouncedCallback } from "use-debounce";
 
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
@@ -23,6 +24,10 @@ export default function SearchForm() {
   const t = useTranslations("units");
 
   const { data: minMaxPrice } = useSuspenseQuery(minMaxPriceQuery);
+
+  const updateSearchParams = useDebouncedCallback((value: URLSearchParams) => {
+    window.history.replaceState(null, "", `?${value.toString()}`);
+  }, 100);
 
   const form = useForm<FormValues>({
     defaultValues: {
@@ -75,9 +80,9 @@ export default function SearchForm() {
       }
     }
     if (changed) {
-      window.history.replaceState(null, "", `?${searchParamsObj.toString()}`);
+      updateSearchParams(searchParamsObj);
     }
-  }, [currentValues, searchParams]);
+  }, [currentValues, searchParams, updateSearchParams]);
 
   const clearSearchParams = () => {
     form.reset({
