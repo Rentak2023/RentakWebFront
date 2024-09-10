@@ -17,5 +17,6 @@
     ".next"
   ],
   "appService.defaultWebAppToDeploy": "/subscriptions/d2138248-deb8-4175-828c-c8031070884c/resourceGroups/RentakLiveEnvironment/providers/Microsoft.Web/sites/RentakWebsite",
-  "appService.deploySubpath": "."
+  "appService.deploySubpath": ".",
+  "cSpell.words": ["Rentak"]
 }

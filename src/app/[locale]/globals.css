@@ -34,6 +34,15 @@
   .text-balance {
     text-wrap: balance;
   }
+
+  .solid-shadow {
+    box-shadow:
+      var(--tw-ring-offset-shadow, 0 0 #0000),
+      var(--tw-ring-shadow, 0 0 #0000),
+      var(--tw-shadow),
+      -1px -1px 0px 1px #003366,
+      -1px -6px 0px 1px #003366;
+  }
 }
 
 /* Template Name: Hously - Tailwind CSS Real Estate Template
