@@ -1,5 +1,6 @@
 import Features from "./components/features";
 import Header from "./components/header";
+import Pricing from "./components/pricing";
 import WhyRentak from "./components/why-rentak";
 
 const Landlord = () => {
@@ -8,6 +9,7 @@ const Landlord = () => {
       <Header />
       <WhyRentak />
       <Features />
+      <Pricing />
     </main>
   );
 };
