@@ -1,3 +1,4 @@
+import Features from "./components/features";
 import Header from "./components/header";
 import WhyRentak from "./components/why-rentak";
 
@@ -6,6 +7,7 @@ const Landlord = () => {
     <main className="min-h-screen">
       <Header />
       <WhyRentak />
+      <Features />
     </main>
   );
 };
