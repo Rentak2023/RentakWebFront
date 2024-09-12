@@ -89,11 +89,11 @@ export default function Pricing() {
           <h2 className="text-base font-semibold leading-7 text-primary-600">
             Pricing
           </h2>
-          <p className="mt-2 text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+          <p className="mt-2 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
             Pricing plans for teams of all sizes
           </p>
         </div>
-        <p className="mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-gray-600">
+        <p className="mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-slate-600">
           Distinctio et nulla eum soluta et neque labore quibusdam. Saepe et
           quasi iusto modi velit ut non voluptas in. Explicabo id ut laborum.
         </p>
@@ -105,13 +105,13 @@ export default function Pricing() {
                 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                 setFrequency(frequencies.find((f) => f.value === frequency)!);
               }}
-              className="grid grid-cols-2 gap-x-1 rounded-full p-1 text-center text-xs font-semibold leading-5 ring-1 ring-inset ring-gray-200"
+              className="grid grid-cols-2 gap-x-1 rounded-full p-1 text-center text-xs font-semibold leading-5 ring-1 ring-inset ring-slate-200"
             >
               {frequencies.map((option) => (
                 <RadioGroupPrimitive.Item
                   key={option.value}
                   value={option.value}
-                  className="cursor-pointer rounded-full px-2.5 py-1 text-gray-500 data-[state=checked]:bg-primary-600 data-[state=checked]:text-white"
+                  className="cursor-pointer rounded-full px-2.5 py-1 text-slate-500 data-[state=checked]:bg-primary-600 data-[state=checked]:text-white"
                 >
                   {option.label}
                 </RadioGroupPrimitive.Item>
@@ -124,14 +124,16 @@ export default function Pricing() {
             <div
               key={tier.id}
               className={clsx(
-                tier.featured ? "bg-gray-900 ring-gray-900" : "ring-gray-200",
+                tier.featured
+                  ? "bg-slate-900 ring-slate-900"
+                  : "ring-slate-200",
                 "rounded-3xl p-8 ring-1 xl:p-10",
               )}
             >
               <h3
                 id={tier.id}
                 className={clsx(
-                  tier.featured ? "text-white" : "text-gray-900",
+                  tier.featured ? "text-white" : "text-slate-900",
                   "text-lg font-semibold leading-8",
                 )}
               >
@@ -139,7 +141,7 @@ export default function Pricing() {
               </h3>
               <p
                 className={clsx(
-                  tier.featured ? "text-gray-300" : "text-gray-600",
+                  tier.featured ? "text-slate-300" : "text-slate-600",
                   "mt-4 text-sm leading-6",
                 )}
               >
@@ -148,7 +150,7 @@ export default function Pricing() {
               <p className="mt-6 flex items-baseline gap-x-1">
                 <span
                   className={clsx(
-                    tier.featured ? "text-white" : "text-gray-900",
+                    tier.featured ? "text-white" : "text-slate-900",
                     "text-4xl font-bold tracking-tight",
                   )}
                 >
@@ -159,7 +161,7 @@ export default function Pricing() {
                 {typeof tier.price === "string" ? null : (
                   <span
                     className={clsx(
-                      tier.featured ? "text-gray-300" : "text-gray-600",
+                      tier.featured ? "text-slate-300" : "text-slate-600",
                       "text-sm font-semibold leading-6",
                     )}
                   >
@@ -182,7 +184,7 @@ export default function Pricing() {
               <ul
                 role="list"
                 className={clsx(
-                  tier.featured ? "text-gray-300" : "text-gray-600",
+                  tier.featured ? "text-slate-300" : "text-slate-600",
                   "mt-8 space-y-3 text-sm leading-6 xl:mt-10",
                 )}
               >
