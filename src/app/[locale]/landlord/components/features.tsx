@@ -35,10 +35,10 @@ const features = [
 const Features = () => {
   return (
     <div className="mt-32 bg-primary-100/40 py-28">
-      <div className="container mx-auto flex">
+      <div className="container mx-auto grid gap-8 px-4 md:grid-cols-2 lg:grid-cols-4">
         {features.map((feature) => (
           <div
-            className="mx-auto flex max-w-7xl flex-col items-start px-6 sm:px-6 lg:px-8"
+            className="mx-auto flex max-w-7xl flex-col items-start "
             key={feature.title}
           >
             <span className=" rounded-full bg-white p-2 shadow-lg">

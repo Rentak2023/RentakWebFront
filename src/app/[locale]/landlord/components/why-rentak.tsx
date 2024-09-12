@@ -32,7 +32,7 @@ export default function WhyRentak() {
         Why choose rentak?
       </h2>
 
-      <p className="mx-auto mt-8 max-w-5xl text-center text-2xl text-slate-600">
+      <p className="mx-auto mt-8 max-w-5xl px-4 text-center text-2xl text-slate-600">
         At Rentak, we understand that managing rental properties can be
         time-consuming and stressful. That’s why we offer a full suite of
         property management services designed to simplify your life, protect
