@@ -55,7 +55,7 @@ function Dashes({ from, to }: { from: string; to: string }) {
         <path
           d="M289.345 2.03174L294.972 7.78935C295.352 8.17793 295.352 8.79863 294.972 9.18722L289.345 14.9448"
           stroke="white"
-          stroke-width="3"
+          strokeWidth="3"
         ></path>
         <defs>
           <linearGradient
@@ -66,8 +66,8 @@ function Dashes({ from, to }: { from: string; to: string }) {
             y2="8.0001"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color={from}></stop>
-            <stop offset="1" stop-color={to}></stop>
+            <stop stopColor={from}></stop>
+            <stop offset="1" stopColor={to}></stop>
           </linearGradient>
         </defs>
       </svg>
@@ -131,15 +131,15 @@ export default function Steps() {
                   <path
                     d="M17.0469 40.9878C17.0469 35.4715 21.3152 31 26.5807 31H28.4874C33.753 31 38.0213 35.4715 38.0213 40.9878"
                     stroke="#2D3748"
-                    stroke-width="1.8"
-                    stroke-miterlimit="10"
+                    strokeWidth="1.8"
+                    strokeMiterlimit="10"
                     strokeLinecap="square"
                   ></path>
                   <path
                     d="M27.5328 31.001C30.692 31.001 33.2531 28.318 33.2531 25.0083C33.2531 21.6986 30.692 19.0156 27.5328 19.0156C24.3736 19.0156 21.8125 21.6986 21.8125 25.0083C21.8125 28.318 24.3736 31.001 27.5328 31.001Z"
                     stroke="#2D3748"
-                    stroke-width="1.8"
-                    stroke-miterlimit="10"
+                    strokeWidth="1.8"
+                    strokeMiterlimit="10"
                     strokeLinecap="square"
                   ></path>
                   <line
@@ -148,7 +148,7 @@ export default function Steps() {
                     x2="45.9525"
                     y2="28.3031"
                     stroke="#2D3748"
-                    stroke-width="1.8"
+                    strokeWidth="1.8"
                     strokeLinecap="round"
                   ></line>
                   <line
@@ -157,7 +157,7 @@ export default function Steps() {
                     x2="41.9781"
                     y2="32.0867"
                     stroke="#2D3748"
-                    stroke-width="1.8"
+                    strokeWidth="1.8"
                     strokeLinecap="round"
                   ></line>
                 </svg>
@@ -185,9 +185,9 @@ export default function Steps() {
                   <path
                     d="M38.0625 40.1945H32.9104L30.7334 37.7914L30.1685 40.1945L28.4396 36.2869L27.7809 40.1945L25.7532 34.5664L23.8928 40.1945H21.1014"
                     stroke="#2D3748"
-                    stroke-width="1.6"
+                    strokeWidth="1.6"
                     strokeLinecap="round"
-                    stroke-linejoin="round"
+                    strokeLinejoin="round"
                   ></path>
                 </svg>
               </div>
