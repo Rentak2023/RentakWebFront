@@ -38,11 +38,10 @@ export default function WhyRentak() {
         property management services designed to simplify your life, protect
         your investment, and maximize your rental income. Whether you want
         guaranteed rent, comprehensive property management, or flexible options
-        tailored to your needs, Rentak has you covered."
+        tailored to your needs, Rentak has you covered.
       </p>
 
-      <div className="lg:solid-shadow mx-auto mt-16 max-w-7xl px-6 pt-4 lg:rounded-2xl lg:border lg:p-0 lg:shadow-lg">
-        {/* Feature comparison (up to lg) */}
+      {/* <div className="lg:solid-shadow mx-auto mt-16 max-w-7xl px-6 pt-4 lg:rounded-2xl lg:border lg:p-0 lg:shadow-lg">
         <section
           aria-labelledby="mobile-comparison-heading"
           className="lg:hidden"
@@ -70,7 +69,6 @@ export default function WhyRentak() {
                 </div>
 
                 <div className="relative mt-10">
-                  {/* Fake card background */}
                   <div
                     aria-hidden="true"
                     className="absolute inset-y-0 end-0 -z-10 block w-1/3 rounded-lg bg-slate-50"
@@ -141,7 +139,6 @@ export default function WhyRentak() {
           </div>
         </section>
 
-        {/* Feature comparison (lg+) */}
         <section
           aria-labelledby="comparison-heading"
           className="hidden lg:block"
@@ -244,7 +241,7 @@ export default function WhyRentak() {
             </tbody>
           </table>
         </section>
-      </div>
+      </div> */}
     </div>
   );
 }

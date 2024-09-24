@@ -10,21 +10,21 @@ import getLocaleDirection from "@/lib/utils";
 const testimonials = [
   {
     id: 1,
-    name: "Barbara D. Smith",
+    name: "Sarah A., Homeowner",
     paragraph:
-      "I highly recommend Jodi J. Appleby. She was attentive to our needs and worked tirelessly to find us the perfect home. We couldn't be happier with our new place!",
+      "Rentak has completely transformed how I manage my properties. The guaranteed rent option has given me peace of mind, and their team handles everything seamlessly.",
     image:
       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     rating: 5,
   },
   {
     id: 2,
-    name: "John Doe",
+    name: "Ahmed M., Homeowner",
     paragraph:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl vitae ultricies ultricies, nunc nisl ultricies nisl, vitae ultricies ultricies nisl nisl.",
+      "I was tired of chasing down late payments. Rentak’s automated rent collection made my life so much easier. Plus, my tenants are happier!",
     image:
       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    rating: 3,
+    rating: 5,
   },
 ];
 
@@ -67,12 +67,12 @@ export function Testimonials() {
             Testimonials
           </h2>
           <h3 className="mt-6 text-5xl font-semibold text-slate-900">
-            Look What Our Customers Say!
+            Hear from Our Happy Homeowners
           </h3>
-          <p className="mt-8 text-pretty text-lg text-slate-700">
+          {/* <p className="mt-8 text-pretty text-lg text-slate-700">
             Fusce venenatis tellus a felis scelerisque, non pulvinar est
             pellentesque.
-          </p>
+          </p> */}
           <div className="mt-8 flex flex-row gap-16">
             <Button
               size="icon"
@@ -112,7 +112,7 @@ export function Testimonials() {
             initial={false}
             custom={animationDirection}
           >
-            <motion.div
+            {/* <motion.div
               className="absolute -start-8 -top-8 -z-10 size-16 rounded-full bg-gradient-to-br from-primary-800 to-transparent"
               key={currentId}
               custom={animationDirection}
@@ -120,7 +120,7 @@ export function Testimonials() {
               initial="enter"
               animate="center"
               exit="exit"
-            />
+            /> */}
 
             <motion.div
               className="relative z-0 max-w-xl rounded-3xl bg-white px-16 pb-6 pt-20 shadow-lg"

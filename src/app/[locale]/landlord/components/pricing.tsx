@@ -21,7 +21,7 @@ type Tier = {
   id: string;
   href: string;
   price: { monthly: string; annually: string } | string;
-  description: string;
+  description?: string;
   features: Array<string>;
   featured: boolean;
   cta: string;
@@ -29,52 +29,55 @@ type Tier = {
 
 const tiers: Array<Tier> = [
   {
-    name: "Freelancer",
-    id: "tier-freelancer",
+    name: "Rentak Collect",
+    id: "tier-collect",
     href: "#",
-    price: { monthly: "$15", annually: "$144" },
-    description: "The essentials to provide your best work for clients.",
+    price: "3%",
+    // description: "The essentials to provide your best work for clients.",
     features: [
-      "5 products",
-      "Up to 1,000 subscribers",
-      "Basic analytics",
-      "48-hour support response time",
+      "Payment Reminders: Monthly rent reminders to tenants.",
+      "Multiple Payment Methods: Tenants can choose from several payment options.",
+      "Direct Transfers: Rent is transferred directly to landlords.",
     ],
     featured: false,
     cta: "Buy plan",
   },
   {
-    name: "Startup",
-    id: "tier-startup",
+    name: "Rentak Basic",
+    id: "tier-basic",
     href: "#",
-    price: { monthly: "$30", annually: "$288" },
-    description: "A plan that scales with your rapidly growing business.",
+    price: "5%",
+    // description: "A plan that scales with your rapidly growing business.",
     features: [
-      "25 products",
-      "Up to 10,000 subscribers",
-      "Advanced analytics",
-      "24-hour support response time",
-      "Marketing automations",
+      "Payment Reminders: Monthly rent reminders to tenants.",
+      "Multiple Payment Methods: Tenants can choose from several payment options.",
+      "Marketing & Promotion: Your property is marketed to Rentak's network and listed on platforms.",
+      "Legal Contracts: Creation of legally compliant contracts.",
+      "Direct Transfers: Rent is transferred directly to landlords.",
+      "Status Reporting: Updates on rental status, including unpaid rent.",
+      "Property Handover Reports: Full inspection report when returning the unit.",
     ],
     featured: false,
-    cta: "Buy plan",
+    cta: "Choose",
   },
   {
-    name: "Enterprise",
-    id: "tier-enterprise",
+    name: "Rentak Secure",
+    id: "tier-secure",
     href: "#",
-    price: "Custom",
-    description: "Dedicated support and infrastructure for your company.",
+    price: "10%",
+    // description: "Dedicated support and infrastructure for your company.",
     features: [
-      "Unlimited products",
-      "Unlimited subscribers",
-      "Advanced analytics",
-      "1-hour, dedicated support response time",
-      "Marketing automations",
-      "Custom reporting tools",
+      "Payment Reminders: Monthly rent reminders to tenants.",
+      "Multiple Payment Methods: Tenants can choose from several payment options.",
+      "Marketing & Promotion: Your property is marketed to Rentak's network and listed on platforms.",
+      "Legal Contracts: Creation of legally compliant contracts.",
+      "Direct Transfers: Rent is transferred directly to landlords.",
+      "Guaranteed Rent: Rentak ensures you receive rent same day every month, even if tenants fail to pay.",
+      "Property Protection: Eviction handling and legal costs covered.",
+      "Complete Unit Care: Ensures the property is returned in the same condition, including maintenance.",
     ],
     featured: true,
-    cta: "Contact sales",
+    cta: "Choose",
   },
 ];
 
@@ -86,18 +89,16 @@ export default function Pricing() {
     <div className="bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-base font-semibold leading-7 text-primary-600">
-            Pricing
-          </h2>
-          <p className="mt-2 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
-            Pricing plans for teams of all sizes
+          <h2 className="sr-only">Plans</h2>
+          <p className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
+            Choose the Perfect Plan for Your Rental Needs
           </p>
         </div>
         <p className="mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-slate-600">
-          Distinctio et nulla eum soluta et neque labore quibusdam. Saepe et
-          quasi iusto modi velit ut non voluptas in. Explicabo id ut laborum.
+          Compare Rentak’s service packages and pick the one that offers you the
+          right level of convenience, protection, and peace of mind.
         </p>
-        <div className="mt-16 flex justify-center">
+        {/* <div className="mt-16 flex justify-center">
           <fieldset aria-label="Payment frequency">
             <RadioGroupPrimitive.Root
               value={frequency.value}
@@ -118,7 +119,7 @@ export default function Pricing() {
               ))}
             </RadioGroupPrimitive.Root>
           </fieldset>
-        </div>
+        </div> */}
         <div className="isolate mx-auto mt-10 grid max-w-md grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
           {tiers.map((tier) => (
             <div
@@ -139,14 +140,14 @@ export default function Pricing() {
               >
                 {tier.name}
               </h3>
-              <p
+              {/* <p
                 className={clsx(
                   tier.featured ? "text-slate-300" : "text-slate-600",
                   "mt-4 text-sm leading-6",
                 )}
               >
                 {tier.description}
-              </p>
+              </p> */}
               <p className="mt-6 flex items-baseline gap-x-1">
                 <span
                   className={clsx(
