@@ -78,7 +78,7 @@ const features = [
 const Features = () => {
   return (
     <div className="mt-32 bg-primary-100/40 py-28">
-      <div className="container mx-auto grid gap-8 px-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="container mx-auto grid gap-8 px-4 md:grid-cols-2 lg:grid-cols-3 xl:max-w-7xl">
         {features.map((feature) => (
           <div
             className="mx-auto flex max-w-7xl flex-col items-start "

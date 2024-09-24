@@ -10,7 +10,7 @@ import getLocaleDirection from "@/lib/utils";
 const testimonials = [
   {
     id: 1,
-    name: "Sarah A., Homeowner",
+    name: "Sarah A.",
     paragraph:
       "Rentak has completely transformed how I manage my properties. The guaranteed rent option has given me peace of mind, and their team handles everything seamlessly.",
     image:
@@ -19,7 +19,7 @@ const testimonials = [
   },
   {
     id: 2,
-    name: "Ahmed M., Homeowner",
+    name: "Ahmed M.",
     paragraph:
       "I was tired of chasing down late payments. Rentak’s automated rent collection made my life so much easier. Plus, my tenants are happier!",
     image:
@@ -60,13 +60,13 @@ export function Testimonials() {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const currentTestimonial = testimonials.find((t) => t.id === currentId)!;
   return (
-    <div className="mx-auto mt-32 max-w-7xl justify-between overflow-x-hidden px-6 py-8 md:px-8">
-      <div className="flex flex-row">
-        <div className="max-w-lg">
-          <h2 className="text-start text-2xl font-medium uppercase text-primary-600">
+    <div className="mx-auto mt-32 max-w-7xl overflow-x-hidden px-6 py-8 md:px-8">
+      <div className="flex flex-col items-center gap-y-6 lg:flex-row">
+        <div className="flex max-w-lg flex-col items-center lg:items-start">
+          {/* <h2 className="text-start text-2xl font-medium uppercase text-primary-600">
             Testimonials
-          </h2>
-          <h3 className="mt-6 text-5xl font-semibold text-slate-900">
+          </h2> */}
+          <h3 className="text-2xl font-semibold text-slate-900 lg:text-5xl">
             Hear from Our Happy Homeowners
           </h3>
           {/* <p className="mt-8 text-pretty text-lg text-slate-700">
@@ -106,7 +106,7 @@ export function Testimonials() {
             </Button>
           </div>
         </div>
-        <div className="relative ms-auto">
+        <div className="relative lg:ms-auto">
           <AnimatePresence
             mode="wait"
             initial={false}
@@ -148,18 +148,20 @@ export function Testimonials() {
               <blockquote className="mt-2 text-xl font-medium leading-8 text-slate-700 sm:text-2xl sm:leading-9">
                 <p>{currentTestimonial.paragraph}</p>
               </blockquote>
-              <div className="mt-6 flex items-center gap-4 border-t pt-6">
-                <img
-                  className="size-16 rounded-full object-cover"
-                  src={currentTestimonial.image}
-                />
-                <span className="text-2xl font-medium">
-                  {currentTestimonial.name}
-                </span>
+              <div className="mt-6 flex flex-col items-center gap-4 border-t pt-6 lg:flex-row">
+                <div className="flex items-center gap-4">
+                  <img
+                    className="aspect-square size-16 rounded-full object-cover"
+                    src={currentTestimonial.image}
+                  />
+                  <span className="text-2xl font-medium">
+                    {currentTestimonial.name}
+                  </span>
+                </div>
                 <p className="sr-only">
                   {currentTestimonial.rating} out of 5 stars
                 </p>
-                <div className="ms-auto flex flex-row gap-1">
+                <div className="flex flex-row gap-1 lg:ms-auto">
                   {Array.from({ length: currentTestimonial.rating }).map(
                     (_, i) => (
                       <StarIcon

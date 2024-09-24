@@ -1,8 +1,7 @@
-import Image from "next/image";
+import BackgroundVideo from "next-video/background-video";
 
-import headerBackground from "./header-background.png";
-import historyImage from "./history.png";
-import propertyImage from "./property.png";
+// eslint-disable-next-line import-x/no-unresolved
+import getStarted from "/videos/rentak-marks.mp4";
 
 const guarantees = ["Late tenant payment", "Non-payment", "Home is vacant"];
 
@@ -10,7 +9,7 @@ export default function Header() {
   return (
     <div className="bg-white">
       <div className="relative isolate overflow-hidden bg-gradient-to-b from-primary-100/20">
-        <div className="mx-auto max-w-7xl pb-24 pt-10 sm:pb-32 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:px-8 lg:py-40">
+        <div className="container mx-auto items-center px-4 pb-24 pt-10 sm:px-6 sm:pb-32 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:px-8 lg:py-40 xl:max-w-7xl">
           <div className="px-6 lg:px-0 lg:pt-4">
             <div className="mx-auto max-w-2xl">
               <div className="max-w-xl">
@@ -21,7 +20,7 @@ export default function Header() {
                   Rentak transforms property management with technology-driven
                   solutions and guaranteed rent, so you can sit back and relax.
                 </p>
-                <p className="mt-12 text-lg text-slate-700">
+                {/* <p className="mt-12 text-lg text-slate-700">
                   With the Guarantee, you get paid even if:
                 </p>
                 <ul className="mt-4 flex items-center gap-6">
@@ -50,7 +49,7 @@ export default function Header() {
                       <span className="text-slate-700">{guarantee}</span>
                     </li>
                   ))}
-                </ul>
+                </ul> */}
                 {/* <div className="mt-10 flex items-center gap-x-6">
                   <a
                     href="#"
@@ -69,8 +68,15 @@ export default function Header() {
             </div>
           </div>
           <div className="relative mt-20 sm:mt-24 md:mx-auto md:max-w-2xl lg:mx-0 lg:mt-0 lg:w-screen">
-            <Image src={headerBackground} alt="" className="rounded-3xl" />
-            <div className="absolute -end-52 top-8 h-52 w-72 overflow-hidden rounded-2xl bg-white p-4 shadow">
+            {/* <Image src={headerBackground} alt="" className="rounded-3xl" /> */}
+            <BackgroundVideo
+              src={getStarted}
+              className="overflow-hidden rounded-3xl"
+              style={{ aspectRatio: "1/1" }}
+              loop
+            />
+
+            {/* <div className="absolute -end-52 top-8 h-52 w-72 overflow-hidden rounded-2xl bg-white p-4 shadow">
               <Image
                 src={historyImage}
                 alt=""
@@ -83,7 +89,7 @@ export default function Header() {
                 alt=""
                 className="h-full object-cover object-left-top"
               />
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
