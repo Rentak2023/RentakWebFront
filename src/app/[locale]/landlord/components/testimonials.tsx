@@ -66,7 +66,7 @@ export function Testimonials() {
           {/* <h2 className="text-start text-2xl font-medium uppercase text-primary-600">
             Testimonials
           </h2> */}
-          <h3 className="text-2xl font-semibold text-slate-900 lg:text-5xl">
+          <h3 className="text-balance text-2xl font-semibold text-slate-700 lg:text-5xl">
             Hear from Our Happy Homeowners
           </h3>
           {/* <p className="mt-8 text-pretty text-lg text-slate-700">
@@ -145,7 +145,7 @@ export function Testimonials() {
                 />
               </svg>
 
-              <blockquote className="mt-2 text-xl font-medium leading-8 text-slate-700 sm:text-2xl sm:leading-9">
+              <blockquote className="mt-2 text-lg font-medium leading-8 text-slate-500 sm:text-lg">
                 <p>{currentTestimonial.paragraph}</p>
               </blockquote>
               <div className="mt-6 flex flex-col items-center gap-4 border-t pt-6 lg:flex-row">
@@ -154,7 +154,7 @@ export function Testimonials() {
                     className="aspect-square size-16 rounded-full object-cover"
                     src={currentTestimonial.image}
                   />
-                  <span className="text-2xl font-medium">
+                  <span className="text-2xl font-medium text-slate-700">
                     {currentTestimonial.name}
                   </span>
                 </div>

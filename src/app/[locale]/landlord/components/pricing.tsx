@@ -33,21 +33,21 @@ const tiers: Array<Tier> = [
     id: "tier-collect",
     href: "#",
     price: "3%",
-    // description: "The essentials to provide your best work for clients.",
+    description: "The essentials to provide your best work for clients.",
     features: [
       "Payment Reminders: Monthly rent reminders to tenants.",
       "Multiple Payment Methods: Tenants can choose from several payment options.",
       "Direct Transfers: Rent is transferred directly to landlords.",
     ],
     featured: false,
-    cta: "Buy plan",
+    cta: "Choose",
   },
   {
     name: "Rentak Basic",
     id: "tier-basic",
     href: "#",
     price: "5%",
-    // description: "A plan that scales with your rapidly growing business.",
+    description: "A plan that scales with your rapidly growing business.",
     features: [
       "Payment Reminders: Monthly rent reminders to tenants.",
       "Multiple Payment Methods: Tenants can choose from several payment options.",
@@ -65,7 +65,7 @@ const tiers: Array<Tier> = [
     id: "tier-secure",
     href: "#",
     price: "10%",
-    // description: "Dedicated support and infrastructure for your company.",
+    description: "Dedicated support and infrastructure for your company.",
     features: [
       "Payment Reminders: Monthly rent reminders to tenants.",
       "Multiple Payment Methods: Tenants can choose from several payment options.",
@@ -126,33 +126,40 @@ export default function Pricing() {
               key={tier.id}
               className={clsx(
                 tier.featured
-                  ? "bg-slate-900 ring-slate-900"
+                  ? "bg-primary-800 ring-primary-800"
                   : "ring-slate-200",
                 "rounded-3xl p-8 ring-1 xl:p-10",
               )}
             >
-              <h3
-                id={tier.id}
-                className={clsx(
-                  tier.featured ? "text-white" : "text-slate-900",
-                  "text-lg font-semibold leading-8",
+              <div className="flex items-center justify-between gap-x-4">
+                <h3
+                  id={tier.id}
+                  className={clsx(
+                    tier.featured ? "text-white" : "text-primary-800",
+                    "text-xl font-medium leading-8",
+                  )}
+                >
+                  {tier.name}
+                </h3>
+                {tier.featured && (
+                  <p className="rounded-full bg-white/50 px-2.5 py-1 text-xs font-semibold leading-5 text-primary-800">
+                    Most popular
+                  </p>
                 )}
-              >
-                {tier.name}
-              </h3>
-              {/* <p
+              </div>
+              <p
                 className={clsx(
                   tier.featured ? "text-slate-300" : "text-slate-600",
                   "mt-4 text-sm leading-6",
                 )}
               >
                 {tier.description}
-              </p> */}
+              </p>
               <p className="mt-6 flex items-baseline gap-x-1">
                 <span
                   className={clsx(
-                    tier.featured ? "text-white" : "text-slate-900",
-                    "text-4xl font-bold tracking-tight",
+                    tier.featured ? "text-white" : "text-primary-800",
+                    "text-6xl font-semibold tracking-tight",
                   )}
                 >
                   {typeof tier.price === "string"
@@ -175,8 +182,8 @@ export default function Pricing() {
                 aria-describedby={tier.id}
                 className={clsx(
                   tier.featured
-                    ? "bg-white/10 text-white hover:bg-white/20 focus-visible:outline-white"
-                    : "bg-primary-600 text-white shadow-sm hover:bg-primary-500 focus-visible:outline-primary-600",
+                    ? "bg-white/80 text-primary-800 hover:bg-white/60 focus-visible:outline-white"
+                    : "bg-primary-800 text-white shadow-sm hover:bg-primary-800/90 focus-visible:outline-primary-600",
                   "mt-6 block rounded-md px-3 py-2 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2",
                 )}
               >

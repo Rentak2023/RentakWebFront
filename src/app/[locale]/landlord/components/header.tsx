@@ -9,7 +9,7 @@ export default function Header() {
   return (
     <div className="bg-white">
       <div className="relative isolate overflow-hidden bg-gradient-to-b from-primary-100/20">
-        <div className="container mx-auto items-center px-4 pb-24 pt-10 sm:px-6 sm:pb-32 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:px-8 lg:py-40 xl:max-w-7xl">
+        <div className="container mx-auto items-center justify-between px-4 pb-24 pt-10 sm:px-6 sm:pb-32 lg:flex lg:flex-row lg:gap-x-8 lg:px-8 lg:py-40 xl:max-w-7xl">
           <div className="px-6 lg:px-0 lg:pt-4">
             <div className="mx-auto max-w-2xl">
               <div className="max-w-xl">
@@ -67,7 +67,7 @@ export default function Header() {
               </div>
             </div>
           </div>
-          <div className="relative mt-20 sm:mt-24 md:mx-auto md:max-w-2xl lg:mx-0 lg:mt-0 lg:w-screen">
+          <div className="relative mx-auto mt-20 sm:mt-24 md:max-w-md lg:mx-0 lg:mt-0 lg:w-screen">
             {/* <Image src={headerBackground} alt="" className="rounded-3xl" /> */}
             <BackgroundVideo
               src={getStarted}
