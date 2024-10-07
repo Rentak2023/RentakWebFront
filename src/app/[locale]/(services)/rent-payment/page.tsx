@@ -441,7 +441,7 @@ export default function RentPayment({
         });
         setTimeout(() => {
           if (res.data.payment_data?.redirect_url) {
-            window.location.href = res.data.payment_data.redirect_url;
+            globalThis.location.href = res.data.payment_data.redirect_url;
           }
         }, 1000);
       } else {

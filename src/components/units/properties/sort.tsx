@@ -32,7 +32,7 @@ function Sort() {
       searchParamsObj.set("sort_by", value.toString());
     }
 
-    window.history.pushState(null, "", `?${searchParamsObj.toString()}`);
+    globalThis.history.pushState(null, "", `?${searchParamsObj.toString()}`);
   };
 
   return (

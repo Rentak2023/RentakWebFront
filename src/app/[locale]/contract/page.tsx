@@ -59,7 +59,7 @@ function Contract() {
     const res = await createContractAction(data);
 
     if (res.type === "success" && res.data.url) {
-      window.location.href = res.data.url;
+      globalThis.location.href = res.data.url;
     }
     if (res.type === "error" && res.error.message) {
       toast({

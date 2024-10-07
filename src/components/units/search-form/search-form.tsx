@@ -26,7 +26,7 @@ export default function SearchForm() {
   const { data: minMaxPrice } = useSuspenseQuery(minMaxPriceQuery);
 
   const updateSearchParams = useDebouncedCallback((value: URLSearchParams) => {
-    window.history.replaceState(null, "", `?${value.toString()}`);
+    globalThis.history.replaceState(null, "", `?${value.toString()}`);
   }, 100);
 
   const form = useForm<FormValues>({
