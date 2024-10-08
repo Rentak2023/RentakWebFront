@@ -104,7 +104,7 @@ function Dashes({ from, to }: { from: string; to: string }) {
 
 export default function Steps() {
   return (
-    <section className="py-12">
+    <section className="mt-32">
       <div className="container mx-auto">
         <h2 className="text-center text-4xl font-semibold tracking-tight text-slate-900">
           Getting started is easy, sign up in minutes
