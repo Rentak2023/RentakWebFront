@@ -73,7 +73,7 @@ export function Testimonials() {
             Fusce venenatis tellus a felis scelerisque, non pulvinar est
             pellentesque.
           </p> */}
-          <div className="mt-8 flex flex-row gap-16">
+          {/* <div className="mt-8 flex flex-row gap-16">
             <Button
               size="icon"
               variant="outline"
@@ -104,7 +104,7 @@ export function Testimonials() {
             >
               <ArrowRight className="text-primary-600 rtl:rotate-180" />
             </Button>
-          </div>
+          </div> */}
         </div>
         <div className="relative lg:ms-auto">
           <AnimatePresence
@@ -133,7 +133,7 @@ export function Testimonials() {
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="absolute left-16 top-8 -z-10 h-32"
+                className="absolute start-16 top-8 -z-10 h-32"
                 width="74"
                 height="46"
                 fill="none"
@@ -144,6 +144,22 @@ export function Testimonials() {
                   d="M20.032.361.762 45.351H26.99L37.16.36H20.032Zm36.041 0-19.27 44.99h26.229L73.202.36H56.074Z"
                 />
               </svg>
+
+              <Button
+                size="icon"
+                variant="outline"
+                className="absolute end-16 top-8 -z-10 rounded-full border-primary-600"
+                onClick={() => {
+                  if (currentId === testimonials.length) {
+                    setCurrentId(1);
+                  } else {
+                    setCurrentId(currentId + 1);
+                  }
+                  setAnimationDirection(direction === "rtl" ? 1 : -1);
+                }}
+              >
+                <ArrowRight className="text-primary-600 rtl:rotate-180" />
+              </Button>
 
               <blockquote className="mt-2 text-lg font-medium leading-8 text-slate-500 sm:text-lg">
                 <p>{currentTestimonial.paragraph}</p>
