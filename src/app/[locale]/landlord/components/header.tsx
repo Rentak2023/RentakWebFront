@@ -8,8 +8,8 @@ const guarantees = ["Late tenant payment", "Non-payment", "Home is vacant"];
 export default function Header() {
   return (
     <div className="bg-white">
-      <div className="relative isolate overflow-hidden bg-gradient-to-b from-primary-100/20">
-        <div className="container mx-auto items-center justify-between px-4 pb-24 pt-10 sm:px-6 sm:pb-32 lg:flex lg:flex-row lg:gap-x-8 lg:px-8 lg:py-36 xl:max-w-7xl">
+      <div className="relative isolate overflow-hidden bg-gradient-to-b from-primary-100/20 pt-24">
+        <div className="container mx-auto items-center justify-between px-4 pt-10 sm:px-6 lg:flex lg:flex-row lg:gap-x-8 lg:px-8 xl:max-w-7xl">
           <div className="px-6 lg:px-0 lg:pt-4">
             <div className="mx-auto max-w-2xl">
               <div className="max-w-xl">

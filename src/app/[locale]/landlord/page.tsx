@@ -9,9 +9,9 @@ const Landlord = () => {
   return (
     <main className="min-h-screen">
       <Header />
-      <WhyRentak />
       <Features />
       <Pricing />
+      <WhyRentak />
       <Steps />
       <Testimonials />
     </main>

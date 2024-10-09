@@ -27,7 +27,7 @@ export default function WhyRentak() {
   } as const;
 
   return (
-    <div className="relative mt-8">
+    <div className="mt-32">
       <h2 className="text-center text-4xl font-semibold capitalize leading-7 tracking-tight text-slate-900">
         Why choose rentak?
       </h2>
