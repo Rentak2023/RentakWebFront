@@ -1,9 +1,4 @@
-import Image from "next/image";
-
-import chartIcon from "@/app/[locale]/assets/svgs/chart.svg";
-import globIcon from "@/app/[locale]/assets/svgs/glob.svg";
-import shieldIcon from "@/app/[locale]/assets/svgs/shield.svg";
-import wrenchIcon from "@/app/[locale]/assets/svgs/wrench.svg";
+import { KeyIcon } from "lucide-react";
 
 const features = [
   {
@@ -11,7 +6,7 @@ const features = [
     description:
       "Let us handle the day-to-day management of your property. From tenant screening to rent collection till the end of your rental contract, Rentak ensures your property is well-managed and tenants are happy.",
     cta: "Simplify Property Management",
-    icon: shieldIcon,
+    icon: KeyIcon,
     href: "/",
   },
   {
@@ -19,7 +14,7 @@ const features = [
     description:
       "Automate your rent collection process with our secure and reliable system. Receive payments on time, every time, with full transparency and detailed reporting.",
     cta: "Start Collecting with Ease",
-    icon: shieldIcon,
+    icon: KeyIcon,
     href: "/",
   },
   {
@@ -27,7 +22,7 @@ const features = [
     description:
       "Reach more potential tenants by promoting your property on Rentak. Our platform connects you with high-quality brokers and tenants faster.",
     cta: "Promote My Property",
-    icon: shieldIcon,
+    icon: KeyIcon,
     href: "/",
   },
   {
@@ -35,7 +30,7 @@ const features = [
     description:
       "Understand the true value of your property with our comprehensive valuation service. Get insights into market trends and rental potential to make informed decisions.",
     cta: "Get Your Property Valued",
-    icon: shieldIcon,
+    icon: KeyIcon,
     href: "/",
   },
   {
@@ -43,7 +38,7 @@ const features = [
     description:
       "Create rental contract in a minute. Our contracts are tailored to protect your interests and comply with all relevant regulations.",
     cta: "Create Your Contract",
-    icon: shieldIcon,
+    icon: KeyIcon,
     href: "/",
   },
   {
@@ -51,7 +46,7 @@ const features = [
     description:
       "Easily manage and pay your property’s annual maintenance fees directly through Rentak. Through our various payment methods, you can pay your fees from 6-60 months, so you avoid any penalties.",
     cta: "Manage Maintenance Fees",
-    icon: shieldIcon,
+    icon: KeyIcon,
     href: "/",
   },
   //
@@ -86,10 +81,10 @@ const Features = () => {
     <div className="mt-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0">
-          <h2 className="text-capitalized text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl">
+          <h2 className="text-capitalized text-3xl font-semibold tracking-tight text-primary-900 sm:text-4xl">
             Services that we support
           </h2>
-          {/* <p className="mt-6 text-lg leading-8 text-gray-600">
+          {/* <p className="mt-6 text-lg leading-8 text-slate-600">
             Lorem ipsum dolor sit amet consect adipisicing elit. Possimus magnam
             voluptatum cupiditate veritatis in accusamus quisquam.
           </p> */}
@@ -98,23 +93,24 @@ const Features = () => {
           <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
             {features.map((feature) => (
               <div key={feature.title} className="flex flex-col">
-                <dt className="text-base font-semibold leading-7 text-gray-900">
-                  <div className="mb-6 flex size-10 items-center justify-center rounded-lg bg-primary-700">
-                    {/* <feature.icon
+                <dt className="text-base font-semibold leading-7 text-primary-900">
+                  <div className="mb-6 flex size-10 items-center justify-center rounded-lg border border-slate-300 bg-white">
+                    <feature.icon
                       aria-hidden="true"
-                      className="size-6 text-white"
-                    /> */}
+                      className="size-6 text-primary-800"
+                    />
                   </div>
                   {feature.title}
                 </dt>
-                <dd className="mt-1 flex flex-auto flex-col text-base leading-7 text-gray-600">
+                <dd className="mt-1 flex flex-auto flex-col text-base leading-7 text-slate-600">
                   <p className="flex-auto">{feature.description}</p>
                   <p className="mt-4">
                     <a
                       href={feature.href}
-                      className="text-sm font-semibold leading-6 text-primary-700"
+                      className="text-sm font-semibold leading-6 text-primary-700 underline"
                     >
-                      {feature.cta} <span aria-hidden="true">→</span>
+                      {feature.cta}
+                      {/* <span aria-hidden="true">→</span> */}
                     </a>
                   </p>
                 </dd>

@@ -60,13 +60,13 @@ export function Testimonials() {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const currentTestimonial = testimonials.find((t) => t.id === currentId)!;
   return (
-    <div className="mx-auto mt-32 max-w-7xl overflow-x-hidden px-6 pb-8 md:px-8">
+    <div className="mx-auto mt-28 max-w-7xl overflow-x-hidden px-6 pb-8 md:px-8">
       <div className="flex flex-col items-center gap-y-6 lg:flex-row">
         <div className="flex max-w-lg flex-col items-center lg:items-start">
           {/* <h2 className="text-start text-2xl font-medium uppercase text-primary-600">
             Testimonials
           </h2> */}
-          <h3 className="text-balance text-2xl font-semibold text-slate-700 lg:text-5xl">
+          <h3 className="text-balance text-2xl font-semibold text-primary-900 lg:text-5xl">
             Hear from Our Happy Homeowners
           </h3>
           {/* <p className="mt-8 text-pretty text-lg text-slate-700">
@@ -148,7 +148,7 @@ export function Testimonials() {
               <Button
                 size="icon"
                 variant="outline"
-                className="absolute end-16 top-8 -z-10 rounded-full border-primary-600"
+                className="absolute end-16 top-8 -z-10 rounded-full border-primary-900"
                 onClick={() => {
                   if (currentId === testimonials.length) {
                     setCurrentId(1);
@@ -158,7 +158,7 @@ export function Testimonials() {
                   setAnimationDirection(direction === "rtl" ? 1 : -1);
                 }}
               >
-                <ArrowRight className="text-primary-600 rtl:rotate-180" />
+                <ArrowRight className="text-primary-900 rtl:rotate-180" />
               </Button>
 
               <blockquote className="mt-2 text-lg font-medium leading-8 text-slate-500 sm:text-lg">

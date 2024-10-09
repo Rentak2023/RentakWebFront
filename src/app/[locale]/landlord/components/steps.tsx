@@ -104,12 +104,12 @@ function Dashes({ from, to }: { from: string; to: string }) {
 
 export default function Steps() {
   return (
-    <section className="mt-32">
+    <section className="mt-28">
       <div className="container mx-auto">
-        <h2 className="text-center text-4xl font-semibold tracking-tight text-slate-900">
+        <h2 className="text-center text-4xl font-semibold tracking-tight text-primary-900">
           Getting started is easy, sign up in minutes
         </h2>
-        <div className="mx-auto mt-8 flex flex-col items-center justify-start">
+        <div className="mx-auto mt-16 flex flex-col items-center justify-start">
           <div className="grid auto-cols-auto gap-10 lg:grid-cols-6">
             {steps.map((step, index) => {
               const nextStep = steps.at(index + 1);

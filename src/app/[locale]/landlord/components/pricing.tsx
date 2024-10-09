@@ -35,6 +35,7 @@ const tiers: Array<Tier> = [
     price: "3%",
     description: "The essentials to provide your best work for clients.",
     features: [
+      "The Rentak Collection Package Benefit is 2.5%",
       "Payment Reminders: Monthly rent reminders to tenants.",
       "Multiple Payment Methods: Tenants can choose from several payment options.",
       "Direct Transfers: Rent is transferred directly to landlords.",
@@ -90,7 +91,7 @@ export default function Pricing() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="sr-only">Plans</h2>
-          <p className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
+          <p className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-primary-900 sm:text-5xl">
             Choose the Perfect Plan for Your Rental Needs
           </p>
         </div>
@@ -155,7 +156,7 @@ export default function Pricing() {
               >
                 {tier.description}
               </p>
-              <p className="mt-6 flex items-baseline gap-x-1">
+              {/* <p className="mt-6 flex items-baseline gap-x-1">
                 <span
                   className={clsx(
                     tier.featured ? "text-white" : "text-primary-800",
@@ -176,7 +177,7 @@ export default function Pricing() {
                     {frequency.priceSuffix}
                   </span>
                 )}
-              </p>
+              </p> */}
               <a
                 href={tier.href}
                 aria-describedby={tier.id}
