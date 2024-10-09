@@ -3,27 +3,27 @@ import { useId } from "react";
 const steps = [
   {
     title: "Get Started with Ease",
-    color: "#D6BCFA",
+    color: "#CEEBBB",
   },
   {
     title: "Professional Unit Photography & Inspection",
-    color: "#FEB2B2",
+    color: "#D8BBEB",
   },
   {
     title: "Maximize Exposure",
-    color: "#FBD38D",
+    color: "#EBC0BB",
   },
   {
     title: "Find the Perfect Tenant",
-    color: "#9AE6B4",
+    color: "#D2A78C",
   },
   {
     title: "Seamless Contract Signing",
-    color: "#D6BCFA",
+    color: "#DEA9AF",
   },
   {
     title: "Hassle-Free Rent Collection",
-    color: "#FBD38D",
+    color: "#A78CD2",
   },
 ];
 
@@ -119,7 +119,17 @@ export default function Steps() {
                   key={step.title}
                 >
                   <div className="z-10 flex size-12 items-center justify-center max-lg:absolute max-lg:inset-0 max-lg:end-auto lg:size-16">
-                    <svg
+                    <div
+                      className="flex size-full items-center justify-center rounded-full"
+                      style={{
+                        backgroundColor: step.color,
+                      }}
+                    >
+                      <span className="text-3xl font-medium text-primary-800">
+                        {index + 1}
+                      </span>
+                    </div>
+                    {/* <svg
                       width="65"
                       height="65"
                       viewBox="0 0 65 65"
@@ -144,11 +154,11 @@ export default function Steps() {
                         d="M45.9915 28.3423C45.9951 30.5319 45.3571 32.6746 44.1565 34.5058H41.7713C43.1044 32.9769 43.9058 31.0569 44.0556 29.0339C44.2053 27.011 43.6953 24.994 42.6021 23.2856C41.5089 21.5767 39.891 20.2686 37.9916 19.5569C36.092 18.8453 34.0129 18.7687 32.066 19.3384C30.1192 19.9081 28.4094 21.0933 27.1931 22.7168C25.9768 24.3402 25.3195 26.3141 25.3197 28.3426C25.3184 29.356 25.4838 30.3626 25.8095 31.3226H23.8123C23.5443 30.352 23.4094 29.3495 23.4116 28.3426C23.4116 25.3482 24.6011 22.4767 26.7184 20.3595C28.8357 18.2423 31.7074 17.0527 34.7015 17.0527C37.6959 17.0527 40.5674 18.2422 42.6846 20.3595C44.8017 22.4768 45.9913 25.3485 45.9913 28.3426L45.9915 28.3423Z"
                         fill="black"
                       ></path>
-                    </svg>
+                    </svg> */}
                   </div>
                   {nextStep && <Dashes from={step.color} to={nextStep.color} />}
                   <div className="max-w-[90%] text-start tracking-tight text-slate-600 lg:text-center lg:text-xl">
-                    {index + 1}. {step.title}
+                    {step.title}
                   </div>
                 </div>
               );
