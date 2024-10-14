@@ -1,7 +1,7 @@
 "use client";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, StarIcon } from "lucide-react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -55,6 +55,7 @@ const variants = {
 export function Testimonials() {
   const [currentId, setCurrentId] = useState(1);
   const [animationDirection, setAnimationDirection] = useState(0);
+  const t = useTranslations("landlord.testimonials");
   const locale = useLocale();
   const direction = getLocaleDirection(locale);
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -67,7 +68,7 @@ export function Testimonials() {
             Testimonials
           </h2> */}
           <h3 className="text-balance text-2xl font-semibold text-primary-900 lg:text-5xl">
-            Hear from Our Happy Homeowners
+            {t("title")}
           </h3>
           {/* <p className="mt-8 text-pretty text-lg text-slate-700">
             Fusce venenatis tellus a felis scelerisque, non pulvinar est

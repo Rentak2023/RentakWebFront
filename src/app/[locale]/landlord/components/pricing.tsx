@@ -3,6 +3,7 @@
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
 import clsx from "clsx";
 import { CheckIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 type Frequency = {
@@ -83,44 +84,50 @@ const tiers: Array<Tier> = [
 ];
 
 export default function Pricing() {
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  const [frequency, setFrequency] = useState<Frequency>(frequencies[0]!);
+  const t = useTranslations("landlord.plans");
+
+  const tiers: Array<Tier> = [
+    {
+      name: t("rentak-collect.name"),
+      id: "tier-collect",
+      href: "#",
+      price: "3%",
+      features: t.raw("rentak-collect.features"),
+      featured: false,
+      cta: t("rentak-collect.cta"),
+    },
+    {
+      name: t("rentak-basic.name"),
+      id: "tier-basic",
+      href: "#",
+      price: "5%",
+      features: t.raw("rentak-basic.features"),
+      featured: false,
+      cta: t("rentak-basic.cta"),
+    },
+    {
+      name: t("rentak-secure.name"),
+      id: "tier-secure",
+      href: "#",
+      price: "10%",
+      features: t.raw("rentak-secure.features"),
+      featured: true,
+      cta: t("rentak-secure.cta"),
+    },
+  ];
 
   return (
     <div className="mt-44 bg-white">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-4xl text-center">
-          <h2 className="sr-only">Plans</h2>
+          <h2 className="sr-only">{t("plans")}</h2>
           <p className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-primary-900 sm:text-5xl">
-            Choose the Perfect Plan for Your Rental Needs
+            {t("title")}
           </p>
         </div>
         <p className="mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-slate-600">
-          Compare Rentak’s service packages and pick the one that offers you the
-          right level of convenience, protection, and peace of mind.
+          {t("subtitle")}
         </p>
-        {/* <div className="mt-16 flex justify-center">
-          <fieldset aria-label="Payment frequency">
-            <RadioGroupPrimitive.Root
-              value={frequency.value}
-              onValueChange={(frequency) => {
-                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                setFrequency(frequencies.find((f) => f.value === frequency)!);
-              }}
-              className="grid grid-cols-2 gap-x-1 rounded-full p-1 text-center text-xs font-semibold leading-5 ring-1 ring-inset ring-slate-200"
-            >
-              {frequencies.map((option) => (
-                <RadioGroupPrimitive.Item
-                  key={option.value}
-                  value={option.value}
-                  className="cursor-pointer rounded-full px-2.5 py-1 text-slate-500 data-[state=checked]:bg-primary-600 data-[state=checked]:text-white"
-                >
-                  {option.label}
-                </RadioGroupPrimitive.Item>
-              ))}
-            </RadioGroupPrimitive.Root>
-          </fieldset>
-        </div> */}
         <div className="isolate mx-auto mt-10 grid max-w-md grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
           {tiers.map((tier) => (
             <div
@@ -144,18 +151,18 @@ export default function Pricing() {
                 </h3>
                 {tier.featured && (
                   <p className="rounded-full bg-white/50 px-2.5 py-1 text-xs font-semibold leading-5 text-primary-800">
-                    Most popular
+                    {t("most-popular")}
                   </p>
                 )}
               </div>
-              <p
+              {/* <p
                 className={clsx(
                   tier.featured ? "text-slate-300" : "text-slate-600",
                   "mt-4 text-sm leading-6",
                 )}
               >
                 {tier.description}
-              </p>
+              </p> */}
               {/* <p className="mt-6 flex items-baseline gap-x-1">
                 <span
                   className={clsx(

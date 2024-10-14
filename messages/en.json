@@ -189,6 +189,65 @@
         "description": "Easily manage and pay your property’s annual maintenance fees directly through Rentak. Through our various payment methods, you can pay your fees from 6-60 months, so you avoid any penalties.",
         "cta": "Manage Maintenance Fees"
       }
+    },
+    "plans": {
+      "plans": "Plans",
+      "title": "Choose the Perfect Plan for Your Rental Needs",
+      "subtitle": "Compare Rentak’s service packages and pick the one that offers you the right level of convenience, protection, and peace of mind.",
+      "most-popular": "Most Popular",
+      "rentak-collect": {
+        "name": "Rentak Collect",
+        "features": [
+          "The Rentak Collection Package Benefit is 2.5%",
+          "Payment Reminders: Monthly rent reminders to tenants.",
+          "Multiple Payment Methods: Tenants can choose from several payment options.",
+          "Direct Transfers: Rent is transferred directly to landlords."
+        ],
+        "cta": "Choose"
+      },
+      "rentak-basic": {
+        "name": "Rentak Basic",
+        "features": [
+          "Payment Reminders: Monthly rent reminders to tenants.",
+          "Multiple Payment Methods: Tenants can choose from several payment options.",
+          "Marketing & Promotion: Your property is marketed to Rentak's network and listed on platforms.",
+          "Legal Contracts: Creation of legally compliant contracts.",
+          "Direct Transfers: Rent is transferred directly to landlords.",
+          "Status Reporting: Updates on rental status, including unpaid rent.",
+          "Property Handover Reports: Full inspection report when returning the unit."
+        ],
+        "cta": "Choose"
+      },
+      "rentak-secure": {
+        "name": "Rentak Secure",
+        "features": [
+          "Payment Reminders: Monthly rent reminders to tenants.",
+          "Multiple Payment Methods: Tenants can choose from several payment options.",
+          "Marketing & Promotion: Your property is marketed to Rentak's network and listed on platforms.",
+          "Legal Contracts: Creation of legally compliant contracts.",
+          "Direct Transfers: Rent is transferred directly to landlords.",
+          "Guaranteed Rent: Rentak ensures you receive rent same day every month, even if tenants fail to pay.",
+          "Property Protection: Eviction handling and legal costs covered.",
+          "Complete Unit Care: Ensures the property is returned in the same condition, including maintenance."
+        ],
+        "cta": "Choose"
+      }
+    },
+    "why-rentak": {
+      "title": "Why choose rentak?",
+      "subtitle": "At Rentak, we understand that managing rental properties can be time-consuming and stressful. That’s why we offer a full suite of property management services designed to simplify your life, protect your investment, and maximize your rental income. Whether you want guaranteed rent, comprehensive property management, or flexible options tailored to your needs, Rentak has you covered."
+    },
+    "steps": {
+      "title": "Getting started is easy, sign up in minutes",
+      "get-started": "Get Started with Ease",
+      "inspection": "Professional Unit Photography & Inspection",
+      "exposure": "Maximize Exposure",
+      "find-tenant": "Find the Perfect Tenant",
+      "contract": "Seamless Contract Signing",
+      "collection": "Hassle-Free Rent Collection"
+    },
+    "testimonials": {
+      "title": "Hear from Our Happy Homeowners"
     }
   },
   "services": {
