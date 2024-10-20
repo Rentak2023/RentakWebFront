@@ -1,4 +1,5 @@
 import Features from "./components/features";
+import Finishing from "./components/finishing";
 import Header from "./components/header";
 import Pricing from "./components/pricing";
 import Steps from "./components/steps";
@@ -13,6 +14,7 @@ const Landlord = () => {
       <Pricing />
       <WhyRentak />
       <Steps />
+      <Finishing />
       <Testimonials />
     </main>
   );
