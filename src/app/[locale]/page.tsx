@@ -1,4 +1,4 @@
-import { unstable_setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 
 import Contact from "@/components/home/contact";
 import { Header } from "@/components/home/header";
@@ -14,7 +14,7 @@ export default function Home({
 }: Readonly<{
   params: { locale: string };
 }>) {
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
 
   return (
     <main className="min-h-screen">

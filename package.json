@@ -38,7 +38,7 @@
     "ky": "^1.7.2",
     "lucide-react": "^0.453.0",
     "next": "14.2.8",
-    "next-intl": "^3.21.1",
+    "next-intl": "^3.22.0",
     "next-video": "^1.2.0",
     "react": "^18.3.1",
     "react-18-image-lightbox": "^5.1.4",

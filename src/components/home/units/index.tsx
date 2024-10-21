@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { Suspense } from "react";
 
-import { Link } from "@/navigation";
+import { Link } from "@/i18n/routing";
 import URLS from "@/shared/urls";
 
 import SectionTitle from "../components/section-title";

@@ -2,7 +2,7 @@ import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 
 import logo from "@/app/[locale]/assets/images/Logo.png";
-import { Link } from "@/navigation";
+import { Link } from "@/i18n/routing";
 
 async function Logo() {
   const t = await getTranslations("footer");

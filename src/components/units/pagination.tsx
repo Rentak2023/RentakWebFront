@@ -3,7 +3,7 @@
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 
-import { Link, usePathname } from "@/navigation";
+import { Link, usePathname } from "@/i18n/routing";
 
 function Pagination({ totalPages }: { totalPages: number }) {
   const pathname = usePathname();

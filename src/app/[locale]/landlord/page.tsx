@@ -1,4 +1,4 @@
-import { unstable_setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 
 import Features from "./components/features";
 import Finishing from "./components/finishing";
@@ -13,7 +13,7 @@ function Landlord({
 }: Readonly<{
   params: { locale: string };
 }>) {
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
 
   return (
     <main className="min-h-screen">

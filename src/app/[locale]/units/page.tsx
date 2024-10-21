@@ -1,4 +1,4 @@
-import { unstable_setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 
 import Properties from "@/components/units/properties/properties";
 import SearchForm from "@/components/units/search-form/search-form";
@@ -20,7 +20,7 @@ export default function UnitsPage({
   params: { locale: string };
   searchParams: Exclude<PropertiesSearchParams, "lang">;
 }>) {
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
   const queryClient = makeQueryClient();
 
   queryClient.prefetchQuery(minMaxPriceQuery);

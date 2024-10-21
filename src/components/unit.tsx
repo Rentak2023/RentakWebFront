@@ -7,7 +7,7 @@ import BedIcon from "@/app/[locale]/assets/svgs/bed-icon";
 import LinkIcon from "@/app/[locale]/assets/svgs/link-icon";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { Link } from "@/navigation";
+import { Link } from "@/i18n/routing";
 import { type Unit as TUnit } from "@/services/types";
 import URLS from "@/shared/urls";
 

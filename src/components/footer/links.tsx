@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server";
 import LocationIcon from "@/app/[locale]/assets/svgs/location-icon";
 import MailOutlineIcon from "@/app/[locale]/assets/svgs/mail-outline-icon";
 import PhoneIcon from "@/app/[locale]/assets/svgs/phone-icon";
-import { Link } from "@/navigation";
+import { Link } from "@/i18n/routing";
 import URLS from "@/shared/urls";
 
 async function Links() {
