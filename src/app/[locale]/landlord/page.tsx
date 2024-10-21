@@ -1,3 +1,5 @@
+import { unstable_setRequestLocale } from "next-intl/server";
+
 import Features from "./components/features";
 import Finishing from "./components/finishing";
 import Header from "./components/header";
@@ -6,7 +8,13 @@ import Steps from "./components/steps";
 import { Testimonials } from "./components/testimonials";
 import WhyRentak from "./components/why-rentak";
 
-const Landlord = () => {
+function Landlord({
+  params: { locale },
+}: Readonly<{
+  params: { locale: string };
+}>) {
+  unstable_setRequestLocale(locale);
+
   return (
     <main className="min-h-screen">
       <Header />
@@ -18,6 +26,6 @@ const Landlord = () => {
       <Testimonials />
     </main>
   );
-};
+}
 
 export default Landlord;
