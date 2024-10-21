@@ -8,11 +8,15 @@ import Steps from "./components/steps";
 import { Testimonials } from "./components/testimonials";
 import WhyRentak from "./components/why-rentak";
 
-function Landlord({
-  params: { locale },
-}: Readonly<{
-  params: { locale: string };
-}>) {
+async function Landlord(
+  props: Readonly<{
+    params: Promise<{ locale: string }>;
+  }>,
+) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   setRequestLocale(locale);
 
   return (

@@ -20,11 +20,15 @@ import { getProperty } from "@/services/properties";
 
 import { ArrangeVisit } from "./arrange-visit";
 
-export default async function UnitPage({
-  params: { locale, id },
-}: Readonly<{
-  params: { locale: string; id: string };
-}>) {
+export default async function UnitPage(
+  props: Readonly<{
+    params: Promise<{ locale: string; id: string }>;
+  }>,
+) {
+  const params = await props.params;
+
+  const { locale, id } = params;
+
   setRequestLocale(locale);
   const property = await getProperty(id, locale);
   const t = await getTranslations("units");

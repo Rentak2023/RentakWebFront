@@ -13,13 +13,17 @@ import { type PropertiesSearchParams } from "@/services/properties";
 
 import { makeQueryClient } from "../get-query-client";
 
-export default function UnitsPage({
-  params: { locale },
-  searchParams,
-}: Readonly<{
-  params: { locale: string };
-  searchParams: Exclude<PropertiesSearchParams, "lang">;
-}>) {
+export default async function UnitsPage(
+  props: Readonly<{
+    params: Promise<{ locale: string }>;
+    searchParams: Promise<Exclude<PropertiesSearchParams, "lang">>;
+  }>,
+) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
+
+  const { locale } = params;
+
   setRequestLocale(locale);
   const queryClient = makeQueryClient();
 

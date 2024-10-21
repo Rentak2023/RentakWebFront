@@ -93,7 +93,7 @@ function StepperProvider({ value, children }: StepperContextProviderProps) {
 // <---------- HOOKS ---------->
 
 function usePrevious<T>(value: T): T | undefined {
-  const ref = React.useRef<T>();
+  const ref = React.useRef<T>(undefined);
 
   React.useEffect(() => {
     ref.current = value;

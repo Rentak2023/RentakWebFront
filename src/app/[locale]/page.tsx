@@ -9,11 +9,15 @@ import { Services } from "@/components/home/services";
 import Units from "@/components/home/units";
 import { WhyUs } from "@/components/home/why-us";
 
-export default function Home({
-  params: { locale },
-}: Readonly<{
-  params: { locale: string };
-}>) {
+export default async function Home(
+  props: Readonly<{
+    params: Promise<{ locale: string }>;
+  }>,
+) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   setRequestLocale(locale);
 
   return (
