@@ -23,6 +23,13 @@ const nextConfig = {
       fullUrl: true,
     },
   },
+  experimental: {
+    reactCompiler: true,
+    staleTimes: {
+      dynamic: 30,
+      static: 180,
+    },
+  },
   typescript: {
     // !! WARN !!
     // Dangerously allow production builds to successfully complete even if
