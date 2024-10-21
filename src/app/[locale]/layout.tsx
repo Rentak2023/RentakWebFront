@@ -43,6 +43,14 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 
   return {
     title: t("title"),
+    metadataBase: new URL("https://www.rentakapp.com"),
+    alternates: {
+      canonical: "/",
+      languages: {
+        "en-US": "/",
+        "ar-EG": "/ar",
+      },
+    },
   };
 }
 
