@@ -8,7 +8,9 @@ type ContactResponse = {
   message: string;
 };
 
-export const contactAction = (data: v.InferInput<typeof contactSchema>) => {
+export const contactAction = async (
+  data: v.InferInput<typeof contactSchema>,
+) => {
   const validatedFields = v.safeParse(contactSchema, data);
 
   if (!validatedFields.success) {

@@ -1,4 +1,4 @@
-import { unstable_setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 
 import Contact from "@/components/home/contact";
 import { Header } from "@/components/home/header";
@@ -9,12 +9,16 @@ import { Services } from "@/components/home/services";
 import Units from "@/components/home/units";
 import { WhyUs } from "@/components/home/why-us";
 
-export default function Home({
-  params: { locale },
-}: Readonly<{
-  params: { locale: string };
-}>) {
-  unstable_setRequestLocale(locale);
+export default async function Home(
+  props: Readonly<{
+    params: Promise<{ locale: string }>;
+  }>,
+) {
+  const params = await props.params;
+
+  const { locale } = params;
+
+  setRequestLocale(locale);
 
   return (
     <main className="min-h-screen">

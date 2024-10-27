@@ -2,7 +2,7 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { HTTPError } from "ky";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { use, useState } from "react";
 import * as v from "valibot";
 import isMobilePhone from "validator/es/lib/isMobilePhone";
 import isNumeric from "validator/es/lib/isNumeric";
@@ -22,11 +22,15 @@ enum PaymentMethod {
   Wallet = "5",
 }
 
-export default function RentPayment({
-  params: { locale },
-}: Readonly<{
-  params: { locale: string };
-}>) {
+export default function RentPayment(
+  props: Readonly<{
+    params: Promise<{ locale: string }>;
+  }>,
+) {
+  const params = use(props.params);
+
+  const { locale } = params;
+
   const { data: paymentMethods } = useSuspenseQuery(cashInPaymentMethodsQuery);
   const { data: banks } = useSuspenseQuery(banksQuery);
   const t = useTranslations("services");
@@ -441,7 +445,7 @@ export default function RentPayment({
         });
         setTimeout(() => {
           if (res.data.payment_data?.redirect_url) {
-            window.location.href = res.data.payment_data.redirect_url;
+            globalThis.location.href = res.data.payment_data.redirect_url;
           }
         }, 1000);
       } else {

@@ -2,7 +2,7 @@ import { HeartIcon } from "lucide-react";
 import {
   getFormatter,
   getTranslations,
-  unstable_setRequestLocale,
+  setRequestLocale,
 } from "next-intl/server";
 
 import AreaIcon from "@/app/[locale]/assets/svgs/area-icon";
@@ -15,17 +15,21 @@ import TypeIcon from "@/app/[locale]/assets/svgs/type-icon";
 import { Button } from "@/components/ui/button";
 import PropertyImages from "@/components/ui/property-images";
 import { Separator } from "@/components/ui/separator";
-import { Link } from "@/navigation";
+import { Link } from "@/i18n/routing";
 import { getProperty } from "@/services/properties";
 
 import { ArrangeVisit } from "./arrange-visit";
 
-export default async function UnitPage({
-  params: { locale, id },
-}: Readonly<{
-  params: { locale: string; id: string };
-}>) {
-  unstable_setRequestLocale(locale);
+export default async function UnitPage(
+  props: Readonly<{
+    params: Promise<{ locale: string; id: string }>;
+  }>,
+) {
+  const params = await props.params;
+
+  const { locale, id } = params;
+
+  setRequestLocale(locale);
   const property = await getProperty(id, locale);
   const t = await getTranslations("units");
   const formatter = await getFormatter();

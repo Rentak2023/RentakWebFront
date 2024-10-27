@@ -4,7 +4,7 @@ import { MoveLeftIcon } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 
-import { Link } from "@/navigation";
+import { Link } from "@/i18n/routing";
 
 type Question = {
   title: string;

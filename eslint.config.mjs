@@ -63,7 +63,7 @@ export default ts.config(
         "error",
         {
           name: "next/link",
-          message: "Please use @/navigation instead.",
+          message: "Please use @/i18n/routing instead.",
         },
         {
           name: "next/navigation",
@@ -73,7 +73,7 @@ export default ts.config(
             "usePathname",
             "useRouter",
           ],
-          message: "Please use @/navigation instead.",
+          message: "Please use @/i18n/routing instead.",
         },
       ],
       "promise/always-return": [

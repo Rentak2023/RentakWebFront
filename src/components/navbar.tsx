@@ -5,8 +5,8 @@ import React, { useEffect, useState } from "react";
 
 import logo from "@/app/[locale]/assets/images/Logo.png";
 import { Button } from "@/components/ui/button";
+import { Link, usePathname } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
-import { Link, usePathname } from "@/navigation";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -74,8 +74,8 @@ export default function Navbar() {
       ],
     },
     {
-      name: t("contact"),
-      path: "/#contact",
+      name: t("landlord"),
+      path: "/landlord",
     },
   ];
 

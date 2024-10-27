@@ -21,7 +21,7 @@
     "rent-payment": "Pay Your Rent",
     "maintenance-payment": "Pay Your Maintenance",
     "free-contract": "Create Rent Contract",
-    "contact": "Contact Us"
+    "landlord": "Landlord"
   },
   "footer": {
     "copyright": "All right reserved",
@@ -150,6 +150,126 @@
       "phone": "Phone",
       "yourMessage": "Your Message",
       "message": "Message"
+    }
+  },
+  "landlord": {
+    "header": {
+      "title": "Maximize Your Rental Income with Guaranteed Peace of Mind",
+      "subtitle": "Rentak transforms property management with technology-driven solutions and guaranteed rent, so you can sit back and relax."
+    },
+    "services": {
+      "title": "Services that we support",
+      "property-management": {
+        "title": "Property Management",
+        "description": "Let us handle the day-to-day management of your property. From tenant screening to rent collection till the end of your rental contract, Rentak ensures your property is well-managed and tenants are happy.",
+        "cta": "Simplify Property Management"
+      },
+      "rent-collection": {
+        "title": "Rent Collection",
+        "description": "Automate your rent collection process with our secure and reliable system. Receive payments on time, every time, with full transparency and detailed reporting.",
+        "cta": "Start Collecting with Ease"
+      },
+      "promote-property": {
+        "title": "Promote Your Property",
+        "description": "Reach more potential tenants by promoting your property on Rentak. Our platform connects you with high-quality brokers and tenants faster.",
+        "cta": "Promote My Property"
+      },
+      "property-valuation": {
+        "title": "Property Valuation",
+        "description": "Understand the true value of your property with our comprehensive valuation service. Get insights into market trends and rental potential to make informed decisions.",
+        "cta": "Get Your Property Valued"
+      },
+      "legal-contract": {
+        "title": "Legal Contract Creation",
+        "description": "Create rental contract in a minute. Our contracts are tailored to protect your interests and comply with all relevant regulations.",
+        "cta": "Create Your Contract"
+      },
+      "maintenance-payment": {
+        "title": "Pay Annual Maintenance Fees",
+        "description": "Easily manage and pay your property’s annual maintenance fees directly through Rentak. Through our various payment methods, you can pay your fees from 6-60 months, so you avoid any penalties.",
+        "cta": "Manage Maintenance Fees"
+      }
+    },
+    "plans": {
+      "plans": "Plans",
+      "title": "Choose the Perfect Plan for Your Rental Needs",
+      "subtitle": "Compare Rentak’s service packages and pick the one that offers you the right level of convenience, protection, and peace of mind.",
+      "most-popular": "Most Popular",
+      "rentak-collect": {
+        "name": "Rentak Collect",
+        "features": [
+          "The Rentak Collection Package Benefit is 2.5%",
+          "Payment Reminders: Monthly rent reminders to tenants.",
+          "Multiple Payment Methods: Tenants can choose from several payment options.",
+          "Direct Transfers: Rent is transferred directly to landlords."
+        ],
+        "cta": "Choose"
+      },
+      "rentak-basic": {
+        "name": "Rentak Basic",
+        "features": [
+          "Payment Reminders: Monthly rent reminders to tenants.",
+          "Multiple Payment Methods: Tenants can choose from several payment options.",
+          "Marketing & Promotion: Your property is marketed to Rentak's network and listed on platforms.",
+          "Legal Contracts: Creation of legally compliant contracts.",
+          "Direct Transfers: Rent is transferred directly to landlords.",
+          "Status Reporting: Updates on rental status, including unpaid rent.",
+          "Property Handover Reports: Full inspection report when returning the unit."
+        ],
+        "cta": "Choose"
+      },
+      "rentak-secure": {
+        "name": "Rentak Secure",
+        "features": [
+          "Payment Reminders: Monthly rent reminders to tenants.",
+          "Multiple Payment Methods: Tenants can choose from several payment options.",
+          "Marketing & Promotion: Your property is marketed to Rentak's network and listed on platforms.",
+          "Legal Contracts: Creation of legally compliant contracts.",
+          "Direct Transfers: Rent is transferred directly to landlords.",
+          "Guaranteed Rent: Rentak ensures you receive rent same day every month, even if tenants fail to pay.",
+          "Property Protection: Eviction handling and legal costs covered.",
+          "Complete Unit Care: Ensures the property is returned in the same condition, including maintenance."
+        ],
+        "cta": "Choose"
+      }
+    },
+    "why-rentak": {
+      "title": "Why choose rentak?",
+      "subtitle": "At Rentak, we understand that managing rental properties can be time-consuming and stressful. That’s why we offer a full suite of property management services designed to simplify your life, protect your investment, and maximize your rental income. Whether you want guaranteed rent, comprehensive property management, or flexible options tailored to your needs, Rentak has you covered."
+    },
+    "steps": {
+      "title": "Getting started is easy, sign up in minutes",
+      "get-started": {
+        "title": "Get Started with Ease",
+        "description": "Contact Rentak and let us know your rental needs."
+      },
+      "inspection": {
+        "title": "Professional Unit Photography & Inspection",
+        "description": "We capture high-quality photos and inspect your unit for a smooth rental process."
+      },
+      "exposure": {
+        "title": "Maximize Exposure",
+        "description": "We promote your unit through our vast broker network and listing platform."
+      },
+      "find-tenant": {
+        "title": "Find the Perfect Tenant",
+        "description": "Rigorous tenant screening ensures you get reliable renters."
+      },
+      "contract": {
+        "title": "Seamless Contract Signing",
+        "description": "Rentak reviews and facilitates the contract signing process."
+      },
+      "collection": {
+        "title": "Hassle-Free Rent Collection",
+        "description": "Enjoy on-time rent payments until we return your property in its original condition."
+      }
+    },
+    "finishing": {
+      "title": "Assisting individuals in locating the appropriate real estate.",
+      "subtitle": "Rentak assists individuals in locating the appropriate real estate."
+    },
+    "testimonials": {
+      "title": "Hear from Our Happy Homeowners"
     }
   },
   "services": {

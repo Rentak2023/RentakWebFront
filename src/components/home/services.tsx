@@ -1,7 +1,7 @@
 import { BriefcaseIcon, HomeIcon, KeyIcon } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
-import { Link } from "@/navigation";
+import { Link } from "@/i18n/routing";
 
 import { Button } from "../ui/button";
 import SectionTitle from "./components/section-title";

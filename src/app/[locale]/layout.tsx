@@ -8,14 +8,14 @@ import { NextIntlClientProvider } from "next-intl";
 import {
   getMessages,
   getTranslations,
-  unstable_setRequestLocale,
+  setRequestLocale,
 } from "next-intl/server";
 
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import { Toaster } from "@/components/ui/toaster";
+import { routing } from "@/i18n/routing";
 import getLocaleDirection from "@/lib/utils";
-import { locales } from "@/navigation";
 
 import { Providers } from "./providers";
 
@@ -31,10 +31,11 @@ const generalSans = localFont({
 });
 
 type Props = {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
   const t = await getTranslations({
     locale: params.locale,
     namespace: "meta",
@@ -42,21 +43,34 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: t("title"),
+    metadataBase: new URL("https://www.rentakapp.com"),
+    alternates: {
+      canonical: "/",
+      languages: {
+        "en-US": "/",
+        "ar-EG": "/ar",
+      },
+    },
   };
 }
 
 export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
+  return routing.locales.map((locale) => ({ locale }));
 }
 
-export default async function RootLayout({
-  children,
-  params: { locale },
-}: Readonly<{
-  children: React.ReactNode;
-  params: { locale: string };
-}>) {
-  unstable_setRequestLocale(locale);
+export default async function RootLayout(
+  props: Readonly<{
+    children: React.ReactNode;
+    params: Promise<{ locale: string }>;
+  }>,
+) {
+  const params = await props.params;
+
+  const { locale } = params;
+
+  const { children } = props;
+
+  setRequestLocale(locale);
   const direction = getLocaleDirection(locale);
   const messages = await getMessages();
 
