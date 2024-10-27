@@ -1,5 +1,4 @@
-"use server";
-
+import { endOfDay, format } from "date-fns";
 import { HTTPError } from "ky";
 
 import ky from "@/lib/ky";
@@ -26,10 +25,17 @@ type RentPaymentResponse = {
 
 export const rentPaymentAction = async (data: Record<string, any>) => {
   try {
+    const formData = { ...data };
+    for (const [key, value] of Object.entries(data)) {
+      if (value instanceof Date) {
+        formData[key] = format(endOfDay(value), "yyyy-MM-dd");
+      }
+    }
+
     const res = await ky
       .post("contract/create_rent_payment_contract", {
         json: {
-          ...data,
+          ...formData,
           product_id: 1,
         },
       })

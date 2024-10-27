@@ -444,7 +444,8 @@
       "skip": "Skip"
     },
     "messages": {
-      "service-request-success": "Request made successfully. someone will contact you shortly."
+      "service-request-success": "Request made successfully. someone will contact you shortly.",
+      "success": "Request made successfully."
     },
     "rent-collection": {
       "title": "Rent Collection",

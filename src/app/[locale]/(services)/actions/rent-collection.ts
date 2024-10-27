@@ -1,21 +1,26 @@
-"use server";
-
+import { endOfDay, format } from "date-fns";
 import { HTTPError } from "ky";
 
 import ky from "@/lib/ky";
 
-type ContactResponse = {
+type RentCollectionResponse = {
   message: string;
   rent_collection_request_id: number;
 };
 
 export const rentCollectionAction = async (data: Record<string, any>) => {
   try {
+    const formData = { ...data };
+    for (const [key, value] of Object.entries(data)) {
+      if (value instanceof Date) {
+        formData[key] = format(endOfDay(value), "yyyy-MM-dd");
+      }
+    }
     const res = await ky
       .post("contract/create_rent_collection_contract", {
-        json: data,
+        json: formData,
       })
-      .json<ContactResponse>();
+      .json<RentCollectionResponse>();
 
     return {
       type: "success" as const,

@@ -263,12 +263,12 @@ export default function RentCollection() {
           name: "total_amount",
           label: t("fields.total-amount.label"),
           description: t("fields.total-amount.description", {
-            fees: "2.5",
+            fees: "2",
           }),
           kind: "text",
           type: "text",
           readonly: true,
-          compute: (data) => (Number(data.rent_amount) * 1.025).toFixed(2),
+          compute: (data) => (Number(data.rent_amount) * 1.02).toFixed(2),
         },
         {
           name: "contract_start_date",
@@ -331,6 +331,11 @@ export default function RentCollection() {
         duration: 5000,
       });
       return;
+    } else if (res?.type === "success") {
+      toast({
+        title: "Success",
+        description: t("messages.success"),
+      });
     }
   };
 
