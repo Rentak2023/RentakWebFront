@@ -1,16 +1,18 @@
+import { useTranslations } from "next-intl";
+
 export default function Finishing() {
+  const t = useTranslations("landlord.finishing");
+
   return (
     <div className="mt-28 overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 lg:flex lg:px-8">
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-12 gap-y-16 lg:mx-0 lg:min-w-full lg:max-w-none lg:flex-none lg:gap-y-8">
           <div className="lg:col-end-1 lg:w-full lg:max-w-lg lg:pb-8">
             <h2 className="text-3xl font-semibold tracking-tight text-primary-900 sm:text-4xl">
-              Assisting individuals in locating the appropriate real estate.
+              {t("title")}
             </h2>
             <p className="mt-6 text-base leading-7 text-slate-600">
-              Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
-              lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
-              fugiat. Quasi aperiam sit non sit neque reprehenderit.
+              {t("subtitle")}
             </p>
           </div>
           <div className="flex flex-wrap items-start justify-end gap-6 sm:gap-8 lg:contents">
