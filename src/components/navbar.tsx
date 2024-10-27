@@ -74,8 +74,8 @@ export default function Navbar() {
       ],
     },
     {
-      name: t("contact"),
-      path: "/#contact",
+      name: t("landlord"),
+      path: "/landlord",
     },
   ];
 

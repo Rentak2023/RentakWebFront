@@ -41,7 +41,7 @@ const Features = () => {
           </defs>
         </svg>
       ),
-      href: "/",
+      href: "/rent-management",
     },
     {
       title: t("rent-collection.title"),
@@ -77,7 +77,7 @@ const Features = () => {
           </defs>
         </svg>
       ),
-      href: "/",
+      href: "/rent-collection",
     },
     {
       title: t("promote-property.title"),
@@ -148,7 +148,7 @@ const Features = () => {
           />
         </svg>
       ),
-      href: "/",
+      href: "/contract",
     },
     {
       title: t("maintenance-payment.title"),
@@ -169,7 +169,7 @@ const Features = () => {
           />
         </svg>
       ),
-      href: "/",
+      href: "/maintenance-payment",
     },
   ];
   return (
