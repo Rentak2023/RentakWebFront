@@ -16,7 +16,9 @@ import Navbar from "@/components/navbar";
 import { Toaster } from "@/components/ui/toaster";
 import { routing } from "@/i18n/routing";
 import getLocaleDirection from "@/lib/utils";
+import URLS from "@/shared/urls";
 
+import WhatsappIcon from "./assets/svgs/whatsapp-icon";
 import { Providers } from "./providers";
 
 const notoSans = Noto_Sans_Arabic({
@@ -98,6 +100,12 @@ export default async function RootLayout(
             {children}
             <Footer />
             <Toaster />
+            <a
+              href={URLS.whatsapp}
+              className="fixed bottom-6 end-6 z-50 inline-flex rounded-full border bg-white p-2 shadow-lg"
+            >
+              <WhatsappIcon className="size-6 text-slate-800" />
+            </a>
           </Providers>
         </NextIntlClientProvider>
       </body>
