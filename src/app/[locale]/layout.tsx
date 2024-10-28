@@ -102,9 +102,9 @@ export default async function RootLayout(
             <Toaster />
             <a
               href={URLS.whatsapp}
-              className="fixed bottom-6 end-6 z-50 inline-flex rounded-full border bg-white p-2 shadow-lg"
+              className="fixed bottom-8 end-8 z-50 inline-flex rounded-full border bg-[#25D366] p-3 shadow-lg"
             >
-              <WhatsappIcon className="size-6 text-slate-800" />
+              <WhatsappIcon className="size-8 text-white" />
             </a>
           </Providers>
         </NextIntlClientProvider>
