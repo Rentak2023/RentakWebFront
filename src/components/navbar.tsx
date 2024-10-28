@@ -33,6 +33,10 @@ export default function Navbar() {
       path: "/",
     },
     {
+      name: t("landlord"),
+      path: "/landlord",
+    },
+    {
       name: t("listing"),
       path: "/listing",
       subRoutes: [
@@ -72,10 +76,6 @@ export default function Navbar() {
           path: "/contract",
         },
       ],
-    },
-    {
-      name: t("landlord"),
-      path: "/landlord",
     },
   ];
 
