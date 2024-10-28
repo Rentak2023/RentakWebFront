@@ -179,6 +179,7 @@ type StepFieldProps = {
 };
 
 function StepField({ formField, field, useFormStore }: StepFieldProps) {
+  // eslint-disable-next-line react-compiler/react-compiler
   const { formData } = useFormStore();
   const form = useFormContext();
   const currentValues = useWatch({ control: form.control });

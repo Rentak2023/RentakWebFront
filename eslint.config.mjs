@@ -10,6 +10,7 @@ import tanStackQuery from "@tanstack/eslint-plugin-query";
 import configPrettier from "eslint-config-prettier";
 import importX from "eslint-plugin-import-x";
 import promise from "eslint-plugin-promise";
+import reactCompilerPlugin from "eslint-plugin-react-compiler";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
 import tailwind from "eslint-plugin-tailwindcss";
 import unicorn from "eslint-plugin-unicorn";
@@ -50,6 +51,7 @@ export default ts.config(
   {
     plugins: {
       "simple-import-sort": simpleImportSort,
+      "react-compiler": reactCompilerPlugin,
     },
     rules: {
       "func-style": ["error", "declaration", { allowArrowFunctions: true }],
@@ -59,6 +61,7 @@ export default ts.config(
       "unicorn/no-array-reduce": "off",
       "simple-import-sort/imports": "error",
       "simple-import-sort/exports": "error",
+      "react-compiler/react-compiler": "error",
       "no-restricted-imports": [
         "error",
         {
