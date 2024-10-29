@@ -24,7 +24,7 @@ const nextConfig = {
     },
   },
   experimental: {
-    reactCompiler: true,
+    reactCompiler: false,
     staleTimes: {
       dynamic: 30,
       static: 180,
