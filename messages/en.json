@@ -478,6 +478,10 @@
     "promote-properties": {
       "title": "Promote Properties",
       "description": "Use Rentak’s marketing tools to promote properties effectively."
+    },
+    "property-valuation": {
+      "title": "Property Valuation",
+      "description": "Get a professional evaluation of your property’s rental value."
     }
   },
   "unit": {

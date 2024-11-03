@@ -1,21 +1,8 @@
 "use client";
 
-import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
 import clsx from "clsx";
 import { CheckIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
-
-type Frequency = {
-  value: "monthly" | "annually";
-  label: string;
-  priceSuffix: string;
-};
-
-const frequencies: Array<Frequency> = [
-  { value: "monthly", label: "Monthly", priceSuffix: "/month" },
-  { value: "annually", label: "Annually", priceSuffix: "/year" },
-] as const;
 
 type Tier = {
   name: string;
@@ -28,61 +15,6 @@ type Tier = {
   cta: string;
 };
 
-const tiers: Array<Tier> = [
-  {
-    name: "Rentak Collect",
-    id: "tier-collect",
-    href: "#",
-    price: "3%",
-    description: "The essentials to provide your best work for clients.",
-    features: [
-      "The Rentak Collection Package Benefit is 2.5%",
-      "Payment Reminders: Monthly rent reminders to tenants.",
-      "Multiple Payment Methods: Tenants can choose from several payment options.",
-      "Direct Transfers: Rent is transferred directly to landlords.",
-    ],
-    featured: false,
-    cta: "Choose",
-  },
-  {
-    name: "Rentak Basic",
-    id: "tier-basic",
-    href: "#",
-    price: "5%",
-    description: "A plan that scales with your rapidly growing business.",
-    features: [
-      "Payment Reminders: Monthly rent reminders to tenants.",
-      "Multiple Payment Methods: Tenants can choose from several payment options.",
-      "Marketing & Promotion: Your property is marketed to Rentak's network and listed on platforms.",
-      "Legal Contracts: Creation of legally compliant contracts.",
-      "Direct Transfers: Rent is transferred directly to landlords.",
-      "Status Reporting: Updates on rental status, including unpaid rent.",
-      "Property Handover Reports: Full inspection report when returning the unit.",
-    ],
-    featured: false,
-    cta: "Choose",
-  },
-  {
-    name: "Rentak Secure",
-    id: "tier-secure",
-    href: "#",
-    price: "10%",
-    description: "Dedicated support and infrastructure for your company.",
-    features: [
-      "Payment Reminders: Monthly rent reminders to tenants.",
-      "Multiple Payment Methods: Tenants can choose from several payment options.",
-      "Marketing & Promotion: Your property is marketed to Rentak's network and listed on platforms.",
-      "Legal Contracts: Creation of legally compliant contracts.",
-      "Direct Transfers: Rent is transferred directly to landlords.",
-      "Guaranteed Rent: Rentak ensures you receive rent same day every month, even if tenants fail to pay.",
-      "Property Protection: Eviction handling and legal costs covered.",
-      "Complete Unit Care: Ensures the property is returned in the same condition, including maintenance.",
-    ],
-    featured: true,
-    cta: "Choose",
-  },
-];
-
 export default function Pricing() {
   const t = useTranslations("landlord.plans");
 
@@ -90,7 +22,7 @@ export default function Pricing() {
     {
       name: t("rentak-collect.name"),
       id: "tier-collect",
-      href: "#",
+      href: "/rent-collection",
       price: "3%",
       features: t.raw("rentak-collect.features"),
       featured: false,
@@ -99,7 +31,7 @@ export default function Pricing() {
     {
       name: t("rentak-basic.name"),
       id: "tier-basic",
-      href: "#",
+      href: "/rentak-basic",
       price: "5%",
       features: t.raw("rentak-basic.features"),
       featured: false,
@@ -108,7 +40,7 @@ export default function Pricing() {
     {
       name: t("rentak-secure.name"),
       id: "tier-secure",
-      href: "#",
+      href: "/rentak-secure",
       price: "10%",
       features: t.raw("rentak-secure.features"),
       featured: true,

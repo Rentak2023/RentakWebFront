@@ -102,7 +102,7 @@ const Features = () => {
           />
         </svg>
       ),
-      href: "/",
+      href: "/promote-properties",
     },
     {
       title: t("property-valuation.title"),
@@ -125,7 +125,7 @@ const Features = () => {
           />
         </svg>
       ),
-      href: "/",
+      href: "/property-valuation",
     },
     {
       title: t("legal-contract.title"),

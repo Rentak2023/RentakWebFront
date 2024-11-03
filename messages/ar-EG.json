@@ -481,6 +481,10 @@
     "promote-properties": {
       "title": "ترويج العقارات",
       "description": "استخدم أدوات التسويق من Rentak لترويج العقارات بفعالية."
+    },
+    "property-valuation": {
+      "title": "تقييم العقار",
+      "description": "الحصول على تقييم احترافي لقيمة أيجار عقارك."
     }
   },
   "unit": {
