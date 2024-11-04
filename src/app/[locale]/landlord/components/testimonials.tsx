@@ -1,29 +1,62 @@
 "use client";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, StarIcon } from "lucide-react";
+import { ArrowRight, StarIcon } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import getLocaleDirection from "@/lib/utils";
 
-const testimonials = [
+type Testimonial = {
+  id: number;
+  name: string;
+  image: string;
+  rating: number;
+  paragraphs: Array<string>;
+};
+
+const testimonials: Array<Testimonial> = [
   {
     id: 1,
-    name: "Sarah A.",
-    paragraph:
-      "Rentak has completely transformed how I manage my properties. The guaranteed rent option has given me peace of mind, and their team handles everything seamlessly.",
+    name: "Mahmoud A.",
+    paragraphs: [
+      "With Rentak, I've never worried about late payments again. Their timely rent collection service has transformed how I manage my properties.",
+      "Rentak's legal safeguards give me peace of mind. I know that my rental agreements are solid and my interests are protected.",
+      "Rentak's thorough property inspections provide a transparent overview of my unit before and after rent, ensuring every detail is accounted for. I feel safe.",
+    ],
     image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     rating: 5,
   },
   {
     id: 2,
-    name: "Ahmed M.",
-    paragraph:
-      "I was tired of chasing down late payments. Rentak’s automated rent collection made my life so much easier. Plus, my tenants are happier!",
+    name: "Tarek G.",
+    paragraphs: [
+      "As a landlord, I really appreciate that Rentak services allow me to pay my annual maintenance fees in installments. Instead of having to pay a large lump sum all at once, I can spread out the cost over several months",
+    ],
     image:
       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    rating: 5,
+  },
+  {
+    id: 3,
+    name: "Ahmed G.",
+    paragraphs: [
+      "As a landlord, I find Rentak's guarantee on my rental unit to be the most beneficial service they offer. Knowing that my unit is protected gives me significant peace of mind and allows me to feel more at ease about my property. Rentak's assurance makes managing my rental far less stressful, and I truly appreciate the level of care and security they provide.",
+    ],
+    image:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    rating: 5,
+  },
+  {
+    id: 4,
+    name: "Howaida M.",
+    paragraphs: [
+      "What I appreciate most about Rentak is their strong commitment and reliability. Rentak truly stands out as a company that honors its promises, providing dependable service that I can always count on. Their dedication makes all the difference and gives me confidence in working with them.",
+    ],
+    image:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+
     rating: 5,
   },
 ];
@@ -163,7 +196,9 @@ export function Testimonials() {
               </Button>
 
               <blockquote className="mt-2 text-lg font-medium leading-8 text-slate-500 sm:text-lg">
-                <p>{currentTestimonial.paragraph}</p>
+                {currentTestimonial.paragraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
               </blockquote>
               <div className="mt-6 flex flex-col items-center gap-4 border-t pt-6 lg:flex-row">
                 <div className="flex items-center gap-4">
