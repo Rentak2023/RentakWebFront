@@ -1,7 +1,8 @@
 "use client";
+import { toDate } from "date-fns";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, StarIcon } from "lucide-react";
-import { useLocale, useTranslations } from "next-intl";
+import { useFormatter, useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -10,9 +11,9 @@ import getLocaleDirection from "@/lib/utils";
 type Testimonial = {
   id: number;
   name: string;
-  image: string;
   rating: number;
   paragraphs: Array<string>;
+  date: Date;
 };
 
 const testimonials: Array<Testimonial> = [
@@ -24,9 +25,8 @@ const testimonials: Array<Testimonial> = [
       "Rentak's legal safeguards give me peace of mind. I know that my rental agreements are solid and my interests are protected.",
       "Rentak's thorough property inspections provide a transparent overview of my unit before and after rent, ensuring every detail is accounted for. I feel safe.",
     ],
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     rating: 5,
+    date: toDate("2024-04-06"),
   },
   {
     id: 2,
@@ -34,9 +34,8 @@ const testimonials: Array<Testimonial> = [
     paragraphs: [
       "As a landlord, I really appreciate that Rentak services allow me to pay my annual maintenance fees in installments. Instead of having to pay a large lump sum all at once, I can spread out the cost over several months",
     ],
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     rating: 5,
+    date: toDate("2024-10-26"),
   },
   {
     id: 3,
@@ -44,9 +43,8 @@ const testimonials: Array<Testimonial> = [
     paragraphs: [
       "As a landlord, I find Rentak's guarantee on my rental unit to be the most beneficial service they offer. Knowing that my unit is protected gives me significant peace of mind and allows me to feel more at ease about my property. Rentak's assurance makes managing my rental far less stressful, and I truly appreciate the level of care and security they provide.",
     ],
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     rating: 5,
+    date: toDate("2024-10-26"),
   },
   {
     id: 4,
@@ -54,10 +52,8 @@ const testimonials: Array<Testimonial> = [
     paragraphs: [
       "What I appreciate most about Rentak is their strong commitment and reliability. Rentak truly stands out as a company that honors its promises, providing dependable service that I can always count on. Their dedication makes all the difference and gives me confidence in working with them.",
     ],
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-
     rating: 5,
+    date: toDate("2023-12-25"),
   },
 ];
 
@@ -91,6 +87,8 @@ export function Testimonials() {
   const t = useTranslations("landlord.testimonials");
   const locale = useLocale();
   const direction = getLocaleDirection(locale);
+  const formatter = useFormatter();
+
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const currentTestimonial = testimonials.find((t) => t.id === currentId)!;
   return (
@@ -197,17 +195,25 @@ export function Testimonials() {
 
               <blockquote className="mt-2 text-lg font-medium leading-8 text-slate-500 sm:text-lg">
                 {currentTestimonial.paragraphs.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
+                  <p key={paragraph} dir="ltr">
+                    {paragraph}
+                  </p>
                 ))}
               </blockquote>
               <div className="mt-6 flex flex-col items-center gap-4 border-t pt-6 lg:flex-row">
-                <div className="flex items-center gap-4">
-                  <img
-                    className="aspect-square size-16 rounded-full object-cover"
-                    src={currentTestimonial.image}
-                  />
-                  <span className="text-2xl font-medium text-slate-700">
+                <div className="flex items-baseline gap-5">
+                  <span
+                    className="text-2xl font-medium text-slate-700"
+                    dir="ltr"
+                  >
                     {currentTestimonial.name}
+                  </span>
+                  <span>
+                    {formatter.dateTime(currentTestimonial.date, {
+                      day: "numeric",
+                      month: "short",
+                      year: "numeric",
+                    })}
                   </span>
                 </div>
                 <p className="sr-only">
