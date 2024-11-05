@@ -443,11 +443,7 @@ export default function RentPayment(
           title: "Success",
           description: "Payment Request created successfully",
         });
-        setTimeout(() => {
-          if (res.data.payment_data?.redirect_url) {
-            globalThis.location.href = res.data.payment_data.redirect_url;
-          }
-        }, 1000);
+        globalThis.location.href = res.data.payment_data.redirect_url;
       } else {
         toast({
           title: "Success",

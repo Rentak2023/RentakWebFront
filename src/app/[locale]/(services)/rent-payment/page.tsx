@@ -8,6 +8,7 @@ import isMobilePhone from "validator/es/lib/isMobilePhone";
 import isNumeric from "validator/es/lib/isNumeric";
 
 import { useToast } from "@/components/ui/use-toast";
+import { useRouter } from "@/i18n/routing";
 import { banksQuery } from "@/queries/banks";
 import { cashInPaymentMethodsQuery } from "@/queries/payment-methods";
 import { sendOTP, verifyOTP } from "@/services/auth";
@@ -37,6 +38,7 @@ export default function RentPayment(
   const [userId, setUserId] = useState<number | null>(null);
   const [discount, setDiscount] = useState<number>(0);
   const { toast } = useToast();
+  const router = useRouter();
 
   const steps = [
     {
@@ -443,9 +445,7 @@ export default function RentPayment(
           title: "Success",
           description: "Payment Request created successfully",
         });
-        if (res.data.payment_data.redirect_url) {
-          globalThis.location.href = res.data.payment_data.redirect_url;
-        }
+        router.push(res.data.payment_data.redirect_url);
       } else {
         toast({
           title: "Success",
