@@ -54,7 +54,7 @@ export default function PayRent() {
   return (
     <section className="mt-24 bg-white">
       <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="flex justify-between gap-x-16 gap-y-8">
+        <div className="flex flex-col items-center justify-between gap-16 lg:flex-row">
           <div>
             <h2 className="text-3xl font-bold text-primary-900 sm:text-4xl">
               Flexible rent payment
@@ -72,12 +72,12 @@ export default function PayRent() {
           <div className="max-w-md">
             <ul
               role="list"
-              className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:gap-x-8"
+              className="grid grid-cols-2 gap-x-4 gap-y-8 md:grid-cols-3 md:gap-x-8"
             >
               {partners.map((partner) => (
                 <li
                   key={partner.name}
-                  className="relative inline-flex aspect-video h-20 items-center justify-center rounded-xl border-2 p-4 shadow [&:nth-of-type(3n-1)]:top-12"
+                  className="relative inline-flex aspect-video h-20 items-center justify-center rounded-xl border-2 p-4 shadow max-md:[&:nth-of-type(2n)]:top-12 md:[&:nth-of-type(3n-1)]:top-12"
                 >
                   <Image
                     className="size-full object-contain"

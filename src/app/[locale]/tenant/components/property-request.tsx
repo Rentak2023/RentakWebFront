@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 
 export default function PropertyRequest() {
   return (
-    <div className="container mx-auto mt-32 flex items-center justify-between px-4">
+    <div className="container mx-auto mt-32 flex flex-col items-center justify-between gap-y-12 px-4 lg:flex-row">
       <div>
         <p className="text-lg font-medium text-primary-800">
           Can’t find what you’re looking for?
