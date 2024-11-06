@@ -19,10 +19,10 @@ export default function Header() {
               </div>
             </div>
           </div>
-          <div className="relative mx-auto mt-20 sm:mt-24 md:max-w-md lg:mx-0 lg:mt-0 lg:w-screen">
+          <div className="relative mx-auto mt-20 sm:mt-24 md:max-w-lg lg:mx-0 lg:mt-0 lg:w-screen">
             <Image
               src={headerBackground}
-              className="w-full overflow-hidden rounded-3xl"
+              className="w-full overflow-hidden rounded-xl"
               alt=""
               width={500}
             />
