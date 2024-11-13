@@ -9,12 +9,9 @@ import souhoolaLogo from "@/app/[locale]/assets/images/logos/souhoola.png";
 import valuLogo from "@/app/[locale]/assets/images/logos/valu.png";
 import visaLogo from "@/app/[locale]/assets/images/logos/visa.png";
 import { Button } from "@/components/ui/button";
+import { Link } from "@/i18n/routing";
 
 const partners = [
-  {
-    name: "Paytabs",
-    logo: paytabsLogo,
-  },
   {
     name: "valu",
     logo: valuLogo,
@@ -22,6 +19,14 @@ const partners = [
   {
     name: "halan",
     logo: halanLogo,
+  },
+  {
+    name: "souhoola",
+    logo: souhoolaLogo,
+  },
+  {
+    name: "Forsa",
+    logo: forsaLogo,
   },
   {
     name: "visa",
@@ -34,14 +39,6 @@ const partners = [
   {
     name: "Meeza",
     logo: meezaLogo,
-  },
-  {
-    name: "Forsa",
-    logo: forsaLogo,
-  },
-  {
-    name: "souhoola",
-    logo: souhoolaLogo,
   },
 ];
 
@@ -60,8 +57,8 @@ export default function PayRent() {
               credit card, ValU, and more. No more bulk payments—just
               flexibility that fits your needs.
             </p>
-            <Button variant="dark" size="lg" className="mt-10">
-              Pay Now
+            <Button variant="dark" size="lg" className="mt-10" asChild>
+              <Link href="/rent-payment">Pay Now</Link>
             </Button>
           </div>
           <div className="max-w-md">
