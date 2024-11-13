@@ -3,8 +3,7 @@ import Image from "next/image";
 import forsaLogo from "@/app/[locale]/assets/images/logos/forsa.png";
 import halanLogo from "@/app/[locale]/assets/images/logos/halan.png";
 import mastercardLogo from "@/app/[locale]/assets/images/logos/mastercard.png";
-import orionLogo from "@/app/[locale]/assets/images/logos/orion.png";
-import palmHillsLogo from "@/app/[locale]/assets/images/logos/palm-hills.jpg";
+import meezaLogo from "@/app/[locale]/assets/images/logos/Meeza.svg";
 import paytabsLogo from "@/app/[locale]/assets/images/logos/paytabs.svg";
 import souhoolaLogo from "@/app/[locale]/assets/images/logos/souhoola.png";
 import valuLogo from "@/app/[locale]/assets/images/logos/valu.png";
@@ -12,14 +11,6 @@ import visaLogo from "@/app/[locale]/assets/images/logos/visa.png";
 import { Button } from "@/components/ui/button";
 
 const partners = [
-  {
-    name: "orion",
-    logo: orionLogo,
-  },
-  {
-    name: "palm hills",
-    logo: palmHillsLogo,
-  },
   {
     name: "Paytabs",
     logo: paytabsLogo,
@@ -33,20 +24,24 @@ const partners = [
     logo: halanLogo,
   },
   {
-    name: "Forsa",
-    logo: forsaLogo,
-  },
-  {
-    name: "souhoola",
-    logo: souhoolaLogo,
-  },
-  {
     name: "visa",
     logo: visaLogo,
   },
   {
     name: "mastercard",
     logo: mastercardLogo,
+  },
+  {
+    name: "Meeza",
+    logo: meezaLogo,
+  },
+  {
+    name: "Forsa",
+    logo: forsaLogo,
+  },
+  {
+    name: "souhoola",
+    logo: souhoolaLogo,
   },
 ];
 

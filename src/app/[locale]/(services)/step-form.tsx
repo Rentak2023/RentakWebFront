@@ -66,6 +66,7 @@ export function StepForm({ useFormStore, step, onSubmit }: StepFormProps) {
     formData,
     getFormData,
     actions: { updateFormData },
+    // eslint-disable-next-line react-compiler/react-compiler
   } = useFormStore();
 
   const defaultValues = useMemo(() => {
