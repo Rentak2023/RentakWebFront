@@ -130,10 +130,10 @@
       }
     },
     "units": {
-      "title": "Available Rental Units",
-      "subtitle": "Browse our up-to-date inventory of available rental units, showcasing a variety of properties that cater to diverse preferences and needs.",
+      "title": "Browse Verified Listings",
+      "subtitle": "Explore a wide range of properties that are verified and ready for move-in. Each listing comes with detailed photos and pricing transparency.",
       "recentUnits": "Recent Units",
-      "viewAll": "View All Units"
+      "viewAll": "View Available Properties"
     },
     "partners": {
       "title": "Our Partners"

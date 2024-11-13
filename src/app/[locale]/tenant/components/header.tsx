@@ -13,9 +13,12 @@ export default function Header() {
             <div className="mx-auto max-w-2xl">
               <div className="max-w-xl">
                 <h1 className="mt-10 text-balance text-3xl font-semibold tracking-tight text-primary-800 sm:text-5xl">
-                  {t("title")}
+                  Find Your Ideal Home with Rentak
                 </h1>
-                <p className="mt-6 text-lg text-slate-700">{t("subtitle")}</p>
+                <p className="mt-6 text-lg text-slate-700">
+                  Simplify your rental experience with flexible payments,
+                  hassle-free services, and secure contracts.
+                </p>
               </div>
             </div>
           </div>

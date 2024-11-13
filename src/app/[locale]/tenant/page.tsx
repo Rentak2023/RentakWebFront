@@ -2,12 +2,12 @@ import { setRequestLocale } from "next-intl/server";
 
 import Units from "@/components/home/units";
 
-import Steps from "../landlord/components/steps";
-import { Testimonials } from "../landlord/components/testimonials";
 import BlogPosts from "./components/blog-posts";
 import Header from "./components/header";
 import PayRent from "./components/pay-rent";
 import PropertyRequest from "./components/property-request";
+import Steps from "./components/steps";
+import { Testimonials } from "./components/testimonials";
 
 async function Tenant(
   props: Readonly<{

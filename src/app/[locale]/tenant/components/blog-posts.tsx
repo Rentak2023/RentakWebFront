@@ -34,7 +34,7 @@ export default function BlogPosts() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-balance text-4xl font-semibold tracking-tight text-primary-900 sm:text-5xl">
-            Stay Updated with Our Tips & Service News!
+            Tips for Tenants
           </h2>
           <p className="mt-4 text-lg/8 text-slate-600">
             Stay informed with our tips for tenants, service updates, expert
