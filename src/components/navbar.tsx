@@ -37,6 +37,10 @@ export default function Navbar() {
       path: "/landlord",
     },
     {
+      name: t("tenant"),
+      path: "/tenant",
+    },
+    {
       name: t("listing"),
       path: "/listing",
       subRoutes: [
