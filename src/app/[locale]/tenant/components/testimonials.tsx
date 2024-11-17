@@ -84,7 +84,7 @@ const variants = {
 export function Testimonials() {
   const [currentId, setCurrentId] = useState(1);
   const [animationDirection, setAnimationDirection] = useState(0);
-  const t = useTranslations("landlord.testimonials");
+  const t = useTranslations("tenant.testimonials");
   const locale = useLocale();
   const direction = getLocaleDirection(locale);
   const formatter = useFormatter();
@@ -96,7 +96,7 @@ export function Testimonials() {
       <div className="flex flex-col items-center gap-y-6 lg:flex-row">
         <div className="flex max-w-lg flex-col items-center lg:items-start">
           <h3 className="text-balance text-2xl font-semibold text-primary-900 lg:text-5xl">
-            What Our Tenants Are Saying
+            {t("title")}
           </h3>
         </div>
         <div className="relative lg:ms-auto">

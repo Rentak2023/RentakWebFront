@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 import forsaLogo from "@/app/[locale]/assets/images/logos/forsa.png";
 import halanLogo from "@/app/[locale]/assets/images/logos/halan.png";
@@ -43,22 +44,20 @@ const partners = [
 ];
 
 export default function PayRent() {
+  const t = useTranslations("tenant.flexible-payment");
+
   return (
     <section className="mt-24 bg-white">
       <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center justify-between gap-16 lg:flex-row">
           <div>
             <h2 className="text-3xl font-bold text-primary-900 sm:text-4xl">
-              Flexible rent payment
+              {t("title")}
             </h2>
 
-            <p className="mt-4 max-w-xl text-slate-500">
-              Pay your rent with ease using multiple payment options including
-              credit card, ValU, and more. No more bulk payments—just
-              flexibility that fits your needs.
-            </p>
+            <p className="mt-4 max-w-xl text-slate-500">{t("description")}</p>
             <Button variant="dark" size="lg" className="mt-10" asChild>
-              <Link href="/rent-payment">Pay Now</Link>
+              <Link href="/rent-payment">{t("cta")}</Link>
             </Button>
           </div>
           <div className="max-w-md">

@@ -1,37 +1,34 @@
 import { useTranslations } from "next-intl";
 
 export default function Steps() {
-  const t = useTranslations("landlord.steps");
+  const t = useTranslations("tenant.steps");
   const steps = [
     {
-      title: "Browse Listings",
+      title: t("listing.title"),
       color: "#CEEBBB",
-      description:
-        "Find your perfect home by browsing through our verified listings.",
+      description: t("listing.description"),
     },
     {
-      title: "Book a Viewing",
+      title: t("viewing.title"),
       color: "#D8BBEB",
-      description: "Schedule a viewing at a time that works for you.",
+      description: t("viewing.description"),
     },
     {
-      title: "Easy Payments",
+      title: t("payment.title"),
       color: "#EBC0BB",
-      description:
-        "Set up your preferred payment method, including flexible rent or installment plans.",
+      description: t("payment.description"),
     },
     {
-      title: "Enjoy Your Stay",
+      title: t("stay.title"),
       color: "#D2A78C",
-      description:
-        "Submit maintenance requests and pay bills seamlessly throughout your tenancy.",
+      description: t("stay.description"),
     },
   ];
   return (
     <section className="mt-28">
       <div className="container mx-auto">
         <h2 className="text-center text-4xl font-semibold tracking-tight text-primary-900">
-          How It Works (Step-by-Step)
+          {t("title")}
         </h2>
 
         <ol className="relative mx-auto mt-16 flex max-w-2xl flex-col gap-5 border-s border-slate-200">

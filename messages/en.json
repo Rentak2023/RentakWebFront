@@ -272,6 +272,49 @@
       "title": "Hear from Our Happy Homeowners"
     }
   },
+  "tenant": {
+    "header": {
+      "title": "Find Your Ideal Home with Rentak",
+      "subtitle": "Simplify your rental experience with flexible payments, hassle-free services, and secure contracts."
+    },
+    "property-request": {
+      "question": "Can’t find what you’re looking for?",
+      "title": "Instant property request",
+      "description": "Submit a request, and Rentak will help you find the property that meets your needs.",
+      "cta": "Submit a request"
+    },
+    "flexible-payment": {
+      "title": "Flexible rent payment",
+      "description": "Pay your rent with ease using multiple payment options including credit card, ValU, and more. No more bulk payments—just flexibility that fits your needs.",
+      "cta": "Pay Now"
+    },
+    "steps": {
+      "title": "How It Works (Step-by-Step)",
+      "listing": {
+        "title": "Browse Listings",
+        "description": "Find your perfect home by browsing through our verified listings."
+      },
+      "viewing": {
+        "title": "Book a Viewing",
+        "description": "Schedule a viewing at a time that works for you."
+      },
+      "payment": {
+        "title": "Easy Payments",
+        "description": "Set up your preferred payment method, including flexible rent or installment plans."
+      },
+      "stay": {
+        "title": "Enjoy Your Stay",
+        "description": "Submit maintenance requests and pay bills seamlessly throughout your tenancy."
+      }
+    },
+    "testimonials": {
+      "title": "What Our Tenants Are Saying"
+    },
+    "blog": {
+      "title": "Tips for Tenants",
+      "subtitle": "Stay informed with our tips for tenants, service updates, expert advice on maintaining an immaculate home"
+    }
+  },
   "services": {
     "steps": {
       "profile-info": {
