@@ -22,7 +22,8 @@
     "maintenance-payment": "دفع الصيانة",
     "free-contract": "انشئ عقد ايجار",
     "contact": "تواصل معنا",
-    "landlord": "مالك"
+    "landlord": "مالك",
+    "tenant": "مستاجر"
   },
   "footer": {
     "copyright": "جميع الحقوق محفوظة",

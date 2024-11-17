@@ -21,7 +21,8 @@
     "rent-payment": "Pay Your Rent",
     "maintenance-payment": "Pay Your Maintenance",
     "free-contract": "Create Rent Contract",
-    "landlord": "Landlord"
+    "landlord": "Landlord",
+    "tenant": "Tenant"
   },
   "footer": {
     "copyright": "All right reserved",
