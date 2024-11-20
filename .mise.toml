@@ -1,4 +1,4 @@
 [tools]
-node = "lts"
+node = "23"
 bun = "latest"
 "npm:@antfu/ni" = "latest"
