@@ -2,6 +2,10 @@ import { allPosts } from "@content";
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 
+const createExcerpt = (body: string) => {
+  return body.replaceAll(/<[^>]+>/g, "").slice(0, 200);
+};
+
 export default function BlogPosts() {
   const locale = useLocale();
   const t = useTranslations("tenant.blog");
@@ -40,7 +44,9 @@ export default function BlogPosts() {
                     </a>
                   </h3>
                   <p className="mt-4 line-clamp-3 text-sm/6 text-slate-600">
-                    {locale === "en" ? post.content.raw : post.arContent.raw}
+                    {createExcerpt(
+                      locale === "en" ? post.content.html : post.arContent.html,
+                    )}
                   </p>
                 </div>
               </div>
