@@ -26,7 +26,7 @@ const compat = new FlatCompat({
 
 export default ts.config(
   {
-    ignores: [".next/"],
+    ignores: [".next/", ".contentlayer"],
   },
   js.configs.recommended,
   ...ts.configs.strictTypeChecked,

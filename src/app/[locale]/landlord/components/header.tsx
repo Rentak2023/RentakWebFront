@@ -1,7 +1,6 @@
 import { useTranslations } from "next-intl";
 import BackgroundVideo from "next-video/background-video";
 
-// eslint-disable-next-line import-x/no-unresolved
 import getStarted from "/videos/rentak-marks.mp4";
 
 export default function Header() {
