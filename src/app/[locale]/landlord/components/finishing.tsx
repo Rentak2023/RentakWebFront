@@ -1,6 +1,9 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 
+import { Button } from "@/components/ui/button";
+import { Link } from "@/i18n/routing";
+
 import img01 from "./images/01.jpg";
 import img02 from "./images/02.jpg";
 import img03 from "./images/03.jpg";
@@ -20,6 +23,9 @@ export default function Finishing() {
             <p className="mt-6 text-base leading-7 text-slate-600">
               {t("subtitle")}
             </p>
+            <Button variant="dark" size="lg" className="mt-10" asChild>
+              <Link href="/finish-property">{t("cta")}</Link>
+            </Button>
           </div>
           <div className="flex flex-wrap items-start justify-end gap-6 sm:gap-8 lg:contents">
             <div className="w-0 flex-auto lg:ms-auto lg:w-auto lg:flex-none lg:self-end">

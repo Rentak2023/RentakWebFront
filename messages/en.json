@@ -267,7 +267,8 @@
     },
     "finishing": {
       "title": "Enhancing Your Investment with Efficient Finishing",
-      "subtitle": "Enhance the appeal and value of your property with Rentak’s specialized finishing packages. Tailored for efficiency and cost-effectiveness, our services are designed to prepare your property for the rental market swiftly, ensuring it looks its best and attracts premium tenants. Ready to transform your space?"
+      "subtitle": "Enhance the appeal and value of your property with Rentak’s specialized finishing packages. Tailored for efficiency and cost-effectiveness, our services are designed to prepare your property for the rental market swiftly, ensuring it looks its best and attracts premium tenants. Ready to transform your space?",
+      "cta": "Finish My Property"
     },
     "testimonials": {
       "title": "Hear from Our Happy Homeowners"
@@ -526,6 +527,10 @@
     "property-valuation": {
       "title": "Property Valuation",
       "description": "Get a professional evaluation of your property’s rental value."
+    },
+    "finish-property": {
+      "title": "Finish My Property",
+      "description": "Enhance the appeal and value of your property with Rentak’s specialized finishing packages. Tailored for efficiency and cost-effectiveness, our services are designed to prepare your property for the rental market swiftly, ensuring it looks its best and attracts premium tenants. Ready to transform your space?"
     }
   },
   "unit": {
