@@ -209,8 +209,8 @@ const Features = () => {
                   </div>
                   {feature.title}
                 </dt>
-                <dd className="mt-1 flex flex-col text-base leading-7 text-slate-600">
-                  <h3>{feature.description}</h3>
+                <dd className="mt-1 flex flex-auto flex-col text-base leading-7 text-slate-600">
+                  <h3 className="flex-auto">{feature.description}</h3>
                   <p className="mt-4">
                     <a
                       href={feature.href}
