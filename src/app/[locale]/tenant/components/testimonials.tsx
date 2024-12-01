@@ -1,7 +1,7 @@
 "use client";
 import { toDate } from "date-fns";
-import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, StarIcon } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
 import { useFormatter, useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 
