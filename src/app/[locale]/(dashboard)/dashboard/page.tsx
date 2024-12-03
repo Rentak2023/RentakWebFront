@@ -6,6 +6,7 @@ import { DataTable } from "@/components/ui/data-table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import { columns, type Unit } from "./columns";
+import Services from "./components/services";
 
 const stats = [
   {
@@ -253,6 +254,7 @@ export default function DashboardPage() {
       </div>
       <Stats />
       <MyUnits />
+      <Services />
     </div>
   );
 }
