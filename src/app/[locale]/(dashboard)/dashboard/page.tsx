@@ -1,7 +1,9 @@
 import { addDays, subDays } from "date-fns";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 
+import { Button } from "@/components/ui/button";
 import { DataTable } from "@/components/ui/data-table";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import { columns, type Unit } from "./columns";
 
@@ -135,16 +137,31 @@ async function MyUnits() {
           </p>
         </div>
         <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-          <button
-            type="button"
-            className="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          >
-            Add user
-          </button>
+          <Button variant="dark" size="sm">
+            Add New Property
+          </Button>
         </div>
       </div>
       <div className="mt-12">
-        <DataTable columns={columns} data={data} />
+        <Tabs defaultValue="all">
+          <TabsList>
+            <TabsTrigger value="all">All</TabsTrigger>
+            <TabsTrigger value="pending">Pending</TabsTrigger>
+            <TabsTrigger value="rented">Rented</TabsTrigger>
+          </TabsList>
+          <TabsContent value="all">
+            <div className="flex flex-col gap-4">
+              <DataTable columns={columns} data={data} />
+              <DataTable columns={columns} data={data} />
+            </div>
+          </TabsContent>
+          <TabsContent value="pending">
+            <DataTable columns={columns} data={data} />
+          </TabsContent>
+          <TabsContent value="rented">
+            <DataTable columns={columns} data={data} />
+          </TabsContent>
+        </Tabs>
       </div>
     </div>
   );
