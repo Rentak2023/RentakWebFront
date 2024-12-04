@@ -8,6 +8,7 @@ import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
 import react from "@eslint-react/eslint-plugin";
 import tanStackQuery from "@tanstack/eslint-plugin-query";
 import configPrettier from "eslint-config-prettier";
+import { createOxcImportResolver } from "eslint-import-resolver-oxc";
 import importX from "eslint-plugin-import-x";
 import promise from "eslint-plugin-promise";
 import reactCompilerPlugin from "eslint-plugin-react-compiler";
@@ -175,10 +176,7 @@ export default ts.config(
       tailwindcss: {
         callees: ["cn"],
       },
-      "import-x/resolver": {
-        typescript: true,
-        node: true,
-      },
+      "import-x/resolver-next": [createOxcImportResolver({})],
     },
     linterOptions: {
       reportUnusedDisableDirectives: "warn",
