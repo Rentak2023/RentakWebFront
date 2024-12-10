@@ -5,10 +5,13 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
-const Slider = React.forwardRef<
-  React.ComponentRef<typeof SliderPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root>
->(({ className, ...props }, ref) => {
+const Slider = ({
+  ref,
+  className,
+  ...props
+}: React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root> & {
+  ref?: React.RefObject<React.ComponentRef<typeof SliderPrimitive.Root>>;
+}) => {
   const initialValue = Array.isArray(props.value)
     ? props.value
     : [props.min, props.max];
@@ -33,7 +36,7 @@ const Slider = React.forwardRef<
       ))}
     </SliderPrimitive.Root>
   );
-});
+};
 Slider.displayName = SliderPrimitive.Root.displayName;
 
 export { Slider };
