@@ -150,9 +150,17 @@ export function UnitModal() {
           </div>
         </div>
         <div className="rounded-2xl p-4 shadow">
-          <h3 className="text-xl font-semibold text-primary-600">
-            Latest transactions
-          </h3>
+          <div className="flex items-center justify-between">
+            <h3 className="text-xl font-semibold text-primary-600">
+              Latest transactions
+            </h3>
+            <div className="flex items-center gap-2">
+              <CalendarIcon className="size-4 text-slate-500" />
+              <span className="text-sm text-slate-500">
+                1 Jan 2024 - 1 May 2024
+              </span>
+            </div>
+          </div>
           <h4 className="text-xs text-slate-500">Next rent</h4>
           <div className="mt-2">
             <TransactionItem transaction={currentTransaction} />
