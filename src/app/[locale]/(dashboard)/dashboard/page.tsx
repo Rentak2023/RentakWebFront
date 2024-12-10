@@ -2,11 +2,11 @@ import { addDays, subDays } from "date-fns";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { DataTable } from "@/components/ui/data-table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-import { columns, type Unit } from "./columns";
 import Services from "./components/services";
+import { type PendingUnit, PendingUnits } from "./pending-units";
+import { type RentedUnit, RentedUnits } from "./rented-units";
 
 const stats = [
   {
@@ -96,7 +96,7 @@ const stats = [
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-async function getData(): Promise<Array<Unit>> {
+async function getPendingUnits(): Promise<Array<PendingUnit>> {
   // Fetch data from your API here.
   await delay(200);
   return [
@@ -124,8 +124,37 @@ async function getData(): Promise<Array<Unit>> {
   ];
 }
 
+async function getRentedUnits(): Promise<Array<RentedUnit>> {
+  // Fetch data from your API here.
+  await delay(200);
+  return [
+    {
+      id: "728ed52f",
+      name: "Unit 1",
+      amount: 15_000,
+      type: "landlord",
+      status: "valuated",
+    },
+    {
+      id: "728ed52f",
+      name: "Unit 2",
+      amount: 12_000,
+      type: "landlord",
+      status: "rented",
+    },
+    {
+      id: "728ed52f",
+      name: "Unit 3",
+      amount: 17_000,
+      type: "landlord",
+      status: "promoted",
+    },
+  ];
+}
+
 async function MyUnits() {
-  const data = await getData();
+  const pendingUnits = await getPendingUnits();
+  const rentedUnits = await getRentedUnits();
 
   return (
     <div className="mt-12 px-4 sm:px-6 lg:px-8">
@@ -152,15 +181,15 @@ async function MyUnits() {
           </TabsList>
           <TabsContent value="all">
             <div className="flex flex-col gap-4">
-              <DataTable columns={columns} data={data} />
-              <DataTable columns={columns} data={data} />
+              <PendingUnits units={pendingUnits} />
+              <RentedUnits units={rentedUnits} />
             </div>
           </TabsContent>
           <TabsContent value="pending">
-            <DataTable columns={columns} data={data} />
+            <PendingUnits units={pendingUnits} />
           </TabsContent>
           <TabsContent value="rented">
-            <DataTable columns={columns} data={data} />
+            <RentedUnits units={rentedUnits} />
           </TabsContent>
         </Tabs>
       </div>
