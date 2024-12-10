@@ -96,11 +96,15 @@ export function UnitModal() {
               <h3 className="text-xl font-semibold text-primary-600">
                 Tenant info
               </h3>
-              <p className="text-lg text-slate-600">Mohamed Elsayed</p>
-              <p className="text-slate-600">
-                Email Address: mohamedelsayed@gmail.com
-              </p>
-              <p className="text-slate-600">Phone Number: 0105236987</p>
+              <div className="mt-4 flex flex-col items-start gap-1">
+                <p className="text-lg text-slate-600">Mohamed Elsayed</p>
+                <p className="text-sm text-slate-600">
+                  Email Address: mohamedelsayed@gmail.com
+                </p>
+                <p className="text-sm text-slate-600">
+                  Phone Number: 0105236987
+                </p>
+              </div>
             </div>
             <div>
               <h3 className="text-xl font-semibold text-primary-600">
