@@ -83,31 +83,33 @@ export default async function RootLayout(
       <body
         className={`${generalSans.variable} ${notoSans.variable} font-sans`}
       >
-        <NextIntlClientProvider
-          messages={messages}
-          formats={{
-            number: {
-              money: {
-                style: "currency",
-                currency: "EGP",
-                minimumFractionDigits: 0,
+        <div>
+          <NextIntlClientProvider
+            messages={messages}
+            formats={{
+              number: {
+                money: {
+                  style: "currency",
+                  currency: "EGP",
+                  minimumFractionDigits: 0,
+                },
               },
-            },
-          }}
-        >
-          <Providers>
-            <Navbar />
-            {children}
-            <Footer />
-            <Toaster />
-            <a
-              href={URLS.whatsapp}
-              className="fixed bottom-8 end-8 z-50 inline-flex rounded-full border bg-[#25D366] p-3 shadow-lg"
-            >
-              <WhatsappIcon className="size-8 text-white" />
-            </a>
-          </Providers>
-        </NextIntlClientProvider>
+            }}
+          >
+            <Providers>
+              <Navbar />
+              {children}
+              <Footer />
+              <Toaster />
+              <a
+                href={URLS.whatsapp}
+                className="fixed bottom-8 end-8 z-50 inline-flex rounded-full border bg-[#25D366] p-3 shadow-lg"
+              >
+                <WhatsappIcon className="size-8 text-white" />
+              </a>
+            </Providers>
+          </NextIntlClientProvider>
+        </div>
       </body>
     </html>
   );

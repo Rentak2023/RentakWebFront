@@ -1,7 +1,19 @@
-"use client"; // This is a client component 👈🏽
+"use client";
+import {
+  Dialog,
+  DialogPanel,
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
+  Popover,
+  PopoverButton,
+  PopoverGroup,
+  PopoverPanel,
+} from "@headlessui/react";
+import { ChevronDownIcon, MenuIcon, XIcon } from "lucide-react";
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 
 import logo from "@/app/[locale]/assets/images/Logo.png";
 import { Button } from "@/components/ui/button";
@@ -12,10 +24,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const locale = useLocale();
 
-  const [isOpen, setIsOpen] = useState(true);
-
-  const [menu, setMenu] = useState("");
-  const [subMenu, setSubMenu] = useState("");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const t = useTranslations("navbar");
 
@@ -83,129 +92,190 @@ export default function Navbar() {
     },
   ];
 
-  useEffect(() => {
-    setMenu(pathname);
-    setSubMenu(pathname);
-  }, [pathname]);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
   return (
-    <React.Fragment>
-      <nav id="topnav" className="nav-sticky">
-        <div className="container mx-auto flex px-4">
-          {/* <!-- Start Mobile Toggle --> */}
-          <div className="me-4 lg:hidden">
-            <div className="border-slate-200">
-              <Link href="#" className="navbar-toggle" onClick={toggleMenu}>
-                <div className="lines">
-                  <span />
-                  <span />
-                  <span />
-                </div>
-              </Link>
-            </div>
-          </div>
-          {/* <!-- End Mobile Toggle --> */}
-          <Link
-            className="inline-flex items-center justify-center py-0"
-            href="/"
-          >
+    <header className="fixed top-0 z-10 w-full bg-white/80 shadow backdrop-blur-md">
+      <nav
+        aria-label="Global"
+        className="mx-auto flex max-w-7xl items-center justify-between gap-x-6 p-4"
+      >
+        <div className="flex items-center gap-x-12">
+          <Link href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Rentak</span>
+
             <Image
               src={logo}
-              className="h-8 w-auto"
+              className="h-8 w-auto object-contain"
               alt=""
               height={32}
               priority
             />
           </Link>
 
-          <div
-            id="navigation"
-            className={`lg:ms-24 ${isOpen ? "hidden" : "open block"}`}
-          >
-            {/* <!-- Navigation Menu--> */}
+          <PopoverGroup className="hidden lg:flex lg:gap-x-12">
+            {routes.map((route) =>
+              route.subRoutes ? (
+                <Popover className="relative" key={route.name}>
+                  <PopoverButton className="flex items-center gap-x-1 text-lg/6 font-medium text-slate-700 focus:outline-none focus-visible:outline-primary-600">
+                    {route.name}
+                    <ChevronDownIcon
+                      aria-hidden="true"
+                      className="size-5 flex-none text-slate-400"
+                    />
+                  </PopoverButton>
 
-            <ul className="navigation-menu">
-              {routes.map((route) => {
-                const hasSubmenu = Boolean(route.subRoutes);
-                const checkedRoutes = route.subRoutes
-                  ? [route.path, ...route.subRoutes.map((route) => route.path)]
-                  : [route.path];
-
-                return (
-                  <li
-                    key={route.name}
-                    className={`${
-                      hasSubmenu
-                        ? "has-submenu parent-menu-item"
-                        : "sub-menu-item"
-                    } ${checkedRoutes.includes(menu) ? "active" : ""}`}
+                  <PopoverPanel
+                    transition
+                    className="absolute -left-8 top-full z-20 mt-3 w-56 rounded-xl bg-white p-2 shadow-lg ring-1 ring-slate-900/5 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
                   >
+                    {route.subRoutes.map((item) => (
+                      <a
+                        key={item.name}
+                        href={item.path}
+                        className={cn(
+                          "block rounded-lg px-3 py-2 text-base/6 hover:bg-slate-50",
+                          pathname === item.path
+                            ? "font-semibold text-slate-900"
+                            : "font-medium text-slate-700",
+                          item.disabled &&
+                            "disabled pointer-events-none !text-slate-400",
+                        )}
+                      >
+                        {item.name}
+                      </a>
+                    ))}
+                  </PopoverPanel>
+                </Popover>
+              ) : (
+                <Link
+                  key={route.name}
+                  href={route.path}
+                  className={cn(
+                    "text-lg/6",
+                    pathname === route.path
+                      ? "font-semibold text-slate-900"
+                      : "font-medium text-slate-700",
+                  )}
+                >
+                  {route.name}
+                </Link>
+              ),
+            )}
+          </PopoverGroup>
+        </div>
+
+        <div className="flex flex-1 items-center justify-end gap-x-2">
+          <Button asChild className="rounded-full" size="icon">
+            <Link locale={locale === "en" ? "ar-EG" : "en"} href={pathname}>
+              {locale === "en" ? "ع" : "EN"}
+            </Link>
+          </Button>
+          <Button asChild size="lg" className="rounded-full">
+            <Link href="/login-register">Login/Signup</Link>
+          </Button>
+        </div>
+
+        <div className="flex lg:hidden">
+          <button
+            type="button"
+            onClick={() => {
+              setMobileMenuOpen(true);
+            }}
+            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-slate-700"
+          >
+            <span className="sr-only">Open main menu</span>
+            <MenuIcon aria-hidden="true" className="size-6" />
+          </button>
+        </div>
+      </nav>
+      <Dialog
+        open={mobileMenuOpen}
+        onClose={setMobileMenuOpen}
+        className="lg:hidden"
+      >
+        <div className="fixed inset-0 z-20" />
+        <DialogPanel className="fixed inset-y-0 right-0 z-20 w-full overflow-y-auto bg-white p-6 sm:max-w-sm sm:ring-1 sm:ring-slate-900/10">
+          <div className="flex items-center justify-between">
+            <a href="#" className="-m-1.5 p-1.5">
+              <span className="sr-only">Rentak</span>
+
+              <Image
+                src={logo}
+                className="h-8 w-auto object-contain"
+                alt=""
+                height={32}
+                priority
+              />
+            </a>
+            <button
+              type="button"
+              onClick={() => {
+                setMobileMenuOpen(false);
+              }}
+              className="-m-2.5 rounded-md p-2.5 text-slate-700"
+            >
+              <span className="sr-only">Close menu</span>
+              <XIcon aria-hidden="true" className="size-6" />
+            </button>
+          </div>
+          <div className="mt-6 flow-root">
+            <div className="-my-6 divide-y divide-slate-500/10">
+              <div className="space-y-2 py-6">
+                {routes.map((route) =>
+                  route.subRoutes ? (
+                    <Disclosure as="div" className="-mx-3" key={route.name}>
+                      <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base/7 font-medium text-slate-700 hover:bg-slate-50 focus:outline-none">
+                        {route.name}
+                        <ChevronDownIcon
+                          aria-hidden="true"
+                          className="size-5 flex-none group-data-[open]:rotate-180"
+                        />
+                      </DisclosureButton>
+                      <DisclosurePanel className="mt-2 space-y-2">
+                        {route.subRoutes.map((item) => (
+                          <DisclosureButton
+                            key={item.name}
+                            as={Link}
+                            href={item.path}
+                            onClick={() => {
+                              setMobileMenuOpen(false);
+                            }}
+                            className={cn(
+                              "block rounded-lg py-2 pl-6 pr-3 text-sm/7 hover:bg-slate-50",
+                              pathname === item.path
+                                ? "font-semibold text-slate-900"
+                                : "font-medium text-slate-700",
+                              item.disabled &&
+                                "disabled pointer-events-none !text-slate-400",
+                            )}
+                          >
+                            {item.name}
+                          </DisclosureButton>
+                        ))}
+                      </DisclosurePanel>
+                    </Disclosure>
+                  ) : (
                     <Link
-                      href={hasSubmenu ? "#" : route.path}
+                      key={route.name}
+                      href={route.path}
                       onClick={() => {
-                        if (hasSubmenu) {
-                          setSubMenu(subMenu === route.path ? "" : route.path);
-                        }
+                        setMobileMenuOpen(false);
                       }}
-                      className={hasSubmenu ? "" : "sub-menu-item"}
+                      className={cn(
+                        "-mx-3 block rounded-lg px-3 py-2 text-base/7 hover:bg-slate-50",
+                        pathname === route.path
+                          ? "font-semibold text-slate-900"
+                          : "font-medium text-slate-700",
+                      )}
                     >
                       {route.name}
                     </Link>
-                    {route.subRoutes ? (
-                      <>
-                        <span className="menu-arrow" />
-                        <ul
-                          className={`submenu ${checkedRoutes.includes(subMenu) ? "open" : ""}`}
-                        >
-                          {route.subRoutes.map((subRoute) => (
-                            <li
-                              key={subRoute.name}
-                              className={menu === subRoute.path ? "active" : ""}
-                            >
-                              <Link
-                                href={subRoute.path}
-                                className={cn(
-                                  "sub-menu-item",
-                                  subRoute.disabled &&
-                                    "disabled pointer-events-none !text-slate-400",
-                                )}
-                                aria-disabled={subRoute.disabled}
-                                tabIndex={subRoute.disabled ? -1 : undefined}
-                              >
-                                {subRoute.name}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </>
-                    ) : null}
-                  </li>
-                );
-              })}
-            </ul>
+                  ),
+                )}
+              </div>
+            </div>
           </div>
-          <ul className="mb-0 ms-auto flex list-none items-center justify-center">
-            <li className="mb-0 inline">
-              <Button asChild className="rounded-full" size="icon">
-                <Link locale={locale === "en" ? "ar-EG" : "en"} href={pathname}>
-                  {locale === "en" ? "ع" : "EN"}
-                </Link>
-              </Button>
-            </li>
-            <li className="mb-0 ms-2 hidden sm:inline">
-              <Button asChild size="lg" className="rounded-full">
-                <Link href="/login-register">Login/Signup</Link>
-              </Button>
-            </li>
-          </ul>
-        </div>
-      </nav>
-      {/* End Navbar  */}
-    </React.Fragment>
+        </DialogPanel>
+      </Dialog>
+    </header>
   );
 }
