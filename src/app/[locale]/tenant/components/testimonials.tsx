@@ -131,7 +131,7 @@ export function Testimonials() {
               <Button
                 size="icon"
                 variant="outline"
-                className="absolute end-16 top-8 -z-10 rounded-full border-primary-900"
+                className="absolute end-16 top-8 -z-10 rounded-full border-slate-500"
                 onClick={() => {
                   if (currentId === testimonials.length) {
                     setCurrentId(1);
@@ -141,7 +141,7 @@ export function Testimonials() {
                   setAnimationDirection(direction === "rtl" ? 1 : -1);
                 }}
               >
-                <ArrowRight className="text-primary-900 rtl:rotate-180" />
+                <ArrowRight className="text-slate-500 rtl:rotate-180" />
               </Button>
 
               <blockquote className="mt-2 text-lg font-medium leading-8 text-slate-500 sm:text-lg">

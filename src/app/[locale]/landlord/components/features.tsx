@@ -200,11 +200,17 @@ const Features = () => {
           <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
             {features.map((feature) => (
               <div key={feature.title} className="flex flex-col">
-                <dt className="text-base font-semibold leading-7 text-primary-900">
-                  <div className="mb-6 flex size-12 items-center justify-center rounded-lg border border-slate-300 bg-white">
+                <dt className="flex flex-col items-start justify-start gap-3 text-base font-semibold leading-7 text-primary-900">
+                  {/* <div className="mb-6 flex size-12 items-center justify-center rounded-lg border border-slate-300 bg-white">
                     <feature.icon
                       aria-hidden="true"
                       className="size-8 text-primary-600"
+                    />
+                  </div> */}
+                  <div className="flex size-12 items-center justify-center rounded-full bg-primary-600/5 p-2">
+                    <feature.icon
+                      className="size-6 text-primary-800"
+                      aria-hidden="true"
                     />
                   </div>
                   {feature.title}

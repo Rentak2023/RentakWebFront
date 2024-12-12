@@ -65,7 +65,7 @@ function ContactForm() {
   });
   return (
     <Form {...form}>
-      <form onSubmit={onSubmit} className="space-y-5">
+      <form onSubmit={onSubmit} className="flex flex-col gap-y-5">
         <div className="grid gap-5 lg:grid-cols-2 lg:gap-6">
           <FormField
             control={form.control}
@@ -123,7 +123,12 @@ function ContactForm() {
           )}
         />
 
-        <Button size="lg" type="submit" disabled={form.formState.isSubmitting}>
+        <Button
+          size="lg"
+          type="submit"
+          disabled={form.formState.isSubmitting}
+          className="ms-auto"
+        >
           {form.formState.isSubmitting ? (
             <Loader2 className="me-2 size-4 animate-spin" />
           ) : null}

@@ -59,7 +59,7 @@ export async function Services() {
 function Service({ title, description, icon: Icon, cta, href }: Service) {
   return (
     <div className="flex max-w-96 flex-col items-center justify-center gap-4">
-      <div className="hexagon flex h-28 w-24 items-center justify-center bg-primary-600/5">
+      <div className="flex size-20 items-center justify-center rounded-full bg-primary-600/5">
         <Icon className="size-8 text-primary-800" />
       </div>
       <h3 className="text-center text-xl font-medium text-slate-900">

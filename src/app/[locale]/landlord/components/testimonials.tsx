@@ -95,48 +95,9 @@ export function Testimonials() {
     <div className="mx-auto mt-28 max-w-7xl overflow-x-hidden px-6 pb-8 md:px-8">
       <div className="flex flex-col items-center gap-y-6 lg:flex-row">
         <div className="flex max-w-lg flex-col items-center lg:items-start">
-          {/* <h2 className="text-start text-2xl font-medium uppercase text-primary-600">
-            Testimonials
-          </h2> */}
           <h3 className="text-balance text-2xl font-semibold text-primary-900 lg:text-5xl">
             {t("title")}
           </h3>
-          {/* <p className="mt-8 text-pretty text-lg text-slate-700">
-            Fusce venenatis tellus a felis scelerisque, non pulvinar est
-            pellentesque.
-          </p> */}
-          {/* <div className="mt-8 flex flex-row gap-16">
-            <Button
-              size="icon"
-              variant="outline"
-              className="rounded-full border-primary-600"
-              onClick={() => {
-                if (currentId === 1) {
-                  setCurrentId(testimonials.length);
-                } else {
-                  setCurrentId(currentId - 1);
-                }
-                setAnimationDirection(direction === "rtl" ? -1 : 1);
-              }}
-            >
-              <ArrowLeft className="text-primary-600 rtl:rotate-180" />
-            </Button>
-            <Button
-              size="icon"
-              variant="outline"
-              className="rounded-full border-primary-600"
-              onClick={() => {
-                if (currentId === testimonials.length) {
-                  setCurrentId(1);
-                } else {
-                  setCurrentId(currentId + 1);
-                }
-                setAnimationDirection(direction === "rtl" ? 1 : -1);
-              }}
-            >
-              <ArrowRight className="text-primary-600 rtl:rotate-180" />
-            </Button>
-          </div> */}
         </div>
         <div className="relative lg:ms-auto">
           <AnimatePresence
@@ -144,16 +105,6 @@ export function Testimonials() {
             initial={false}
             custom={animationDirection}
           >
-            {/* <motion.div
-              className="absolute -start-8 -top-8 -z-10 size-16 rounded-full bg-gradient-to-br from-primary-800 to-transparent"
-              key={currentId}
-              custom={animationDirection}
-              variants={variants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-            /> */}
-
             <motion.div
               className="relative z-0 max-w-xl rounded-3xl bg-white px-16 pb-6 pt-20 shadow-lg"
               key={currentId}
@@ -180,7 +131,7 @@ export function Testimonials() {
               <Button
                 size="icon"
                 variant="outline"
-                className="absolute end-16 top-8 -z-10 rounded-full border-primary-900"
+                className="absolute end-16 top-8 -z-10 rounded-full border-slate-500"
                 onClick={() => {
                   if (currentId === testimonials.length) {
                     setCurrentId(1);
@@ -190,7 +141,7 @@ export function Testimonials() {
                   setAnimationDirection(direction === "rtl" ? 1 : -1);
                 }}
               >
-                <ArrowRight className="text-primary-900 rtl:rotate-180" />
+                <ArrowRight className="text-slate-500 rtl:rotate-180" />
               </Button>
 
               <blockquote className="mt-2 text-lg font-medium leading-8 text-slate-500 sm:text-lg">

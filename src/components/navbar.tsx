@@ -96,7 +96,7 @@ export default function Navbar() {
     <header className="fixed top-0 z-10 w-full bg-white/80 shadow backdrop-blur-md">
       <nav
         aria-label="Global"
-        className="mx-auto flex max-w-7xl items-center justify-between gap-x-6 p-4"
+        className="container mx-auto flex items-center justify-between gap-x-6 p-4"
       >
         <div className="flex items-center gap-x-12">
           <Link href="/" className="-m-1.5 p-1.5">
@@ -111,7 +111,7 @@ export default function Navbar() {
             />
           </Link>
 
-          <PopoverGroup className="hidden lg:flex lg:gap-x-12">
+          <PopoverGroup className="hidden lg:flex lg:gap-x-12 xl:ms-12">
             {routes.map((route) =>
               route.subRoutes ? (
                 <Popover className="relative" key={route.name}>

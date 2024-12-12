@@ -86,7 +86,7 @@ export async function Plans() {
 
       <p className="mt-4 text-center text-lg text-slate-600">{t("subtitle")}</p>
 
-      <div className="mx-auto mt-12 max-w-7xl px-6 pt-4 lg:rounded-2xl lg:px-10 lg:pb-14 lg:shadow">
+      <div className="mx-auto mt-6 max-w-7xl px-6 pt-4 lg:rounded-2xl lg:px-10 lg:pb-14 lg:shadow">
         {/* Feature comparison (up to lg) */}
         <section
           aria-labelledby="mobile-comparison-heading"
