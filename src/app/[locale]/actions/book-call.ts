@@ -13,7 +13,7 @@ type BookCallResponse = {
 export const bookCallAction = async (
   data: v.InferInput<typeof bookCallSchema>,
   lang: string,
-  service = "rent-management",
+  service: string,
 ) => {
   const values = v.safeParse(bookCallSchema, data);
 

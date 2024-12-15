@@ -26,14 +26,6 @@ const config = {
           950: "#000D19",
         },
         secondary: "#1DD2F3",
-        // "primary-shade-1": "#000D1A",
-        // "primary-shade-2": "#001A33",
-        // "primary-shade-3": "#003366",
-        // "primary-shade-4": "#80B3E6",
-        // "primary-shade-5": "#C0D9F3",
-        // "primary-shade-6": "#E0ECF9",
-        // "hard-gray": "#6A6A6A",
-        // "soft-gray": "#F5F5F5",
       },
       fontFamily: {
         sans: [
