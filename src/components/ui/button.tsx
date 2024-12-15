@@ -5,15 +5,15 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-base font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "relative isolate inline-flex items-center justify-center whitespace-nowrap rounded-md text-base/6 font-medium ring-offset-white transition-colors focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-slate-950 focus-visible:outline-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-transparent",
   {
     variants: {
       variant: {
         default:
-          "bg-primary-800 text-slate-50 hover:bg-primary-800/90 focus-visible:ring-primary-800/90",
+          "bg-primary-800 text-slate-50 hover:bg-primary-800/90 focus-visible:outline-primary-800/90",
         destructive: "bg-red-500 text-slate-50 hover:bg-red-500/90",
         outline:
-          "border border-slate-200 bg-white hover:bg-slate-100 hover:text-slate-900 focus-visible:ring-1 focus-visible:ring-primary-800 focus-visible:ring-offset-0",
+          "border border-slate-200 bg-white hover:bg-slate-100 hover:text-slate-900 focus-visible:outline-1 focus-visible:outline-primary-800 focus-visible:outline-offset-0",
         secondary: "bg-slate-100 text-slate-900 hover:bg-slate-100/80",
         dark: "bg-primary-900 text-slate-100 hover:bg-slate-900/80",
         ghost: "hover:bg-slate-100 hover:text-slate-900",

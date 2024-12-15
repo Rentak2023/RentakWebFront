@@ -81,7 +81,7 @@ export default async function RootLayout(
       {/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */}
       <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID!} />
       <body
-        className={`${generalSans.variable} ${notoSans.variable} font-sans`}
+        className={`${generalSans.variable} ${notoSans.variable} font-sans antialiased`}
       >
         <div>
           <NextIntlClientProvider
