@@ -9,8 +9,8 @@ import {
   type SortingState,
   useReactTable,
 } from "@tanstack/react-table";
-import clsx from "clsx";
-import { ArrowUpDownIcon, ChevronDownIcon, ChevronUpIcon } from "lucide-react";
+import { clsx } from "clsx";
+import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 import { useState } from "react";
 
 import {
@@ -21,8 +21,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-
-import { Button } from "./button";
 
 type DataTableProps<TData> = Readonly<{
   columns: Array<

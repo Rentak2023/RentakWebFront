@@ -5,7 +5,6 @@ import forsaLogo from "@/app/[locale]/assets/images/logos/forsa.png";
 import halanLogo from "@/app/[locale]/assets/images/logos/halan.png";
 import mastercardLogo from "@/app/[locale]/assets/images/logos/mastercard.png";
 import meezaLogo from "@/app/[locale]/assets/images/logos/Meeza.svg";
-import paytabsLogo from "@/app/[locale]/assets/images/logos/paytabs.svg";
 import souhoolaLogo from "@/app/[locale]/assets/images/logos/souhoola.png";
 import valuLogo from "@/app/[locale]/assets/images/logos/valu.png";
 import visaLogo from "@/app/[locale]/assets/images/logos/visa.png";

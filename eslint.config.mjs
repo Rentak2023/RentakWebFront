@@ -1,3 +1,4 @@
+/* eslint-disable import-x/no-named-as-default-member */
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 

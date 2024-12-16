@@ -171,22 +171,18 @@ export function Testimonials() {
                   {currentTestimonial.rating} out of 5 stars
                 </p>
                 <div className="flex flex-row gap-1 lg:ms-auto">
-                  {Array.from({ length: currentTestimonial.rating }).map(
-                    (_, i) => (
-                      <StarIcon
-                        key={i}
-                        className="fill-[#FFC700] stroke-none"
-                      />
-                    ),
-                  )}
-                  {Array.from({ length: 5 - currentTestimonial.rating }).map(
-                    (_, i) => (
-                      <StarIcon
-                        key={i}
-                        className="fill-slate-300 stroke-none"
-                      />
-                    ),
-                  )}
+                  {Array.from(
+                    { length: currentTestimonial.rating },
+                    (_, i) => i,
+                  ).map((n) => (
+                    <StarIcon key={n} className="fill-[#FFC700] stroke-none" />
+                  ))}
+                  {Array.from(
+                    { length: 5 - currentTestimonial.rating },
+                    (_, i) => i,
+                  ).map((n) => (
+                    <StarIcon key={n} className="fill-slate-300 stroke-none" />
+                  ))}
                 </div>
               </div>
             </motion.div>
