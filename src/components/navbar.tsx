@@ -50,24 +50,13 @@ export default function Navbar() {
       path: "/tenant",
     },
     {
-      name: t("listing"),
-      path: "/listing",
-      subRoutes: [
-        {
-          name: t("long-term"),
-          path: "/units",
-        },
-        {
-          name: t("short-term"),
-          path: "/service-2",
-          disabled: true,
-        },
-      ],
-    },
-    {
       name: t("services"),
       path: "/services",
       subRoutes: [
+        {
+          name: t("listing"),
+          path: "/units",
+        },
         {
           name: t("manage-property"),
           path: "/rent-management",
