@@ -55,7 +55,7 @@ const TableFooter = ({
   <tfoot
     ref={ref}
     className={cn(
-      "border-t bg-slate-100/50 font-medium  [&>tr]:last:border-b-0",
+      "border-t bg-slate-100/50 font-medium last:[&>tr]:border-b-0",
       className,
     )}
     {...props}
@@ -91,7 +91,7 @@ const TableHead = ({
   <th
     ref={ref}
     className={cn(
-      "h-12 px-4 text-left align-middle font-medium text-primary-900 [&:has([role=checkbox])]:pr-0",
+      "text-primary-900 h-12 px-4 text-left align-middle font-medium [&:has([role=checkbox])]:pr-0",
       className,
     )}
     {...props}

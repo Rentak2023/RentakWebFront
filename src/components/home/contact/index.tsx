@@ -20,7 +20,7 @@ async function Contact() {
           </div>
 
           <div className="mt-8 lg:me-5 lg:mt-0">
-            <div className="rounded-md bg-white p-6 shadow">
+            <div className="rounded-md bg-white p-6 shadow-sm">
               <ContactForm />
             </div>
           </div>

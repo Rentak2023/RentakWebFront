@@ -53,7 +53,7 @@ export default function PayRent() {
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center justify-between gap-16 lg:flex-row">
           <div>
-            <h2 className="text-3xl font-bold text-primary-900 sm:text-4xl">
+            <h2 className="text-primary-900 text-3xl font-bold sm:text-4xl">
               {t("title")}
             </h2>
 
@@ -71,7 +71,7 @@ export default function PayRent() {
               {partners.map((partner) => (
                 <li
                   key={partner.name}
-                  className="relative inline-flex aspect-video h-20 items-center justify-center rounded-xl border-2 p-4 shadow max-md:[&:nth-of-type(2n)]:top-12 md:[&:nth-of-type(3n)]:top-12 md:[&:nth-of-type(3n+1)]:-top-14"
+                  className="max-md:nth-of-type-[2n]:top-12 md:nth-of-type-[3n]:top-12 md:nth-of-type-[3n+1]:-top-14 relative inline-flex aspect-video h-20 items-center justify-center rounded-xl border-2 p-4 shadow-sm"
                 >
                   <Image
                     className="size-full object-contain"

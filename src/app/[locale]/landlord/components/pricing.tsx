@@ -53,7 +53,7 @@ export default function Pricing() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="sr-only">{t("plans")}</h2>
-          <p className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-primary-900 sm:text-5xl">
+          <p className="text-primary-900 mt-2 text-pretty text-4xl font-semibold tracking-tight sm:text-5xl">
             {t("title")}
           </p>
         </div>
@@ -82,7 +82,7 @@ export default function Pricing() {
                   {tier.name}
                 </h3>
                 {tier.featured && (
-                  <p className="rounded-full bg-white/50 px-2.5 py-1 text-xs font-semibold leading-5 text-primary-800">
+                  <p className="text-primary-800 rounded-full bg-white/50 px-2.5 py-1 text-xs font-semibold leading-5">
                     {t("most-popular")}
                   </p>
                 )}
@@ -122,9 +122,9 @@ export default function Pricing() {
                 aria-describedby={tier.id}
                 className={clsx(
                   tier.featured
-                    ? "bg-white/80 text-primary-800 hover:bg-white/60 focus-visible:outline-white"
-                    : "bg-primary-800 text-white shadow-sm hover:bg-primary-800/90 focus-visible:outline-primary-600",
-                  "mt-6 block rounded-md px-3 py-2 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2",
+                    ? "text-primary-800 bg-white/80 hover:bg-white/60 focus-visible:outline-white"
+                    : "bg-primary-800 shadow-xs hover:bg-primary-800/90 focus-visible:outline-primary-600 text-white",
+                  "mt-6 block rounded-md px-3 py-2 text-center text-sm font-semibold leading-6 focus-visible:outline-2 focus-visible:outline-offset-2",
                 )}
               >
                 {tier.cta}

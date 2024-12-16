@@ -53,7 +53,7 @@ function UnitsCount() {
       {t.rich("propertiesFound", {
         count: properties.total_count,
         colored: (text) => (
-          <span className="text-lg text-primary-600">{text}</span>
+          <span className="text-primary-600 text-lg">{text}</span>
         ),
       })}
     </div>

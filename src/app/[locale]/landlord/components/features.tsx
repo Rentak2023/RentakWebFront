@@ -188,7 +188,7 @@ const Features = () => {
     <div className="mt-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0">
-          <h2 className="text-capitalized text-3xl font-semibold tracking-tight text-primary-900 sm:text-4xl">
+          <h2 className="text-capitalized text-primary-900 text-3xl font-semibold tracking-tight sm:text-4xl">
             {t("title")}
           </h2>
           {/* <p className="mt-6 text-lg leading-8 text-slate-600">
@@ -200,16 +200,16 @@ const Features = () => {
           <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
             {features.map((feature) => (
               <div key={feature.title} className="flex flex-col">
-                <dt className="flex flex-col items-start justify-start gap-3 text-base font-semibold leading-7 text-primary-900">
+                <dt className="text-primary-900 flex flex-col items-start justify-start gap-3 text-base font-semibold leading-7">
                   {/* <div className="mb-6 flex size-12 items-center justify-center rounded-lg border border-slate-300 bg-white">
                     <feature.icon
                       aria-hidden="true"
                       className="size-8 text-primary-600"
                     />
                   </div> */}
-                  <div className="flex size-12 items-center justify-center rounded-full bg-primary-600/5 p-2">
+                  <div className="bg-primary-600/5 flex size-12 items-center justify-center rounded-full p-2">
                     <feature.icon
-                      className="size-6 text-primary-800"
+                      className="text-primary-800 size-6"
                       aria-hidden="true"
                     />
                   </div>
@@ -220,7 +220,7 @@ const Features = () => {
                   <p className="mt-4">
                     <a
                       href={feature.href}
-                      className="text-sm font-semibold leading-6 text-primary-600 underline"
+                      className="text-primary-600 text-sm font-semibold leading-6 underline"
                     >
                       {feature.cta}
                       {/* <span aria-hidden="true">→</span> */}

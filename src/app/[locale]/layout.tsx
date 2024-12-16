@@ -77,12 +77,14 @@ export default async function RootLayout(
   const messages = await getMessages();
 
   return (
-    <html lang={locale} dir={direction}>
+    <html
+      lang={locale}
+      dir={direction}
+      className={`${generalSans.variable} ${notoSans.variable}`}
+    >
       {/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */}
       <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID!} />
-      <body
-        className={`${generalSans.variable} ${notoSans.variable} font-sans antialiased`}
-      >
+      <body className="font-sans antialiased">
         <div>
           <NextIntlClientProvider
             messages={messages}
@@ -103,7 +105,7 @@ export default async function RootLayout(
               <Toaster />
               <a
                 href={URLS.whatsapp}
-                className="fixed bottom-8 end-8 z-50 inline-flex rounded-full border bg-[#25D366] p-3 shadow-lg"
+                className="fixed bottom-8 end-8 z-50 inline-flex rounded-full border border-slate-200 bg-[#25D366] p-3 shadow-lg"
               >
                 <WhatsappIcon className="size-8 text-white" />
               </a>

@@ -47,7 +47,7 @@ export default async function UnitPage(
           <PropertyImages images={property.gallary} />
           <div className="mt-4 flex flex-row items-center gap-1 px-3">
             <StatusIcon />
-            <p className="font-regular text-xl text-primary-950">
+            <p className="font-regular text-primary-950 text-xl">
               {t("availableForRent")}
             </p>
           </div>
@@ -64,19 +64,19 @@ export default async function UnitPage(
 
               <ul className="flex list-none items-center py-6">
                 <li className="me-4 flex items-center gap-1 lg:me-6">
-                  <span className="text-xl font-medium text-primary-900 lg:text-3xl">
+                  <span className="text-primary-900 text-xl font-medium lg:text-3xl">
                     {formatCurrency(property.price)}
                   </span>
                 </li>
                 <li className="me-4 flex items-center gap-1 lg:me-6">
-                  <AreaIcon className="size-10 text-primary-600" />
+                  <AreaIcon className="text-primary-600 size-10" />
                   <span className="text-xl lg:text-2xl">
                     {formatter.number(property.area)}
                   </span>
                 </li>
 
                 <li className="me-4 flex items-center gap-1 lg:me-6">
-                  <BedIcon className="size-10 text-primary-600" />
+                  <BedIcon className="text-primary-600 size-10" />
                   <span className="text-xl lg:text-2xl">
                     {t("bedrooms", {
                       count: property.room_numbers,
@@ -85,7 +85,7 @@ export default async function UnitPage(
                 </li>
 
                 <li className="flex items-center gap-1">
-                  <BathIcon className="size-10 text-primary-600" />
+                  <BathIcon className="text-primary-600 size-10" />
                   <span className="text-xl lg:text-2xl">
                     {t("bathrooms", {
                       count: property.bathrom_numbers,
@@ -108,7 +108,7 @@ export default async function UnitPage(
             </div>
 
             <div className="mt-8 px-3 md:mt-0 md:w-1/2 md:p-4 lg:w-1/2">
-              <div className="sticky top-20 rounded-lg bg-slate-100/80 shadow">
+              <div className="sticky top-20 rounded-lg bg-slate-100/80 shadow-sm">
                 <div className="p-6">
                   <h5 className="text-xl font-medium lg:text-4xl">
                     {formatCurrency(property.price)}
@@ -126,10 +126,10 @@ export default async function UnitPage(
                             <TypeIcon />
                           </div>
                           <div className="flex flex-col">
-                            <p className="text-base font-medium text-primary-900">
+                            <p className="text-primary-900 text-base font-medium">
                               {t("propertyType")}
                             </p>
-                            <p className="font-regular text-base text-primary-900">
+                            <p className="font-regular text-primary-900 text-base">
                               {property.finish_type.type_name}
                             </p>
                           </div>
@@ -141,10 +141,10 @@ export default async function UnitPage(
                           <AreaIcon className="size-6" />
                         </div>
                         <div className="flex flex-col">
-                          <p className="text-base font-medium text-primary-900">
+                          <p className="text-primary-900 text-base font-medium">
                             {t("m2")}
                           </p>
-                          <p className="font-regular text-base text-primary-900">
+                          <p className="font-regular text-primary-900 text-base">
                             {formatter.number(property.area)}
                           </p>
                         </div>
@@ -157,10 +157,10 @@ export default async function UnitPage(
                           <BedIcon className="size-6" />
                         </div>
                         <div className="flex flex-col">
-                          <p className="text-base font-medium text-primary-900">
+                          <p className="text-primary-900 text-base font-medium">
                             {t("rooms")}
                           </p>
-                          <p className="font-regular text-base text-primary-900">
+                          <p className="font-regular text-primary-900 text-base">
                             {formatter.number(property.room_numbers)}
                           </p>
                         </div>
@@ -171,10 +171,10 @@ export default async function UnitPage(
                           <BathIcon className="size-6" />
                         </div>
                         <div className="flex flex-col">
-                          <p className="text-base font-medium text-primary-900">
+                          <p className="text-primary-900 text-base font-medium">
                             {t("toilets")}
                           </p>
-                          <p className="font-regular text-base text-primary-900">
+                          <p className="font-regular text-primary-900 text-base">
                             {formatter.number(property.bathrom_numbers)}
                           </p>
                         </div>
@@ -187,10 +187,10 @@ export default async function UnitPage(
                           <HeartIcon className="size-6" />
                         </div>
                         <div className="flex flex-col">
-                          <p className="text-base font-medium text-primary-900">
+                          <p className="text-primary-900 text-base font-medium">
                             {t("sponsored")}
                           </p>
-                          <p className="font-regular text-base text-primary-900">
+                          <p className="font-regular text-primary-900 text-base">
                             {property.location.governorate_name}
                           </p>
                         </div>
@@ -201,7 +201,7 @@ export default async function UnitPage(
                           <AvailableIcon className="size-6" />
                         </div>
                         <div className="flex flex-col">
-                          <p className="text-base font-medium text-primary-900">
+                          <p className="text-primary-900 text-base font-medium">
                             {t("status")}
                           </p>
                           <p className="font-regular text-base text-[#156F0D]">

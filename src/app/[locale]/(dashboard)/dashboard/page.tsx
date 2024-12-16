@@ -199,8 +199,8 @@ async function MyUnits() {
 
 function Stats() {
   return (
-    <div className="mt-8 overflow-hidden rounded-lg px-20 py-6 shadow shadow-primary-600/10">
-      <h3 className="text-base font-semibold text-primary-900">Insights</h3>
+    <div className="shadow-primary-600/10 mt-8 overflow-hidden rounded-lg px-20 py-6 shadow-sm">
+      <h3 className="text-primary-900 text-base font-semibold">Insights</h3>
       <dl className="mt-5 grid grid-cols-1 divide-y divide-slate-200 bg-white md:grid-cols-3 md:divide-x md:divide-y-0">
         {stats.map((item) => (
           <div
@@ -214,7 +214,7 @@ function Stats() {
               <item.icon className="size-8" style={{ color: item.color }} />
             </div>
             <div>
-              <dt className="text-base font-normal text-primary-800">
+              <dt className="text-primary-800 text-base font-normal">
                 {item.name}
               </dt>
               <dd className="text-primary- mt-1 flex items-baseline justify-between text-2xl font-semibold md:block lg:flex">
@@ -276,7 +276,7 @@ export default function DashboardPage() {
       </div>
       <div className="mt-2 md:flex md:items-center md:justify-between">
         <div className="min-w-0 flex-1">
-          <h2 className="text-2xl/7 font-semibold text-primary-900 sm:truncate sm:text-3xl sm:tracking-tight">
+          <h2 className="text-primary-900 text-2xl/7 font-semibold sm:truncate sm:text-3xl sm:tracking-tight">
             Overview
           </h2>
         </div>

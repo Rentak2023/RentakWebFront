@@ -59,8 +59,8 @@ export async function Services() {
 function Service({ title, description, icon: Icon, cta, href }: Service) {
   return (
     <div className="flex max-w-96 flex-col items-center justify-center gap-4">
-      <div className="flex size-20 items-center justify-center rounded-full bg-primary-600/5">
-        <Icon className="size-8 text-primary-800" />
+      <div className="bg-primary-600/5 flex size-20 items-center justify-center rounded-full">
+        <Icon className="text-primary-800 size-8" />
       </div>
       <h3 className="text-center text-xl font-medium text-slate-900">
         {title}

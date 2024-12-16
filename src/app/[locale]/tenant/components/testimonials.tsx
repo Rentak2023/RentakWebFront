@@ -95,7 +95,7 @@ export function Testimonials() {
     <div className="mx-auto mt-28 max-w-7xl overflow-x-hidden px-6 pb-8 md:px-8">
       <div className="flex flex-col items-center gap-y-6 lg:flex-row">
         <div className="flex max-w-lg flex-col items-center lg:items-start">
-          <h3 className="text-balance text-2xl font-semibold text-primary-900 lg:text-5xl">
+          <h3 className="text-primary-900 text-balance text-2xl font-semibold lg:text-5xl">
             {t("title")}
           </h3>
         </div>

@@ -14,7 +14,7 @@ import importX from "eslint-plugin-import-x";
 import promise from "eslint-plugin-promise";
 import reactCompilerPlugin from "eslint-plugin-react-compiler";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
-import tailwind from "eslint-plugin-tailwindcss";
+// import tailwind from "eslint-plugin-tailwindcss";
 import unicorn from "eslint-plugin-unicorn";
 import globals from "globals";
 import ts from "typescript-eslint";
@@ -33,7 +33,8 @@ export default ts.config(
   js.configs.recommended,
   ...ts.configs.strictTypeChecked,
   ...ts.configs.stylisticTypeChecked,
-  ...tailwind.configs["flat/recommended"],
+  // disable until it supports v4
+  // ...tailwind.configs["flat/recommended"],
   unicorn.configs["flat/recommended"],
   promise.configs["flat/recommended"],
   ...tanStackQuery.configs["flat/recommended"],

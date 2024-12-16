@@ -472,20 +472,20 @@ type VerticalStepProps = StepSharedProps & {
 const verticalStepVariants = cva(
   [
     "relative flex flex-col transition-all duration-200",
-    "data-[completed=true]:[&:not(:last-child)]:after:bg-primary-600",
-    "data-[invalid=true]:[&:not(:last-child)]:after:bg-red-600",
+    "data-[completed=true]:not-last:after:bg-primary-600",
+    "data-[invalid=true]:not-last:after:bg-red-600",
   ],
   {
     variants: {
       variant: {
         circle: cn(
-          "[&:not(:last-child)]:gap-[var(--step-gap)] [&:not(:last-child)]:pb-[var(--step-gap)]",
-          "[&:not(:last-child)]:after:w-[2px] [&:not(:last-child)]:after:bg-slate-200 [&:not(:last-child)]:after:content-['']",
-          "[&:not(:last-child)]:after:inset-x-[calc(var(--step-icon-size)/2)]",
-          "[&:not(:last-child)]:after:absolute",
-          "[&:not(:last-child)]:after:top-[calc(var(--step-icon-size)+var(--step-gap))]",
-          "[&:not(:last-child)]:after:bottom-[var(--step-gap)]",
-          "[&:not(:last-child)]:after:transition-all [&:not(:last-child)]:after:duration-200",
+          "not-last:gap-(--step-gap) not-last:pb-(--step-gap)",
+          "not-last:after:w-[2px] not-last:after:bg-slate-200 not-last:after:content-['']",
+          "not-last:after:inset-x-[calc(var(--step-icon-size)/2)]",
+          "not-last:after:absolute",
+          "not-last:after:top-[calc(var(--step-icon-size)+var(--step-gap))]",
+          "not-last:after:bottom-(--step-gap)",
+          "not-last:after:transition-all not-last:after:duration-200",
         ),
         line: "mb-4 flex-1 border-t-0",
       },
@@ -564,7 +564,7 @@ const VerticalStep = ({
                 });
               }
             }}
-            className="overflow-hidden p-1 data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down"
+            className="data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down overflow-hidden p-1"
           >
             {children}
           </CollapsibleContent>
@@ -602,7 +602,7 @@ const VerticalStep = ({
           "stepper__vertical-step-container",
           "flex items-center",
           variant === "line" &&
-            "border-s-[3px] py-2 ps-3 data-[active=true]:border-primary-600",
+            "data-[active=true]:border-primary-600 border-s-[3px] py-2 ps-3",
           styles?.["vertical-step-container"],
         )}
       >
@@ -632,7 +632,7 @@ const VerticalStep = ({
         className={cn(
           "stepper__vertical-step-content",
           !isLastStep && "min-h-4",
-          variant !== "line" && "ps-[--step-icon-size]",
+          variant !== "line" && "ps-(--step-icon-size)",
           variant === "line" && orientation === "vertical" && "min-h-0",
           styles?.["vertical-step-content"],
         )}
@@ -695,17 +695,17 @@ const HorizontalStep = ({
       className={cn(
         "stepper__horizontal-step",
         "relative flex items-center transition-all duration-200",
-        "[&:not(:last-child)]:flex-1",
-        "[&:not(:last-child)]:after:transition-all [&:not(:last-child)]:after:duration-200",
-        "[&:not(:last-child)]:after:h-[2px] [&:not(:last-child)]:after:bg-slate-200 [&:not(:last-child)]:after:content-['']",
-        "data-[completed=true]:[&:not(:last-child)]:after:bg-slate-700",
-        "data-[invalid=true]:[&:not(:last-child)]:after:bg-red-600",
+        "not-last:flex-1",
+        "not-last:after:transition-all not-last:after:duration-200",
+        "not-last:after:h-[2px] not-last:after:bg-slate-200 not-last:after:content-['']",
+        "data-[completed=true]:not-last:after:bg-slate-700",
+        "data-[invalid=true]:not-last:after:bg-red-600",
         variant === "circle-alt" &&
-          "flex-1 flex-col justify-start [&:not(:last-child)]:after:relative [&:not(:last-child)]:after:end-[50%] [&:not(:last-child)]:after:start-[50%] [&:not(:last-child)]:after:top-[calc(var(--step-icon-size)/2)] [&:not(:last-child)]:after:-order-1 [&:not(:last-child)]:after:w-[calc((100%-var(--step-icon-size))-(var(--step-gap)))]",
+          "not-last:after:relative not-last:after:end-[50%] not-last:after:start-[50%] not-last:after:top-[calc(var(--step-icon-size)/2)] not-last:after:-order-1 not-last:after:w-[calc((100%-var(--step-icon-size))-(var(--step-gap)))] flex-1 flex-col justify-start",
         variant === "circle" &&
-          "[&:not(:last-child)]:after:me-[var(--step-gap)] [&:not(:last-child)]:after:ms-[var(--step-gap)] [&:not(:last-child)]:after:flex-1",
+          "not-last:after:me-(--step-gap) not-last:after:ms-(--step-gap) not-last:after:flex-1",
         variant === "line" &&
-          "flex-1 flex-col border-t-[3px] data-[active=true]:border-primary-600",
+          "data-[active=true]:border-primary-600 flex-1 flex-col border-t-[3px]",
         styles?.["horizontal-step"],
       )}
       data-optional={steps[index ?? 0]?.optional}

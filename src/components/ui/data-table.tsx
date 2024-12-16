@@ -114,7 +114,7 @@ export function DataTableColumnHeader<TData>({
       {title}
       <span
         className={clsx(
-          "ml-2 flex-none rounded group-hover:visible",
+          "ml-2 flex-none rounded-sm group-hover:visible",
           !isSorted && "invisible group-hover:visible group-focus:visible",
           isSorted
             ? "bg-slate-100 text-slate-900 group-hover:bg-slate-200"

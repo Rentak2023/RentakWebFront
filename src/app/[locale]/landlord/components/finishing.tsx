@@ -17,7 +17,7 @@ export default function Finishing() {
       <div className="mx-auto max-w-7xl px-6 lg:flex lg:px-8">
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-12 gap-y-16 lg:mx-0 lg:min-w-full lg:max-w-none lg:flex-none lg:gap-y-8">
           <div className="lg:col-end-1 lg:w-full lg:max-w-lg lg:pb-8">
-            <h2 className="text-3xl font-semibold tracking-tight text-primary-900 sm:text-4xl">
+            <h2 className="text-primary-900 text-3xl font-semibold tracking-tight sm:text-4xl">
               {t("title")}
             </h2>
             <p className="mt-6 text-base leading-7 text-slate-600">
@@ -32,7 +32,7 @@ export default function Finishing() {
               <Image
                 alt=""
                 src={img01}
-                className="aspect-[7/5] w-[37rem] max-w-none rounded-2xl bg-slate-50 object-cover"
+                className="aspect-7/5 w-[37rem] max-w-none rounded-2xl bg-slate-50 object-cover"
               />
             </div>
             <div className="contents lg:col-span-2 lg:col-end-2 lg:ms-auto lg:flex lg:w-[37rem] lg:items-start lg:justify-end lg:gap-x-8">
@@ -40,14 +40,14 @@ export default function Finishing() {
                 <Image
                   alt=""
                   src={img02}
-                  className="aspect-[4/3] w-96 max-w-none flex-none rounded-2xl bg-slate-50 object-cover"
+                  className="aspect-4/3 w-96 max-w-none flex-none rounded-2xl bg-slate-50 object-cover"
                 />
               </div>
               <div className="flex w-96 flex-auto justify-end lg:w-auto lg:flex-none">
                 <Image
                   alt=""
                   src={img03}
-                  className="aspect-[7/5] w-[37rem] max-w-none flex-none rounded-2xl bg-slate-50 object-cover"
+                  className="aspect-7/5 w-[37rem] max-w-none flex-none rounded-2xl bg-slate-50 object-cover"
                 />
               </div>
               <div className="hidden sm:block sm:w-0 sm:flex-auto lg:w-auto lg:flex-none">

@@ -1,6 +1,95 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-primary-50: #e5f2ff;
+  --color-primary-100: #cce6ff;
+  --color-primary-200: #99ccff;
+  --color-primary-300: #66b3ff;
+  --color-primary-400: #3399ff;
+  --color-primary-500: #0080ff;
+  --color-primary-600: #0066cc;
+  --color-primary-700: #004d99;
+  --color-primary-800: #003366;
+  --color-primary-900: #001a33;
+  --color-primary-950: #000d19;
+
+  --color-secondary: #1dd2f3;
+
+  --font-sans: var(--font-general-sans), General Sans Fallback,
+    var(--font-noto-sans), ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
+  --background-image-gradient-conic: conic-gradient(
+    from 180deg at 50% 50%,
+    var(--tw-gradient-stops)
+  );
+
+  --animate-collapsible-down: collapsible-down 0.2s ease-out;
+  --animate-collapsible-up: collapsible-up 0.2s ease-out;
+  --animate-caret-blink: caret-blink 1.25s ease-out infinite;
+
+  @keyframes collapsible-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-collapsible-content-height);
+    }
+  }
+  @keyframes collapsible-up {
+    from {
+      height: var(--radix-collapsible-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+  @keyframes caret-blink {
+    0%,
+    70%,
+    100% {
+      opacity: 1;
+    }
+    20%,
+    50% {
+      opacity: 0;
+    }
+  }
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-slate-200, currentColor);
+  }
+}
+
+@utility solid-shadow {
+  box-shadow:
+    var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000),
+    var(--tw-shadow),
+    -1px -1px 0px 1px #003366,
+    -1px -6px 0px 1px #003366;
+}
+
+@utility hexagon {
+  clip-path: path(
+    "M96.6599 73.771V31.1043C96.658 29.2338 96.1642 27.3966 95.2281 25.7772C94.292 24.1577 92.9465 22.8129 91.3266 21.8776L53.9932 0.544296C52.3717 -0.391899 50.5323 -0.884766 48.6599 -0.884766C46.7875 -0.884766 44.9481 -0.391899 43.3266 0.544296L5.99325 21.8776C4.37331 22.8129 3.02781 24.1577 2.09171 25.7772C1.15561 27.3966 0.661831 29.2338 0.659912 31.1043V73.771C0.661831 75.6415 1.15561 77.4786 2.09171 79.0981C3.02781 80.7176 4.37331 82.0624 5.99325 82.9976L43.3266 104.331C44.9481 105.267 46.7875 105.76 48.6599 105.76C50.5323 105.76 52.3717 105.267 53.9932 104.331L91.3266 82.9976C92.9465 82.0624 94.292 80.7176 95.2281 79.0981C96.1642 77.4786 96.658 75.6415 96.6599 73.771Z"
+  );
+}
 
 @layer base {
   @font-face {
@@ -28,27 +117,4 @@
   }
 
   /* End Custom Scrollbar */
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-
-  .solid-shadow {
-    box-shadow:
-      var(--tw-ring-offset-shadow, 0 0 #0000),
-      var(--tw-ring-shadow, 0 0 #0000),
-      var(--tw-shadow),
-      -1px -1px 0px 1px #003366,
-      -1px -6px 0px 1px #003366;
-  }
-}
-
-@layer utilities {
-  .hexagon {
-    clip-path: path(
-      "M96.6599 73.771V31.1043C96.658 29.2338 96.1642 27.3966 95.2281 25.7772C94.292 24.1577 92.9465 22.8129 91.3266 21.8776L53.9932 0.544296C52.3717 -0.391899 50.5323 -0.884766 48.6599 -0.884766C46.7875 -0.884766 44.9481 -0.391899 43.3266 0.544296L5.99325 21.8776C4.37331 22.8129 3.02781 24.1577 2.09171 25.7772C1.15561 27.3966 0.661831 29.2338 0.659912 31.1043V73.771C0.661831 75.6415 1.15561 77.4786 2.09171 79.0981C3.02781 80.7176 4.37331 82.0624 5.99325 82.9976L43.3266 104.331C44.9481 105.267 46.7875 105.76 48.6599 105.76C50.5323 105.76 52.3717 105.267 53.9932 104.331L91.3266 82.9976C92.9465 82.0624 94.292 80.7176 95.2281 79.0981C96.1642 77.4786 96.658 75.6415 96.6599 73.771Z"
-    );
-  }
 }

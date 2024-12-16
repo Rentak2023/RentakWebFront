@@ -82,7 +82,7 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="fixed top-0 z-10 w-full bg-white/80 shadow backdrop-blur-md">
+    <header className="fixed top-0 z-10 w-full bg-white/80 shadow-sm backdrop-blur-md">
       <nav
         aria-label="Global"
         className="container mx-auto flex items-center justify-between gap-x-6 p-4"
@@ -104,7 +104,7 @@ export default function Navbar() {
             {routes.map((route) =>
               route.subRoutes ? (
                 <Popover className="relative" key={route.name}>
-                  <PopoverButton className="flex items-center gap-x-1 text-lg/6 font-medium text-slate-700 focus:outline-none focus-visible:outline-primary-600">
+                  <PopoverButton className="focus:outline-hidden focus-visible:outline-primary-600 flex items-center gap-x-1 text-lg/6 font-medium text-slate-700">
                     {route.name}
                     <ChevronDownIcon
                       aria-hidden="true"
@@ -114,7 +114,7 @@ export default function Navbar() {
 
                   <PopoverPanel
                     transition
-                    className="absolute -left-8 top-full z-20 mt-3 w-56 rounded-xl bg-white p-2 shadow-lg ring-1 ring-slate-900/5 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
+                    className="data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-leave:duration-150 data-enter:ease-out data-leave:ease-in absolute -left-8 top-full z-20 mt-3 w-56 rounded-xl bg-white p-2 shadow-lg ring-1 ring-slate-900/5 transition"
                   >
                     {route.subRoutes.map((item) => (
                       <a
@@ -126,7 +126,7 @@ export default function Navbar() {
                             ? "font-semibold text-slate-900"
                             : "font-medium text-slate-700",
                           item.disabled &&
-                            "disabled pointer-events-none !text-slate-400",
+                            "disabled text-slate-400! pointer-events-none",
                         )}
                       >
                         {item.name}
@@ -212,11 +212,11 @@ export default function Navbar() {
                 {routes.map((route) =>
                   route.subRoutes ? (
                     <Disclosure as="div" className="-mx-3" key={route.name}>
-                      <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base/7 font-medium text-slate-700 hover:bg-slate-50 focus:outline-none">
+                      <DisclosureButton className="focus:outline-hidden group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base/7 font-medium text-slate-700 hover:bg-slate-50">
                         {route.name}
                         <ChevronDownIcon
                           aria-hidden="true"
-                          className="size-5 flex-none group-data-[open]:rotate-180"
+                          className="group-data-open:rotate-180 size-5 flex-none"
                         />
                       </DisclosureButton>
                       <DisclosurePanel className="mt-2 space-y-2">
@@ -234,7 +234,7 @@ export default function Navbar() {
                                 ? "font-semibold text-slate-900"
                                 : "font-medium text-slate-700",
                               item.disabled &&
-                                "disabled pointer-events-none !text-slate-400",
+                                "disabled text-slate-400! pointer-events-none",
                             )}
                           >
                             {item.name}

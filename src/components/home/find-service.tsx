@@ -240,7 +240,7 @@ export function FindService() {
           bold: (text) => <span className="font-semibold">{text}</span>,
         })}
       </h3>
-      <h2 className="mt-2 text-2xl font-semibold text-primary-900">
+      <h2 className="text-primary-900 mt-2 text-2xl font-semibold">
         {locale === "en" ? currentQuestion.title : currentQuestion.arTitle}
       </h2>
       <div className="mt-6 flex flex-col gap-3">
@@ -248,7 +248,7 @@ export function FindService() {
           isService(option) ? (
             <Link
               key={option.title}
-              className="flex flex-row items-center justify-start gap-2 rounded-3xl bg-white p-4 text-slate-700 transition duration-300 hover:bg-primary-800/80 hover:text-white"
+              className="hover:bg-primary-800/80 flex flex-row items-center justify-start gap-2 rounded-3xl bg-white p-4 text-slate-700 transition duration-300 hover:text-white"
               href={option.href}
             >
               <span className="flex size-8 items-center justify-center rounded-full border border-slate-700 bg-white p-2 leading-8 text-slate-700">
@@ -266,7 +266,7 @@ export function FindService() {
                   setCurrentQuestion(option.question);
                 }
               }}
-              className="flex flex-row items-center justify-start gap-2 rounded-3xl bg-white p-4 text-slate-700 transition duration-300 hover:bg-primary-800/80 hover:text-white"
+              className="hover:bg-primary-800/80 flex flex-row items-center justify-start gap-2 rounded-3xl bg-white p-4 text-slate-700 transition duration-300 hover:text-white"
               key={option.title}
               type="button"
             >

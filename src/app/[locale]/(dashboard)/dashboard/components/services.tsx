@@ -188,7 +188,7 @@ const Services = () => {
     <div className="mt-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0">
-          <h2 className="text-capitalized text-3xl font-semibold tracking-tight text-primary-900 sm:text-4xl">
+          <h2 className="text-capitalized text-primary-900 text-3xl font-semibold tracking-tight sm:text-4xl">
             {t("title")}
           </h2>
           {/* <p className="mt-6 text-lg leading-8 text-slate-600">
@@ -200,11 +200,11 @@ const Services = () => {
           <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
             {services.map((feature) => (
               <div key={feature.title} className="flex flex-col">
-                <dt className="text-base font-semibold leading-7 text-primary-900">
+                <dt className="text-primary-900 text-base font-semibold leading-7">
                   <div className="mb-6 flex size-12 items-center justify-center rounded-lg border border-slate-300 bg-white">
                     <feature.icon
                       aria-hidden="true"
-                      className="size-8 text-primary-600"
+                      className="text-primary-600 size-8"
                     />
                   </div>
                   {feature.title}
@@ -214,7 +214,7 @@ const Services = () => {
                   <p className="mt-4">
                     <a
                       href={feature.href}
-                      className="text-sm font-semibold leading-6 text-primary-600 underline"
+                      className="text-primary-600 text-sm font-semibold leading-6 underline"
                     >
                       {feature.cta}
                       {/* <span aria-hidden="true">→</span> */}

@@ -77,7 +77,7 @@ export function UnitModal() {
         <div className="flex items-center gap-4">
           <div className="size-20 rounded-full bg-slate-400"></div>
           <div>
-            <DialogTitle className="text-lg font-semibold text-primary-900">
+            <DialogTitle className="text-primary-900 text-lg font-semibold">
               Cairo Festival - Podium
             </DialogTitle>
             <h3 className="text-primary-900">Madinty</h3>
@@ -91,9 +91,9 @@ export function UnitModal() {
       </div>
       <div className="grid grid-cols-2 gap-4">
         <div className="flex flex-col gap-4">
-          <div className="flex gap-8 rounded-2xl p-4 shadow">
+          <div className="flex gap-8 rounded-2xl p-4 shadow-sm">
             <div>
-              <h3 className="text-xl font-semibold text-primary-600">
+              <h3 className="text-primary-600 text-xl font-semibold">
                 Tenant info
               </h3>
               <div className="mt-4 flex flex-col items-start gap-1">
@@ -107,7 +107,7 @@ export function UnitModal() {
               </div>
             </div>
             <div>
-              <h3 className="text-xl font-semibold text-primary-600">
+              <h3 className="text-primary-600 text-xl font-semibold">
                 Contract duration
               </h3>
               <div className="mt-4 flex items-center gap-4">
@@ -135,8 +135,8 @@ export function UnitModal() {
               </div>
             </div>
           </div>
-          <div className="rounded-2xl p-4 shadow">
-            <h3 className="text-xl font-semibold text-primary-600">Property</h3>
+          <div className="rounded-2xl p-4 shadow-sm">
+            <h3 className="text-primary-600 text-xl font-semibold">Property</h3>
             <div className="mt-4 flex items-center gap-4">
               <span className="flex size-9 flex-col items-center justify-center rounded-full bg-slate-200">
                 <RentCollectionIcon className="size-6 text-slate-700" />
@@ -153,9 +153,9 @@ export function UnitModal() {
             </div>
           </div>
         </div>
-        <div className="rounded-2xl p-4 shadow">
+        <div className="rounded-2xl p-4 shadow-sm">
           <div className="flex items-center justify-between">
-            <h3 className="text-xl font-semibold text-primary-600">
+            <h3 className="text-primary-600 text-xl font-semibold">
               Latest transactions
             </h3>
             <div className="flex items-center gap-2">
