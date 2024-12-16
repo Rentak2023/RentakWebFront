@@ -34,11 +34,11 @@ export async function HowItWorks() {
               className="group relative flex items-start justify-between before:absolute before:inset-0 before:top-6 before:-z-10 before:ms-5 before:h-full before:w-0.5 before:-translate-x-3 before:bg-slate-200 last-of-type:before:hidden md:justify-normal md:before:mx-auto md:before:translate-x-0 md:odd:flex-row-reverse"
               key={step.title}
             >
-              <div className="mt-6 flex size-4 shrink-0 items-center justify-center rounded-full bg-primary-600 ring-4 ring-primary-600 ring-offset-2 md:order-1 ltr:md:group-odd:-translate-x-1/2 ltr:md:group-even:translate-x-1/2 rtl:md:group-odd:translate-x-1/2 rtl:md:group-even:-translate-x-1/2" />
+              <div className="bg-primary-600 ring-primary-600 mt-6 flex size-4 shrink-0 items-center justify-center rounded-full ring-4 ring-offset-2 md:order-1 md:group-odd:ltr:-translate-x-1/2 md:group-even:ltr:translate-x-1/2 md:group-odd:rtl:translate-x-1/2 md:group-even:rtl:-translate-x-1/2" />
               <hr />
               <div className="w-[calc(100%-3rem)] p-4 md:w-[calc(50%-1rem)]">
                 <div className="flex items-center justify-between">
-                  <p className="text-xl font-semibold text-primary-800">
+                  <p className="text-primary-800 text-xl font-semibold">
                     {step.title}
                   </p>
                 </div>

@@ -34,7 +34,7 @@ function KeywordInput() {
                 <Input
                   {...field}
                   type="search"
-                  className="form-input border-0 bg-gray-50 ps-10"
+                  className="border-0 bg-slate-50 ps-10"
                   placeholder={t("searchKeyword")}
                 />
               </div>

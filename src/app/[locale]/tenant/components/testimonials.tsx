@@ -1,7 +1,7 @@
 "use client";
 import { toDate } from "date-fns";
-import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, StarIcon } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
 import { useFormatter, useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 
@@ -95,7 +95,7 @@ export function Testimonials() {
     <div className="mx-auto mt-28 max-w-7xl overflow-x-hidden px-6 pb-8 md:px-8">
       <div className="flex flex-col items-center gap-y-6 lg:flex-row">
         <div className="flex max-w-lg flex-col items-center lg:items-start">
-          <h3 className="text-balance text-2xl font-semibold text-primary-900 lg:text-5xl">
+          <h3 className="text-primary-900 text-balance text-2xl font-semibold lg:text-5xl">
             {t("title")}
           </h3>
         </div>
@@ -131,7 +131,7 @@ export function Testimonials() {
               <Button
                 size="icon"
                 variant="outline"
-                className="absolute end-16 top-8 -z-10 rounded-full border-primary-900"
+                className="absolute end-16 top-8 -z-10 rounded-full border-slate-500"
                 onClick={() => {
                   if (currentId === testimonials.length) {
                     setCurrentId(1);
@@ -141,7 +141,7 @@ export function Testimonials() {
                   setAnimationDirection(direction === "rtl" ? 1 : -1);
                 }}
               >
-                <ArrowRight className="text-primary-900 rtl:rotate-180" />
+                <ArrowRight className="text-slate-500 rtl:rotate-180" />
               </Button>
 
               <blockquote className="mt-2 text-lg font-medium leading-8 text-slate-500 sm:text-lg">
@@ -171,22 +171,18 @@ export function Testimonials() {
                   {currentTestimonial.rating} out of 5 stars
                 </p>
                 <div className="flex flex-row gap-1 lg:ms-auto">
-                  {Array.from({ length: currentTestimonial.rating }).map(
-                    (_, i) => (
-                      <StarIcon
-                        key={i}
-                        className="fill-[#FFC700] stroke-none"
-                      />
-                    ),
-                  )}
-                  {Array.from({ length: 5 - currentTestimonial.rating }).map(
-                    (_, i) => (
-                      <StarIcon
-                        key={i}
-                        className="fill-slate-300 stroke-none"
-                      />
-                    ),
-                  )}
+                  {Array.from(
+                    { length: currentTestimonial.rating },
+                    (_, i) => i,
+                  ).map((n) => (
+                    <StarIcon key={n} className="fill-[#FFC700] stroke-none" />
+                  ))}
+                  {Array.from(
+                    { length: 5 - currentTestimonial.rating },
+                    (_, i) => i,
+                  ).map((n) => (
+                    <StarIcon key={n} className="fill-slate-300 stroke-none" />
+                  ))}
                 </div>
               </div>
             </motion.div>

@@ -78,7 +78,7 @@ async function Links() {
   ];
   return lists.map((list) => (
     <div key={list.id}>
-      <h4 className="font-semibold text-primary-800">{list.title}</h4>
+      <h4 className="text-primary-800 font-semibold">{list.title}</h4>
       <ul className="mt-6 list-none">
         {list.links.map((link) => (
           <li key={link.id} className="mb-3">

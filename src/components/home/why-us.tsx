@@ -42,17 +42,17 @@ export async function WhyUs() {
               {t("title")}
             </h2>
 
-            <p className="mt-4 text-center text-lg text-slate-600 md:text-start">
+            <p className="mt-2 text-center text-lg text-slate-600 md:text-start">
               {t("subtitle")}
             </p>
 
             <dl className="mt-14 grid grid-cols-1 gap-x-24 gap-y-10 sm:grid-cols-2">
               {features.map((feature) => (
                 <div key={feature.name} className="mx-auto flex flex-col">
-                  <dt className="flex flex-col items-start justify-start gap-3 text-base/7 font-semibold text-primary-800">
-                    <div className="flex items-center justify-center rounded-full bg-primary-800/20 p-2">
+                  <dt className="text-primary-800 flex flex-col items-start justify-start gap-3 text-base/7 font-semibold">
+                    <div className="bg-primary-600/5 flex items-center justify-center rounded-full p-2">
                       <feature.icon
-                        className="size-6 text-primary-800"
+                        className="text-primary-800 size-6"
                         aria-hidden="true"
                       />
                     </div>

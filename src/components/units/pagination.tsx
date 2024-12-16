@@ -31,7 +31,7 @@ function Pagination({ totalPages }: { totalPages: number }) {
           <li key={i}>
             <Link
               href={createPageURL(i)}
-              className={`mx-1 inline-flex size-10 items-center justify-center rounded-full ${i === currentPage ? "bg-primary-900 text-white" : "bg-white text-slate-400"} shadow-sm hover:border-primary-900 hover:bg-primary-900 hover:text-white dark:bg-slate-900 dark:shadow-slate-700 dark:hover:border-green-600 dark:hover:bg-green-600`}
+              className={`mx-1 inline-flex size-10 items-center justify-center rounded-full ${i === currentPage ? "bg-primary-900 text-white" : "bg-white text-slate-400"} shadow-xs hover:border-primary-900 hover:bg-primary-900 hover:text-white dark:bg-slate-900 dark:shadow-slate-700 dark:hover:border-green-600 dark:hover:bg-green-600`}
             >
               {i}
             </Link>
@@ -57,7 +57,7 @@ function Pagination({ totalPages }: { totalPages: number }) {
             <li>
               <Link
                 href={createPageURL(currentPage - 1)}
-                className={`mx-1 inline-flex size-10 items-center justify-center rounded-full bg-white text-slate-400 shadow-sm ${currentPage === 1 ? "cursor-not-allowed opacity-50" : "hover:border-primary-900 hover:bg-primary-900 hover:text-white"}`}
+                className={`shadow-xs mx-1 inline-flex size-10 items-center justify-center rounded-full bg-white text-slate-400 ${currentPage === 1 ? "cursor-not-allowed opacity-50" : "hover:border-primary-900 hover:bg-primary-900 hover:text-white"}`}
               >
                 <ArrowLeft className="text-xl" />
               </Link>
@@ -66,7 +66,7 @@ function Pagination({ totalPages }: { totalPages: number }) {
             <li>
               <Link
                 href={createPageURL(currentPage + 1)}
-                className={`mx-1 inline-flex size-10 items-center justify-center rounded-full bg-white text-slate-400 shadow-sm ${currentPage === totalPages ? "cursor-not-allowed opacity-50" : "hover:border-primary-900 hover:bg-primary-900 hover:text-white"} `}
+                className={`shadow-xs mx-1 inline-flex size-10 items-center justify-center rounded-full bg-white text-slate-400 ${currentPage === totalPages ? "cursor-not-allowed opacity-50" : "hover:border-primary-900 hover:bg-primary-900 hover:text-white"} `}
               >
                 <ArrowRight className="text-xl" />
               </Link>

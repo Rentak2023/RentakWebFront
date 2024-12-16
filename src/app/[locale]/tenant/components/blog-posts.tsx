@@ -14,7 +14,7 @@ export default function BlogPosts() {
     <div className="bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-balance text-4xl font-semibold tracking-tight text-primary-900 sm:text-5xl">
+          <h2 className="text-primary-900 text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
             {t("title")}
           </h2>
           <p className="mt-4 text-lg/8 text-slate-600">{t("subtitle")}</p>
@@ -31,13 +31,13 @@ export default function BlogPosts() {
                   height={256}
                   alt=""
                   src={post.image}
-                  className="aspect-[16/9] w-full rounded-2xl bg-slate-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
+                  className="aspect-16/9 sm:aspect-2/1 lg:aspect-3/2 w-full rounded-2xl bg-slate-100 object-cover"
                 />
                 <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-slate-900/10" />
               </div>
               <div className="max-w-xl">
                 <div className="group relative">
-                  <h3 className="mt-6 text-lg/6 font-semibold text-primary-900 group-hover:text-slate-600">
+                  <h3 className="text-primary-900 mt-6 text-lg/6 font-semibold group-hover:text-slate-600">
                     <a href={post.url}>
                       <span className="absolute inset-0" />
                       {locale === "en" ? post.title : post.arTitle}

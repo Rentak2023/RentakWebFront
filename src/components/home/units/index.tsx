@@ -27,7 +27,7 @@ async function Units() {
             {t("viewAll")}
           </Link>
         </div>
-        <div className="mt-8">
+        <div className="mt-4">
           <Suspense fallback={<UnitsSkeleton />}>
             <UnitsSlider />
           </Suspense>

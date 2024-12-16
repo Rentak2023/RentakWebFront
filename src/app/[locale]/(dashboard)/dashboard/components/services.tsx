@@ -9,10 +9,10 @@ type Service = {
   href: string;
 };
 
-const Features = () => {
+const Services = () => {
   const t = useTranslations("landlord.services");
 
-  const features: Array<Service> = [
+  const services: Array<Service> = [
     {
       title: t("property-management.title"),
       description: t("property-management.description"),
@@ -198,19 +198,13 @@ const Features = () => {
         </div>
         <div className="mx-auto mt-8 max-w-2xl sm:mt-12 lg:mt-16 lg:max-w-none">
           <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
-            {features.map((feature) => (
+            {services.map((feature) => (
               <div key={feature.title} className="flex flex-col">
-                <dt className="text-primary-900 flex flex-col items-start justify-start gap-3 text-base font-semibold leading-7">
-                  {/* <div className="mb-6 flex size-12 items-center justify-center rounded-lg border border-slate-300 bg-white">
+                <dt className="text-primary-900 text-base font-semibold leading-7">
+                  <div className="mb-6 flex size-12 items-center justify-center rounded-lg border border-slate-300 bg-white">
                     <feature.icon
                       aria-hidden="true"
-                      className="size-8 text-primary-600"
-                    />
-                  </div> */}
-                  <div className="bg-primary-600/5 flex size-12 items-center justify-center rounded-full p-2">
-                    <feature.icon
-                      className="text-primary-800 size-6"
-                      aria-hidden="true"
+                      className="text-primary-600 size-8"
                     />
                   </div>
                   {feature.title}
@@ -236,4 +230,4 @@ const Features = () => {
   );
 };
 
-export default Features;
+export default Services;

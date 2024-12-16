@@ -37,7 +37,7 @@ export default function Steps() {
   return (
     <section className="mt-28">
       <div className="container mx-auto">
-        <h2 className="text-center text-4xl font-semibold tracking-tight text-primary-900">
+        <h2 className="text-primary-900 text-center text-4xl font-semibold tracking-tight">
           {t("title")}
         </h2>
         {/* <div className="mx-auto mt-16 flex flex-col items-center justify-start">
@@ -82,7 +82,7 @@ export default function Steps() {
               >
                 {index + 1}
               </span>
-              <h3 className="font-medium leading-tight text-primary-800">
+              <h3 className="text-primary-800 font-medium leading-tight">
                 {step.title}
               </h3>
               <p className="mt-2 text-sm text-slate-600">{step.description}</p>

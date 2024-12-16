@@ -55,7 +55,7 @@ export default function PropertyImages({ images }: PropertyImagesTypes) {
           />
           <div className="absolute inset-0 transition-all duration-200 group-hover:bg-slate-900/70" />
           <div className="invisible absolute end-0 start-0 top-1/2 -translate-y-1/2 text-center group-hover:visible">
-            <div className="btn btn-icon lightbox rounded-full bg-green-600 text-white hover:bg-green-700">
+            <div className="inline-flex size-10 items-center justify-center rounded-full bg-green-600 text-white hover:bg-green-700">
               <CameraIcon width={18} />
             </div>
           </div>

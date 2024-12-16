@@ -291,6 +291,7 @@ function StepField({ formField, field, useFormStore }: StepFieldProps) {
             {formField.action ? (
               <Button
                 type="button"
+                variant="outline"
                 onClick={() => {
                   actionMutation.mutate({ ...formData, ...currentValues });
                 }}
@@ -322,10 +323,18 @@ function StepField({ formField, field, useFormStore }: StepFieldProps) {
                   ? formField.compute(currentValues)
                   : field.value
               }
+              // verify on press enter
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  actionMutation.mutate({ ...formData, ...currentValues });
+                  e.preventDefault();
+                }
+              }}
             />{" "}
             {formField.action ? (
               <Button
                 type="button"
+                variant="outline"
                 onClick={() => {
                   actionMutation.mutate({ ...formData, ...currentValues });
                 }}
@@ -368,23 +377,19 @@ function StepperFormActions({ onPrevStep }: StepperFormActions) {
   return (
     <div className="flex w-full justify-between">
       {hasCompletedAllSteps ? (
-        <Button size="sm" onClick={resetSteps}>
-          {t("reset")}
-        </Button>
+        <Button onClick={resetSteps}>{t("reset")}</Button>
       ) : (
         <>
           <Button
             disabled={isDisabledStep}
             onClick={onPrevStep}
-            size="sm"
-            variant="outline"
+            variant="ghost"
             type="button"
           >
             <ArrowLeft className="me-2 size-4 rtl:rotate-180" />
             {t("previous")}
           </Button>
           <Button
-            size="sm"
             type="submit"
             disabled={form.formState.isSubmitting || form.formState.isSubmitted}
           >
