@@ -19,6 +19,7 @@ import getLocaleDirection from "@/lib/utils";
 import URLS from "@/shared/urls";
 
 import WhatsappIcon from "./assets/svgs/whatsapp-icon";
+import { NavigationEvents } from "./navigation-events";
 import { Providers } from "./providers";
 
 const notoSans = Noto_Sans_Arabic({
@@ -109,6 +110,7 @@ export default async function RootLayout(
               >
                 <WhatsappIcon className="size-8 text-white" />
               </a>
+              <NavigationEvents />
             </Providers>
           </NextIntlClientProvider>
         </div>

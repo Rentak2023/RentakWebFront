@@ -117,4 +117,7 @@
   }
 
   /* End Custom Scrollbar */
+  #nprogress .bar {
+    @apply bg-primary-600!;
+  }
 }
