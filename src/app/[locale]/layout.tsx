@@ -10,6 +10,7 @@ import {
   getTranslations,
   setRequestLocale,
 } from "next-intl/server";
+import { Suspense } from "react";
 
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
@@ -110,7 +111,9 @@ export default async function RootLayout(
               >
                 <WhatsappIcon className="size-8 text-white" />
               </a>
-              <NavigationEvents />
+              <Suspense>
+                <NavigationEvents />
+              </Suspense>
             </Providers>
           </NextIntlClientProvider>
         </div>
