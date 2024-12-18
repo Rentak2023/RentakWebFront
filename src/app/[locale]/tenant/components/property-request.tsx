@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
+import { Link } from "@/i18n/routing";
 
 export default function PropertyRequest() {
   const t = useTranslations("tenant.property-request");
@@ -13,8 +14,8 @@ export default function PropertyRequest() {
         </h2>
         <p className="text-primary-800 mt-6">{t("description")}</p>
       </div>
-      <Button variant="dark" size="lg">
-        {t("cta")}
+      <Button variant="dark" size="lg" asChild>
+        <Link href="/request-property">{t("cta")}</Link>
       </Button>
     </div>
   );
