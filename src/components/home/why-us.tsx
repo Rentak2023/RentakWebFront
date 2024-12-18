@@ -50,7 +50,7 @@ export async function WhyUs() {
               {features.map((feature) => (
                 <div key={feature.name} className="mx-auto flex flex-col">
                   <dt className="text-primary-800 flex flex-col items-start justify-start gap-3 text-base/7 font-semibold">
-                    <div className="bg-primary-600/5 flex items-center justify-center rounded-full p-2">
+                    <div className="bg-primary-600/5 flex size-12 items-center justify-center rounded-full p-2">
                       <feature.icon
                         className="text-primary-800 size-6"
                         aria-hidden="true"
