@@ -30,6 +30,7 @@ const nextConfig = {
     },
   },
   experimental: {
+    typedRoutes: true,
     reactCompiler: false,
     staleTimes: {
       dynamic: 30,
