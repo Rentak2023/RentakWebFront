@@ -17,11 +17,18 @@ export function NavigationEvents() {
 
     // eslint-disable-next-line react-compiler/react-compiler
     router.push = (href, options) => {
-      console.log("href", href);
-      nProgress.start();
+      const url = `${pathname}${searchParams.size > 0 ? `?${searchParams.toString()}` : ""}`;
+
+      if (href !== url) {
+        nProgress.start();
+      }
+
       _push(href, options);
     };
-  }, [router]);
+    return () => {
+      router.push = _push;
+    };
+  }, [pathname, router, searchParams]);
 
   useEffect(() => {
     nProgress.done();
