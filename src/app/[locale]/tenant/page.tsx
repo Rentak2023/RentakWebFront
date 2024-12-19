@@ -7,7 +7,7 @@ import Header from "./components/header";
 import PayRent from "./components/pay-rent";
 import PropertyRequest from "./components/property-request";
 import Steps from "./components/steps";
-import { Testimonials } from "./components/testimonials";
+import Testimonials from "./components/testimonials";
 
 async function Tenant(
   props: Readonly<{

@@ -1,12 +1,12 @@
 import { withSentryConfig } from "@sentry/nextjs";
+import type { NextConfig } from "next";
 import { withContentlayer } from "next-contentlayer";
 import createNextIntlPlugin from "next-intl/plugin";
 import { withNextVideo } from "next-video/process";
 
 const withNextIntl = createNextIntlPlugin();
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig: NextConfig = {
   output: "standalone",
   images: {
     formats: ["image/avif", "image/webp"],
@@ -44,6 +44,7 @@ const nextConfig = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
+  // eslint-disable-next-line @typescript-eslint/require-await
   async redirects() {
     return [
       // old unit url

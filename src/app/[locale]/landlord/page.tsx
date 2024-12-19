@@ -5,7 +5,7 @@ import Finishing from "./components/finishing";
 import Header from "./components/header";
 import Pricing from "./components/pricing";
 import Steps from "./components/steps";
-import { Testimonials } from "./components/testimonials";
+import Testimonials from "./components/testimonials";
 import WhyRentak from "./components/why-rentak";
 
 async function Landlord(
