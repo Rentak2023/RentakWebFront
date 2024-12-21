@@ -1,10 +1,21 @@
+import { getImageProps } from "next/image";
 import { useTranslations } from "next-intl";
-import BackgroundVideo from "next-video/background-video";
+import BackgroundPlayer from "next-video/background-player";
 
-import getStarted from "/videos/rentak-marks.mp4";
+import poster from "./header-poster.jpg";
 
 export default function Header() {
   const t = useTranslations("landlord.header");
+  const {
+    props: { src: posterSrc },
+  } = getImageProps({
+    src: poster,
+    blurDataURL: poster.blurDataURL,
+    width: poster.width,
+    height: poster.height,
+    alt: "",
+  });
+
   return (
     <div className="bg-white">
       <div className="bg-linear-to-b from-primary-100/20 relative isolate overflow-hidden pt-24">
@@ -20,8 +31,10 @@ export default function Header() {
             </div>
           </div>
           <div className="relative mx-auto mt-20 sm:mt-24 md:max-w-md lg:mx-0 lg:mt-0 lg:w-screen">
-            <BackgroundVideo
-              src={getStarted}
+            <BackgroundPlayer
+              src="https://3djfa6xdh712ppgh.public.blob.vercel-storage.com/videos/rentak-marks-AsOxLiSUWqokCBdvgga33ZuHu6Jxg3.mp4"
+              poster={posterSrc}
+              blurDataURL={poster.blurDataURL}
               className="overflow-hidden rounded-3xl"
               style={{ aspectRatio: "1/1" }}
               loop
