@@ -389,10 +389,7 @@ function StepperFormActions({ onPrevStep }: StepperFormActions) {
             <ArrowLeft className="me-2 size-4 rtl:rotate-180" />
             {t("previous")}
           </Button>
-          <Button
-            type="submit"
-            disabled={form.formState.isSubmitting || form.formState.isSubmitted}
-          >
+          <Button type="submit" disabled={form.formState.isSubmitting}>
             {form.formState.isSubmitting ? (
               <Loader2 className="mr-2 size-4 animate-spin" />
             ) : null}

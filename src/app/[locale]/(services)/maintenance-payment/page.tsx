@@ -10,6 +10,7 @@ import isNumeric from "validator/es/lib/isNumeric";
 import { useToast } from "@/components/ui/use-toast";
 import { banksQuery } from "@/queries/banks";
 import { cashInPaymentMethodsQuery } from "@/queries/payment-methods";
+import { productQuery } from "@/queries/products";
 import { sendOTP, verifyOTP } from "@/services/auth";
 import { checkPromoCode } from "@/services/promo";
 
@@ -33,6 +34,8 @@ export default function RentPayment(
 
   const { data: paymentMethods } = useSuspenseQuery(cashInPaymentMethodsQuery);
   const { data: banks } = useSuspenseQuery(banksQuery);
+  const { data: product } = useSuspenseQuery(productQuery(2));
+
   const t = useTranslations("services");
   const [userId, setUserId] = useState<number | null>(null);
   const [discount, setDiscount] = useState<number>(0);
@@ -395,13 +398,13 @@ export default function RentPayment(
           name: "total_amount",
           label: t("fields.total-amount.label"),
           description: t("fields.total-amount.description", {
-            fees: "5",
+            fees: product.fees.toString(),
           }),
           kind: "text",
           type: "text",
           readonly: true,
           compute: (data) => {
-            const fees = Number(data.rent_amount) * 0.05;
+            const fees = (Number(data.rent_amount) * product.fees) / 100;
             const discountedFees = fees - (discount * fees) / 100;
 
             return (Number(data.rent_amount) + discountedFees).toFixed(2);
@@ -414,7 +417,7 @@ export default function RentPayment(
       heading: t("steps.confirmation.heading"),
       list: [
         'أقر أنا [] بصحة البيانات الواردة أعلاه وأن المعاملة المالية مرتبطة بعلاقة إيجارية حقيقية وبأن شركة "رينتاك للتطبيقات ذ.م.م" ليس لها أي صلة بهذه العلاقة الإيجارية وأنها لم تتدخل في هذا الإيجار سواء في مرحلة البحث أو التفاوض أو إبرام العقد.',
-        'كما أقر بأن شركة "رينتك" هي جهة تحويل للمبلغ المذكور أعلاه للمستفيد بقيمة 2.5% كمصاريف إدارية، ويتم التحويل في خلال أربعة أيام عمل.',
+        `كما أقر بأن شركة "رينتك" هي جهة تحويل للمبلغ المذكور أعلاه للمستفيد بقيمة ${product.fees}% كمصاريف إدارية، ويتم التحويل في خلال أربعة أيام عمل.`,
         "ليس للشركة أي صلة بالمؤجر أو بالعين المؤجرة ولا يجوز لي الرجوع أو مطالبة شركة رينتك أو أي من مديريها أو موظفيها سواء بصفاتهم الشخصية أو الوظيفية بأية مطالبات أو تعويضات أو مبالغ أو حقوق أو دعاوى أو التزامات في الحال أو في المستقبل، تكون ناشئة عن أو مرتبطة أو متصلة بعقد الإيجار المبرم بين المؤجر والمستأجر أو العين المؤجرة.",
         "وهذا إقرار نهائي مني لا يجوز لي الرجوع فيه أو العدول عنه، وفي حالة مخالفتي لهذا التعهد، تحتفظ شركة رينتك بحقها في الرجوع بكافة الحقوق والضمانات المقررة قانوناً.",
       ],
