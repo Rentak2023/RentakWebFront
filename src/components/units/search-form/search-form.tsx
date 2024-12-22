@@ -50,7 +50,7 @@ export default function SearchForm() {
     (value: Record<string, any>) => {
       setSearchParams(value);
     },
-    100,
+    300,
   );
 
   const form = useForm<FormValues>({
@@ -59,7 +59,7 @@ export default function SearchForm() {
       governoment_id: searchParams.governoment_id,
       city_id: searchParams.city_id,
       price_from: searchParams.price_from,
-      price_to: minMaxPrice.max_price,
+      price_to: searchParams.price_to,
       finish_type: searchParams.finish_type,
       property_type: searchParams.property_type,
       bathroom_numbers: searchParams.bathroom_numbers,

@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import { useFormContext } from "react-hook-form";
+import { useFormContext, useWatch } from "react-hook-form";
 
 import { Slider } from "@/components/ui/slider";
 import { cn } from "@/lib/utils";
@@ -13,8 +13,14 @@ function MultiRangeSlider({ min, max }: MultiRangeSliderProps) {
   const t = useTranslations("units");
   const form = useFormContext();
 
-  const minValue = form.watch("price_from");
-  const maxValue = form.watch("price_to");
+  const minValue = useWatch({
+    control: form.control,
+    name: "price_from",
+  });
+  const maxValue = useWatch({
+    control: form.control,
+    name: "price_to",
+  });
 
   const handleValueChange = (newValues: Array<number>) => {
     form.setValue("price_from", newValues[0]);
