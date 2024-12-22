@@ -1,5 +1,4 @@
 import { useTranslations } from "next-intl";
-import { useState } from "react";
 import { useFormContext } from "react-hook-form";
 
 import { Slider } from "@/components/ui/slider";
@@ -11,9 +10,6 @@ type MultiRangeSliderProps = {
 };
 
 function MultiRangeSlider({ min, max }: MultiRangeSliderProps) {
-  // eslint-disable-next-line react-compiler/react-compiler
-  "use no memo";
-
   const t = useTranslations("units");
   const form = useFormContext();
 

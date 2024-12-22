@@ -9,7 +9,7 @@ import {
   useQueryStates,
 } from "nuqs";
 import { useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { useDebouncedCallback } from "use-debounce";
 
 import { Button } from "@/components/ui/button";
@@ -25,9 +25,6 @@ import PropertyTypes from "./property-types";
 import RoomsAndToilets from "./rooms-and-toilets";
 
 export default function SearchForm() {
-  // eslint-disable-next-line react-compiler/react-compiler
-  "use no memo";
-
   const t = useTranslations("units");
 
   const { data: minMaxPrice } = useSuspenseQuery(minMaxPriceQuery);
@@ -70,7 +67,9 @@ export default function SearchForm() {
     },
   });
 
-  const currentValues = form.watch();
+  const currentValues = useWatch({
+    control: form.control,
+  });
 
   useEffect(() => {
     const newSearchParams: Record<string, any> = {};
