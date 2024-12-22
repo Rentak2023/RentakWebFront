@@ -11,16 +11,16 @@ type MultiRangeSliderProps = {
 };
 
 function MultiRangeSlider({ min, max }: MultiRangeSliderProps) {
+  // eslint-disable-next-line react-compiler/react-compiler
+  "use no memo";
+
   const t = useTranslations("units");
   const form = useFormContext();
 
-  const [localValues, setLocalValues] = useState(() => [
-    Number(form.getValues().price_from),
-    Number(form.getValues().price_to),
-  ]);
+  const minValue = form.watch("price_from");
+  const maxValue = form.watch("price_to");
 
   const handleValueChange = (newValues: Array<number>) => {
-    setLocalValues(newValues);
     form.setValue("price_from", newValues[0]);
     form.setValue("price_to", newValues[1]);
   };
@@ -31,7 +31,7 @@ function MultiRangeSlider({ min, max }: MultiRangeSliderProps) {
 
       <div className="mt-4">
         <Slider
-          defaultValue={localValues}
+          defaultValue={[minValue, maxValue]}
           minStepsBetweenThumbs={10}
           max={max}
           min={min}
@@ -42,15 +42,14 @@ function MultiRangeSlider({ min, max }: MultiRangeSliderProps) {
       </div>
       <div className="flex flex-wrap gap-2">
         <ol className="flex w-full items-center gap-3">
-          {localValues.map((val, index) => (
-            <li
-              key={val}
-              className="flex h-10 w-full items-center justify-between rounded-md border px-3"
-            >
-              <span>{localValues[index]}</span>
-              <span>EGP</span>
-            </li>
-          ))}
+          <li className="flex h-10 w-full items-center justify-between rounded-md border px-3">
+            <span>{minValue}</span>
+            <span>EGP</span>
+          </li>
+          <li className="flex h-10 w-full items-center justify-between rounded-md border px-3">
+            <span>{maxValue}</span>
+            <span>EGP</span>
+          </li>
         </ol>
       </div>
     </div>

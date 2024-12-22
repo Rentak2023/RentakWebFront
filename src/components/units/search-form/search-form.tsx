@@ -1,8 +1,13 @@
 "use client";
 
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
+import {
+  parseAsArrayOf,
+  parseAsInteger,
+  parseAsString,
+  useQueryStates,
+} from "nuqs";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDebouncedCallback } from "use-debounce";
@@ -20,67 +25,75 @@ import PropertyTypes from "./property-types";
 import RoomsAndToilets from "./rooms-and-toilets";
 
 export default function SearchForm() {
-  const searchParams = useSearchParams();
+  // eslint-disable-next-line react-compiler/react-compiler
+  "use no memo";
+
   const t = useTranslations("units");
 
   const { data: minMaxPrice } = useSuspenseQuery(minMaxPriceQuery);
 
-  const updateSearchParams = useDebouncedCallback((value: URLSearchParams) => {
-    globalThis.history.replaceState(null, "", `?${value.toString()}`);
-  }, 100);
+  const [searchParams, setSearchParams] = useQueryStates(
+    {
+      keyword: parseAsString.withDefault(""),
+      governoment_id: parseAsString.withDefault(""),
+      city_id: parseAsString.withDefault(""),
+      price_from: parseAsInteger.withDefault(minMaxPrice.min_price),
+      price_to: parseAsInteger.withDefault(minMaxPrice.max_price),
+      finish_type: parseAsString.withDefault(""),
+      property_type: parseAsArrayOf(parseAsString).withDefault([]),
+      bathroom_numbers: parseAsString.withDefault(""),
+      room_numers: parseAsString.withDefault(""),
+    },
+    {
+      history: "replace",
+    },
+  );
+
+  const updateSearchParams = useDebouncedCallback(
+    (value: Record<string, any>) => {
+      setSearchParams(value);
+    },
+    100,
+  );
 
   const form = useForm<FormValues>({
     defaultValues: {
-      keyword: searchParams.get("keyword") ?? "",
-      governoment_id: searchParams.get("governoment_id") ?? "",
-      city_id: searchParams.get("city_id") ?? "",
-      price_from: searchParams.get("price_from")
-        ? Number(searchParams.get("price_from"))
-        : minMaxPrice.min_price,
-      price_to: searchParams.get("price_to")
-        ? Number(searchParams.get("price_to"))
-        : minMaxPrice.max_price,
-      finish_type: searchParams.get("finish_type") ?? "",
-      property_type: searchParams.getAll("property_type"),
-      bathroom_numbers: searchParams.get("bathroom_numbers") ?? "",
-      room_numers: searchParams.get("room_numers") ?? "",
+      keyword: searchParams.keyword,
+      governoment_id: searchParams.governoment_id,
+      city_id: searchParams.city_id,
+      price_from: searchParams.price_from,
+      price_to: minMaxPrice.max_price,
+      finish_type: searchParams.finish_type,
+      property_type: searchParams.property_type,
+      bathroom_numbers: searchParams.bathroom_numbers,
+      room_numers: searchParams.room_numers,
     },
   });
 
   const currentValues = form.watch();
 
   useEffect(() => {
-    const searchParamsObj = new URLSearchParams(searchParams.toString());
-
+    const newSearchParams: Record<string, any> = {};
     let changed = false;
     for (const [key, value] of Object.entries(currentValues)) {
-      if (Array.isArray(value)) {
-        for (const item of value) {
-          if (!searchParamsObj.getAll(key).includes(item.toString())) {
-            searchParamsObj.append(key, item.toString());
-            changed = true;
-          }
-        }
+      const searchParamValue = searchParams[key as keyof typeof searchParams];
 
-        for (const item of searchParamsObj.getAll(key)) {
-          if (!value.includes(item)) {
-            searchParamsObj.delete(key, item);
-            changed = true;
-          }
+      if (Array.isArray(value)) {
+        if (JSON.stringify(value) !== JSON.stringify(searchParamValue)) {
+          newSearchParams[key] = value;
+          changed = true;
         }
-      } else if (value == null || (value === "" && searchParamsObj.has(key))) {
-        searchParamsObj.delete(key);
+      } else if ((value == null || value === "") && searchParamValue) {
+        newSearchParams[key] = value;
         changed = true;
-      } else if (
-        value !== "" &&
-        searchParamsObj.get(key) !== value.toString()
-      ) {
-        searchParamsObj.set(key, value.toString());
+      } else if (value !== "" && searchParamValue !== value) {
+        newSearchParams[key] = value;
         changed = true;
       }
     }
+
     if (changed) {
-      updateSearchParams(searchParamsObj);
+      updateSearchParams(newSearchParams);
     }
   }, [currentValues, searchParams, updateSearchParams]);
 
@@ -114,7 +127,12 @@ export default function SearchForm() {
             min={minMaxPrice.min_price}
             max={minMaxPrice.max_price}
           />
-          <Button onClick={clearSearchParams} variant="outline" size="lg">
+          <Button
+            onClick={clearSearchParams}
+            variant="outline"
+            size="lg"
+            type="button"
+          >
             {t("clear")}
           </Button>
         </form>

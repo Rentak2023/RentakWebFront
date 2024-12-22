@@ -22,6 +22,7 @@ const nextConfig: NextConfig = {
         port: "",
       },
     ],
+    minimumCacheTTL: 60 * 60 * 24 * 7,
   },
   logging: {
     fetches: {
@@ -30,7 +31,7 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     // typedRoutes: true,
-    reactCompiler: false,
+    reactCompiler: true,
     staleTimes: {
       dynamic: 30,
       static: 180,

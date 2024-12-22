@@ -1,3 +1,5 @@
+import { parseAsArrayOf, parseAsInteger, parseAsString } from "nuqs/server";
+
 import { type UnitTypeTypes } from "@/components/units/types";
 import ky from "@/lib/ky";
 
@@ -9,17 +11,31 @@ type PropertiesResponse = {
 };
 
 export type PropertiesSearchParams = {
-  governoment_id?: number;
-  city_id?: number;
-  finish_type?: number;
-  bathroom_numbers?: number;
-  room_numers?: number;
-  property_type?: Array<number>;
-  keyword?: string;
-  price_to?: number;
-  price_from?: number;
-  page?: number;
+  governoment_id?: number | null;
+  city_id?: number | null;
+  finish_type?: number | null;
+  bathroom_numbers?: number | null;
+  room_numers?: number | null;
+  property_type?: Array<number> | null;
+  keyword?: string | null;
+  price_to?: number | null;
+  price_from?: number | null;
+  page?: number | null;
   lang: string;
+};
+
+export const propertiesQueryParsers = {
+  // Use human-readable variable names throughout your codebase
+  keyword: parseAsString,
+  governoment_id: parseAsInteger,
+  city_id: parseAsInteger,
+  price_from: parseAsInteger.withDefault(0),
+  price_to: parseAsInteger.withDefault(200_000),
+  finish_type: parseAsInteger,
+  property_type: parseAsArrayOf(parseAsInteger),
+  bathroom_numbers: parseAsInteger,
+  room_numers: parseAsInteger,
+  page: parseAsInteger.withDefault(1),
 };
 
 export async function getProperties(params: PropertiesSearchParams) {
@@ -30,7 +46,7 @@ export async function getProperties(params: PropertiesSearchParams) {
       for (const item of value) {
         searchParams.append(key, item.toString());
       }
-    } else {
+    } else if (value) {
       searchParams.append(key, value.toString());
     }
   }

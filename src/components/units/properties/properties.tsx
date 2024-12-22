@@ -1,13 +1,14 @@
 "use client";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
+import { useQueryStates } from "nuqs";
 import { Suspense } from "react";
 
 import UnitsSkeleton from "@/components/home/units/units-skeleton";
 import { Skeleton } from "@/components/ui/skeleton";
 import Unit from "@/components/unit";
 import { unitsQuery } from "@/queries/units";
+import { propertiesQueryParsers } from "@/services/properties";
 
 import Pagination from "../pagination";
 import PropertiesHeader from "./properties-header";
@@ -38,13 +39,13 @@ function Properties() {
 
 function UnitsCount() {
   const t = useTranslations("units");
-  const searchParams = useSearchParams();
   const locale = useLocale();
+  const [searchParams] = useQueryStates(propertiesQueryParsers);
+
   const { data: properties } = useSuspenseQuery(
     unitsQuery({
-      ...Object.fromEntries(searchParams.entries()),
+      ...searchParams,
       lang: locale,
-      page: searchParams.get("page") ? Number(searchParams.get("page")) : 1,
     }),
   );
 
@@ -62,13 +63,12 @@ function UnitsCount() {
 
 function Units() {
   const t = useTranslations("units");
-  const searchParams = useSearchParams();
+  const [searchParams] = useQueryStates(propertiesQueryParsers);
   const locale = useLocale();
   const { data: properties } = useSuspenseQuery(
     unitsQuery({
-      ...Object.fromEntries(searchParams.entries()),
+      ...searchParams,
       lang: locale,
-      page: searchParams.get("page") ? Number(searchParams.get("page")) : 1,
     }),
   );
 

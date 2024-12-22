@@ -10,6 +10,7 @@ import {
   getTranslations,
   setRequestLocale,
 } from "next-intl/server";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { Suspense } from "react";
 
 import Footer from "@/components/footer";
@@ -100,21 +101,23 @@ export default async function RootLayout(
               },
             }}
           >
-            <Providers>
-              <Navbar />
-              {children}
-              <Footer />
-              <Toaster />
-              <a
-                href={URLS.whatsapp}
-                className="fixed bottom-8 end-8 z-50 inline-flex rounded-full border border-slate-200 bg-[#25D366] p-3 shadow-lg"
-              >
-                <WhatsappIcon className="size-8 text-white" />
-              </a>
-              <Suspense>
-                <NavigationEvents />
-              </Suspense>
-            </Providers>
+            <NuqsAdapter>
+              <Providers>
+                <Navbar />
+                {children}
+                <Footer />
+                <Toaster />
+                <a
+                  href={URLS.whatsapp}
+                  className="fixed bottom-8 end-8 z-50 inline-flex rounded-full border border-slate-200 bg-[#25D366] p-3 shadow-lg"
+                >
+                  <WhatsappIcon className="size-8 text-white" />
+                </a>
+                <Suspense>
+                  <NavigationEvents />
+                </Suspense>
+              </Providers>
+            </NuqsAdapter>
           </NextIntlClientProvider>
         </div>
       </body>

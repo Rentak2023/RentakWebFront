@@ -1,4 +1,6 @@
 import { setRequestLocale } from "next-intl/server";
+import { createSearchParamsCache } from "nuqs/server";
+import { type SearchParams } from "nuqs/server";
 
 import Properties from "@/components/units/properties/properties";
 import SearchForm from "@/components/units/search-form/search-form";
@@ -9,18 +11,22 @@ import {
   propertyTypesQuery,
   unitsQuery,
 } from "@/queries/units";
-import { type PropertiesSearchParams } from "@/services/properties";
+import { propertiesQueryParsers } from "@/services/properties";
 
 import { makeQueryClient } from "../get-query-client";
+
+const searchParamsCache = createSearchParamsCache(propertiesQueryParsers);
 
 export default async function UnitsPage(
   props: Readonly<{
     params: Promise<{ locale: string }>;
-    searchParams: Promise<Exclude<PropertiesSearchParams, "lang">>;
+    searchParams: Promise<SearchParams>;
   }>,
 ) {
   const searchParams = await props.searchParams;
   const params = await props.params;
+
+  const parsedParams = searchParamsCache.parse(searchParams);
 
   const { locale } = params;
 
@@ -35,12 +41,11 @@ export default async function UnitsPage(
     unitsQuery({
       ...searchParams,
       lang: locale,
-      page: searchParams.page ?? 1,
     }),
   );
 
   if (searchParams.governoment_id) {
-    queryClient.prefetchQuery(districtsQuery(searchParams.governoment_id));
+    queryClient.prefetchQuery(districtsQuery(parsedParams.governoment_id));
   }
 
   return (
