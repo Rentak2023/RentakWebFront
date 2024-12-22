@@ -1,4 +1,9 @@
-import { parseAsArrayOf, parseAsInteger, parseAsString } from "nuqs/server";
+import {
+  createSearchParamsCache,
+  parseAsArrayOf,
+  parseAsInteger,
+  parseAsString,
+} from "nuqs/server";
 
 import { type UnitTypeTypes } from "@/components/units/types";
 import ky from "@/lib/ky";
@@ -38,6 +43,10 @@ export const propertiesQueryParsers = {
   page: parseAsInteger.withDefault(1),
 };
 
+export const propertiesQueryCache = createSearchParamsCache(
+  propertiesQueryParsers,
+);
+
 export async function getProperties(params: PropertiesSearchParams) {
   const searchParams = new URLSearchParams();
 
@@ -54,6 +63,10 @@ export async function getProperties(params: PropertiesSearchParams) {
   const res = await ky
     .get("unit/get-all-units", {
       searchParams,
+      cache: "force-cache",
+      next: {
+        revalidate: 60,
+      },
     })
     .json<PropertiesResponse>();
 
@@ -70,6 +83,7 @@ export async function getFinishingTypes(locale: string) {
       searchParams: {
         lang: locale,
       },
+      cache: "force-cache",
     })
     .json<TypesResponse>();
 
@@ -82,6 +96,7 @@ export async function getPropertyTypes(locale: string) {
       searchParams: {
         lang: locale,
       },
+      cache: "force-cache",
     })
     .json<TypesResponse>();
 
@@ -98,7 +113,9 @@ type MinMaxPriceResponse = {
 
 export async function getMinMaxPrice() {
   const res = await ky
-    .get("unit/get-min-max-price")
+    .get("unit/get-min-max-price", {
+      cache: "force-cache",
+    })
     .json<MinMaxPriceResponse>();
 
   return res.data;
@@ -115,6 +132,10 @@ export async function getProperty(propertyId: string, locale: string) {
       searchParams: {
         id: propertyId,
         lang: locale,
+      },
+      cache: "force-cache",
+      next: {
+        revalidate: 60,
       },
     })
     .json<PropertyResponse>();

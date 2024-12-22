@@ -8,7 +8,9 @@ type CitiesResponse = {
 
 export async function getCities() {
   const res = await ky
-    .get("location/get-all-governorates")
+    .get("location/get-all-governorates", {
+      cache: "force-cache",
+    })
     .json<CitiesResponse>();
 
   return res.data;
@@ -25,6 +27,7 @@ export async function getDistricts(governorate_id: number | string) {
       searchParams: {
         governorate_id: governorate_id,
       },
+      cache: "force-cache",
     })
     .json<DistrictsResponse>();
 

@@ -32,4 +32,5 @@ export const unitsQuery = (searchParams: PropertiesSearchParams) =>
   queryOptions({
     queryKey: ["units", searchParams],
     queryFn: () => getProperties(searchParams),
+    staleTime: 1000 * 60 * 60,
   });

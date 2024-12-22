@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { parseAsInteger, useQueryState } from "nuqs";
+import { createSerializer, parseAsInteger, useQueryState } from "nuqs";
 
 import {
   Pagination,
@@ -13,16 +13,19 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { usePathname } from "@/i18n/routing";
+import { propertiesQueryParsers } from "@/services/properties";
+
+const serialize = createSerializer(propertiesQueryParsers);
 
 function usePagination(totalPages: number) {
   const [currentPage] = useQueryState("page", parseAsInteger.withDefault(1));
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const createPageURL = (pageNumber: number | string) => {
-    const params = new URLSearchParams(searchParams);
-    params.set("page", pageNumber.toString());
-    return `${pathname}?${params.toString()}`;
+  const createPageURL = (page: number) => {
+    return `${pathname}${serialize(searchParams, {
+      page,
+    })}`;
   };
 
   const hasPreviousPage = currentPage > 1;

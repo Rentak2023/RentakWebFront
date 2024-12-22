@@ -11,11 +11,9 @@ import {
   propertyTypesQuery,
   unitsQuery,
 } from "@/queries/units";
-import { propertiesQueryParsers } from "@/services/properties";
+import { propertiesQueryCache } from "@/services/properties";
 
 import { makeQueryClient } from "../get-query-client";
-
-const searchParamsCache = createSearchParamsCache(propertiesQueryParsers);
 
 export default async function UnitsPage(
   props: Readonly<{
@@ -26,7 +24,7 @@ export default async function UnitsPage(
   const searchParams = await props.searchParams;
   const params = await props.params;
 
-  const parsedParams = searchParamsCache.parse(searchParams);
+  const parsedParams = propertiesQueryCache.parse(searchParams);
 
   const { locale } = params;
 
