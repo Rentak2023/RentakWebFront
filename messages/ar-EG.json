@@ -19,7 +19,6 @@
     "rent-payment": "دفع الإيجار",
     "maintenance-payment": "دفع الصيانة",
     "free-contract": "انشئ عقد ايجار",
-    "contact": "تواصل معنا",
     "landlord": "مالك",
     "tenant": "مستاجر"
   },
@@ -148,9 +147,7 @@
       "yourPhone": "هاتفك",
       "phone": "رقم الهاتف",
       "yourMessage": "رسالتك",
-      "message": "الرسالة",
-      "yourQuestion": "سؤالك",
-      "subject": "العنوان"
+      "message": "الرسالة"
     }
   },
   "landlord": {
@@ -200,9 +197,9 @@
         "name": "Rentak Collect",
         "features": {
           "serviceCharge": "خدمة تحصيل الإيجار الأساسية، بعمولة 2.5%.",
-          "monthlyReminders": "تذكير شهري للمستأجرين بدفع الإيجار.",
+          "paymentReminders": "تذكير شهري للمستأجرين بدفع الإيجار.",
           "multiplePaymentMethods": "طرق دفع متعددة.",
-          "directTransfer": "تحويل الإيجار مباشرةً لمالك الوحدة."
+          "directTransfers": "تحويل الإيجار مباشرةً لمالك الوحدة."
         },
         "cta": "اختار"
       },
@@ -385,8 +382,7 @@
       },
       "owner-name": {
         "label": "اسم المالك",
-        "non-empty": "اسم المالك لا يمكن ان يكون فارغا",
-        "invalid": "اسم المالك غير صالح"
+        "non-empty": "اسم المالك لا يمكن ان يكون فارغا"
       },
       "owner-phone": {
         "label": "رقم هاتف المالك",
@@ -443,7 +439,7 @@
       },
       "total-amount": {
         "label": "المبلغ الكلى",
-        "description": "المبلغ الكلى = مقدار الإيجار + {fees}% رسوم الخدمة"
+        "description": "المبلغ الكلى = مقدار الإيجار + {fees, number}% رسوم الخدمة"
       },
       "contract-start-date": {
         "label": "تاريخ بداية العقد",
@@ -639,6 +635,34 @@
       "insurance-amount": {
         "label": "مبلغ التأمين"
       }
+    }
+  },
+  "auth": {
+    "fields": {
+      "username": {
+        "label": "البريد الألكتروني او رقم الهاتف",
+        "placeholder": "اكتب البريد الألكتروني او رقم الهاتف"
+      },
+      "password": {
+        "label": "كلمة المرور",
+        "placeholder": "اكتب كلمة المرور"
+      },
+      "full-name": {
+        "label": "الاسم الكامل",
+        "placeholder": "اكتب الاسم الكامل"
+      },
+      "phone": {
+        "label": "رقم الهاتف",
+        "placeholder": "اكتب رقم الهاتف"
+      },
+      "email": {
+        "label": "البريد الألكتروني",
+        "placeholder": "اكتب البريد الألكتروني"
+      }
+    },
+    "cta": {
+      "login": "تسجيل الدخول",
+      "sign-up": "تسجيل"
     }
   }
 }

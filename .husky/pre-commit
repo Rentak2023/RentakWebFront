@@ -1,1 +1,2 @@
 lint-staged
+bun --bun run i18n:check
