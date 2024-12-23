@@ -64,6 +64,7 @@ function UnitsPagination({ totalPages }: { totalPages: number }) {
         <PaginationItem>
           <PaginationPrevious
             href={createPageURL(currentPage - 1)}
+            replace
             aria-disabled={!hasPreviousPage}
             className="aria-disabled:pointer-events-none aria-disabled:cursor-not-allowed aria-disabled:opacity-50"
           />
@@ -81,6 +82,7 @@ function UnitsPagination({ totalPages }: { totalPages: number }) {
           <PaginationItem key={page}>
             <PaginationLink
               href={createPageURL(page)}
+              replace
               isActive={page === currentPage}
             >
               {page}
@@ -95,6 +97,7 @@ function UnitsPagination({ totalPages }: { totalPages: number }) {
         <PaginationItem>
           <PaginationNext
             href={createPageURL(currentPage + 1)}
+            replace
             aria-disabled={!hasNextPage}
             className="aria-disabled:pointer-events-none aria-disabled:cursor-not-allowed aria-disabled:opacity-50"
           />
