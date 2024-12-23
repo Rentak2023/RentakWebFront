@@ -72,6 +72,7 @@ export async function Plans() {
     <div className="relative pt-24 sm:pt-32">
       <SectionTitle
         className="flex flex-wrap items-center justify-center gap-2"
+        // @ts-expect-error rentak key is only used in arabic so it's not inferred
         text={t.rich("title", {
           rentak: () => (
             <Image

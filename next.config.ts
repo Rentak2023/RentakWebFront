@@ -3,7 +3,13 @@ import type { NextConfig } from "next";
 import { withContentlayer } from "next-contentlayer";
 import createNextIntlPlugin from "next-intl/plugin";
 
-const withNextIntl = createNextIntlPlugin();
+const withNextIntl = createNextIntlPlugin({
+  experimental: {
+    // Provide the path to the messages that you're using in `AppConfig`
+    createMessagesDeclaration: "./messages/en.json",
+  },
+  // ...
+});
 
 const nextConfig: NextConfig = {
   output: "standalone",

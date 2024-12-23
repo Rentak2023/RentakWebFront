@@ -398,7 +398,7 @@ export default function RentPayment(
           name: "total_amount",
           label: t("fields.total-amount.label"),
           description: t("fields.total-amount.description", {
-            fees: product.fees.toString(),
+            fees: product.fees,
           }),
           kind: "text",
           type: "text",
