@@ -1,3 +1,4 @@
+import { type Locale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 
 import Contact from "@/components/home/contact";
@@ -11,7 +12,7 @@ import { WhyUs } from "@/components/home/why-us";
 
 export default async function Home(
   props: Readonly<{
-    params: Promise<{ locale: string }>;
+    params: Promise<{ locale: Locale }>;
   }>,
 ) {
   const params = await props.params;

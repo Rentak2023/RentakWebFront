@@ -4,7 +4,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { type Metadata } from "next";
 import { Noto_Sans_Arabic } from "next/font/google";
 import localFont from "next/font/local";
-import { NextIntlClientProvider } from "next-intl";
+import { type Locale, NextIntlClientProvider } from "next-intl";
 import {
   getMessages,
   getTranslations,
@@ -36,7 +36,7 @@ const generalSans = localFont({
 });
 
 type Props = {
-  params: Promise<{ locale: string }>;
+  params: Promise<{ locale: Locale }>;
 };
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
@@ -66,7 +66,7 @@ export function generateStaticParams() {
 export default async function RootLayout(
   props: Readonly<{
     children: React.ReactNode;
-    params: Promise<{ locale: string }>;
+    params: Promise<{ locale: Locale }>;
   }>,
 ) {
   const params = await props.params;

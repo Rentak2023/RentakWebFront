@@ -45,7 +45,7 @@
     "motion": "12.0.0-alpha.2",
     "next": "^15.1.2",
     "next-contentlayer": "^0.3.4",
-    "next-intl": "^3.26.3",
+    "next-intl": "4.0.0-beta-ddd5ae5",
     "next-video": "^2.0.0",
     "nprogress": "^0.2.0",
     "nuqs": "^2.2.3",

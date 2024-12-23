@@ -1,7 +1,7 @@
 "use client";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { HTTPError } from "ky";
-import { useTranslations } from "next-intl";
+import { type Locale, useTranslations } from "next-intl";
 import { use, useState } from "react";
 import * as v from "valibot";
 import isMobilePhone from "validator/es/lib/isMobilePhone";
@@ -26,7 +26,7 @@ enum PaymentMethod {
 
 export default function RentPayment(
   props: Readonly<{
-    params: Promise<{ locale: string }>;
+    params: Promise<{ locale: Locale }>;
   }>,
 ) {
   const params = use(props.params);

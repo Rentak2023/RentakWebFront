@@ -1,4 +1,5 @@
 import { HeartIcon } from "lucide-react";
+import { type Locale } from "next-intl";
 import {
   getFormatter,
   getTranslations,
@@ -22,7 +23,7 @@ import { ArrangeVisit } from "./arrange-visit";
 
 export default async function UnitPage(
   props: Readonly<{
-    params: Promise<{ locale: string; id: string }>;
+    params: Promise<{ locale: Locale; id: string }>;
   }>,
 ) {
   const params = await props.params;

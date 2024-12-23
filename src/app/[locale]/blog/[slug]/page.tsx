@@ -1,6 +1,7 @@
 import { allPosts } from "@content";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { type Locale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 
 export const generateStaticParams = () =>
@@ -13,7 +14,7 @@ export const generateMetadata = ({ params }: { params: { slug: string } }) => {
 };
 
 const PostLayout = async (
-  props: Readonly<{ params: Promise<{ slug: string; locale: string }> }>,
+  props: Readonly<{ params: Promise<{ slug: string; locale: Locale }> }>,
 ) => {
   const { slug, locale } = await props.params;
 

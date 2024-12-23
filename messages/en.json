@@ -196,39 +196,39 @@
       "most-popular": "Most Popular",
       "rentak-collect": {
         "name": "Rentak Collect",
-        "features": [
-          "The Rentak Collection Package Benefit is 2.5%",
-          "Payment Reminders: Monthly rent reminders to tenants.",
-          "Multiple Payment Methods: Tenants can choose from several payment options.",
-          "Direct Transfers: Rent is transferred directly to landlords."
-        ],
+        "features": {
+          "serviceCharge": "The Rentak Collection Package Benefit is 2.5%",
+          "paymentReminders": "Monthly rent reminders to tenants.",
+          "multiplePaymentMethods": "Tenants can choose from several payment options.",
+          "directTransfers": "Rent is transferred directly to landlords."
+        },
         "cta": "Choose"
       },
       "rentak-basic": {
         "name": "Rentak Basic",
-        "features": [
-          "Payment Reminders: Monthly rent reminders to tenants.",
-          "Multiple Payment Methods: Tenants can choose from several payment options.",
-          "Marketing & Promotion: Your property is marketed to Rentak's network and listed on platforms.",
-          "Legal Contracts: Creation of legally compliant contracts.",
-          "Direct Transfers: Rent is transferred directly to landlords.",
-          "Status Reporting: Updates on rental status, including unpaid rent.",
-          "Property Handover Reports: Full inspection report when returning the unit."
-        ],
+        "features": {
+          "paymentReminders": "Monthly rent reminders to tenants.",
+          "multiplePaymentMethods": "Tenants can choose from several payment options.",
+          "marketingAndPromotion": "Your property is marketed to Rentak's network and listed on platforms.",
+          "legalContracts": "Creation of legally compliant contracts.",
+          "directTransfers": "Rent is transferred directly to landlords.",
+          "rentReports": "Updates on rental status, including unpaid rent.",
+          "propertyHandoverReports": "Full inspection report when returning the unit."
+        },
         "cta": "Choose"
       },
       "rentak-secure": {
         "name": "Rentak Secure",
-        "features": [
-          "Payment Reminders: Monthly rent reminders to tenants.",
-          "Multiple Payment Methods: Tenants can choose from several payment options.",
-          "Marketing & Promotion: Your property is marketed to Rentak's network and listed on platforms.",
-          "Legal Contracts: Creation of legally compliant contracts.",
-          "Direct Transfers: Rent is transferred directly to landlords.",
-          "Guaranteed Rent: Rentak ensures you receive rent same day every month, even if tenants fail to pay.",
-          "Property Protection: Eviction handling and legal costs covered.",
-          "Complete Unit Care: Ensures the property is returned in the same condition, including maintenance."
-        ],
+        "features": {
+          "paymentReminders": "Monthly rent reminders to tenants.",
+          "multiplePaymentMethods": "Tenants can choose from several payment options.",
+          "marketingAndPromotion": "Your property is marketed to Rentak's network and listed on platforms.",
+          "legalContracts": "Creation of legally compliant contracts.",
+          "directTransfers": "Rent is transferred directly to landlords.",
+          "guaranteedRent": "Rentak ensures you receive rent same day every month, even if tenants fail to pay.",
+          "propertyProtection": "Eviction handling and legal costs covered.",
+          "completeUnitCare": "Ensures the property is returned in the same condition, including maintenance."
+        },
         "cta": "Choose"
       }
     },

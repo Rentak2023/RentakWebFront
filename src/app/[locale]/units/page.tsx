@@ -1,3 +1,4 @@
+import { type Locale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { type SearchParams } from "nuqs/server";
 
@@ -7,7 +8,7 @@ import { propertiesQueryCache } from "@/services/properties";
 
 export default async function UnitsPage(
   props: Readonly<{
-    params: Promise<{ locale: string }>;
+    params: Promise<{ locale: Locale }>;
     searchParams: Promise<SearchParams>;
   }>,
 ) {

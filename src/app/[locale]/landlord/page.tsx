@@ -1,3 +1,4 @@
+import { type Locale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 
 import Features from "./components/features";
@@ -10,7 +11,7 @@ import WhyRentak from "./components/why-rentak";
 
 async function Landlord(
   props: Readonly<{
-    params: Promise<{ locale: string }>;
+    params: Promise<{ locale: Locale }>;
   }>,
 ) {
   const params = await props.params;
