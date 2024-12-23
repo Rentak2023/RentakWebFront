@@ -40,6 +40,7 @@ export default function SearchForm() {
       property_type: parseAsArrayOf(parseAsString).withDefault([]),
       bathroom_numbers: parseAsString.withDefault(""),
       room_numers: parseAsString.withDefault(""),
+      page: parseAsInteger.withDefault(1),
     },
     {
       history: "replace",
@@ -72,7 +73,9 @@ export default function SearchForm() {
   });
 
   useEffect(() => {
-    const newSearchParams: Record<string, any> = {};
+    const newSearchParams: Record<string, any> = {
+      page: 1,
+    };
     let changed = false;
     for (const [key, value] of Object.entries(currentValues)) {
       const searchParamValue = searchParams[key as keyof typeof searchParams];
