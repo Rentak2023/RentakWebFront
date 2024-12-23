@@ -14,6 +14,7 @@ export function NavigationEvents() {
 
   useEffect(() => {
     const _push = router.push.bind(router);
+    const _replace = router.replace.bind(router);
 
     // eslint-disable-next-line react-compiler/react-compiler
     router.push = (href, options) => {
@@ -25,8 +26,19 @@ export function NavigationEvents() {
 
       _push(href, options);
     };
+
+    router.replace = (href, options) => {
+      const url = `${pathname}${searchParams.size > 0 ? `?${searchParams.toString()}` : ""}`;
+
+      if (href !== url) {
+        nProgress.start();
+      }
+
+      _replace(href, options);
+    };
     return () => {
       router.push = _push;
+      router.replace = _replace;
     };
   }, [pathname, router, searchParams]);
 

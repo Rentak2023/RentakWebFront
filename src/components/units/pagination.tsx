@@ -1,81 +1,107 @@
 "use client";
 
-import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useSearchParams } from "next/navigation";
+import { createSerializer, parseAsInteger, useQueryState } from "nuqs";
 
-import { Link, usePathname } from "@/i18n/routing";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+import { usePathname } from "@/i18n/routing";
+import { propertiesQueryParsers } from "@/services/properties";
 
-function Pagination({ totalPages }: { totalPages: number }) {
+const serialize = createSerializer(propertiesQueryParsers);
+
+function usePagination(totalPages: number) {
+  const [currentPage] = useQueryState("page", parseAsInteger.withDefault(1));
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const currentPage = Number(searchParams.get("page")) || 1;
 
-  const createPageURL = (pageNumber: number | string) => {
-    const params = new URLSearchParams(searchParams);
-    params.set("page", pageNumber.toString());
-    return `${pathname}?${params.toString()}`;
+  const createPageURL = (page: number) => {
+    return `${pathname}${serialize(searchParams, {
+      page,
+    })}`;
   };
 
-  const renderPageNumbers = () => {
-    const pages = [];
-    const ellipsis = <li key="ellipsis">...</li>;
+  const hasPreviousPage = currentPage > 1;
+  const hasNextPage = currentPage < totalPages;
 
-    for (let i = 1; i <= totalPages; i++) {
-      if (
-        i === 1 ||
-        i === totalPages ||
-        i === currentPage ||
-        (i >= currentPage - 1 && i <= currentPage + 1)
-      ) {
-        pages.push(
-          <li key={i}>
-            <Link
-              href={createPageURL(i)}
-              className={`mx-1 inline-flex size-10 items-center justify-center rounded-full ${i === currentPage ? "bg-primary-900 text-white" : "bg-white text-slate-400"} shadow-xs hover:border-primary-900 hover:bg-primary-900 hover:text-white dark:bg-slate-900 dark:shadow-slate-700 dark:hover:border-green-600 dark:hover:bg-green-600`}
-            >
-              {i}
-            </Link>
-          </li>,
-        );
-      } else if (i === currentPage - 2 || i === currentPage + 2) {
-        pages.push(ellipsis);
-      }
-    }
+  const startPage = Math.max(1, currentPage - 2);
+  const endPage = Math.min(totalPages, currentPage + 2);
 
-    return pages;
+  return {
+    currentPage,
+    createPageURL,
+    hasPreviousPage,
+    hasNextPage,
+    startPage,
+    endPage,
   };
+}
+
+function UnitsPagination({ totalPages }: { totalPages: number }) {
+  const {
+    currentPage,
+    createPageURL,
+    startPage,
+    endPage,
+    hasNextPage,
+    hasPreviousPage,
+  } = usePagination(totalPages);
 
   if (totalPages < 1) {
     return null;
   }
 
   return (
-    <div className="mt-8 grid grid-cols-1 md:grid-cols-12">
-      <div className="text-center md:col-span-12">
-        <nav>
-          <ul className="inline-flex items-center -space-x-px">
-            <li>
-              <Link
-                href={createPageURL(currentPage - 1)}
-                className={`shadow-xs mx-1 inline-flex size-10 items-center justify-center rounded-full bg-white text-slate-400 ${currentPage === 1 ? "cursor-not-allowed opacity-50" : "hover:border-primary-900 hover:bg-primary-900 hover:text-white"}`}
-              >
-                <ArrowLeft className="text-xl" />
-              </Link>
-            </li>
-            {renderPageNumbers()}
-            <li>
-              <Link
-                href={createPageURL(currentPage + 1)}
-                className={`shadow-xs mx-1 inline-flex size-10 items-center justify-center rounded-full bg-white text-slate-400 ${currentPage === totalPages ? "cursor-not-allowed opacity-50" : "hover:border-primary-900 hover:bg-primary-900 hover:text-white"} `}
-              >
-                <ArrowRight className="text-xl" />
-              </Link>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </div>
+    <Pagination className="mt-8">
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious
+            href={createPageURL(currentPage - 1)}
+            aria-disabled={!hasPreviousPage}
+            className="aria-disabled:pointer-events-none aria-disabled:cursor-not-allowed aria-disabled:opacity-50"
+          />
+        </PaginationItem>
+
+        {startPage > 1 && (
+          <PaginationItem>
+            <PaginationEllipsis />
+          </PaginationItem>
+        )}
+        {Array.from(
+          { length: endPage - startPage + 1 },
+          (_, i) => startPage + i,
+        ).map((page) => (
+          <PaginationItem key={page}>
+            <PaginationLink
+              href={createPageURL(page)}
+              isActive={page === currentPage}
+            >
+              {page}
+            </PaginationLink>
+          </PaginationItem>
+        ))}
+        {endPage < totalPages && (
+          <PaginationItem>
+            <PaginationEllipsis />
+          </PaginationItem>
+        )}
+        <PaginationItem>
+          <PaginationNext
+            href={createPageURL(currentPage + 1)}
+            aria-disabled={!hasNextPage}
+            className="aria-disabled:pointer-events-none aria-disabled:cursor-not-allowed aria-disabled:opacity-50"
+          />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
   );
 }
 
-export default Pagination;
+export default UnitsPagination;

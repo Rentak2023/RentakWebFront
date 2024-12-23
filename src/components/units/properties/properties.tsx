@@ -1,20 +1,24 @@
-"use client";
-import { useSuspenseQuery } from "@tanstack/react-query";
-import { useLocale, useTranslations } from "next-intl";
-import { useQueryStates } from "nuqs";
+import { getLocale, getTranslations } from "next-intl/server";
+import { createSerializer } from "nuqs/server";
 import { Suspense } from "react";
 
 import UnitsSkeleton from "@/components/home/units/units-skeleton";
 import { Skeleton } from "@/components/ui/skeleton";
 import Unit from "@/components/unit";
-import { unitsQuery } from "@/queries/units";
-import { propertiesQueryParsers } from "@/services/properties";
+import {
+  getProperties,
+  propertiesQueryCache,
+  propertiesQueryParsers,
+} from "@/services/properties";
 
 import Pagination from "../pagination";
 import PropertiesHeader from "./properties-header";
 import Sort from "./sort";
 
+const serialize = createSerializer(propertiesQueryParsers);
+
 function Properties() {
+  const key = serialize(propertiesQueryCache.all());
   return (
     <div className="container mx-auto mt-4 px-8 md:mt-16 lg:mt-24">
       <PropertiesHeader />
@@ -25,29 +29,25 @@ function Properties() {
               <Skeleton className="h-5 w-32" />
             </div>
           }
+          key={key}
         >
           <UnitsCount />
         </Suspense>
         <Sort />
       </div>
-      <Suspense fallback={<UnitsSkeleton />}>
+      <Suspense fallback={<UnitsSkeleton />} key={key}>
         <Units />
       </Suspense>
     </div>
   );
 }
 
-function UnitsCount() {
-  const t = useTranslations("units");
-  const locale = useLocale();
-  const [searchParams] = useQueryStates(propertiesQueryParsers);
+async function UnitsCount() {
+  const searchParams = propertiesQueryCache.all();
 
-  const { data: properties } = useSuspenseQuery(
-    unitsQuery({
-      ...searchParams,
-      lang: locale,
-    }),
-  );
+  const t = await getTranslations("units");
+  const locale = await getLocale();
+  const properties = await getProperties({ ...searchParams, lang: locale });
 
   return (
     <div className="my-7 text-sm font-medium md:text-base">
@@ -61,16 +61,12 @@ function UnitsCount() {
   );
 }
 
-function Units() {
-  const t = useTranslations("units");
-  const [searchParams] = useQueryStates(propertiesQueryParsers);
-  const locale = useLocale();
-  const { data: properties } = useSuspenseQuery(
-    unitsQuery({
-      ...searchParams,
-      lang: locale,
-    }),
-  );
+async function Units() {
+  const searchParams = propertiesQueryCache.all();
+
+  const t = await getTranslations("units");
+  const locale = await getLocale();
+  const properties = await getProperties({ ...searchParams, lang: locale });
 
   return (
     <>

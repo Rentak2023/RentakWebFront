@@ -13,7 +13,9 @@ type PaymentMethodsResponse = {
 
 export async function getCashInPaymentMethods() {
   const res = await ky
-    .get("payment-method/get_all_cash_in_payment_methods")
+    .get("payment-method/get_all_cash_in_payment_methods", {
+      cache: "force-cache",
+    })
     .json<PaymentMethodsResponse>();
 
   return res.data;
@@ -21,7 +23,9 @@ export async function getCashInPaymentMethods() {
 
 export async function getCashOutPaymentMethods() {
   const res = await ky
-    .get("payment-method/get_all_cash_out_payment_methods")
+    .get("payment-method/get_all_cash_out_payment_methods", {
+      cache: "force-cache",
+    })
     .json<PaymentMethodsResponse>();
 
   return res.data;

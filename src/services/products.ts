@@ -13,7 +13,14 @@ type ProductsRes = {
 };
 
 export async function getAllProducts() {
-  const res = await ky.get<ProductsRes>("api/Product/get-all-products").json();
+  const res = await ky
+    .get<ProductsRes>("api/Product/get-all-products", {
+      cache: "force-cache",
+      next: {
+        revalidate: 3600,
+      },
+    })
+    .json();
 
   return res.data;
 }
@@ -28,6 +35,10 @@ export async function getProduct(id: number) {
     .get("api/Product/get-product-by-id", {
       searchParams: {
         id,
+      },
+      cache: "force-cache",
+      next: {
+        revalidate: 3600,
       },
     })
     .json<ProductRes>();

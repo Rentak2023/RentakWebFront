@@ -13,6 +13,10 @@ export async function getUnits({ locale }: { locale: string }) {
       searchParams: {
         lang: locale,
       },
+      cache: "force-cache",
+      next: {
+        revalidate: 30,
+      },
     })
     .json<UnitsResponse>();
 

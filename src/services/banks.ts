@@ -12,7 +12,14 @@ type BanksResponse = {
 };
 
 export async function getBanks() {
-  const res = await ky.get("bank/get-all-banks").json<BanksResponse>();
+  const res = await ky
+    .get("bank/get-all-banks", {
+      cache: "force-cache",
+      next: {
+        revalidate: 3600,
+      },
+    })
+    .json<BanksResponse>();
 
   return res.data;
 }
