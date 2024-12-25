@@ -57,10 +57,16 @@ type StepFormProps = {
   step: TStep;
   useFormStore: ReturnType<typeof createFormStore>;
   onSubmit: (data: Record<string, any>) => Promise<void>;
+  onNextStep?: (index: number) => void;
 };
 
-export function StepForm({ useFormStore, step, onSubmit }: StepFormProps) {
-  const { nextStep, isLastStep, prevStep } = useStepper();
+export function StepForm({
+  useFormStore,
+  step,
+  onNextStep,
+  onSubmit,
+}: StepFormProps) {
+  const { nextStep, isLastStep, prevStep, activeStep } = useStepper();
 
   const {
     formData,
@@ -106,11 +112,13 @@ export function StepForm({ useFormStore, step, onSubmit }: StepFormProps) {
       ...data,
       ...computedFields,
     });
+    onNextStep?.(activeStep);
 
     if (isLastStep) {
       const formData = getFormData();
       return onSubmit(formData);
     }
+
     nextStep();
   });
 

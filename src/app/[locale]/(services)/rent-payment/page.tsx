@@ -1,4 +1,5 @@
 "use client";
+import { sendGAEvent } from "@next/third-parties/google";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { HTTPError } from "ky";
 import { type Locale, useTranslations } from "next-intl";
@@ -22,6 +23,39 @@ import { type TStep } from "../types";
 enum PaymentMethod {
   Bank = "4",
   Wallet = "5",
+}
+
+function onNextStep(index: number) {
+  let eventName = "";
+  switch (index) {
+    case 0: {
+      eventName = "Tenant Info Filled";
+      break;
+    }
+    case 1: {
+      eventName = "Payment Method Filled";
+      break;
+    }
+    case 2: {
+      eventName = "Owner Info Filled";
+      break;
+    }
+    case 3: {
+      eventName = "Unit Description Filled";
+      break;
+    }
+    case 4: {
+      eventName = "Form Confirmation Filled";
+      break;
+    }
+    default: {
+      console.log("Invalid Event");
+      return;
+    }
+  }
+  sendGAEvent("event", eventName, {
+    event_category: "Rent Payment",
+  });
 }
 
 export default function RentPayment(
@@ -478,7 +512,11 @@ export default function RentPayment(
         </p>
       </div>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <ServiceForms steps={steps} onSubmit={handleSubmit} />
+        <ServiceForms
+          steps={steps}
+          onSubmit={handleSubmit}
+          onNextStep={onNextStep}
+        />
       </div>
     </main>
   );
