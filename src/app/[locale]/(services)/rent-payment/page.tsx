@@ -476,6 +476,9 @@ export default function RentPayment(
       lang: locale,
     });
     if (res?.type === "success") {
+      sendGAEvent("event", "Form Submitted Successfully", {
+        event_category: "Rent Payment",
+      });
       if (res.data.redirect) {
         toast({
           title: "Success",
@@ -490,6 +493,9 @@ export default function RentPayment(
       }
     }
     if (res?.type === "error") {
+      sendGAEvent("event", "Form Submition Error", {
+        event_category: "Rent Payment",
+      });
       toast({
         title: "Error",
         description:
