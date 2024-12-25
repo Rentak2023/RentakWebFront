@@ -23,6 +23,7 @@ import URLS from "@/shared/urls";
 import WhatsappIcon from "./assets/svgs/whatsapp-icon";
 import { NavigationEvents } from "./navigation-events";
 import { Providers } from "./providers";
+import { WebVitals } from "./web-vitals";
 
 const notoSans = Noto_Sans_Arabic({
   subsets: ["arabic"],
@@ -115,6 +116,7 @@ export default async function RootLayout(
                 </a>
                 <Suspense>
                   <NavigationEvents />
+                  <WebVitals />
                 </Suspense>
               </Providers>
             </NuqsAdapter>
