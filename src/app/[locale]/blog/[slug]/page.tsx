@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import { type Locale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 
+import MorePosts from "./more-posts";
+
 export const generateStaticParams = () =>
   allPosts.map((post) => ({ slug: post._raw.flattenedPath }));
 
@@ -24,29 +26,31 @@ const PostLayout = async (
   if (!post) return notFound();
 
   return (
-    <article className="mx-auto mt-20 max-w-xl py-8">
-      <Image
-        src={post.image}
-        alt={post.title}
-        width={512}
-        height={256}
-        className="mx-auto mb-8 object-contain"
-      />
-      <div className="mb-8 text-center">
-        {/* <time dateTime={post.date} className="mb-1 text-xs text-slate-600">
-          {format(parseISO(post.date), "LLLL d, yyyy")}
-        </time> */}
-        <h1 className="text-3xl font-bold">
-          {locale === "en" ? post.title : post.arTitle}
-        </h1>
-      </div>
-      <div
-        className="prose prose-slate md:prose-lg lg:prose-xl"
-        dangerouslySetInnerHTML={{
-          __html: locale === "en" ? post.content.html : post.arContent.html,
-        }}
-      />
-    </article>
+    <div>
+      <article className="mx-auto mt-20 max-w-xl py-8">
+        <div className="mb-8 text-center">
+          <h1 className="text-5xl font-semibold">
+            {locale === "en" ? post.title : post.arTitle}
+          </h1>
+        </div>
+        <div className="relative mb-8 min-h-96">
+          <Image
+            src={post.image}
+            alt={post.title}
+            fill
+            className="mx-auto mb-8 size-full overflow-hidden rounded-2xl object-cover"
+          />
+        </div>
+        {/* eslint-disable-next-line @eslint-react/dom/no-dangerously-set-innerhtml */}
+        <div
+          className="prose prose-slate md:prose-lg lg:prose-xl"
+          dangerouslySetInnerHTML={{
+            __html: locale === "en" ? post.content.html : post.arContent.html,
+          }}
+        />
+      </article>
+      <MorePosts />
+    </div>
   );
 };
 
