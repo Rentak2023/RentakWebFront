@@ -1,6 +1,13 @@
 import { addDays, subDays } from "date-fns";
-import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
@@ -231,49 +238,17 @@ function Stats() {
 export default function DashboardPage() {
   return (
     <div className="container mx-auto mt-24 px-4 sm:px-6 lg:px-8">
-      <div>
-        <nav aria-label="Back" className="sm:hidden">
-          <a
-            href="#"
-            className="flex items-center text-sm font-medium text-slate-500 hover:text-slate-700"
-          >
-            <ChevronLeftIcon
-              aria-hidden="true"
-              className="-ml-1 mr-1 size-5 shrink-0 text-slate-400"
-            />
-            Back
-          </a>
-        </nav>
-        <nav aria-label="Breadcrumb" className="hidden sm:flex">
-          <ol role="list" className="flex items-center space-x-4">
-            <li>
-              <div className="flex">
-                <a
-                  href="#"
-                  className="text-sm font-medium text-slate-500 hover:text-slate-700"
-                >
-                  Properties
-                </a>
-              </div>
-            </li>
-            <li>
-              <div className="flex items-center">
-                <ChevronRightIcon
-                  aria-hidden="true"
-                  className="size-5 shrink-0 text-slate-400"
-                />
-                <a
-                  href="#"
-                  aria-current="page"
-                  className="ml-4 text-sm font-medium text-slate-600 hover:text-slate-800"
-                >
-                  Dashboard
-                </a>
-              </div>
-            </li>
-          </ol>
-        </nav>
-      </div>
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/">Properties</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>Dashboard</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
       <div className="mt-2 md:flex md:items-center md:justify-between">
         <div className="min-w-0 flex-1">
           <h2 className="text-primary-900 text-2xl/7 font-semibold sm:truncate sm:text-3xl sm:tracking-tight">
