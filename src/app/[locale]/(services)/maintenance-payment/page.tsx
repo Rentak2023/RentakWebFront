@@ -1,4 +1,5 @@
 "use client";
+import { sendGAEvent } from "@next/third-parties/google";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { HTTPError } from "ky";
 import { type Locale, useTranslations } from "next-intl";
@@ -23,7 +24,40 @@ enum PaymentMethod {
   Wallet = "5",
 }
 
-export default function RentPayment(
+function onNextStep(index: number) {
+  let eventName = "";
+  switch (index) {
+    case 0: {
+      eventName = "Tenant Info Filled";
+      break;
+    }
+    case 1: {
+      eventName = "Payment Method Filled";
+      break;
+    }
+    case 2: {
+      eventName = "Owner Info Filled";
+      break;
+    }
+    case 3: {
+      eventName = "Unit Description Filled";
+      break;
+    }
+    case 4: {
+      eventName = "Form Confirmation Filled";
+      break;
+    }
+    default: {
+      console.log("Invalid Event");
+      return;
+    }
+  }
+  sendGAEvent("event", eventName, {
+    event_category: "Maintenance Payment",
+  });
+}
+
+export default function MaintenancePayment(
   props: Readonly<{
     params: Promise<{ locale: Locale }>;
   }>,
@@ -441,6 +475,9 @@ export default function RentPayment(
       lang: locale,
     });
     if (res?.type === "success") {
+      sendGAEvent("event", "Form Submitted Successfully", {
+        event_category: "Maintenance Payment",
+      });
       if (res.data.redirect) {
         toast({
           title: "Success",
@@ -455,6 +492,9 @@ export default function RentPayment(
       }
     }
     if (res?.type === "error") {
+      sendGAEvent("event", "Form Submition Error", {
+        event_category: "Maintenance Payment",
+      });
       toast({
         title: "Error",
         description:
@@ -477,7 +517,11 @@ export default function RentPayment(
         </p>
       </div>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <ServiceForms steps={steps} onSubmit={handleSubmit} />
+        <ServiceForms
+          steps={steps}
+          onSubmit={handleSubmit}
+          onNextStep={onNextStep}
+        />
       </div>
     </main>
   );

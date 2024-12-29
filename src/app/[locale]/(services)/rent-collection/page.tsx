@@ -1,5 +1,6 @@
 "use client";
 
+import { sendGAEvent } from "@next/third-parties/google";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import * as v from "valibot";
@@ -17,6 +18,39 @@ import { type TStep } from "../types";
 enum PaymentMethod {
   Bank = "4",
   Wallet = "5",
+}
+
+function onNextStep(index: number) {
+  let eventName = "";
+  switch (index) {
+    case 0: {
+      eventName = "Profile Info Filled";
+      break;
+    }
+    case 1: {
+      eventName = "Tenant Info Filled";
+      break;
+    }
+    case 2: {
+      eventName = "Payment Method Filled";
+      break;
+    }
+    case 3: {
+      eventName = "Unit Description Filled";
+      break;
+    }
+    case 4: {
+      eventName = "Form Confirmation Filled";
+      break;
+    }
+    default: {
+      console.log("Invalid Event");
+      return;
+    }
+  }
+  sendGAEvent("event", eventName, {
+    event_category: "Rent Collection",
+  });
 }
 
 export default function RentCollection() {
@@ -328,6 +362,9 @@ export default function RentCollection() {
   const handleSubmit = async (data: Record<string, any>) => {
     const res = await rentCollectionAction(data);
     if (res?.type === "error") {
+      sendGAEvent("event", "Form Submition Error", {
+        event_category: "Rent Collection",
+      });
       toast({
         title: "Error",
         description:
@@ -337,6 +374,9 @@ export default function RentCollection() {
       });
       return;
     } else if (res?.type === "success") {
+      sendGAEvent("event", "Form Submitted Successfully", {
+        event_category: "Rent Collection",
+      });
       toast({
         title: "Success",
         description: t("messages.success"),
@@ -355,7 +395,11 @@ export default function RentCollection() {
         </p>
       </div>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <ServiceForms steps={steps} onSubmit={handleSubmit} />
+        <ServiceForms
+          steps={steps}
+          onSubmit={handleSubmit}
+          onNextStep={onNextStep}
+        />
       </div>
     </main>
   );
