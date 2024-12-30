@@ -72,8 +72,8 @@ function TransactionItem({
 
 export function UnitModal() {
   return (
-    <DialogContent className="max-w-7xl">
-      <div className="flex justify-between">
+    <DialogContent className="max-h-dvh max-w-7xl overflow-y-auto">
+      <div className="flex flex-col gap-y-4 lg:flex-row lg:justify-between">
         <div className="flex items-center gap-4">
           <div className="size-20 rounded-full bg-slate-400"></div>
           <div>
@@ -89,9 +89,9 @@ export function UnitModal() {
           <Button variant="outline">View Contract</Button>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-8">
+      <div className="grid gap-8 lg:grid-cols-2">
         <div className="flex flex-col gap-6">
-          <div className="flex justify-between gap-8 rounded-2xl p-4 shadow-sm">
+          <div className="flex flex-col justify-between gap-8 rounded-2xl p-4 shadow-sm lg:flex-row">
             <div className="flex flex-col gap-4">
               <div>
                 <h3 className="text-primary-800 text-xl font-semibold">

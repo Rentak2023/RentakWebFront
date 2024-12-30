@@ -206,7 +206,7 @@ async function MyUnits() {
 
 function Stats() {
   return (
-    <div className="shadow-primary-600/10 mt-8 overflow-hidden rounded-lg px-20 py-6 shadow-sm">
+    <div className="shadow-primary-600/10 mt-8 overflow-hidden rounded-lg shadow-sm lg:px-20 lg:py-6">
       <h3 className="text-primary-900 text-base font-semibold">Insights</h3>
       <dl className="mt-5 grid grid-cols-1 divide-y divide-slate-200 bg-white md:grid-cols-3 md:divide-x md:divide-y-0">
         {stats.map((item) => (
