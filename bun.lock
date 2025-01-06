@@ -25,7 +25,7 @@
         "@tanstack/react-query-devtools": "^5.62.15",
         "@tanstack/react-query-next-experimental": "^5.62.15",
         "@tanstack/react-table": "^8.20.6",
-        "babel-plugin-react-compiler": "^19.0.0-beta-55955c9-20241229",
+        "babel-plugin-react-compiler": "^19.0.0-beta-63e3235-20250105",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
         "contentlayer": "^0.3.4",
@@ -74,7 +74,7 @@
         "eslint-plugin-barrel-files": "^2.1.0",
         "eslint-plugin-import-x": "^4.6.1",
         "eslint-plugin-promise": "^7.2.1",
-        "eslint-plugin-react-compiler": "^19.0.0-beta-55955c9-20241229",
+        "eslint-plugin-react-compiler": "^19.0.0-beta-63e3235-20250105",
         "eslint-plugin-react-hooks": "^5.1.0",
         "eslint-plugin-simple-import-sort": "^12.1.1",
         "eslint-plugin-tailwindcss": "^3.17.5",
@@ -1129,7 +1129,7 @@
 
     "babel-plugin-macros": ["babel-plugin-macros@3.1.0", "", { "dependencies": { "@babel/runtime": "^7.12.5", "cosmiconfig": "^7.0.0", "resolve": "^1.19.0" } }, "sha512-Cg7TFGpIr01vOQNODXOOaGz2NpCU5gl8x1qJFbb6hbZxR7XrcE2vtbAsTAbJ7/xwJtUuJEw8K8Zr/AE0LHlesg=="],
 
-    "babel-plugin-react-compiler": ["babel-plugin-react-compiler@19.0.0-beta-55955c9-20241229", "", { "dependencies": { "@babel/types": "^7.19.0" } }, "sha512-APpa9fRiG5UN5kxnB/vznaSBKbXwAWZs6QshN3MLntzWa4cUhOxzUSd7Ohmr5sLQaM0ZHjjOg07pw1ZoR7+Oog=="],
+    "babel-plugin-react-compiler": ["babel-plugin-react-compiler@19.0.0-beta-63e3235-20250105", "", { "dependencies": { "@babel/types": "^7.19.0" } }, "sha512-38qEX4e1nNOZ9K7rVAF4VVijcjTHBbRHd+ftYpfim2Oabitd1NGjvrL0bnwFymDTBB4MqswqIHTYjYfuy1OeTQ=="],
 
     "bail": ["bail@2.0.2", "", {}, "sha512-0xO6mYd7JB2YesxDKplafRpsiOzPt9V02ddPCLbY1xYGPOX24NTyN50qnUxgCPcSoYMhKpAuBTjQoRZCAkUDRw=="],
 
@@ -1423,7 +1423,7 @@
 
     "eslint-plugin-promise": ["eslint-plugin-promise@7.2.1", "", { "dependencies": { "@eslint-community/eslint-utils": "^4.4.0" }, "peerDependencies": { "eslint": "^7.0.0 || ^8.0.0 || ^9.0.0" } }, "sha512-SWKjd+EuvWkYaS+uN2csvj0KoP43YTu7+phKQ5v+xw6+A0gutVX2yqCeCkC3uLCJFiPfR2dD8Es5L7yUsmvEaA=="],
 
-    "eslint-plugin-react-compiler": ["eslint-plugin-react-compiler@19.0.0-beta-55955c9-20241229", "", { "dependencies": { "@babel/core": "^7.24.4", "@babel/parser": "^7.24.4", "@babel/plugin-proposal-private-methods": "^7.18.6", "hermes-parser": "^0.25.1", "zod": "^3.22.4", "zod-validation-error": "^3.0.3" }, "peerDependencies": { "eslint": ">=7" } }, "sha512-KsE6bQrNvtPDbMb9EolZ2C+Z2/uv2Y5cAUgN+pzbriXjKlf1FkbgiyE153m2mIT6gEZq2OrtFvX7uJj5IrNQlg=="],
+    "eslint-plugin-react-compiler": ["eslint-plugin-react-compiler@19.0.0-beta-63e3235-20250105", "", { "dependencies": { "@babel/core": "^7.24.4", "@babel/parser": "^7.24.4", "@babel/plugin-proposal-private-methods": "^7.18.6", "hermes-parser": "^0.25.1", "zod": "^3.22.4", "zod-validation-error": "^3.0.3" }, "peerDependencies": { "eslint": ">=7" } }, "sha512-Smts5x+u+rRopr0926jCXFPkS8D8hFJexDvTW41V0Xu/xHgd4pnGWiJQRBsvTEARzOdJ6NdlmYs4n+O4Thn2iA=="],
 
     "eslint-plugin-react-debug": ["eslint-plugin-react-debug@1.23.1", "", { "dependencies": { "@eslint-react/ast": "1.23.1", "@eslint-react/core": "1.23.1", "@eslint-react/eff": "1.23.1", "@eslint-react/jsx": "1.23.1", "@eslint-react/shared": "1.23.1", "@eslint-react/types": "1.23.1", "@eslint-react/var": "1.23.1", "@typescript-eslint/scope-manager": "^8.19.0", "@typescript-eslint/type-utils": "^8.19.0", "@typescript-eslint/types": "^8.19.0", "@typescript-eslint/utils": "^8.19.0", "string-ts": "^2.2.0", "ts-pattern": "^5.6.0" }, "peerDependencies": { "eslint": "^8.57.0 || ^9.0.0", "typescript": "^4.9.5 || ^5.3.3" }, "optionalPeers": ["typescript"] }, "sha512-vGtRVvmjj64W0IRTxKw1gku03SZ2yjJ3syPn0jQJwGUljFIwPGvPthz8vBoPuHYCjgsrmKmhsB0JAb0Tpc654w=="],
 
