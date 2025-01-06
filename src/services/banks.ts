@@ -16,7 +16,7 @@ export async function getBanks() {
     .get("bank/get-all-banks", {
       cache: "force-cache",
       next: {
-        revalidate: 3600,
+        revalidate: 60,
       },
     })
     .json<BanksResponse>();

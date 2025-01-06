@@ -84,6 +84,9 @@ export async function getFinishingTypes(locale: string) {
         lang: locale,
       },
       cache: "force-cache",
+      next: {
+        revalidate: 60,
+      },
     })
     .json<TypesResponse>();
 
@@ -97,6 +100,9 @@ export async function getPropertyTypes(locale: string) {
         lang: locale,
       },
       cache: "force-cache",
+      next: {
+        revalidate: 60,
+      },
     })
     .json<TypesResponse>();
 
@@ -115,6 +121,9 @@ export async function getMinMaxPrice() {
   const res = await ky
     .get("unit/get-min-max-price", {
       cache: "force-cache",
+      next: {
+        revalidate: 60,
+      },
     })
     .json<MinMaxPriceResponse>();
 

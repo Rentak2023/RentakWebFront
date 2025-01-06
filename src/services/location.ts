@@ -10,6 +10,9 @@ export async function getCities() {
   const res = await ky
     .get("location/get-all-governorates", {
       cache: "force-cache",
+      next: {
+        revalidate: 60,
+      },
     })
     .json<CitiesResponse>();
 
@@ -28,6 +31,9 @@ export async function getDistricts(governorate_id: number | string) {
         governorate_id: governorate_id,
       },
       cache: "force-cache",
+      next: {
+        revalidate: 60,
+      },
     })
     .json<DistrictsResponse>();
 

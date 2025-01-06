@@ -15,6 +15,9 @@ export async function getCashInPaymentMethods() {
   const res = await ky
     .get("payment-method/get_all_cash_in_payment_methods", {
       cache: "force-cache",
+      next: {
+        revalidate: 60,
+      },
     })
     .json<PaymentMethodsResponse>();
 
@@ -25,6 +28,9 @@ export async function getCashOutPaymentMethods() {
   const res = await ky
     .get("payment-method/get_all_cash_out_payment_methods", {
       cache: "force-cache",
+      next: {
+        revalidate: 60,
+      },
     })
     .json<PaymentMethodsResponse>();
 

@@ -17,7 +17,7 @@ export async function getAllProducts() {
     .get<ProductsRes>("api/Product/get-all-products", {
       cache: "force-cache",
       next: {
-        revalidate: 3600,
+        revalidate: 60,
       },
     })
     .json();
@@ -38,7 +38,7 @@ export async function getProduct(id: number) {
       },
       cache: "force-cache",
       next: {
-        revalidate: 3600,
+        revalidate: 60,
       },
     })
     .json<ProductRes>();
