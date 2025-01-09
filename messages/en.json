@@ -639,30 +639,45 @@
   },
   "auth": {
     "fields": {
-      "username": {
-        "label": "Email or Phone Number",
-        "placeholder": "Enter email or phone number"
-      },
-      "password": {
-        "label": "Password",
-        "placeholder": "Enter password"
-      },
       "full-name": {
         "label": "Full Name",
-        "placeholder": "Enter full name"
+        "placeholder": "Enter your full name"
       },
       "phone": {
         "label": "Phone Number",
-        "placeholder": "Enter phone number"
+        "placeholder": "Enter your phone number"
       },
       "email": {
         "label": "Email",
-        "placeholder": "Enter email"
+        "placeholder": "Enter your email"
+      },
+      "otp": {
+        "label": "OTP",
+        "placeholder": "Enter verification code"
       }
     },
     "cta": {
       "login": "Login",
-      "sign-up": "Sign Up"
+      "sign-up": "Sign Up",
+      "verify-otp": "Verify Code",
+      "resend-otp": "Resend Code"
+    },
+    "titles": {
+      "verify-otp": "Verify Your Phone"
+    },
+    "messages": {
+      "otp-sent": "We've sent a verification code to your phone"
+    },
+    "errors": {
+      "login-failed": "Failed to login. Please try again.",
+      "signup-failed": "Failed to create account. Please try again.",
+      "invalid-otp": "Invalid verification code. Please try again.",
+      "resend-otp-failed": "Failed to resend code. Please try again."
+    },
+    "states": {
+      "verifying": "Verifying...",
+      "sending-otp": "Sending Code...",
+      "creating-account": "Creating Account..."
     }
   }
 }
