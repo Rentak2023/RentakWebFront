@@ -1,3 +1,5 @@
+import { type Locale } from "next-intl";
+
 export type FormValues = {
   keyword?: string;
   governoment_id?: number | string;
@@ -30,6 +32,6 @@ export type UnitTypeTypes = {
 export type SearchFormProps = {
   renderProperties: (
     searchParams: URLSearchParams,
-    locale: string,
+    locale: Locale,
   ) => React.ReactNode;
 };

@@ -1,5 +1,5 @@
 import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useFormContext } from "react-hook-form";
 
 import { Button } from "@/components/ui/button";
@@ -24,9 +24,10 @@ function CitiesAndRegions() {
   const form = useFormContext();
 
   const governorate = form.watch("governoment_id");
+  const locale = useLocale();
 
-  const { data: cities } = useSuspenseQuery(citiesQuery);
-  const { data: districts } = useQuery(districtsQuery(governorate));
+  const { data: cities } = useSuspenseQuery(citiesQuery(locale));
+  const { data: districts } = useQuery(districtsQuery(governorate, locale));
 
   return (
     <div>

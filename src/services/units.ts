@@ -1,3 +1,5 @@
+import { type Locale } from "next-intl";
+
 import ky from "@/lib/ky";
 
 import { type Unit } from "./types";
@@ -7,11 +9,11 @@ type UnitsResponse = {
   data: Array<Unit>;
 };
 
-export async function getUnits({ locale }: { locale: string }) {
+export async function getUnits({ locale }: { locale: Locale }) {
   const res = await ky
     .get("home/get-home-units", {
       searchParams: {
-        lang: locale,
+        lang: locale === "en" ? "en" : "ar",
       },
       cache: "force-cache",
       next: {

@@ -1,5 +1,6 @@
 "use server";
 import { HTTPError } from "ky";
+import { type Locale } from "next-intl";
 import * as v from "valibot";
 
 import ky from "@/lib/ky";
@@ -12,7 +13,7 @@ type ArrangeVisitResponse = {
 export const arrangeVisitAction = async (
   data: v.InferInput<typeof arrangeVisitSchema>,
   unitId: number,
-  lang: string,
+  locale: Locale,
 ) => {
   const validatedFields = v.safeParse(arrangeVisitSchema, data);
 
@@ -25,7 +26,7 @@ export const arrangeVisitAction = async (
       .post("unit/visit", {
         json: {
           ...data,
-          lang,
+          lang: locale === "en" ? "en" : "ar",
           unit_id: unitId,
         },
       })

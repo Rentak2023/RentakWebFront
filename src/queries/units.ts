@@ -1,4 +1,5 @@
 import { queryOptions } from "@tanstack/react-query";
+import { type Locale } from "next-intl";
 
 import {
   getFinishingTypes,
@@ -14,14 +15,14 @@ export const minMaxPriceQuery = queryOptions({
   staleTime: Infinity,
 });
 
-export const finishTypesQuery = (locale: string) =>
+export const finishTypesQuery = (locale: Locale) =>
   queryOptions({
     queryKey: ["finish-types", locale],
     queryFn: () => getFinishingTypes(locale),
     staleTime: Infinity,
   });
 
-export const propertyTypesQuery = (locale: string) =>
+export const propertyTypesQuery = (locale: Locale) =>
   queryOptions({
     queryKey: ["property-types", locale],
     queryFn: () => getPropertyTypes(locale),

@@ -1,5 +1,6 @@
 "use server";
 import { HTTPError } from "ky";
+import { type Locale } from "next-intl";
 import * as v from "valibot";
 
 import ky from "@/lib/ky";
@@ -12,7 +13,7 @@ type BookCallResponse = {
 
 export const bookCallAction = async (
   data: v.InferInput<typeof bookCallSchema>,
-  lang: string,
+  locale: Locale,
   service: string,
 ) => {
   const values = v.safeParse(bookCallSchema, data);
@@ -27,7 +28,7 @@ export const bookCallAction = async (
       .post("public/book-a-call", {
         json: {
           ...values.output,
-          lang,
+          lang: locale === "en" ? "en" : "ar",
           service,
         },
       })

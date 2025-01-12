@@ -41,9 +41,9 @@ const PostLayout = async (
             className="mx-auto mb-8 size-full overflow-hidden rounded-2xl object-cover"
           />
         </div>
-        {/* eslint-disable-next-line @eslint-react/dom/no-dangerously-set-innerhtml */}
         <div
           className="prose prose-slate md:prose-lg lg:prose-xl"
+          // eslint-disable-next-line @eslint-react/dom/no-dangerously-set-innerhtml
           dangerouslySetInnerHTML={{
             __html: locale === "en" ? post.content.html : post.arContent.html,
           }}

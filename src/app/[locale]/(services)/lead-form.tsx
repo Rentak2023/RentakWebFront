@@ -47,11 +47,7 @@ export default function LeadForm({
   });
 
   const onSubmit = form.handleSubmit(async (data) => {
-    const res = await bookCallAction(
-      data,
-      locale === "en" ? "en" : "ar",
-      serviceName,
-    );
+    const res = await bookCallAction(data, locale, serviceName);
 
     if (res.type === "success") {
       toast({

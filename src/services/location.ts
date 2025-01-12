@@ -1,3 +1,5 @@
+import { type Locale } from "next-intl";
+
 import { type CityTypes, type DistrictTypes } from "@/components/units/types";
 import ky from "@/lib/ky";
 
@@ -6,9 +8,12 @@ type CitiesResponse = {
   data: Array<CityTypes>;
 };
 
-export async function getCities() {
+export async function getCities(locale: Locale) {
   const res = await ky
     .get("location/get-all-governorates", {
+      searchParams: {
+        lang: locale === "en" ? "en" : "ar",
+      },
       cache: "force-cache",
       next: {
         revalidate: 60,
@@ -24,11 +29,15 @@ type DistrictsResponse = {
   data: Array<DistrictTypes>;
 };
 
-export async function getDistricts(governorate_id: number | string) {
+export async function getDistricts(
+  governorate_id: number | string,
+  locale: Locale,
+) {
   const res = await ky
     .get("location/get-all-cities", {
       searchParams: {
         governorate_id: governorate_id,
+        lang: locale === "en" ? "en" : "ar",
       },
       cache: "force-cache",
       next: {

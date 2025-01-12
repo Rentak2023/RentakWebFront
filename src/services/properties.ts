@@ -1,3 +1,4 @@
+import { type Locale } from "next-intl";
 import {
   createSearchParamsCache,
   parseAsArrayOf,
@@ -26,7 +27,7 @@ export type PropertiesSearchParams = {
   price_to?: number | null;
   price_from?: number | null;
   page?: number | null;
-  lang: string;
+  lang: Locale;
 };
 
 export const propertiesQueryParsers = {
@@ -77,11 +78,11 @@ type TypesResponse = {
   message: string;
   data: Array<UnitTypeTypes>;
 };
-export async function getFinishingTypes(locale: string) {
+export async function getFinishingTypes(locale: Locale) {
   const res = await ky
     .get("unit/get-all-finish-types", {
       searchParams: {
-        lang: locale,
+        lang: locale === "en" ? "en" : "ar",
       },
       cache: "force-cache",
       next: {
@@ -93,11 +94,11 @@ export async function getFinishingTypes(locale: string) {
   return res.data;
 }
 
-export async function getPropertyTypes(locale: string) {
+export async function getPropertyTypes(locale: Locale) {
   const res = await ky
     .get("unit/get-all-property-types", {
       searchParams: {
-        lang: locale,
+        lang: locale === "en" ? "en" : "ar",
       },
       cache: "force-cache",
       next: {
@@ -135,12 +136,12 @@ type PropertyResponse = {
   message: string;
   data: TUnit;
 };
-export async function getProperty(propertyId: string, locale: string) {
+export async function getProperty(propertyId: string, locale: Locale) {
   const res = await ky
     .get("unit/get-unit-details", {
       searchParams: {
         id: propertyId,
-        lang: locale,
+        lang: locale === "en" ? "en" : "ar",
       },
       cache: "force-cache",
       next: {
