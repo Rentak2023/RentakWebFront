@@ -15,6 +15,11 @@ type SignUpInput = {
   lang: string;
 };
 
+type TokenRes = {
+  access: string;
+  success: boolean;
+};
+
 export async function signUp(values: SignUpInput) {
   const res = await ky
     .post("auth/register", {
@@ -77,7 +82,9 @@ type VerifyOTP = {
 };
 
 export async function verifyOTP(values: VerifyOTP) {
-  const res = await ky.post("auth/confirm-otp", { json: values }).json();
+  const res = await ky
+    .post("auth/confirm-otp", { json: values })
+    .json<TokenRes>();
 
   return res;
 }
