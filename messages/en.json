@@ -640,20 +640,16 @@
   "auth": {
     "fields": {
       "full-name": {
-        "label": "Full Name",
-        "placeholder": "Enter your full name"
+        "label": "Full Name"
       },
       "phone": {
-        "label": "Phone Number",
-        "placeholder": "Enter your phone number"
+        "label": "Phone Number"
       },
       "email": {
-        "label": "Email",
-        "placeholder": "Enter your email"
+        "label": "Email"
       },
       "otp": {
-        "label": "OTP",
-        "placeholder": "Enter verification code"
+        "label": "OTP"
       }
     },
     "cta": {

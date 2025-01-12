@@ -1,6 +1,5 @@
-"use client";
-
 import { valibotResolver } from "@hookform/resolvers/valibot";
+import { HTTPError } from "ky";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -21,6 +20,7 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
+import { type AuthError } from "@/services/auth";
 
 import { otpSchema } from "../schemas";
 
@@ -74,11 +74,11 @@ export function OTPVerificationForm({
     try {
       setError(null);
       await onVerify(data.otp);
-    } catch (error_) {
-      console.error(error_);
-      if (error_.name === "HTTPError") {
-        const errorJson = await error_.response.json();
-        console.log(errorJson);
+    } catch (error) {
+      if (error instanceof HTTPError) {
+        const responseData = await error.response.json<AuthError>();
+        setError(responseData.message);
+        return;
       }
       setError(t("errors.invalid-otp"));
     }

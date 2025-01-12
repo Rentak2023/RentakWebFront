@@ -1,4 +1,11 @@
+import { type Locale } from "next-intl";
+
 import ky from "@/lib/ky";
+
+export type AuthError = {
+  success: boolean;
+  message: string;
+};
 
 type AuthResponse = {
   success: boolean;
@@ -12,7 +19,6 @@ type SignUpInput = {
   phone: string;
   national_id?: string;
   // user_type_id: number;
-  lang: string;
 };
 
 type TokenRes = {
@@ -20,10 +26,13 @@ type TokenRes = {
   success: boolean;
 };
 
-export async function signUp(values: SignUpInput) {
+export async function signUp(values: SignUpInput, locale: Locale) {
   const res = await ky
     .post("auth/register", {
-      json: values,
+      json: {
+        ...values,
+        lang: locale === "en" ? "en" : "ar",
+      },
     })
     .json<AuthResponse>();
 
@@ -32,13 +41,15 @@ export async function signUp(values: SignUpInput) {
 
 type LoginInput = {
   phone_number: string;
-  lang: string;
 };
 
-export async function login(values: LoginInput) {
+export async function login(values: LoginInput, locale: Locale) {
   const res = await ky
     .post("auth/login", {
-      json: values,
+      json: {
+        ...values,
+        lang: locale === "en" ? "en" : "ar",
+      },
     })
     .json<AuthResponse>();
 
@@ -62,13 +73,15 @@ export async function sendOTP(values: Record<string, any>) {
 
 type ResendOTP = {
   user_id: number;
-  lang: string;
 };
 
-export async function reSendOTP(values: ResendOTP) {
+export async function reSendOTP(values: ResendOTP, locale: Locale) {
   const res = await ky
     .post("auth/resend_otp", {
-      json: values,
+      json: {
+        ...values,
+        lang: locale === "en" ? "en" : "ar",
+      },
     })
     .json<OTPResponse>();
 
@@ -78,12 +91,16 @@ export async function reSendOTP(values: ResendOTP) {
 type VerifyOTP = {
   userId: number;
   otp: string;
-  lang: string;
 };
 
-export async function verifyOTP(values: VerifyOTP) {
+export async function verifyOTP(values: VerifyOTP, locale: Locale) {
   const res = await ky
-    .post("auth/confirm-otp", { json: values })
+    .post("auth/confirm-otp", {
+      json: {
+        ...values,
+        lang: locale === "en" ? "en" : "ar",
+      },
+    })
     .json<TokenRes>();
 
   return res;

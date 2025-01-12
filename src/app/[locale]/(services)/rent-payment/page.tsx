@@ -117,7 +117,7 @@ export default function RentPayment(
               if (userId == null) {
                 return false;
               }
-              await verifyOTP({ userId, otp });
+              await verifyOTP({ userId, otp }, locale);
 
               return true;
             } catch {

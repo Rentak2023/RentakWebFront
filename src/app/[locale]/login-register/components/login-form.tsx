@@ -1,7 +1,8 @@
 "use client";
 
 import { valibotResolver } from "@hookform/resolvers/valibot";
-import { useTranslations } from "next-intl";
+import { HTTPError } from "ky";
+import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import type { InferOutput } from "valibot";
@@ -17,7 +18,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { login, reSendOTP, verifyOTP } from "@/services/auth";
+import { type AuthError, login, reSendOTP, verifyOTP } from "@/services/auth";
 
 import { loginSchema } from "../schemas";
 import { OTPVerificationForm } from "./otp-verification-form";
@@ -26,8 +27,8 @@ export function LoginForm() {
   const t = useTranslations("auth");
   const [isVerifying, setIsVerifying] = useState(false);
   const [userId, setUserId] = useState<number | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const locale = useLocale();
 
   const form = useForm<InferOutput<typeof loginSchema>>({
     resolver: valibotResolver(loginSchema),
@@ -38,31 +39,33 @@ export function LoginForm() {
 
   const onSubmit = form.handleSubmit(async (data) => {
     try {
-      setIsSubmitting(true);
       setError(null);
-      const response = await login({ phone_number: data.phone, lang: "en" });
+      const response = await login({ phone_number: data.phone }, locale);
       if (response.success) {
         setUserId(response.user_id);
         setIsVerifying(true);
       }
-    } catch {
+    } catch (error) {
+      if (error instanceof HTTPError) {
+        const responseData = await error.response.json<AuthError>();
+        setError(responseData.message);
+        return;
+      }
       setError(t("errors.login-failed"));
-    } finally {
-      setIsSubmitting(false);
     }
   });
 
   const handleVerify = async (otp: string) => {
     if (!userId) return;
     setError(null);
-    await verifyOTP({ userId, otp, lang: "en" });
+    await verifyOTP({ userId, otp }, locale);
     // Handle successful verification (e.g., redirect)
   };
 
   const handleResendOTP = async () => {
     if (!userId) return;
     setError(null);
-    await reSendOTP({ user_id: userId, lang: "en" });
+    await reSendOTP({ user_id: userId }, locale);
   };
 
   if (isVerifying) {
@@ -87,21 +90,21 @@ export function LoginForm() {
             <FormItem>
               <FormLabel>{t("fields.phone.label")}</FormLabel>
               <FormControl>
-                <Input
-                  type="tel"
-                  placeholder={t("fields.phone.placeholder")}
-                  className="mt-2"
-                  dir="ltr"
-                  {...field}
-                />
+                <Input type="tel" className="mt-2" dir="ltr" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        <Button type="submit" disabled={isSubmitting} className="mt-2">
-          {isSubmitting ? t("states.sending-otp") : t("cta.login")}
+        <Button
+          type="submit"
+          disabled={form.formState.isSubmitting}
+          className="mt-2"
+        >
+          {form.formState.isSubmitting
+            ? t("states.sending-otp")
+            : t("cta.login")}
         </Button>
       </form>
     </Form>
