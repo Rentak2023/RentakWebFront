@@ -1,6 +1,5 @@
+import ky from "@fetcher";
 import { type Locale } from "next-intl";
-
-import ky from "@/lib/ky";
 
 import { type Unit } from "./types";
 

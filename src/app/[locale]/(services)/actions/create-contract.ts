@@ -1,8 +1,8 @@
+import ky from "@fetcher";
 import { endOfDay, format } from "date-fns";
 import { HTTPError } from "ky";
 import * as v from "valibot";
 
-import ky from "@/lib/ky";
 import { contractSchema } from "@/schema/contract";
 
 type ContractResponse = {

@@ -1,9 +1,9 @@
 "use server";
+import ky from "@fetcher";
 import { HTTPError } from "ky";
 import { type Locale } from "next-intl";
 import * as v from "valibot";
 
-import ky from "@/lib/ky";
 import { arrangeVisitSchema } from "@/schema/arrange-visit";
 
 type ArrangeVisitResponse = {

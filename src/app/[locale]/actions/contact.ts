@@ -1,7 +1,7 @@
 "use server";
+import ky from "@fetcher";
 import * as v from "valibot";
 
-import ky from "@/lib/ky";
 import { contactSchema } from "@/schema/contact";
 
 type ContactResponse = {

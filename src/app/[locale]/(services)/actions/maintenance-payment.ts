@@ -1,8 +1,7 @@
 "use server";
 
+import ky from "@fetcher";
 import { HTTPError } from "ky";
-
-import ky from "@/lib/ky";
 
 type PaymentData = {
   redirect_url: string;

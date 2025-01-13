@@ -1,4 +1,4 @@
-import ky from "@/lib/ky";
+import ky from "@fetcher";
 
 type PromoCodeResponse = {
   message: string;

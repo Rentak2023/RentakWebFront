@@ -18,6 +18,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useRouter } from "@/i18n/routing";
 import { type AuthError, login, reSendOTP, verifyOTP } from "@/services/auth";
 
 import { loginSchema } from "../schemas";
@@ -29,6 +30,7 @@ export function LoginForm() {
   const [userId, setUserId] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
   const locale = useLocale();
+  const router = useRouter();
 
   const form = useForm<InferOutput<typeof loginSchema>>({
     resolver: valibotResolver(loginSchema),
@@ -59,7 +61,7 @@ export function LoginForm() {
     if (!userId) return;
     setError(null);
     await verifyOTP({ userId, otp }, locale);
-    // Handle successful verification (e.g., redirect)
+    router.push("/dashboard");
   };
 
   const handleResendOTP = async () => {

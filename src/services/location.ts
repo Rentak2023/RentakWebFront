@@ -1,7 +1,7 @@
+import ky from "@fetcher";
 import { type Locale } from "next-intl";
 
 import { type CityTypes, type DistrictTypes } from "@/components/units/types";
-import ky from "@/lib/ky";
 
 type CitiesResponse = {
   message: string;

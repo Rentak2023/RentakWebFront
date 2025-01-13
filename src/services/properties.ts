@@ -1,3 +1,4 @@
+import ky from "@fetcher";
 import { type Locale } from "next-intl";
 import {
   createSearchParamsCache,
@@ -7,7 +8,6 @@ import {
 } from "nuqs/server";
 
 import { type UnitTypeTypes } from "@/components/units/types";
-import ky from "@/lib/ky";
 
 import { type PropertiesDataTypes, type Unit as TUnit } from "./types";
 

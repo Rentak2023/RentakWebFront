@@ -1,7 +1,9 @@
+"use server";
+
+import ky from "@fetcher";
+import { setCookie } from "cookies-next/server";
+import { cookies } from "next/headers";
 import { type Locale } from "next-intl";
-
-import ky from "@/lib/ky";
-
 export type AuthError = {
   success: boolean;
   message: string;
@@ -22,7 +24,7 @@ type SignUpInput = {
 };
 
 type TokenRes = {
-  access: string;
+  token: string;
   success: boolean;
 };
 
@@ -102,6 +104,21 @@ export async function verifyOTP(values: VerifyOTP, locale: Locale) {
       },
     })
     .json<TokenRes>();
+
+  await setCookie("authToken", res.token, { cookies });
+  return res;
+}
+
+type UserRes = {
+  id: number;
+  fullname: string;
+  email: string;
+  national_id: string;
+  phone: string;
+};
+
+export async function getUser() {
+  const res = await ky.post("auth/get-user").json<UserRes>();
 
   return res;
 }

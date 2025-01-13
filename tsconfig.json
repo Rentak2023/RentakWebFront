@@ -22,7 +22,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@content": ["./.contentlayer/generated"]
+      "@content": ["./.contentlayer/generated"],
+      "@fetcher": ["./src/lib/fetcher"]
     },
     "target": "ES2017"
   },

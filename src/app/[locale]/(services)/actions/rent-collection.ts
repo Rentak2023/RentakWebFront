@@ -1,7 +1,6 @@
+import ky from "@fetcher";
 import { endOfDay, format } from "date-fns";
 import { HTTPError } from "ky";
-
-import ky from "@/lib/ky";
 
 type RentCollectionResponse = {
   message: string;
