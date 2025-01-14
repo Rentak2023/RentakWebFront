@@ -5,6 +5,7 @@ import {
   parseAsArrayOf,
   parseAsInteger,
   parseAsString,
+  parseAsStringEnum,
 } from "nuqs/server";
 
 import { type UnitTypeTypes } from "@/components/units/types";
@@ -28,6 +29,7 @@ export type PropertiesSearchParams = {
   price_from?: number | null;
   page?: number | null;
   lang: Locale;
+  sort_by?: "newest" | "high-to-low" | "low-to-high" | null;
 };
 
 export const propertiesQueryParsers = {
@@ -42,6 +44,7 @@ export const propertiesQueryParsers = {
   bathroom_numbers: parseAsInteger,
   room_numers: parseAsInteger,
   page: parseAsInteger.withDefault(1),
+  sort_by: parseAsStringEnum(["newest", "high-to-low", "low-to-high"]),
 };
 
 export const propertiesQueryCache = createSearchParamsCache(
