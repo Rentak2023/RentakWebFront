@@ -1,6 +1,6 @@
 "use server";
 
-import ky from "@rentak/fetcher";
+import ky from "@fetcher";
 import { setCookie } from "cookies-next/server";
 import { cookies } from "next/headers";
 import { type Locale } from "next-intl";

@@ -1,18 +1,11 @@
-import { getCookie } from "cookies-next/client";
-import ky from "ky";
+import { type KyInstance } from "ky";
 
-const instance = ky.create({
-  prefixUrl: process.env.NEXT_PUBLIC_APP_API_URL,
-  hooks: {
-    beforeRequest: [
-      (req) => {
-        const authToken = getCookie("authToken");
-        if (authToken) {
-          req.headers.set("Authorization", `Bearer ${authToken}`);
-        }
-      },
-    ],
-  },
-});
+let importPath = "./index-server.ts";
 
-export default instance;
+// eslint-disable-next-line unicorn/prefer-global-this
+if (typeof window !== "undefined") {
+  importPath = "./index-client.ts";
+}
+
+// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+export default (await import(importPath).then((i) => i.default)) as KyInstance;

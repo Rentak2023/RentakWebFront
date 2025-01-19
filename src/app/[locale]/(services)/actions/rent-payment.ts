@@ -1,4 +1,4 @@
-import ky from "@rentak/fetcher";
+import ky from "@fetcher";
 import { endOfDay, format } from "date-fns";
 import { HTTPError } from "ky";
 

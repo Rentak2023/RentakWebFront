@@ -1,4 +1,4 @@
-import ky from "@rentak/fetcher";
+import ky from "@fetcher";
 
 type Bank = {
   id: number;

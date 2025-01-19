@@ -1,4 +1,4 @@
-import ky from "@rentak/fetcher";
+import ky from "@fetcher";
 
 type PromoCodeResponse = {
   message: string;
