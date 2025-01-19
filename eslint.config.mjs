@@ -98,6 +98,7 @@ export default ts.config(
             "@radix-ui/react-checkbox",
             "@radix-ui/react-collapsible",
             "@radix-ui/react-dialog",
+            "@radix-ui/react-dropdown-menu",
             "@radix-ui/react-label",
             "@radix-ui/react-popover",
             "@radix-ui/react-progress",

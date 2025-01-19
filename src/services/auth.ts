@@ -1,9 +1,18 @@
 "use server";
 
 import ky from "@rentak/fetcher";
-import { setCookie } from "cookies-next/server";
+import { deleteCookie, hasCookie, setCookie } from "cookies-next/server";
 import { cookies } from "next/headers";
 import { type Locale } from "next-intl";
+
+export async function isLoggedIn() {
+  return await hasCookie("authToken", { cookies });
+}
+
+export async function logOut() {
+  await deleteCookie("authToken", { cookies });
+}
+
 export type AuthError = {
   success: boolean;
   message: string;

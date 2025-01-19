@@ -10,19 +10,101 @@ import {
   PopoverGroup,
   PopoverPanel,
 } from "@headlessui/react";
-import { ChevronDownIcon, MenuIcon, XIcon } from "lucide-react";
+import { useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
+import {
+  ChevronDownIcon,
+  LayoutDashboardIcon,
+  LogOutIcon,
+  MenuIcon,
+  UserIcon,
+  XIcon,
+} from "lucide-react";
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 
 import logo from "@/app/[locale]/assets/images/Logo.png";
 import { Button } from "@/components/ui/button";
-import { Link, usePathname } from "@/i18n/routing";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Link, usePathname, useRouter } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
+import { userLoggedInQuery } from "@/queries/user";
+import { logOut } from "@/services/auth";
+
+function NavRight() {
+  const pathname = usePathname();
+  const locale = useLocale();
+  const router = useRouter();
+
+  const queryCLient = useQueryClient();
+
+  const { data: isLoggedIn } = useSuspenseQuery(userLoggedInQuery);
+
+  const onLogoutClick = () => {
+    logOut();
+    router.refresh();
+    queryCLient.invalidateQueries(userLoggedInQuery);
+  };
+  return (
+    <div className="flex flex-1 items-center justify-end gap-x-2">
+      <Button asChild className="rounded-full" size="icon">
+        <Link locale={locale === "en" ? "ar-EG" : "en"} href={pathname}>
+          {locale === "en" ? "ع" : "EN"}
+        </Link>
+      </Button>
+      {isLoggedIn ? (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" className="rounded-full" size="icon">
+              <UserIcon />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="w-56">
+            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
+              <DropdownMenuItem asChild>
+                <Link href="/profile">
+                  <UserIcon />
+                  <span>Profile</span>
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/dashboard">
+                  <LayoutDashboardIcon />
+                  <span>Dashboard</span>
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+
+            <DropdownMenuItem asChild>
+              <button className="w-full" onClick={onLogoutClick} type="button">
+                <LogOutIcon />
+                <span>Log out</span>
+              </button>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      ) : (
+        <Button asChild size="lg" className="rounded-full">
+          <Link href="/login-register">Login/Signup</Link>
+        </Button>
+      )}
+    </div>
+  );
+}
 
 export default function Navbar() {
   const pathname = usePathname();
-  const locale = useLocale();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -152,16 +234,9 @@ export default function Navbar() {
           </PopoverGroup>
         </div>
 
-        <div className="flex flex-1 items-center justify-end gap-x-2">
-          <Button asChild className="rounded-full" size="icon">
-            <Link locale={locale === "en" ? "ar-EG" : "en"} href={pathname}>
-              {locale === "en" ? "ع" : "EN"}
-            </Link>
-          </Button>
-          <Button asChild size="lg" className="rounded-full">
-            <Link href="/login-register">Login/Signup</Link>
-          </Button>
-        </div>
+        <Suspense>
+          <NavRight />
+        </Suspense>
 
         <div className="flex lg:hidden">
           <button

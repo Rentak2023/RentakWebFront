@@ -1,6 +1,7 @@
 "use client";
 
 import { valibotResolver } from "@hookform/resolvers/valibot";
+import { useQueryClient } from "@tanstack/react-query";
 import { HTTPError } from "ky";
 import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
@@ -18,6 +19,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useRouter } from "@/i18n/routing";
+import { userLoggedInQuery } from "@/queries/user";
 import { type AuthError, reSendOTP, signUp, verifyOTP } from "@/services/auth";
 
 import { signUpSchema } from "../schemas";
@@ -29,6 +32,8 @@ export function SignUpForm() {
   const [userId, setUserId] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
   const locale = useLocale();
+  const router = useRouter();
+  const queryCLient = useQueryClient();
 
   const form = useForm<InferOutput<typeof signUpSchema>>({
     resolver: valibotResolver(signUpSchema),
@@ -61,7 +66,8 @@ export function SignUpForm() {
     if (!userId) return;
     setError(null);
     await verifyOTP({ userId, otp }, locale);
-    // Handle successful verification (e.g., redirect)
+    await queryCLient.invalidateQueries(userLoggedInQuery);
+    router.push("/dashboard");
   };
 
   const handleResendOTP = async () => {

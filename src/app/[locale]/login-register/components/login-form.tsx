@@ -1,6 +1,7 @@
 "use client";
 
 import { valibotResolver } from "@hookform/resolvers/valibot";
+import { useQueryClient } from "@tanstack/react-query";
 import { HTTPError } from "ky";
 import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
@@ -19,6 +20,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "@/i18n/routing";
+import { userLoggedInQuery } from "@/queries/user";
 import { type AuthError, login, reSendOTP, verifyOTP } from "@/services/auth";
 
 import { loginSchema } from "../schemas";
@@ -31,6 +33,7 @@ export function LoginForm() {
   const [error, setError] = useState<string | null>(null);
   const locale = useLocale();
   const router = useRouter();
+  const queryCLient = useQueryClient();
 
   const form = useForm<InferOutput<typeof loginSchema>>({
     resolver: valibotResolver(loginSchema),
@@ -61,6 +64,7 @@ export function LoginForm() {
     if (!userId) return;
     setError(null);
     await verifyOTP({ userId, otp }, locale);
+    await queryCLient.invalidateQueries(userLoggedInQuery);
     router.push("/dashboard");
   };
 
