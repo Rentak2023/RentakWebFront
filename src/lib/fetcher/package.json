@@ -1,5 +1,5 @@
 {
-  "name": "@fetcher",
+  "name": "@rentak/fetcher",
   "typings": "index.ts",
   "exports": {
     ".": {

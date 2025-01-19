@@ -1,4 +1,4 @@
-import ky from "@fetcher";
+import ky from "@rentak/fetcher";
 import { type Locale } from "next-intl";
 
 import { type Unit } from "./types";

@@ -93,6 +93,19 @@
   );
 }
 
+/* Trim: supported only in latest chrome and safari */
+@utility trim-both {
+  text-box: trim-both cap alphabetic;
+}
+
+@utility trim-start {
+  text-box: trim-start cap alphabetic;
+}
+
+@utility trim-end {
+  text-box: trim-end cap alphabetic;
+}
+
 @layer base {
   @font-face {
     font-family: "General Sans Fallback";

@@ -1,4 +1,4 @@
-import ky from "@fetcher";
+import ky from "@rentak/fetcher";
 
 type PaymentMethod = {
   id: number;

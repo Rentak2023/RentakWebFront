@@ -1,6 +1,6 @@
 "use server";
 
-import ky from "@fetcher";
+import ky from "@rentak/fetcher";
 import { setCookie } from "cookies-next/server";
 import { cookies } from "next/headers";
 import { type Locale } from "next-intl";
@@ -118,7 +118,20 @@ type UserRes = {
 };
 
 export async function getUser() {
-  const res = await ky.post("auth/get-user").json<UserRes>();
+  const res = await ky.get("auth/get-user").json<UserRes>();
+
+  return res;
+}
+
+type UserTransferMethods = Array<{
+  methodName: string;
+  value: string;
+}>;
+
+export async function getUserTransferMethods() {
+  const res = await ky
+    .get("dashboard/get-user-transfer_methods")
+    .json<UserTransferMethods>();
 
   return res;
 }

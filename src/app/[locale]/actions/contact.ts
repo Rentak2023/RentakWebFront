@@ -1,5 +1,5 @@
 "use server";
-import ky from "@fetcher";
+import ky from "@rentak/fetcher";
 import * as v from "valibot";
 
 import { contactSchema } from "@/schema/contact";

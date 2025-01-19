@@ -1,3 +1,5 @@
+import { getLandlordStatistics } from "@/services/dashboard";
+
 import {
   RentOverdueIcon,
   RentReceivedIcon,
@@ -5,30 +7,32 @@ import {
 } from "./dashboard-icons";
 import { StatsCard } from "./stats-card";
 
-export function Stats() {
+export async function Stats() {
+  const landlordStats = await getLandlordStatistics();
+
   const stats = [
     {
       name: "Rent Received",
-      stat: "5,423",
+      stat: landlordStats.total_income.toString(),
       color: "#EA79BA",
       icon: RentReceivedIcon,
     },
     {
       name: "Upcoming Payments",
-      stat: "1,893",
+      stat: landlordStats.upcoming_payments.toString(),
       color: "#6DACE7",
       icon: UpcomingPaymentsIcon,
     },
-    {
-      name: "Rent Overdue",
-      stat: "189",
-      color: "#AA7AEB",
-      icon: RentOverdueIcon,
-    },
+    // {
+    //   name: "Rent Overdue",
+    //   stat: "189",
+    //   color: "#AA7AEB",
+    //   icon: RentOverdueIcon,
+    // },
   ];
 
   return (
-    <div className="grid gap-4 md:grid-cols-3">
+    <div className="grid gap-4 md:grid-cols-2">
       {stats.map((stat) => (
         <StatsCard key={stat.name} {...stat} />
       ))}
