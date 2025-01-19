@@ -1,6 +1,7 @@
 import { queryOptions } from "@tanstack/react-query";
+import { hasCookie } from "cookies-next/client";
 
-import { getUser, isLoggedIn } from "@/services/auth";
+import { getUser } from "@/services/auth";
 
 export const userQuery = queryOptions({
   queryKey: ["user"],
@@ -8,8 +9,10 @@ export const userQuery = queryOptions({
   staleTime: 60 * 1000,
 });
 
+export const delay = (ms: number) =>
+  new Promise((resolve) => setTimeout(resolve, ms));
+
 export const userLoggedInQuery = queryOptions({
   queryKey: ["user-logged-in"],
-  queryFn: () => isLoggedIn(),
-  staleTime: 60 * 1000,
+  queryFn: () => hasCookie("authToken"),
 });

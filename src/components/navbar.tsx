@@ -10,7 +10,8 @@ import {
   PopoverGroup,
   PopoverPanel,
 } from "@headlessui/react";
-import { useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useDeleteCookie } from "cookies-next/client";
 import {
   ChevronDownIcon,
   LayoutDashboardIcon,
@@ -21,7 +22,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
-import { Suspense, useState } from "react";
+import { useState } from "react";
 
 import logo from "@/app/[locale]/assets/images/Logo.png";
 import { Button } from "@/components/ui/button";
@@ -37,22 +38,27 @@ import {
 import { Link, usePathname, useRouter } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 import { userLoggedInQuery } from "@/queries/user";
-import { logOut } from "@/services/auth";
 
 function NavRight() {
   const pathname = usePathname();
   const locale = useLocale();
   const router = useRouter();
+  const deleteCookie = useDeleteCookie();
 
   const queryCLient = useQueryClient();
 
-  const { data: isLoggedIn } = useSuspenseQuery(userLoggedInQuery);
+  const { data: isLoggedIn } = useQuery(userLoggedInQuery);
 
-  const onLogoutClick = () => {
-    logOut();
+  const onLogoutClick = async () => {
+    deleteCookie("authToken");
+    await queryCLient.invalidateQueries(userLoggedInQuery);
     router.refresh();
-    queryCLient.invalidateQueries(userLoggedInQuery);
   };
+
+  if (isLoggedIn == undefined) {
+    return <div className="h-10" />;
+  }
+
   return (
     <div className="flex flex-1 items-center justify-end gap-x-2">
       <Button asChild className="rounded-full" size="icon">
@@ -95,7 +101,7 @@ function NavRight() {
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (
-        <Button asChild size="lg" className="rounded-full">
+        <Button asChild className="rounded-full">
           <Link href="/login-register">Login/Signup</Link>
         </Button>
       )}
@@ -234,9 +240,7 @@ export default function Navbar() {
           </PopoverGroup>
         </div>
 
-        <Suspense fallback={<div className="h-10" />}>
-          <NavRight />
-        </Suspense>
+        <NavRight />
 
         <div className="flex lg:hidden">
           <button
