@@ -234,7 +234,7 @@ export default function Navbar() {
           </PopoverGroup>
         </div>
 
-        <Suspense>
+        <Suspense fallback={<div className="h-10" />}>
           <NavRight />
         </Suspense>
 

@@ -89,7 +89,7 @@ export default async function RootLayout(
       {/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */}
       <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID!} />
       <body className="font-sans antialiased">
-        <div>
+        <div className="flex min-h-svh flex-col">
           <NextIntlClientProvider
             messages={messages}
             formats={{
@@ -105,7 +105,7 @@ export default async function RootLayout(
             <NuqsAdapter>
               <Providers>
                 <Navbar />
-                {children}
+                <div className="flex-1">{children}</div>
                 <Footer />
                 <Toaster />
                 <a
