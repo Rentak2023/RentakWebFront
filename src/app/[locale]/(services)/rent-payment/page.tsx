@@ -91,13 +91,6 @@ export default function RentPayment(
           v.nonEmpty(t("fields.user-email.non-empty")),
           v.email(t("fields.user-email.invalid")),
         ),
-        tenant_national_id: v.pipe(
-          v.string(),
-          v.trim(),
-          v.nonEmpty(t("fields.national-id.non-empty")),
-          v.startsWith("2", t("fields.national-id.invalid")),
-          v.length(14, t("fields.national-id.invalid")),
-        ),
         tenant_phone: v.pipe(
           v.string(),
           v.trim(),
@@ -142,12 +135,6 @@ export default function RentPayment(
           autoComplete: "email",
         },
         {
-          name: "tenant_national_id",
-          label: t("fields.national-id.label"),
-          kind: "text",
-          type: "text",
-        },
-        {
           name: "tenant_phone",
           label: t("fields.user-phone.label"),
           kind: "text",
@@ -160,7 +147,6 @@ export default function RentPayment(
                 user_name: values.tenant_name,
                 user_email: values.tenant_email,
                 user_phone: values.tenant_phone,
-                national_id: values.tenant_national_id,
               });
               setUserId(res.userId);
               toast({

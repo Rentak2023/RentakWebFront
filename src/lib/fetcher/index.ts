@@ -1,4 +1,4 @@
-import { getCookie } from "cookies-next";
+import { type CookieValueTypes, getCookie } from "cookies-next";
 import ky from "ky";
 
 // eslint-disable-next-line unicorn/prefer-global-this
@@ -9,19 +9,16 @@ const instance = ky.create({
   hooks: {
     beforeRequest: [
       async (req) => {
+        let authToken: CookieValueTypes;
         if (isServer) {
           const cookies = await import("next/headers").then((i) => i.cookies);
 
-          const authToken = await getCookie("authToken", { cookies });
-
-          if (authToken) {
-            req.headers.set("Authorization", `Bearer ${authToken}`);
-          }
+          authToken = await getCookie("authToken", { cookies });
         } else {
-          const authToken = await getCookie("authToken");
-          if (authToken) {
-            req.headers.set("Authorization", `Bearer ${authToken}`);
-          }
+          authToken = await getCookie("authToken");
+        }
+        if (authToken) {
+          req.headers.set("Authorization", `Bearer ${authToken}`);
         }
       },
     ],
