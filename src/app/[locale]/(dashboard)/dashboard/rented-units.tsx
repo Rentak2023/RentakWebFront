@@ -1,7 +1,7 @@
 "use client";
 
 import { createColumnHelper } from "@tanstack/react-table";
-import { format, isDate, isPast } from "date-fns";
+import { format, isPast } from "date-fns";
 
 import { Button } from "@/components/ui/button";
 import { DataTable, DataTableColumnHeader } from "@/components/ui/data-table";
@@ -32,11 +32,14 @@ export const columns = [
     cell: (info) => {
       const date = info.getValue();
 
-      if (!isDate(date)) return "";
+      if (date == null) return "";
 
-      if (isPast(date)) return `Overdue ${format(date, "dd MMM, yyyy")}`;
+      const parsedDate = new Date(date);
 
-      return `Due in ${format(date, "dd MMM, yyyy")}`;
+      if (isPast(parsedDate))
+        return `Overdue ${format(parsedDate, "dd MMM, yyyy")}`;
+
+      return `Due in ${format(parsedDate, "dd MMM, yyyy")}`;
     },
     header: (info) => (
       <DataTableColumnHeader column={info.column} title="Next Rent" />

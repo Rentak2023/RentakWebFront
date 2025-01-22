@@ -7,21 +7,29 @@ import {
 } from "./dashboard-icons";
 import { StatsCard } from "./stats-card";
 
+const formatter = new Intl.NumberFormat("en-US", {});
+
 export async function Stats() {
   const landlordStats = await getLandlordStatistics();
 
   const stats = [
     {
-      name: "Rent Received",
-      stat: landlordStats.total_income.toString(),
-      color: "#EA79BA",
-      icon: RentReceivedIcon,
-    },
-    {
       name: "Upcoming Payments",
-      stat: landlordStats.upcoming_payments.toString(),
+      stat: formatter.format(landlordStats.upcoming_payments),
       color: "#6DACE7",
       icon: UpcomingPaymentsIcon,
+    },
+    {
+      name: "Rent in days",
+      stat: landlordStats.days_to_next_rent,
+      color: "#AA7AEB",
+      icon: RentOverdueIcon,
+    },
+    {
+      name: "All Rent Received",
+      stat: formatter.format(landlordStats.total_income),
+      color: "#EA79BA",
+      icon: RentReceivedIcon,
     },
     // {
     //   name: "Rent Overdue",
@@ -32,7 +40,7 @@ export async function Stats() {
   ];
 
   return (
-    <div className="grid gap-4 md:grid-cols-2">
+    <div className="grid gap-4 md:grid-cols-3">
       {stats.map((stat) => (
         <StatsCard key={stat.name} {...stat} />
       ))}
