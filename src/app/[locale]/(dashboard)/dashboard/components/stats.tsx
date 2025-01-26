@@ -1,3 +1,5 @@
+import { getTranslations } from "next-intl/server";
+
 import { getLandlordStatistics } from "@/services/dashboard";
 
 import {
@@ -10,23 +12,24 @@ import { StatsCard } from "./stats-card";
 const formatter = new Intl.NumberFormat("en-US", {});
 
 export async function Stats() {
+  const t = await getTranslations("dashboard.stats");
   const landlordStats = await getLandlordStatistics();
 
   const stats = [
     {
-      name: "Upcoming Payments",
+      name: t("upcoming-payments"),
       stat: formatter.format(landlordStats.upcoming_payments),
       color: "#6DACE7",
       icon: UpcomingPaymentsIcon,
     },
     {
-      name: "Rent in days",
+      name: t("rent-in-days"),
       stat: landlordStats.days_to_next_rent,
       color: "#AA7AEB",
       icon: RentOverdueIcon,
     },
     {
-      name: "All Rent Received",
+      name: t("upcoming-payments"),
       stat: formatter.format(landlordStats.total_income),
       color: "#EA79BA",
       icon: RentReceivedIcon,

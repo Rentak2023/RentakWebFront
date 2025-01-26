@@ -675,5 +675,36 @@
       "sending-otp": "Sending Code...",
       "creating-account": "Creating Account..."
     }
+  },
+  "dashboard": {
+    "titles": {
+      "dashboard": "Dashboard",
+      "home": "Home",
+      "my-units": "My Units"
+    },
+    "stats": {
+      "upcoming-payments": "Upcoming Payments",
+      "rent-in-days": "Rent In Days",
+      "all-rent-received": "All Rent Received"
+    },
+    "rented-units": {
+      "name": "Name",
+      "amount": "Amount",
+      "next-rent": "Next Rent",
+      "actions": "Actions",
+      "view-details": "View Details",
+      "due-in": "Due in {date}",
+      "overdue": "OverDue {date}"
+    },
+    "unit-modal": {
+      "tenant-info": "Tenant Info",
+      "contract-duration": "Contract Duration",
+      "start-date": "Start Date",
+      "end-date": "End Date",
+      "rent-collected": "Rent Collected",
+      "latest-transactions": "Latest Transactions",
+      "next-rent": "Next Rent",
+      "past": "Past"
+    }
   }
 }

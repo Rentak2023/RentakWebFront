@@ -1,4 +1,4 @@
-import { getLocale } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 
 import {
   Breadcrumb,
@@ -43,18 +43,19 @@ async function MyUnits() {
   return <RentedUnits units={units} />;
 }
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+  const t = await getTranslations("dashboard");
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
       <div className="mt-24 flex flex-col gap-8">
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
-              <BreadcrumbLink href="/">Home</BreadcrumbLink>
+              <BreadcrumbLink href="/">{t("titles.home")}</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbPage>Dashboard</BreadcrumbPage>
+              <BreadcrumbPage>{t("titles.dashboard")}</BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
@@ -63,14 +64,15 @@ export default function DashboardPage() {
 
         <div className="flex flex-col gap-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-3xl font-semibold tracking-tight">My Units</h2>
+            <h2 className="text-3xl font-semibold tracking-tight">
+              {t("titles.my-units")}
+            </h2>
             {/* <Button>Add Unit</Button> */}
           </div>
           <MyUnits />
         </div>
 
         <div className="flex flex-col gap-4">
-          <h2 className="text-3xl font-semibold tracking-tight">Services</h2>
           <Services />
         </div>
       </div>

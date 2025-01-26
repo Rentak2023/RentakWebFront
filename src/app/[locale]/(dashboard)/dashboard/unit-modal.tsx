@@ -1,6 +1,6 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { format } from "date-fns";
-import { useLocale } from "next-intl";
+import { format, formatters } from "date-fns";
+import { useFormatter, useLocale, useTranslations } from "next-intl";
 import { type SVGProps } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -31,11 +31,15 @@ function TransactionItem({
   transaction,
 }: Readonly<{ transaction: UnitContract["transactions"][number] }>) {
   const paymentStatus = getTransactionStatus(transaction);
+  const formmater = useFormatter();
+
   return (
     <div className="flex items-center justify-between">
       <div className="flex flex-col">
         <span className="text-sm font-semibold text-slate-700">
-          {format(transaction.due_date, "MMM dd, yyyy")}
+          {formmater.dateTime(new Date(transaction.due_date), {
+            dateStyle: "long",
+          })}
         </span>
         <span className="text-xs text-slate-500">
           {transaction.payment_method || "..."}
@@ -66,6 +70,8 @@ type UnitModalProps = {
 
 export function UnitModal({ unitId }: UnitModalProps) {
   const locale = useLocale();
+  const formater = useFormatter();
+  const t = useTranslations("dashboard.unit-modal");
   const { data: contract } = useSuspenseQuery(unitContract(unitId, locale));
 
   const currentTransaction = contract.transactions.find(
@@ -98,7 +104,7 @@ export function UnitModal({ unitId }: UnitModalProps) {
             <div className="flex flex-col gap-4">
               <div>
                 <h3 className="text-primary-800 text-xl font-semibold">
-                  Tenant info
+                  {t("tenant-info")}
                 </h3>
                 <div className="mt-4 flex flex-col items-start gap-1">
                   <p className="text-lg text-slate-600">
@@ -119,28 +125,32 @@ export function UnitModal({ unitId }: UnitModalProps) {
             </div>
             <div>
               <h3 className="text-primary-800 text-xl font-semibold">
-                Contract duration
+                {t("contract-duration")}
               </h3>
               <div className="mt-4 flex items-center gap-4">
                 <span>
                   <CalendarIcon className="size-6 text-slate-400" />
                 </span>
                 <div>
-                  <dt className="text-xs text-slate-500">Start date</dt>
-                  <dd className="text-sm font-medium text-slate-700">
-                    {format(contract.from, "dd MMM, yyyy")}
+                  <dt className="text-xs text-slate-500">{t("start-date")}</dt>
+                  <dd className="mt-1 text-sm font-medium text-slate-700">
+                    {formater.dateTime(new Date(contract.from), {
+                      dateStyle: "medium",
+                    })}
                   </dd>
                 </div>
               </div>
-              <div className="mx-3 h-6 border-l border-dashed border-slate-300" />
+              <div className="mx-3 h-6 border-s border-dashed border-slate-300" />
               <div className="flex items-center gap-4">
                 <span>
                   <CalendarIcon className="size-6 text-slate-400" />
                 </span>
                 <div>
-                  <dt className="text-xs text-slate-500">End date</dt>
-                  <dd className="text-sm font-medium text-slate-700">
-                    {format(contract.to, "dd MMM, yyyy")}
+                  <dt className="text-xs text-slate-500">{t("end-date")}</dt>
+                  <dd className="mt-1 text-sm font-medium text-slate-700">
+                    {formater.dateTime(new Date(contract.to), {
+                      dateStyle: "medium",
+                    })}
                   </dd>
                 </div>
               </div>
@@ -148,7 +158,7 @@ export function UnitModal({ unitId }: UnitModalProps) {
           </div>
           <div className="rounded-2xl p-4 shadow-sm">
             <h3 className="text-primary-800 text-xl font-semibold">
-              Rent collected
+              {t("rent-collected")}
             </h3>
             <div className="mt-4 flex max-w-80 items-center gap-4">
               <Progress
@@ -159,8 +169,9 @@ export function UnitModal({ unitId }: UnitModalProps) {
                 }
               />
               <span className="text-slate-500">
-                {contract.rent_collected.rent_collected}/
-                {contract.rent_collected.total_transactions}
+                {formater.number(contract.rent_collected.rent_collected)}
+                {locale === "en" ? "/" : "\\"}
+                {formater.number(contract.rent_collected.total_transactions)}
               </span>
             </div>
           </div>
@@ -168,18 +179,18 @@ export function UnitModal({ unitId }: UnitModalProps) {
         <div className="rounded-2xl p-4 shadow-sm">
           <div className="flex items-center justify-between">
             <h3 className="text-primary-800 text-xl font-semibold">
-              Latest transactions
+              {t("latest-transactions")}
             </h3>
           </div>
           {currentTransaction && (
             <>
-              <h4 className="text-xs text-slate-500">Next rent</h4>
+              <h4 className="mt-4 text-xs text-slate-500">{t("next-rent")}</h4>
               <div className="mt-2">
                 <TransactionItem transaction={currentTransaction} />
               </div>
             </>
           )}
-          <h4 className="mt-4 text-xs text-slate-500">Past</h4>
+          <h4 className="mt-4 text-xs text-slate-500">{t("past")}</h4>
           <div className="mt-2 flex flex-col gap-2">
             {contract.transactions
               .toReversed()

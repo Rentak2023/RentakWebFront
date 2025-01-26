@@ -91,7 +91,7 @@ const TableHead = ({
   <th
     ref={ref}
     className={cn(
-      "text-primary-900 h-12 px-4 text-left align-middle font-medium [&:has([role=checkbox])]:pr-0",
+      "text-primary-900 h-12 px-4 text-start align-middle font-medium [&:has([role=checkbox])]:pe-0",
       className,
     )}
     {...props}
@@ -109,7 +109,7 @@ const TableCell = ({
   <td
     ref={ref}
     className={cn(
-      "whitespace-nowrap p-4 align-middle text-slate-600 [&:has([role=checkbox])]:pr-0",
+      "whitespace-nowrap p-4 align-middle text-slate-600 [&:has([role=checkbox])]:pe-0",
       className,
     )}
     {...props}

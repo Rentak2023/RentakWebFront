@@ -678,5 +678,36 @@
       "sending-otp": "جاري إرسال الرمز...",
       "creating-account": "جاري إنشاء الحساب..."
     }
+  },
+  "dashboard": {
+    "titles": {
+      "dashboard": "لوحة التحكم",
+      "home": "الرئيسية",
+      "my-units": "وحداتي"
+    },
+    "stats": {
+      "upcoming-payments": "الدفعات المقبلة",
+      "rent-in-days": "الإيجار في الأيام",
+      "all-rent-received": "الإيجار الكلي المحصل"
+    },
+    "rented-units": {
+      "name": "الاسم",
+      "amount": "المبلغ",
+      "next-rent": "الإيجار التالي",
+      "actions": "الإجراءات",
+      "view-details": "عرض التفاصيل",
+      "due-in": "مستحق في {date}",
+      "overdue": "متأخر {date}"
+    },
+    "unit-modal": {
+      "tenant-info": "معلومات العميل",
+      "contract-duration": "مدة العقد",
+      "start-date": "تاريخ بدء العقد",
+      "end-date": "تاريخ انتهاء العقد",
+      "rent-collected": "الإيجار المحصل",
+      "latest-transactions": "المعاملات الحديثة",
+      "next-rent": "الإيجار التالي",
+      "past": "الماضي"
+    }
   }
 }
