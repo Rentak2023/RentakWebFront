@@ -9,48 +9,28 @@ import { Progress } from "@/components/ui/progress";
 import { unitContract } from "@/queries/dashboard";
 import { type UnitContract } from "@/services/dashboard";
 
-type Transaction = {
-  id: number;
-  date: Date;
-  status: "pending" | "collected" | "not-paid";
-  paymentMethod?: string;
-};
-
-const currentTransaction: Transaction = {
-  id: 1,
-  date: new Date(2024, 4, 1),
-  status: "pending",
-};
-
-const transactions: Array<Transaction> = [
-  {
-    id: 2,
-    date: new Date(2024, 3, 1),
-    status: "not-paid",
-  },
-  {
-    id: 3,
-    date: new Date(2024, 2, 1),
-    status: "collected",
-    paymentMethod: "Instapay",
-  },
-  {
-    id: 4,
-    date: new Date(2024, 1, 1),
-    status: "collected",
-    paymentMethod: "Credit Card",
-  },
-  {
-    id: 5,
-    date: new Date(2024, 0, 1),
-    status: "collected",
-    paymentMethod: "Instapay",
-  },
-];
+function getTransactionStatus(
+  transaction: UnitContract["transactions"][number],
+) {
+  if (
+    transaction.cashin_payment_status === "It has not been issued yet" ||
+    transaction.cashin_payment_status === "لم يتم اصدارها بعد"
+  ) {
+    return "pending";
+  } else if (
+    transaction.cashin_payment_status === "Paid" ||
+    transaction.cashin_payment_status === "تم الدفع"
+  ) {
+    return "paid";
+  } else {
+    return "unknown";
+  }
+}
 
 function TransactionItem({
   transaction,
 }: Readonly<{ transaction: UnitContract["transactions"][number] }>) {
+  const paymentStatus = getTransactionStatus(transaction);
   return (
     <div className="flex items-center justify-between">
       <div className="flex flex-col">
@@ -58,20 +38,23 @@ function TransactionItem({
           {format(transaction.due_date, "MMM dd, yyyy")}
         </span>
         <span className="text-xs text-slate-500">
-          {transaction.payment_method}
+          {transaction.payment_method || "..."}
         </span>
       </div>
       <span className="text-sm font-medium">
-        <span className="text-slate-700">
-          {transaction.cashin_payment_status}
-        </span>
-        {/* {transaction.status === "pending" ? (
-          <span className="text-amber-500">Pending</span>
-        ) : transaction.status === "collected" ? (
-          <span className="text-green-600">Collected</span>
+        {paymentStatus === "pending" ? (
+          <span className="text-amber-500">
+            {transaction.cashin_payment_status}
+          </span>
+        ) : paymentStatus === "paid" ? (
+          <span className="text-green-600">
+            {transaction.cashin_payment_status}
+          </span>
         ) : (
-          <span className="text-red-600">Not Paid</span>
-        )} */}
+          <span className="text-red-600">
+            {transaction.cashin_payment_status}
+          </span>
+        )}
       </span>
     </div>
   );
@@ -84,6 +67,10 @@ type UnitModalProps = {
 export function UnitModal({ unitId }: UnitModalProps) {
   const locale = useLocale();
   const { data: contract } = useSuspenseQuery(unitContract(unitId, locale));
+
+  const currentTransaction = contract.transactions.find(
+    (transaction) => getTransactionStatus(transaction) === "pending",
+  );
 
   return (
     <DialogContent className="max-h-dvh max-w-7xl overflow-y-auto">
@@ -184,15 +171,28 @@ export function UnitModal({ unitId }: UnitModalProps) {
               Latest transactions
             </h3>
           </div>
-          {/* <h4 className="text-xs text-slate-500">Next rent</h4>
-          <div className="mt-2">
-            <TransactionItem transaction={currentTransaction} />
-          </div> */}
-          {/* <h4 className="mt-4 text-xs text-slate-500">Past</h4> */}
+          {currentTransaction && (
+            <>
+              <h4 className="text-xs text-slate-500">Next rent</h4>
+              <div className="mt-2">
+                <TransactionItem transaction={currentTransaction} />
+              </div>
+            </>
+          )}
+          <h4 className="mt-4 text-xs text-slate-500">Past</h4>
           <div className="mt-2 flex flex-col gap-2">
-            {contract.transactions.map((transaction) => (
-              <TransactionItem key={transaction.id} transaction={transaction} />
-            ))}
+            {contract.transactions
+              .toReversed()
+              .filter(
+                (transaction) =>
+                  getTransactionStatus(transaction) !== "pending",
+              )
+              .map((transaction) => (
+                <TransactionItem
+                  key={transaction.id}
+                  transaction={transaction}
+                />
+              ))}
           </div>
         </div>
       </div>
