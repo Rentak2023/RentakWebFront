@@ -64,7 +64,7 @@ export const columns = [
           <DialogTrigger asChild>
             <Button variant="outline">View Details</Button>
           </DialogTrigger>
-          <UnitModal />
+          <UnitModal unitId={unit.id} />
         </Dialog>
       );
     },

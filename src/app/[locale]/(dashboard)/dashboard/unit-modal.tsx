@@ -1,9 +1,13 @@
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
+import { useLocale } from "next-intl";
 import { type SVGProps } from "react";
 
 import { Button } from "@/components/ui/button";
 import { DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Progress } from "@/components/ui/progress";
+import { unitContract } from "@/queries/dashboard";
+import { type UnitContract } from "@/services/dashboard";
 
 type Transaction = {
   id: number;
@@ -46,48 +50,60 @@ const transactions: Array<Transaction> = [
 
 function TransactionItem({
   transaction,
-}: Readonly<{ transaction: Transaction }>) {
+}: Readonly<{ transaction: UnitContract["transactions"][number] }>) {
   return (
     <div className="flex items-center justify-between">
       <div className="flex flex-col">
         <span className="text-sm font-semibold text-slate-700">
-          {format(transaction.date, "MMM dd, yyyy")}
+          {format(transaction.due_date, "MMM dd, yyyy")}
         </span>
         <span className="text-xs text-slate-500">
-          {transaction.paymentMethod ?? "...."}
+          {transaction.payment_method}
         </span>
       </div>
       <span className="text-sm font-medium">
-        {transaction.status === "pending" ? (
+        <span className="text-slate-700">
+          {transaction.cashin_payment_status}
+        </span>
+        {/* {transaction.status === "pending" ? (
           <span className="text-amber-500">Pending</span>
         ) : transaction.status === "collected" ? (
           <span className="text-green-600">Collected</span>
         ) : (
           <span className="text-red-600">Not Paid</span>
-        )}
+        )} */}
       </span>
     </div>
   );
 }
 
-export function UnitModal() {
+type UnitModalProps = {
+  unitId: number;
+};
+
+export function UnitModal({ unitId }: UnitModalProps) {
+  const locale = useLocale();
+  const { data: contract } = useSuspenseQuery(unitContract(unitId, locale));
+
   return (
     <DialogContent className="max-h-dvh max-w-7xl overflow-y-auto">
       <div className="flex flex-col gap-y-4 lg:flex-row lg:justify-between">
         <div className="flex items-center gap-4">
-          <div className="size-20 rounded-full bg-slate-400"></div>
+          {/* <div className="size-20 rounded-full bg-slate-400"></div> */}
           <div>
             <DialogTitle className="text-primary-900 text-xl font-semibold">
-              Cairo Festival - Podium
+              {contract.unit.name}
             </DialogTitle>
-            <h3 className="text-primary-900 text-lg">Madinty</h3>
-            <p className="text-green-600">Active rent</p>
+            <h3 className="text-primary-900 text-lg">
+              {contract.unit.address?.city}
+            </h3>
+            {/* <p className="text-green-600">Active rent</p> */}
           </div>
         </div>
-        <div className="flex items-center gap-4">
+        {/* <div className="flex items-center gap-4">
           <Button>View Contract</Button>
           <Button variant="outline">View Contract</Button>
-        </div>
+        </div> */}
       </div>
       <div className="grid gap-8 lg:grid-cols-2">
         <div className="flex flex-col gap-6">
@@ -99,11 +115,11 @@ export function UnitModal() {
                 </h3>
                 <div className="mt-4 flex flex-col items-start gap-1">
                   <p className="text-lg text-slate-600">
-                    Mohamed A***** E**** s**** Elsayed
+                    {contract.tenant.fullname}
                   </p>
                 </div>
               </div>
-              <div>
+              {/* <div>
                 <h3 className="text-primary-800 text-xl font-semibold">
                   Unit address
                 </h3>
@@ -112,7 +128,7 @@ export function UnitModal() {
                     77A - Pila Rose compound - Fifth settlement
                   </p>
                 </div>
-              </div>
+              </div> */}
             </div>
             <div>
               <h3 className="text-primary-800 text-xl font-semibold">
@@ -125,7 +141,7 @@ export function UnitModal() {
                 <div>
                   <dt className="text-xs text-slate-500">Start date</dt>
                   <dd className="text-sm font-medium text-slate-700">
-                    1 Oct 2023
+                    {format(contract.from, "dd MMM, yyyy")}
                   </dd>
                 </div>
               </div>
@@ -137,7 +153,7 @@ export function UnitModal() {
                 <div>
                   <dt className="text-xs text-slate-500">End date</dt>
                   <dd className="text-sm font-medium text-slate-700">
-                    1 Oct 2024
+                    {format(contract.to, "dd MMM, yyyy")}
                   </dd>
                 </div>
               </div>
@@ -148,8 +164,17 @@ export function UnitModal() {
               Rent collected
             </h3>
             <div className="mt-4 flex max-w-80 items-center gap-4">
-              <Progress value={(10 / 12) * 100} />
-              <span className="text-slate-500">10/12</span>
+              <Progress
+                value={
+                  (contract.rent_collected.rent_collected /
+                    contract.rent_collected.total_transactions) *
+                  100
+                }
+              />
+              <span className="text-slate-500">
+                {contract.rent_collected.rent_collected}/
+                {contract.rent_collected.total_transactions}
+              </span>
             </div>
           </div>
         </div>
@@ -159,13 +184,13 @@ export function UnitModal() {
               Latest transactions
             </h3>
           </div>
-          <h4 className="text-xs text-slate-500">Next rent</h4>
+          {/* <h4 className="text-xs text-slate-500">Next rent</h4>
           <div className="mt-2">
             <TransactionItem transaction={currentTransaction} />
-          </div>
-          <h4 className="mt-4 text-xs text-slate-500">Past</h4>
+          </div> */}
+          {/* <h4 className="mt-4 text-xs text-slate-500">Past</h4> */}
           <div className="mt-2 flex flex-col gap-2">
-            {transactions.map((transaction) => (
+            {contract.transactions.map((transaction) => (
               <TransactionItem key={transaction.id} transaction={transaction} />
             ))}
           </div>
