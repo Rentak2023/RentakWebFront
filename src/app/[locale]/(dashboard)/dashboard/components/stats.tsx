@@ -20,11 +20,12 @@ export async function Stats() {
       name: t("upcoming-payments"),
       stat: formatter.format(landlordStats.upcoming_payments),
       color: "#6DACE7",
+
       icon: UpcomingPaymentsIcon,
     },
     {
       name: t("rent-in-days"),
-      stat: landlordStats.days_to_next_rent,
+      stat: landlordStats.days_to_next_rent ?? "N/A",
       color: "#AA7AEB",
       icon: RentOverdueIcon,
     },
@@ -34,12 +35,6 @@ export async function Stats() {
       color: "#EA79BA",
       icon: RentReceivedIcon,
     },
-    // {
-    //   name: "Rent Overdue",
-    //   stat: "189",
-    //   color: "#AA7AEB",
-    //   icon: RentOverdueIcon,
-    // },
   ];
 
   return (

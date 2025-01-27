@@ -706,5 +706,19 @@
       "next-rent": "Next Rent",
       "past": "Past"
     }
+  },
+  "profile": {
+    "titles": {
+      "overview": "Overview",
+      "personal-infomation": "Personal Information",
+      "bank-details": "Bank Details"
+    },
+    "data": {
+      "full-name": "Full Name",
+      "phone": "Phone Number",
+      "email": "Email Address",
+      "national-id": "ID/Passport Number"
+    },
+    "no-data": "No Available Data"
   }
 }

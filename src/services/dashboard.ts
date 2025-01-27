@@ -6,7 +6,7 @@ import { type Unit } from "./types";
 type LandlordStats = {
   total_income: number;
   upcoming_payments: number;
-  days_to_next_rent: string;
+  days_to_next_rent: string | null;
 };
 
 export async function getLandlordStatistics() {

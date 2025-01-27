@@ -1,3 +1,5 @@
+import { getTranslations } from "next-intl/server";
+
 import { getUser, getUserTransferMethods } from "@/services/auth";
 
 type ProfileSection = {
@@ -9,23 +11,24 @@ type ProfileSection = {
 };
 
 export default async function Profile() {
+  const t = await getTranslations("profile");
   const user = await getUser();
   const userTransferMethods = await getUserTransferMethods();
 
   const profileSections: Array<ProfileSection> = [
     {
-      title: "Overview",
+      title: t("titles.overview"),
       data: [
         {
-          title: "Full Name",
+          title: t("data.full-name"),
           value: user.fullname,
         },
         {
-          title: "Phone Number",
+          title: t("data.phone"),
           value: user.phone,
         },
         {
-          title: "Email Address",
+          title: t("data.email"),
           value: user.email,
         },
         // {
@@ -35,10 +38,10 @@ export default async function Profile() {
       ],
     },
     {
-      title: "Personal Information",
+      title: t("titles.personal-infomation"),
       data: [
         {
-          title: "ID/Passport Number",
+          title: t("data.national-id"),
           value: user.national_id,
         },
         // {
@@ -60,7 +63,7 @@ export default async function Profile() {
       ],
     },
     {
-      title: "Bank Details",
+      title: t("titles.bank-details"),
       data: userTransferMethods.map((method) => ({
         title: method.methodName,
         value: method.value,
@@ -79,14 +82,20 @@ export default async function Profile() {
             </h2>
 
             <div className="mt-4 grid grid-cols-2 gap-4 rounded-lg border border-slate-200 p-4">
-              {section.data.map((item) => (
-                <div key={item.title}>
-                  <dt className="font-medium text-slate-500">{item.title}</dt>
-                  <dd className="text-primary-900 text-xl font-medium">
-                    {item.value}
-                  </dd>
+              {section.data.length > 0 ? (
+                section.data.map((item) => (
+                  <div key={item.title}>
+                    <dt className="font-medium text-slate-500">{item.title}</dt>
+                    <dd className="text-primary-900 mt-1 text-xl font-medium">
+                      {item.value || "N/A"}
+                    </dd>
+                  </div>
+                ))
+              ) : (
+                <div>
+                  <h3 className="text-xl text-slate-500">{t("no-data")}</h3>
                 </div>
-              ))}
+              )}
             </div>
           </div>
         ))}

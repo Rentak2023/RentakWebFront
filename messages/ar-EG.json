@@ -709,5 +709,19 @@
       "next-rent": "الإيجار التالي",
       "past": "الماضي"
     }
+  },
+  "profile": {
+    "titles": {
+      "overview": "نظرة عامة",
+      "personal-infomation": "معلومات شخصية",
+      "bank-details": "تفاصيل البنك"
+    },
+    "data": {
+      "full-name": "الاسم الكامل",
+      "phone": "رقم الهاتف",
+      "email": "البريد الألكتروني",
+      "national-id": "رقم البطاقة/الباسبور"
+    },
+    "no-data": "لا يوجد بيانات"
   }
 }
