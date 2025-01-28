@@ -687,8 +687,10 @@
     },
     "stats": {
       "upcoming-payments": "الدفعات المقبلة",
-      "rent-in-days": "الإيجار في الأيام",
-      "all-rent-received": "الإيجار الكلي المحصل"
+      "rent-in-days": "الإيجار القادم",
+      "all-rent-received": "الإيجار الكلي المحصل",
+      "days": "{count, plural, =0 { } =1 {يوم} few {أيام} many {يوم} other {أيام}}",
+      "egp": "ج.م."
     },
     "rented-units": {
       "name": "الاسم",

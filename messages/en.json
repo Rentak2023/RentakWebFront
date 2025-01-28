@@ -685,7 +685,9 @@
     "stats": {
       "upcoming-payments": "Upcoming Payments",
       "rent-in-days": "Rent In Days",
-      "all-rent-received": "All Rent Received"
+      "all-rent-received": "All Rent Received",
+      "days": "{count, plural, =0 { } =1 {day} other {days}}",
+      "egp": "EGP"
     },
     "rented-units": {
       "name": "Name",

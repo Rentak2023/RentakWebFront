@@ -19,19 +19,23 @@ export async function Stats() {
     {
       name: t("upcoming-payments"),
       stat: formatter.format(landlordStats.upcoming_payments),
+      unit: t("egp"),
       color: "#6DACE7",
-
       icon: UpcomingPaymentsIcon,
     },
     {
       name: t("rent-in-days"),
       stat: landlordStats.days_to_next_rent ?? "N/A",
+      unit: t("days", {
+        count: Number(landlordStats.days_to_next_rent ?? 0),
+      }),
       color: "#AA7AEB",
       icon: RentOverdueIcon,
     },
     {
-      name: t("upcoming-payments"),
+      name: t("all-rent-received"),
       stat: formatter.format(landlordStats.total_income),
+      unit: t("egp"),
       color: "#EA79BA",
       icon: RentReceivedIcon,
     },
