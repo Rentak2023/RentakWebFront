@@ -42,7 +42,7 @@ export async function Stats() {
   ];
 
   return (
-    <div className="grid gap-4 md:grid-cols-3">
+    <div className="shadow-primary-900/15 md:divide-x-1 grid gap-4 rounded-lg bg-white p-6 shadow-md md:grid-cols-3 md:divide-slate-200">
       {stats.map((stat) => (
         <StatsCard key={stat.name} {...stat} />
       ))}

@@ -16,7 +16,7 @@ export function StatsCard({
   icon: Icon,
 }: StatsCardProps) {
   return (
-    <div className="shadow-primary-900/15 rounded-lg bg-white p-6 shadow-md">
+    <div>
       <div className="flex items-center gap-4">
         <div
           className="rounded-full p-4"

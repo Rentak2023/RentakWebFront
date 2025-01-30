@@ -682,6 +682,7 @@
   "dashboard": {
     "titles": {
       "dashboard": "لوحة التحكم",
+      "overview": "نظرة عامة",
       "home": "الرئيسية",
       "my-units": "وحداتي"
     },

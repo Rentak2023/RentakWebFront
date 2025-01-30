@@ -60,6 +60,10 @@ export default async function DashboardPage() {
           </BreadcrumbList>
         </Breadcrumb>
 
+        <h2 className="text-3xl font-semibold tracking-tight">
+          {t("titles.overview")}
+        </h2>
+
         <Stats />
 
         <div className="flex flex-col gap-4">

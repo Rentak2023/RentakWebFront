@@ -679,6 +679,7 @@
   "dashboard": {
     "titles": {
       "dashboard": "Dashboard",
+      "overview": "Overview",
       "home": "Home",
       "my-units": "My Units"
     },
