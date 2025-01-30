@@ -18,8 +18,13 @@ export async function getLandlordStatistics() {
 }
 
 export type RentedUnit = Unit & {
-  next_rent: null | string;
-  tenant: null | string;
+  next_rent: string | null;
+  tenant: string | null;
+  is_for_listing: boolean | null;
+  contract_type: {
+    id: number;
+    type_name: number;
+  } | null;
 };
 
 type UnitsRes = Array<RentedUnit>;
@@ -89,14 +94,12 @@ export type UnitContract = {
 };
 
 export async function getUnitDetails(unitId: number, locale: Locale) {
-  const res = await ky
-    .get("dashboard/get-unit-details", {
-      searchParams: {
-        unit_id: unitId,
-        lang: locale === "en" ? "en" : "ar",
-      },
-    })
-    .json<UnitContract>();
+  const res = await ky.get("dashboard/get-unit-details", {
+    searchParams: {
+      unit_id: unitId,
+      lang: locale === "en" ? "en" : "ar",
+    },
+  });
 
-  return res;
+  return res.json<UnitContract>();
 }

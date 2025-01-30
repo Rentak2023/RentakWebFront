@@ -105,7 +105,7 @@ export function DataTableColumnHeader<TData>({
   const isSorted = column.getIsSorted();
   return (
     <button
-      className="group inline-flex"
+      className="group inline-flex cursor-pointer"
       onClick={() => {
         column.toggleSorting(isSorted === "asc");
       }}

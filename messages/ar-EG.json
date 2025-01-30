@@ -695,6 +695,7 @@
     "rented-units": {
       "name": "الاسم",
       "amount": "المبلغ",
+      "contract-type": "نوع العقد",
       "next-rent": "الإيجار التالي",
       "actions": "الإجراءات",
       "view-details": "عرض التفاصيل",

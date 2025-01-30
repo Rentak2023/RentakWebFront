@@ -1,9 +1,7 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { format, formatters } from "date-fns";
 import { useFormatter, useLocale, useTranslations } from "next-intl";
 import { type SVGProps } from "react";
 
-import { Button } from "@/components/ui/button";
 import { DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Progress } from "@/components/ui/progress";
 import { unitContract } from "@/queries/dashboard";
@@ -14,7 +12,9 @@ function getTransactionStatus(
 ) {
   if (
     transaction.cashin_payment_status === "It has not been issued yet" ||
-    transaction.cashin_payment_status === "لم يتم اصدارها بعد"
+    transaction.cashin_payment_status === "لم يتم اصدارها بعد" ||
+    transaction.cashin_payment_status === "Pending to pay" ||
+    transaction.cashin_payment_status === "قيد انتظار الدفع"
   ) {
     return "pending";
   } else if (
@@ -123,38 +123,42 @@ export function UnitModal({ unitId }: UnitModalProps) {
                 </div>
               </div> */}
             </div>
-            <div>
-              <h3 className="text-primary-800 text-xl font-semibold">
-                {t("contract-duration")}
-              </h3>
-              <div className="mt-4 flex items-center gap-4">
-                <span>
-                  <CalendarIcon className="size-6 text-slate-400" />
-                </span>
-                <div>
-                  <dt className="text-xs text-slate-500">{t("start-date")}</dt>
-                  <dd className="mt-1 text-sm font-medium text-slate-700">
-                    {formater.dateTime(new Date(contract.from), {
-                      dateStyle: "medium",
-                    })}
-                  </dd>
+            {contract.from && contract.to && (
+              <div>
+                <h3 className="text-primary-800 text-xl font-semibold">
+                  {t("contract-duration")}
+                </h3>
+                <div className="mt-4 flex items-center gap-4">
+                  <span>
+                    <CalendarIcon className="size-6 text-slate-400" />
+                  </span>
+                  <div>
+                    <dt className="text-xs text-slate-500">
+                      {t("start-date")}
+                    </dt>
+                    <dd className="mt-1 text-sm font-medium text-slate-700">
+                      {formater.dateTime(new Date(contract.from), {
+                        dateStyle: "medium",
+                      })}
+                    </dd>
+                  </div>
+                </div>
+                <div className="mx-3 h-6 border-s border-dashed border-slate-300" />
+                <div className="flex items-center gap-4">
+                  <span>
+                    <CalendarIcon className="size-6 text-slate-400" />
+                  </span>
+                  <div>
+                    <dt className="text-xs text-slate-500">{t("end-date")}</dt>
+                    <dd className="mt-1 text-sm font-medium text-slate-700">
+                      {formater.dateTime(new Date(contract.to), {
+                        dateStyle: "medium",
+                      })}
+                    </dd>
+                  </div>
                 </div>
               </div>
-              <div className="mx-3 h-6 border-s border-dashed border-slate-300" />
-              <div className="flex items-center gap-4">
-                <span>
-                  <CalendarIcon className="size-6 text-slate-400" />
-                </span>
-                <div>
-                  <dt className="text-xs text-slate-500">{t("end-date")}</dt>
-                  <dd className="mt-1 text-sm font-medium text-slate-700">
-                    {formater.dateTime(new Date(contract.to), {
-                      dateStyle: "medium",
-                    })}
-                  </dd>
-                </div>
-              </div>
-            </div>
+            )}
           </div>
           <div className="rounded-2xl p-4 shadow-sm">
             <h3 className="text-primary-800 text-xl font-semibold">

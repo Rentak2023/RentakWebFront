@@ -8,6 +8,7 @@ import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { DataTable, DataTableColumnHeader } from "@/components/ui/data-table";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
+import { Link } from "@/i18n/routing";
 import { type RentedUnit } from "@/services/dashboard";
 
 import { UnitModal } from "./unit-modal";
@@ -40,11 +41,15 @@ export function RentedUnits({ units }: RentedUnits) {
         />
       ),
     }),
+    columnHelper.accessor("contract_type.type_name", {
+      cell: (info) => info.getValue() || "N/A",
+      header: () => t("rented-units.contract-type"),
+    }),
     columnHelper.accessor("next_rent", {
       cell: (info) => {
         const date = info.getValue();
 
-        if (date == null) return "";
+        if (date == null) return "N/A";
 
         const parsedDate = new Date(date);
 
@@ -82,16 +87,28 @@ export function RentedUnits({ units }: RentedUnits) {
       cell: (info) => {
         const unit = info.row.original;
 
-        return (
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button variant="outline">
-                {t("rented-units.view-details")}
-              </Button>
-            </DialogTrigger>
-            <UnitModal unitId={unit.id} />
-          </Dialog>
-        );
+        if (unit.tenant) {
+          return (
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button variant="outline">
+                  {t("rented-units.view-details")}
+                </Button>
+              </DialogTrigger>
+              <UnitModal unitId={unit.id} />
+            </Dialog>
+          );
+        }
+
+        if (unit.is_for_listing) {
+          return (
+            <Button variant="outline" asChild>
+              <Link href={`/units/${unit.id}`}>View Unit</Link>
+            </Button>
+          );
+        }
+
+        return "";
       },
       header: () => t("rented-units.actions"),
     }),
