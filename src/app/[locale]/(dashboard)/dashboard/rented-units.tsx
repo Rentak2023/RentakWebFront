@@ -24,15 +24,21 @@ export function RentedUnits({ units }: RentedUnits) {
 
   const columns = [
     columnHelper.accessor("property_name", {
-      cell: (info) => info.getValue(),
+      cell: (info) => <span className="font-semibold">{info.getValue()}</span>,
       header: () => t("rented-units.name"),
     }),
     columnHelper.accessor("price", {
       cell: (info) => {
         const amount = info.getValue();
+        if (!amount) return "";
+
         const formatted = new Intl.NumberFormat("en-US", {}).format(amount);
 
-        return <span className="tabular-nums">{formatted}</span>;
+        return (
+          <span className="tabular-nums">
+            {formatted} {t("stats.egp")}
+          </span>
+        );
       },
       header: (info) => (
         <DataTableColumnHeader

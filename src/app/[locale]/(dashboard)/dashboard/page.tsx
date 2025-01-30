@@ -68,7 +68,7 @@ export default async function DashboardPage() {
 
         <div className="flex flex-col gap-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-3xl font-semibold tracking-tight">
+            <h2 className="mb-2 text-3xl font-semibold tracking-tight">
               {t("titles.my-units")}
             </h2>
             {/* <Button>Add Unit</Button> */}
