@@ -401,16 +401,24 @@ export default function RentPayment(
           actionText: t("fields.promo-code.action-text"),
           action: async (data) => {
             try {
-              const res = await checkPromoCode(data.promo_code);
+              // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+              const res = await checkPromoCode(data.promo_code, userId!);
               setDiscount(res.promocode.discount);
               toast({
                 title: "Success",
                 description: "Promo code applied",
               });
-            } catch {
+            } catch (error) {
+              let message = "Something went wrong";
+              if (error instanceof HTTPError && error.response.status === 400) {
+                const errorRes = await error.response.json<{
+                  message: string;
+                }>();
+                message = errorRes.message;
+              }
               toast({
                 title: "Error",
-                description: "Invalid Promo Code",
+                description: message,
                 variant: "destructive",
               });
             }

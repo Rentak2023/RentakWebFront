@@ -13,11 +13,12 @@ type PromoCodeResponse = {
   };
 };
 
-export async function checkPromoCode(promo: string) {
+export async function checkPromoCode(promo: string, userId: number) {
   const res = await ky
     .post("promocode/check-promocode", {
       json: {
         code: promo,
+        user_id: userId,
       },
     })
     .json<PromoCodeResponse>();
