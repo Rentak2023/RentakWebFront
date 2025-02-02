@@ -16,7 +16,7 @@ export type Field = {
 } & (
   | {
       kind: "select";
-      options: Array<{ value: string; label: string }>;
+      options: Array<{ value: string; label: string; picture?: string }>;
     }
   | {
       kind: "checkbox";

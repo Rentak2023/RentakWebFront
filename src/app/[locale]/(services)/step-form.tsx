@@ -1,6 +1,7 @@
 import { valibotResolver } from "@hookform/resolvers/valibot";
 import { useMutation } from "@tanstack/react-query";
 import { ArrowLeft, ArrowRight, CalendarIcon, Loader2 } from "lucide-react";
+import Image from "next/image";
 import { useFormatter, useTranslations } from "next-intl";
 import { useEffect, useId, useMemo } from "react";
 import {
@@ -232,7 +233,18 @@ function StepField({ formField, field, useFormStore }: StepFieldProps) {
             <SelectContent>
               {formField.options.map((option) => (
                 <SelectItem key={option.value} value={option.value}>
-                  {option.label}
+                  <div className="flex items-center gap-4">
+                    {option.picture && (
+                      <Image
+                        src={option.picture}
+                        className="object-contain"
+                        alt=""
+                        width={40}
+                        height={40}
+                      />
+                    )}
+                    <span>{option.label}</span>
+                  </div>
                 </SelectItem>
               ))}
             </SelectContent>

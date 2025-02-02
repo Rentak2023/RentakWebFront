@@ -4,6 +4,7 @@ type PaymentMethod = {
   id: number;
   method_name_ar: string;
   method_name_en: string;
+  picture: string;
 };
 
 type PaymentMethodsResponse = {

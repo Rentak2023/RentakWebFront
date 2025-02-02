@@ -6,6 +6,7 @@ export const isServer = typeof window === "undefined" || "Deno" in globalThis;
 
 const instance = ky.create({
   prefixUrl: process.env.NEXT_PUBLIC_APP_API_URL,
+  timeout: 90_000,
   hooks: {
     beforeRequest: [
       async (req) => {

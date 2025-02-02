@@ -196,6 +196,7 @@ export default function RentPayment(
               locale === "en"
                 ? paymentMethod.method_name_en
                 : paymentMethod.method_name_ar,
+            picture: paymentMethod.picture,
           })),
         },
       ],
