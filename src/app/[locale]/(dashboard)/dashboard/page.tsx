@@ -46,7 +46,7 @@ async function MyUnits() {
 export default async function DashboardPage() {
   const t = await getTranslations("dashboard");
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:max-w-7xl">
       <div className="mt-24 flex flex-col gap-8">
         <Breadcrumb>
           <BreadcrumbList>
