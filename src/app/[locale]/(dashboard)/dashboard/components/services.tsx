@@ -138,19 +138,31 @@ const Services = () => {
       cta: t("legal-contract.cta"),
       icon: (props) => (
         <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          width="43"
+          height="42"
+          fill="none"
+          viewBox="0 0 43 42"
           {...props}
         >
+          <path fill="#000" d="m19.406 33.318.007.002-.007-.002Z" />
           <path
-            fillRule="evenodd"
-            clipRule="evenodd"
-            d="M3 4.07692C3 2.92987 3.92987 2 5.07692 2H16.4406L21 6.55939V20.6923C21 21.8393 20.0701 22.7692 18.9231 22.7692H5.07692C3.92987 22.7692 3 21.8393 3 20.6923V4.07692ZM11.3077 7.53846H7.15385V8.92308H11.3077V7.53846ZM16.8462 11.6923H7.15385V13.0769H16.8462V11.6923ZM10.345 17.1031C9.78579 17.2533 9.3491 17.6804 9.19521 18.142L7.88164 17.7042C8.1893 16.7812 8.99876 16.0311 9.98573 15.766C10.9648 15.5029 12.0811 15.7233 13.0476 16.6124C13.338 16.527 13.6256 16.4789 13.9101 16.4637C14.6559 16.4237 15.3262 16.6118 15.9009 16.8512C16.3229 17.0271 16.7321 17.2495 17.0761 17.4364C17.1859 17.4961 17.2894 17.5523 17.3842 17.6021C17.8319 17.8371 18.0782 17.9231 18.2308 17.9231V19.3077C17.6909 19.3077 17.1584 19.0474 16.7406 18.8281C16.6117 18.7604 16.487 18.6926 16.3639 18.6258C16.0353 18.4473 15.7185 18.2753 15.3683 18.1294C14.9045 17.9361 14.4498 17.8213 13.9841 17.8464C13.9164 17.85 13.8473 17.8566 13.7768 17.8667L13.7784 17.8851C13.8154 18.3349 13.6298 18.7047 13.3908 18.9703C12.9497 19.4604 12.231 19.7175 11.6911 19.8157C11.4099 19.8668 11.1073 19.8883 10.841 19.8494C10.7106 19.8302 10.5425 19.7902 10.3841 19.6959C10.2157 19.5957 10.0161 19.4039 9.96492 19.097C9.91733 18.8114 10.0248 18.5761 10.1187 18.4314C10.2156 18.2821 10.346 18.1531 10.4808 18.0416C10.743 17.8244 11.1251 17.5895 11.6356 17.3313L11.6729 17.3043C11.1906 17.0225 10.7275 17.0004 10.345 17.1031Z"
             fill="currentColor"
+            fillRule="evenodd"
+            d="M6 6.548A3.548 3.548 0 0 1 9.548 3h19.413l7.789 7.789v24.144a3.548 3.548 0 0 1-3.548 3.548H9.548A3.548 3.548 0 0 1 6 34.933V6.548Zm14.192 5.913h-7.096v2.366h7.096V12.46Zm9.462 7.097H13.096v2.365h16.558v-2.365Z"
+            clipRule="evenodd"
           />
+          <path
+            fill="currentColor"
+            d="M13.096 25.343h16.558v2.366H13.096v-2.366Z"
+          />
+          <path
+            fill="#F2F7FC"
+            stroke="currentColor"
+            strokeWidth="1.2"
+            d="M28.457 36.78h-.001a7.125 7.125 0 0 0-.968-.468l-.436 1.118c.26.101.53.232.803.39.274.158.523.326.737.499l.755-.933a7.027 7.027 0 0 0-.89-.605Zm3.113-.052-.005.003-4.763 3.144a.133.133 0 0 1-.138.005.131.131 0 0 1-.064-.12l.342-5.699a.137.137 0 0 1 .018-.06l9.118-15.791a.13.13 0 0 1 .072-.06c.024-.006.269-.075.7-.036.452.04 1.125.199 1.981.693.856.494 1.33.998 1.591 1.37.245.347.31.591.318.623a.132.132 0 0 1-.015.092l-9.118 15.795a.119.119 0 0 1-.037.041Z"
+          />
+          <path fill="#F2F7FC" d="M13 26h17v3H13z" />
         </svg>
       ),
       href: "/contract",
@@ -191,32 +203,28 @@ const Services = () => {
           <h2 className="text-capitalized text-primary-900 text-3xl font-semibold tracking-tight sm:text-4xl">
             {t("title")}
           </h2>
-          {/* <p className="mt-6 text-lg leading-8 text-slate-600">
-            Lorem ipsum dolor sit amet consect adipisicing elit. Possimus magnam
-            voluptatum cupiditate veritatis in accusamus quisquam.
-          </p> */}
         </div>
         <div className="mx-auto mt-8 max-w-2xl sm:mt-12 lg:mt-16 lg:max-w-none">
           <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
-            {services.map((feature) => (
-              <div key={feature.title} className="flex flex-col">
-                <dt className="text-primary-900 text-base font-semibold leading-7">
-                  <div className="mb-6 flex size-12 items-center justify-center rounded-lg border border-slate-300 bg-white">
-                    <feature.icon
+            {services.map((service) => (
+              <div key={service.title} className="flex flex-col">
+                <dt className="text-primary-900 flex flex-col items-start justify-start gap-3 text-base font-semibold leading-7">
+                  <div className="bg-primary-600/5 flex size-12 items-center justify-center rounded-full p-2">
+                    <service.icon
+                      className="text-primary-800 size-6"
                       aria-hidden="true"
-                      className="text-primary-600 size-8"
                     />
                   </div>
-                  {feature.title}
+                  {service.title}
                 </dt>
                 <dd className="mt-1 flex flex-auto flex-col text-base leading-7 text-slate-600">
-                  <h3 className="flex-auto">{feature.description}</h3>
+                  <h3 className="flex-auto">{service.description}</h3>
                   <p className="mt-4">
                     <a
-                      href={feature.href}
+                      href={service.href}
                       className="text-primary-600 text-sm font-semibold leading-6 underline"
                     >
-                      {feature.cta}
+                      {service.cta}
                       {/* <span aria-hidden="true">→</span> */}
                     </a>
                   </p>
