@@ -213,8 +213,8 @@ export default function Navbar() {
                           pathname === item.path
                             ? "font-semibold text-slate-900"
                             : "font-medium text-slate-700",
-                          item.disabled &&
-                            "disabled text-slate-400! pointer-events-none",
+                          item.disabled
+                            && "disabled text-slate-400! pointer-events-none",
                         )}
                       >
                         {item.name}
@@ -312,8 +312,8 @@ export default function Navbar() {
                               pathname === item.path
                                 ? "font-semibold text-slate-900"
                                 : "font-medium text-slate-700",
-                              item.disabled &&
-                                "disabled text-slate-400! pointer-events-none",
+                              item.disabled
+                                && "disabled text-slate-400! pointer-events-none",
                             )}
                           >
                             {item.name}

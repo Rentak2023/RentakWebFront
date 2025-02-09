@@ -321,10 +321,10 @@ function VerticalContent({ children }: { children: React.ReactNode }) {
     <>
       {React.Children.map(children, (child, i) => {
         const isCompletedStep =
-          (React.isValidElement(child) &&
-            (child as React.ReactElement<FullStepProps>).props
-              .isCompletedStep) ??
-          i < activeStep;
+          (React.isValidElement(child)
+            && (child as React.ReactElement<FullStepProps>).props
+              .isCompletedStep)
+          ?? i < activeStep;
         const isLastStep = i === stepCount - 1;
         const isCurrentStep = i === activeStep;
 
@@ -552,11 +552,11 @@ const VerticalStep = ({
                 // was the last step or if the step is not the first step
                 // This prevents initial scrolling when the stepper
                 // is located anywhere other than the top of the view.
-                scrollTracking &&
-                ((index === 0 &&
-                  previousActiveStep &&
-                  previousActiveStep === steps.length) ??
-                  (index && index > 0))
+                scrollTracking
+                && ((index === 0
+                  && previousActiveStep
+                  && previousActiveStep === steps.length)
+                  ?? (index && index > 0))
               ) {
                 node?.scrollIntoView({
                   behavior: "smooth",
@@ -591,8 +591,8 @@ const VerticalStep = ({
       data-clickable={clickable ?? !!onClickStep}
       data-invalid={localIsError}
       onClick={() =>
-        onClickStep?.(index ?? 0, setStep) ??
-        onClickStepGeneral?.(index ?? 0, setStep)
+        onClickStep?.(index ?? 0, setStep)
+        ?? onClickStepGeneral?.(index ?? 0, setStep)
       }
     >
       <div
@@ -601,8 +601,8 @@ const VerticalStep = ({
         className={cn(
           "stepper__vertical-step-container",
           "flex items-center",
-          variant === "line" &&
-            "data-[active=true]:border-primary-600 border-s-[3px] py-2 ps-3",
+          variant === "line"
+            && "data-[active=true]:border-primary-600 border-s-[3px] py-2 ps-3",
           styles?.["vertical-step-container"],
         )}
       >
@@ -700,12 +700,12 @@ const HorizontalStep = ({
         "not-last:after:h-[2px] not-last:after:bg-slate-200 not-last:after:content-['']",
         "data-[completed=true]:not-last:after:bg-slate-700",
         "data-[invalid=true]:not-last:after:bg-red-600",
-        variant === "circle-alt" &&
-          "not-last:after:relative not-last:after:end-[50%] not-last:after:start-[50%] not-last:after:top-[calc(var(--step-icon-size)/2)] not-last:after:-order-1 not-last:after:w-[calc((100%-var(--step-icon-size))-(var(--step-gap)))] flex-1 flex-col justify-start",
-        variant === "circle" &&
-          "not-last:after:me-(--step-gap) not-last:after:ms-(--step-gap) not-last:after:flex-1",
-        variant === "line" &&
-          "data-[active=true]:border-primary-600 flex-1 flex-col border-t-[3px]",
+        variant === "circle-alt"
+          && "not-last:after:relative not-last:after:end-[50%] not-last:after:start-[50%] not-last:after:top-[calc(var(--step-icon-size)/2)] not-last:after:-order-1 not-last:after:w-[calc((100%-var(--step-icon-size))-(var(--step-gap)))] flex-1 flex-col justify-start",
+        variant === "circle"
+          && "not-last:after:me-(--step-gap) not-last:after:ms-(--step-gap) not-last:after:flex-1",
+        variant === "line"
+          && "data-[active=true]:border-primary-600 flex-1 flex-col border-t-[3px]",
         styles?.["horizontal-step"],
       )}
       data-optional={steps[index ?? 0]?.optional}

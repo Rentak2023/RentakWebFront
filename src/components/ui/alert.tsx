@@ -23,8 +23,8 @@ const Alert = ({
   className,
   variant,
   ...props
-}: React.HTMLAttributes<HTMLDivElement> &
-  VariantProps<typeof alertVariants> & {
+}: React.HTMLAttributes<HTMLDivElement>
+  & VariantProps<typeof alertVariants> & {
     ref?: React.RefObject<HTMLDivElement>;
   }) => (
   <div

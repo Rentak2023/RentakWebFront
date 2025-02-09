@@ -32,8 +32,8 @@ export type Field = {
       type: HTMLInputTypeAttribute;
       autoComplete?: HTMLInputAutoCompleteAttribute;
     }
-) &
-  (
+)
+  & (
     | {
         action: (data: Record<string, any>) => Promise<void>;
         actionText: string;

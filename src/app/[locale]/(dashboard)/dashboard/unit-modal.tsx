@@ -11,15 +11,15 @@ function getTransactionStatus(
   transaction: UnitContract["transactions"][number],
 ) {
   if (
-    transaction.cashin_payment_status === "It has not been issued yet" ||
-    transaction.cashin_payment_status === "لم يتم اصدارها بعد" ||
-    transaction.cashin_payment_status === "Pending to pay" ||
-    transaction.cashin_payment_status === "قيد انتظار الدفع"
+    transaction.cashin_payment_status === "It has not been issued yet"
+    || transaction.cashin_payment_status === "لم يتم اصدارها بعد"
+    || transaction.cashin_payment_status === "Pending to pay"
+    || transaction.cashin_payment_status === "قيد انتظار الدفع"
   ) {
     return "pending";
   } else if (
-    transaction.cashin_payment_status === "Paid" ||
-    transaction.cashin_payment_status === "تم الدفع"
+    transaction.cashin_payment_status === "Paid"
+    || transaction.cashin_payment_status === "تم الدفع"
   ) {
     return "paid";
   } else {
@@ -169,9 +169,9 @@ export function UnitModal({ unitId }: UnitModalProps) {
             <div className="mt-4 flex max-w-80 items-center gap-4">
               <Progress
                 value={
-                  (contract.rent_collected.rent_collected /
-                    contract.rent_collected.total_transactions) *
-                  100
+                  (contract.rent_collected.rent_collected
+                    / contract.rent_collected.total_transactions)
+                  * 100
                 }
               />
               <span className="text-slate-500">

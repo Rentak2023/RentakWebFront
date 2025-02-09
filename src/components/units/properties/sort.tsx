@@ -26,8 +26,8 @@ function Sort() {
     if (value == null || (value === "" && searchParamsObj.has("sort_by"))) {
       searchParamsObj.delete("sort_by");
     } else if (
-      value !== "" &&
-      searchParamsObj.get("sort_by") !== value.toString()
+      value !== ""
+      && searchParamsObj.get("sort_by") !== value.toString()
     ) {
       searchParamsObj.set("sort_by", value.toString());
     }

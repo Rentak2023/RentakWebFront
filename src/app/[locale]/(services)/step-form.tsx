@@ -95,8 +95,8 @@ export function StepForm({
     () =>
       step.fields.filter(
         (field) =>
-          !field.condition ||
-          field.condition({ ...formData, ...currentValues }),
+          !field.condition
+          || field.condition({ ...formData, ...currentValues }),
       ),
     [step.fields, formData, currentValues],
   );

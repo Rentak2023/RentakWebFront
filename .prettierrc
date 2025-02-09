@@ -2,5 +2,6 @@
   "trailingComma": "all",
   "plugins": ["prettier-plugin-tailwindcss"],
   "tailwindStylesheet": "./src/app[local]/globals.css",
-  "tailwindFunctions": ["clsx", "cn"]
+  "tailwindFunctions": ["clsx", "cn"],
+  "experimentalOperatorPosition": "start"
 }

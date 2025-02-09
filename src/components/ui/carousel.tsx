@@ -34,8 +34,8 @@ type CarouselContextProps = {
   scrollNext: () => void;
   canScrollPrev: boolean;
   canScrollNext: boolean;
-} & CarouselProps &
-  UseDotButtonType;
+} & CarouselProps
+  & UseDotButtonType;
 
 const CarouselContext = React.createContext<CarouselContextProps | null>(null);
 
@@ -99,8 +99,8 @@ const Carousel = ({
   className,
   children,
   ...props
-}: React.HTMLAttributes<HTMLDivElement> &
-  CarouselProps & { ref?: React.RefObject<HTMLDivElement> }) => {
+}: React.HTMLAttributes<HTMLDivElement>
+  & CarouselProps & { ref?: React.RefObject<HTMLDivElement> }) => {
   const [carouselRef, api] = useEmblaCarousel(
     {
       ...opts,

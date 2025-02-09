@@ -14,8 +14,8 @@ export function makeQueryClient() {
         // per default, only successful Queries are included,
         // this includes pending Queries as well
         shouldDehydrateQuery: (query) =>
-          defaultShouldDehydrateQuery(query) ||
-          query.state.status === "pending",
+          defaultShouldDehydrateQuery(query)
+          || query.state.status === "pending",
       },
     },
   });
