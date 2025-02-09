@@ -1,5 +1,3 @@
-"use client";
-
 import { useLocale, useTranslations } from "next-intl";
 
 import { Card, CardContent } from "@/components/ui/card";

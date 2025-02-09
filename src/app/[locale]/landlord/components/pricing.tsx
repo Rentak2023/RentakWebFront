@@ -1,5 +1,3 @@
-"use client";
-
 import { clsx } from "clsx";
 import { CheckIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
