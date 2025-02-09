@@ -1,30 +1,35 @@
 import ky from "@fetcher";
 import { type Locale } from "next-intl";
 
-import { type Unit } from "./types";
-
-type LandlordStats = {
-  total_income: number;
-  upcoming_payments: number;
-  days_to_next_rent: string | null;
+type UserStats = {
+  totalIncome: number;
+  totalExpense: number;
+  upcomingPaymentsLandlord: number;
+  upcomingPaymentsTenant: number;
+  daysToNextRentLandlord: number;
+  daysToNextRentTenant: number;
 };
 
-export async function getLandlordStatistics() {
-  const res = await ky
-    .get("dashboard/get-landloard-statistics")
-    .json<LandlordStats>();
+type UserStatsRes = {
+  result: UserStats;
+};
 
-  return res;
+export async function getUserStatistics() {
+  const res = await ky
+    .get("dashboard/get-user-statistics")
+    .json<UserStatsRes>();
+
+  return res.result;
 }
 
-export type RentedUnit = Unit & {
-  next_rent: string | null;
-  tenant: string | null;
-  is_for_listing: boolean | null;
-  contract_type: {
-    id: number;
-    type_name: number;
-  } | null;
+export type RentedUnit = {
+  contract_id: number;
+  user_type: "tenant" | "landlord";
+  unit_id: number;
+  unit_name: string;
+  rent_amount: number;
+  contract_type: string;
+  next_rent?: string;
 };
 
 type UnitsRes = Array<RentedUnit>;
@@ -102,4 +107,28 @@ export async function getUnitDetails(unitId: number, locale: Locale) {
   });
 
   return res.json<UnitContract>();
+}
+
+enum TransactionStatus {
+  Paid = "Paid",
+  Transferred = "Transfered",
+}
+
+export type TranactionItem = {
+  name: string;
+  amount: number;
+  date: string;
+  status: TransactionStatus;
+  unit_description: string;
+  contract_type: string;
+};
+
+export async function getTransactionsHistory(locale: Locale) {
+  const res = await ky.get("dashboard/get-transactions-history", {
+    searchParams: {
+      lang: locale === "en" ? "en" : "ar",
+    },
+  });
+
+  return res.json<Array<TranactionItem>>();
 }

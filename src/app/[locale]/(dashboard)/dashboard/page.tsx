@@ -8,39 +8,25 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { getUserUnits } from "@/services/dashboard";
+import { getTransactionsHistory, getUserUnits } from "@/services/dashboard";
 
 import Services from "./components/services";
 import { Stats } from "./components/stats";
 import { RentedUnits } from "./rented-units";
+import { Transactions } from "./tranactions";
 
 async function MyUnits() {
   const locale = await getLocale();
   const units = await getUserUnits(locale);
 
-  // return (
-  //   <Tabs defaultValue="all" className="w-full">
-  //     <TabsList>
-  //       <TabsTrigger value="all">All</TabsTrigger>
-  //       <TabsTrigger value="pending">Pending</TabsTrigger>
-  //       <TabsTrigger value="rented">Rented</TabsTrigger>
-  //     </TabsList>
-  //     <TabsContent value="all">
-  //       <div className="flex flex-col gap-6">
-  //         <PendingUnits units={pendingUnits} />
-  //         <RentedUnits units={rentedUnits} />
-  //       </div>
-  //     </TabsContent>
-  //     <TabsContent value="pending">
-  //       <PendingUnits units={pendingUnits} />
-  //     </TabsContent>
-  //     <TabsContent value="rented">
-  //       <RentedUnits units={rentedUnits} />
-  //     </TabsContent>
-  //   </Tabs>
-  // );
-
   return <RentedUnits units={units} />;
+}
+
+async function MyTransactions() {
+  const locale = await getLocale();
+  const transactions = await getTransactionsHistory(locale);
+
+  return <Transactions transactions={transactions} />;
 }
 
 export default async function DashboardPage() {
@@ -74,6 +60,16 @@ export default async function DashboardPage() {
             {/* <Button>Add Unit</Button> */}
           </div>
           <MyUnits />
+        </div>
+
+        <div className="flex flex-col gap-4">
+          <div className="flex items-center justify-between">
+            <h2 className="mb-2 text-3xl font-semibold tracking-tight">
+              {t("titles.my-transactions")}
+            </h2>
+            {/* <Button>Add Unit</Button> */}
+          </div>
+          <MyTransactions />
         </div>
 
         <div className="flex flex-col gap-4">

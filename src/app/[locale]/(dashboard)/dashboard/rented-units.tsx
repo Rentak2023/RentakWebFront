@@ -19,15 +19,15 @@ type RentedUnits = {
   units: Array<RentedUnit>;
 };
 export function RentedUnits({ units }: RentedUnits) {
-  const t = useTranslations("dashboard");
+  const t = useTranslations("dashboard.rented-units");
   const formatter = useFormatter();
 
   const columns = [
-    columnHelper.accessor("property_name", {
+    columnHelper.accessor("unit_name", {
       cell: (info) => <span className="font-semibold">{info.getValue()}</span>,
-      header: () => t("rented-units.name"),
+      header: () => t("name"),
     }),
-    columnHelper.accessor("price", {
+    columnHelper.accessor("rent_amount", {
       cell: (info) => {
         const amount = info.getValue();
         if (!amount) return "";
@@ -36,20 +36,25 @@ export function RentedUnits({ units }: RentedUnits) {
 
         return (
           <span className="tabular-nums">
-            {formatted} {t("stats.egp")}
+            {formatted} {t("egp")}
           </span>
         );
       },
       header: (info) => (
-        <DataTableColumnHeader
-          column={info.column}
-          title={t("rented-units.amount")}
-        />
+        <DataTableColumnHeader column={info.column} title={t("amount")} />
       ),
     }),
-    columnHelper.accessor("contract_type.type_name", {
+    columnHelper.accessor("contract_type", {
       cell: (info) => info.getValue() || "N/A",
-      header: () => t("rented-units.contract-type"),
+      header: () => t("contract-type"),
+    }),
+    columnHelper.accessor("user_type", {
+      cell: (info) => info.getValue(),
+      header: () => t("contract-type"),
+    }),
+    columnHelper.accessor("contract_type", {
+      cell: (info) => info.getValue() || "N/A",
+      header: () => t("contract-type"),
     }),
     columnHelper.accessor("next_rent", {
       cell: (info) => {
@@ -60,23 +65,20 @@ export function RentedUnits({ units }: RentedUnits) {
         const parsedDate = new Date(date);
 
         if (isPast(parsedDate))
-          return t("rented-units.overdue", {
+          return t("overdue", {
             date: formatter.dateTime(parsedDate, {
               dateStyle: "medium",
             }),
           });
 
-        return t("rented-units.due-in", {
+        return t("due-in", {
           date: formatter.dateTime(parsedDate, {
             dateStyle: "medium",
           }),
         });
       },
       header: (info) => (
-        <DataTableColumnHeader
-          column={info.column}
-          title={t("rented-units.next-rent")}
-        />
+        <DataTableColumnHeader column={info.column} title={t("next-rent")} />
       ),
       sortingFn: "datetime",
     }),
@@ -93,30 +95,28 @@ export function RentedUnits({ units }: RentedUnits) {
       cell: (info) => {
         const unit = info.row.original;
 
-        if (unit.tenant) {
+        if (unit.next_rent) {
           return (
             <Dialog>
               <DialogTrigger asChild>
-                <Button variant="outline">
-                  {t("rented-units.view-details")}
-                </Button>
+                <Button variant="outline">{t("view-details")}</Button>
               </DialogTrigger>
-              <UnitModal unitId={unit.id} />
+              <UnitModal unitId={unit.unit_id} />
             </Dialog>
           );
         }
 
-        if (unit.is_for_listing) {
-          return (
-            <Button variant="outline" asChild>
-              <Link href={`/units/${unit.id}`}>View Unit</Link>
-            </Button>
-          );
-        }
+        // if (unit.is_for_listing) {
+        //   return (
+        //     <Button variant="outline" asChild>
+        //       <Link href={`/units/${unit.unit_id}`}>View Unit</Link>
+        //     </Button>
+        //   );
+        // }
 
         return "";
       },
-      header: () => t("rented-units.actions"),
+      header: () => t("actions"),
     }),
   ];
   return <DataTable columns={columns} data={units} />;

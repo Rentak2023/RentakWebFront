@@ -2,7 +2,7 @@ import { type ReactNode } from "react";
 
 type StatsCardProps = {
   name: string;
-  stat: string;
+  stat: string | number;
   unit?: string;
   color: string;
   icon: (props: React.SVGProps<SVGSVGElement>) => ReactNode;

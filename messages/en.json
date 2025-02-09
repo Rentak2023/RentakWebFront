@@ -681,16 +681,19 @@
       "dashboard": "Dashboard",
       "overview": "Overview",
       "home": "Home",
-      "my-units": "My Units"
+      "my-units": "My Units",
+      "my-transactions": "My Transactions"
     },
     "stats": {
       "upcoming-payments": "Upcoming Payments",
       "rent-in-days": "Next Rent In",
       "all-rent-received": "All Rent Received",
+      "all-rent-paid": "All Rent Paid",
       "days": "{count, plural, =0 { } =1 {day} other {days}}",
       "egp": "EGP"
     },
     "rented-units": {
+      "egp": "EGP",
       "name": "Name",
       "amount": "Amount",
       "contract-type": "Contract Type",
@@ -699,6 +702,14 @@
       "view-details": "View Details",
       "due-in": "Due in {date}",
       "overdue": "OverDue {date}"
+    },
+    "transactions": {
+      "egp": "EGP",
+      "name": "Name",
+      "amount": "Amount",
+      "status": "Status",
+      "contract-type": "Contract Type",
+      "date": "Date"
     },
     "unit-modal": {
       "tenant-info": "Tenant Info",
