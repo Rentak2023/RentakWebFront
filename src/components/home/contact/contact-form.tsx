@@ -1,5 +1,5 @@
 "use client";
-import { valibotResolver } from "@hookform/resolvers/valibot";
+import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
 import { HTTPError } from "ky";
 import { Loader2 } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -26,7 +26,7 @@ function ContactForm() {
   const { toast } = useToast();
 
   const form = useForm<v.InferOutput<typeof contactSchema>>({
-    resolver: valibotResolver(contactSchema),
+    resolver: standardSchemaResolver(contactSchema),
     defaultValues: {
       full_name: "",
       email: "",

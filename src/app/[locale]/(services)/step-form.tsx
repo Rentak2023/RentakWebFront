@@ -1,4 +1,4 @@
-import { valibotResolver } from "@hookform/resolvers/valibot";
+import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
 import { useMutation } from "@tanstack/react-query";
 import { ArrowLeft, ArrowRight, CalendarIcon, Loader2 } from "lucide-react";
 import Image from "next/image";
@@ -85,7 +85,7 @@ export function StepForm({
   );
 
   const form = useForm({
-    resolver: valibotResolver(step.schema),
+    resolver: standardSchemaResolver(step.schema),
     defaultValues,
   });
 

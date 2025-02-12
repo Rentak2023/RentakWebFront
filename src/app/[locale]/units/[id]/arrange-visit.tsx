@@ -1,5 +1,5 @@
 "use client";
-import { valibotResolver } from "@hookform/resolvers/valibot";
+import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
 import { startOfDay, startOfToday } from "date-fns";
 import { CalendarIcon, Loader2 } from "lucide-react";
 import { useFormatter, useLocale, useTranslations } from "next-intl";
@@ -44,7 +44,7 @@ type ArrangeVisitProps = {
 
 export function ArrangeVisit({ unitId }: ArrangeVisitProps) {
   const form = useForm<v.InferOutput<typeof arrangeVisitSchema>>({
-    resolver: valibotResolver(arrangeVisitSchema),
+    resolver: standardSchemaResolver(arrangeVisitSchema),
     defaultValues: {
       name: "",
       phone: "",

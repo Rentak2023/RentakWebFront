@@ -1,5 +1,5 @@
 "use client";
-import { valibotResolver } from "@hookform/resolvers/valibot";
+import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
 import { Loader2 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
@@ -37,7 +37,7 @@ export default function LeadForm({
   const { toast } = useToast();
   const locale = useLocale();
   const form = useForm<v.InferOutput<typeof bookCallSchema>>({
-    resolver: valibotResolver(bookCallSchema),
+    resolver: standardSchemaResolver(bookCallSchema),
     defaultValues: {
       email_address: "",
       full_name: "",

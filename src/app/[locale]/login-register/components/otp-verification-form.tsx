@@ -1,4 +1,4 @@
-import { valibotResolver } from "@hookform/resolvers/valibot";
+import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
 import { HTTPError } from "ky";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
@@ -39,7 +39,7 @@ export function OTPVerificationForm({
   const [error, setError] = useState<string | null>(null);
 
   const form = useForm<InferOutput<typeof otpSchema>>({
-    resolver: valibotResolver(otpSchema),
+    resolver: standardSchemaResolver(otpSchema),
     defaultValues: {
       otp: "",
     },

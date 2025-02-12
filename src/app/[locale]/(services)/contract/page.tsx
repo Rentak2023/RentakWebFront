@@ -1,5 +1,5 @@
 "use client";
-import { valibotResolver } from "@hookform/resolvers/valibot";
+import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
 import { CalendarIcon, Loader2 } from "lucide-react";
 import Image from "next/image";
 import { useFormatter, useTranslations } from "next-intl";
@@ -43,7 +43,7 @@ function Contract() {
   const t = useTranslations("contract");
 
   const form = useForm<v.InferOutput<typeof contractSchema>>({
-    resolver: valibotResolver(contractSchema),
+    resolver: standardSchemaResolver(contractSchema),
     defaultValues: {
       landlord_phone: "",
       tenant_phone: "",

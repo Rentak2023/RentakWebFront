@@ -1,6 +1,6 @@
 "use client";
 
-import { valibotResolver } from "@hookform/resolvers/valibot";
+import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
 import { useQueryClient } from "@tanstack/react-query";
 import { HTTPError } from "ky";
 import { useLocale, useTranslations } from "next-intl";
@@ -36,7 +36,7 @@ export function LoginForm() {
   const queryCLient = useQueryClient();
 
   const form = useForm<InferOutput<typeof loginSchema>>({
-    resolver: valibotResolver(loginSchema),
+    resolver: standardSchemaResolver(loginSchema),
     defaultValues: {
       phone: "",
     },
