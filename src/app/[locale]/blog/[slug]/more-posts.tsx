@@ -1,13 +1,14 @@
-import { allPosts } from "@content";
 import Image from "next/image";
-import { useLocale } from "next-intl";
+import { getLocale } from "next-intl/server";
 
-const createExcerpt = (body: string) => {
-  return body.replaceAll(/<[^>]+>/g, "").slice(0, 200);
-};
+import { getHomepageArticles } from "@/services/articles";
 
-export default function MorePosts() {
-  const locale = useLocale();
+import { createExcerpt } from "../../tenant/components/blog-posts";
+
+export default async function MorePosts() {
+  const locale = await getLocale();
+
+  const articles = await getHomepageArticles(locale);
 
   return (
     <div className="bg-white">
@@ -19,9 +20,9 @@ export default function MorePosts() {
         </div>
         <hr className="my-8 bg-slate-500" />
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-          {allPosts.map((post) => (
+          {articles.map((post) => (
             <article
-              key={post._id}
+              key={post.id}
               className="flex flex-col items-start justify-between"
             >
               <div className="relative w-full">
@@ -29,7 +30,7 @@ export default function MorePosts() {
                   width={384}
                   height={256}
                   alt=""
-                  src={post.image}
+                  src={post.picture}
                   className="aspect-16/9 sm:aspect-2/1 lg:aspect-3/2 w-full rounded-2xl bg-slate-100 object-cover"
                 />
                 <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-slate-900/10" />
@@ -37,15 +38,13 @@ export default function MorePosts() {
               <div className="max-w-xl">
                 <div className="group relative">
                   <h3 className="text-primary-900 mt-6 text-lg/6 font-semibold group-hover:text-slate-600">
-                    <a href={post.url}>
+                    <a href={`/blog/${post.slug}`}>
                       <span className="absolute inset-0" />
-                      {locale === "en" ? post.title : post.arTitle}
+                      {post.title}
                     </a>
                   </h3>
                   <p className="mt-4 line-clamp-3 text-sm/6 text-slate-600">
-                    {createExcerpt(
-                      locale === "en" ? post.content.html : post.arContent.html,
-                    )}
+                    {createExcerpt(post.description)}
                   </p>
                 </div>
               </div>

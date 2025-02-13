@@ -22,7 +22,6 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@content": ["./.contentlayer/generated"],
       "@fetcher": ["./src/lib/fetcher"]
     },
     "target": "ES2017"
@@ -32,8 +31,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts",
-    ".contentlayer/generated"
+    ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules", ".next"]
 }

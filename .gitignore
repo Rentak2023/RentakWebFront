@@ -45,8 +45,5 @@ videos/*
 !videos/*.ts
 public/_next-video
 
-# contentlayer
-.contentlayer
-
 # next-intl
 messages/*.d.json.ts

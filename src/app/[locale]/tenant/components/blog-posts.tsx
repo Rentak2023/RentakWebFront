@@ -3,7 +3,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 
 import { getHomepageArticles } from "@/services/articles";
 
-const createExcerpt = (body: string) => {
+export const createExcerpt = (body: string) => {
   return body
     .replaceAll(/<[^>]+>/g, "")
     .replaceAll("&nbsp;", " ")
