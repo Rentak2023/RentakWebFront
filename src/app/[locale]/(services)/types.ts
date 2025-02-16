@@ -1,8 +1,8 @@
+import type { StandardSchemaV1 } from "@standard-schema/spec";
 import {
   type HTMLInputAutoCompleteAttribute,
   type HTMLInputTypeAttribute,
 } from "react";
-import type * as v from "valibot";
 
 export type Field = {
   name: string;
@@ -49,5 +49,5 @@ export type TStep = {
   fields: Array<Field>;
   heading?: string;
   list?: Array<string>;
-  schema: v.GenericSchema | v.GenericSchemaAsync;
+  schema: StandardSchemaV1<any, any>;
 };

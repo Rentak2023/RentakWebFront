@@ -3,7 +3,6 @@ import { HTTPError } from "ky";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import type { InferOutput } from "valibot";
 
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
@@ -38,7 +37,7 @@ export function OTPVerificationForm({
   const [isResendDisabled, setIsResendDisabled] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const form = useForm<InferOutput<typeof otpSchema>>({
+  const form = useForm({
     resolver: standardSchemaResolver(otpSchema),
     defaultValues: {
       otp: "",

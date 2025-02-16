@@ -6,7 +6,6 @@ import { HTTPError } from "ky";
 import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import type { InferOutput } from "valibot";
 
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
@@ -35,7 +34,7 @@ export function SignUpForm() {
   const router = useRouter();
   const queryCLient = useQueryClient();
 
-  const form = useForm<InferOutput<typeof signUpSchema>>({
+  const form = useForm({
     resolver: standardSchemaResolver(signUpSchema),
     defaultValues: {
       full_name: "",

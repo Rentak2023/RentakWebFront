@@ -4,7 +4,6 @@ import { startOfDay, startOfToday } from "date-fns";
 import { CalendarIcon, Loader2 } from "lucide-react";
 import { useFormatter, useLocale, useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
-import type * as v from "valibot";
 
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -43,7 +42,7 @@ type ArrangeVisitProps = {
 };
 
 export function ArrangeVisit({ unitId }: ArrangeVisitProps) {
-  const form = useForm<v.InferOutput<typeof arrangeVisitSchema>>({
+  const form = useForm({
     resolver: standardSchemaResolver(arrangeVisitSchema),
     defaultValues: {
       name: "",

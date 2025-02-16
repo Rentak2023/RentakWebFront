@@ -3,7 +3,6 @@ import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
 import { Loader2 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
-import type * as v from "valibot";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
@@ -36,7 +35,7 @@ export default function LeadForm({
   const t = useTranslations("services");
   const { toast } = useToast();
   const locale = useLocale();
-  const form = useForm<v.InferOutput<typeof bookCallSchema>>({
+  const form = useForm({
     resolver: standardSchemaResolver(bookCallSchema),
     defaultValues: {
       email_address: "",

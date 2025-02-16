@@ -4,7 +4,6 @@ import { HTTPError } from "ky";
 import { Loader2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
-import type * as v from "valibot";
 
 import { contactAction } from "@/app/[locale]/actions/contact";
 import { Button } from "@/components/ui/button";
@@ -25,7 +24,7 @@ function ContactForm() {
   const t = useTranslations("home.contact");
   const { toast } = useToast();
 
-  const form = useForm<v.InferOutput<typeof contactSchema>>({
+  const form = useForm({
     resolver: standardSchemaResolver(contactSchema),
     defaultValues: {
       full_name: "",

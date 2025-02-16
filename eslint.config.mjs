@@ -10,6 +10,7 @@ import react from "@eslint-react/eslint-plugin";
 import tanStackQuery from "@tanstack/eslint-plugin-query";
 import configPrettier from "eslint-config-prettier";
 import { createOxcImportResolver } from "eslint-import-resolver-oxc";
+import barrellFiles from "eslint-plugin-barrel-files";
 import importX from "eslint-plugin-import-x";
 import promise from "eslint-plugin-promise";
 import reactCompilerPlugin from "eslint-plugin-react-compiler";
@@ -44,13 +45,13 @@ export default ts.config(
       "plugin:@next/next/recommended",
       "plugin:@next/next/core-web-vitals",
       "plugin:react-hooks/recommended",
-      "plugin:barrel-files/recommended",
     ),
   ),
   importX.flatConfigs.recommended,
   importX.flatConfigs.react,
   importX.configs.typescript,
   comments.recommended,
+  barrellFiles.configs.recommended,
   {
     plugins: {
       "simple-import-sort": simpleImportSort,

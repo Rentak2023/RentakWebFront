@@ -4,7 +4,6 @@ import { CalendarIcon, Loader2 } from "lucide-react";
 import Image from "next/image";
 import { useFormatter, useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
-import type * as v from "valibot";
 
 import contractImage from "@/app/[locale]/assets/images/contract.gif";
 import { Button } from "@/components/ui/button";
@@ -42,7 +41,7 @@ function Contract() {
   const formatter = useFormatter();
   const t = useTranslations("contract");
 
-  const form = useForm<v.InferOutput<typeof contractSchema>>({
+  const form = useForm({
     resolver: standardSchemaResolver(contractSchema),
     defaultValues: {
       landlord_phone: "",
