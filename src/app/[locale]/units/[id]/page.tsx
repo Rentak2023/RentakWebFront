@@ -42,10 +42,131 @@ export default async function UnitPage(
   };
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-dvh">
       <section className="relative mt-24 pb-16 md:pb-24">
         <div className="container mx-auto px-4">
-          <PropertyImages images={property.gallary} />
+          <div className="grid items-start gap-4 lg:grid-cols-5">
+            <div className="lg:col-span-3">
+              <PropertyImages images={property.gallary} />
+            </div>
+            <div className="sticky top-20 rounded-lg bg-slate-100/80 shadow-sm lg:col-span-2">
+              <div className="p-6">
+                <h5 className="text-xl font-medium lg:text-4xl">
+                  {formatCurrency(property.price)}
+                </h5>
+                <p className="font-regular mt-3 flex items-center gap-1 text-base text-slate-500">
+                  <LocationIcon />
+                  <span>{property.location.address_in_detail}</span>
+                </p>
+
+                <ul className="mt-4 list-none">
+                  <li className="flex items-center justify-between py-3">
+                    {property.finish_type.type_name ? (
+                      <div className="flex w-1/2 items-center gap-2">
+                        <div className="item-center flex justify-items-center rounded-lg border border-slate-300 p-3">
+                          <TypeIcon />
+                        </div>
+                        <div className="flex flex-col">
+                          <p className="text-primary-900 text-base font-medium">
+                            {t("propertyType")}
+                          </p>
+                          <p className="font-regular text-primary-900 text-base">
+                            {property.finish_type.type_name}
+                          </p>
+                        </div>
+                      </div>
+                    ) : null}
+
+                    <div className="flex w-1/2 items-center gap-2">
+                      <div className="item-center flex justify-items-center rounded-lg border border-slate-300 p-3">
+                        <AreaIcon className="size-6" />
+                      </div>
+                      <div className="flex flex-col">
+                        <p className="text-primary-900 text-base font-medium">
+                          {t("m2")}
+                        </p>
+                        <p className="font-regular text-primary-900 text-base">
+                          {formatter.number(property.area)}
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+
+                  <li className="flex items-center justify-between py-3">
+                    <div className="flex w-1/2 items-center gap-2">
+                      <div className="item-center flex justify-items-center rounded-lg border border-slate-300 p-3">
+                        <BedIcon className="size-6" />
+                      </div>
+                      <div className="flex flex-col">
+                        <p className="text-primary-900 text-base font-medium">
+                          {t("rooms")}
+                        </p>
+                        <p className="font-regular text-primary-900 text-base">
+                          {formatter.number(property.room_numbers)}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex w-1/2 items-center gap-2">
+                      <div className="item-center flex justify-items-center rounded-lg border border-slate-300 p-3">
+                        <BathIcon className="size-6" />
+                      </div>
+                      <div className="flex flex-col">
+                        <p className="text-primary-900 text-base font-medium">
+                          {t("toilets")}
+                        </p>
+                        <p className="font-regular text-primary-900 text-base">
+                          {formatter.number(property.bathrom_numbers)}
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+
+                  <li className="flex items-center justify-between py-3">
+                    <div className="flex w-1/2 items-center gap-2">
+                      <div className="item-center flex justify-items-center rounded-lg border border-slate-300 p-3">
+                        <HeartIcon className="size-6" />
+                      </div>
+                      <div className="flex flex-col">
+                        <p className="text-primary-900 text-base font-medium">
+                          {t("sponsored")}
+                        </p>
+                        <p className="font-regular text-primary-900 text-base">
+                          {property.location.governorate_name}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex w-1/2 items-center gap-2">
+                      <div className="item-center flex justify-items-center rounded-lg border border-slate-300 p-3">
+                        <AvailableIcon className="size-6" />
+                      </div>
+                      <div className="flex flex-col">
+                        <p className="text-primary-900 text-base font-medium">
+                          {t("status")}
+                        </p>
+                        <p className="font-regular text-base text-[#156F0D]">
+                          {t("availableNow")}
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+
+                <Separator className="my-4" />
+
+                <div className="flex gap-2">
+                  <ArrangeVisit unitId={property.id} />
+
+                  <Button className="flex-1" variant="outline" asChild>
+                    <Link href="https://rent-ak.com/Home/ContactUs">
+                      {t("contactUs")}
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
           <div className="mt-4 flex flex-row items-center gap-1 px-3">
             <StatusIcon />
             <p className="font-regular text-primary-950 text-xl">
@@ -106,126 +227,6 @@ export default async function UnitPage(
               <p className="mt-4 text-slate-500">
                 {property.property_description}
               </p>
-            </div>
-
-            <div className="mt-8 px-3 md:mt-0 md:w-1/2 md:p-4 lg:w-1/2">
-              <div className="sticky top-20 rounded-lg bg-slate-100/80 shadow-sm">
-                <div className="p-6">
-                  <h5 className="text-xl font-medium lg:text-4xl">
-                    {formatCurrency(property.price)}
-                  </h5>
-                  <p className="font-regular mt-3 flex items-center gap-1 text-base text-slate-500">
-                    <LocationIcon />
-                    <span>{property.location.address_in_detail}</span>
-                  </p>
-
-                  <ul className="mt-4 list-none">
-                    <li className="flex items-center justify-between py-3">
-                      {property.finish_type.type_name ? (
-                        <div className="flex w-1/2 items-center gap-2">
-                          <div className="item-center flex justify-items-center rounded-lg border border-slate-300 p-3">
-                            <TypeIcon />
-                          </div>
-                          <div className="flex flex-col">
-                            <p className="text-primary-900 text-base font-medium">
-                              {t("propertyType")}
-                            </p>
-                            <p className="font-regular text-primary-900 text-base">
-                              {property.finish_type.type_name}
-                            </p>
-                          </div>
-                        </div>
-                      ) : null}
-
-                      <div className="flex w-1/2 items-center gap-2">
-                        <div className="item-center flex justify-items-center rounded-lg border border-slate-300 p-3">
-                          <AreaIcon className="size-6" />
-                        </div>
-                        <div className="flex flex-col">
-                          <p className="text-primary-900 text-base font-medium">
-                            {t("m2")}
-                          </p>
-                          <p className="font-regular text-primary-900 text-base">
-                            {formatter.number(property.area)}
-                          </p>
-                        </div>
-                      </div>
-                    </li>
-
-                    <li className="flex items-center justify-between py-3">
-                      <div className="flex w-1/2 items-center gap-2">
-                        <div className="item-center flex justify-items-center rounded-lg border border-slate-300 p-3">
-                          <BedIcon className="size-6" />
-                        </div>
-                        <div className="flex flex-col">
-                          <p className="text-primary-900 text-base font-medium">
-                            {t("rooms")}
-                          </p>
-                          <p className="font-regular text-primary-900 text-base">
-                            {formatter.number(property.room_numbers)}
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="flex w-1/2 items-center gap-2">
-                        <div className="item-center flex justify-items-center rounded-lg border border-slate-300 p-3">
-                          <BathIcon className="size-6" />
-                        </div>
-                        <div className="flex flex-col">
-                          <p className="text-primary-900 text-base font-medium">
-                            {t("toilets")}
-                          </p>
-                          <p className="font-regular text-primary-900 text-base">
-                            {formatter.number(property.bathrom_numbers)}
-                          </p>
-                        </div>
-                      </div>
-                    </li>
-
-                    <li className="flex items-center justify-between py-3">
-                      <div className="flex w-1/2 items-center gap-2">
-                        <div className="item-center flex justify-items-center rounded-lg border border-slate-300 p-3">
-                          <HeartIcon className="size-6" />
-                        </div>
-                        <div className="flex flex-col">
-                          <p className="text-primary-900 text-base font-medium">
-                            {t("sponsored")}
-                          </p>
-                          <p className="font-regular text-primary-900 text-base">
-                            {property.location.governorate_name}
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="flex w-1/2 items-center gap-2">
-                        <div className="item-center flex justify-items-center rounded-lg border border-slate-300 p-3">
-                          <AvailableIcon className="size-6" />
-                        </div>
-                        <div className="flex flex-col">
-                          <p className="text-primary-900 text-base font-medium">
-                            {t("status")}
-                          </p>
-                          <p className="font-regular text-base text-[#156F0D]">
-                            {t("availableNow")}
-                          </p>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-
-                  <Separator className="my-4" />
-
-                  <div className="flex gap-2">
-                    <ArrangeVisit unitId={property.id} />
-
-                    <Button className="flex-1" variant="outline" asChild>
-                      <Link href="https://rent-ak.com/Home/ContactUs">
-                        {t("contactUs")}
-                      </Link>
-                    </Button>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>

@@ -4,10 +4,11 @@ import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from "embla-carousel-react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { useLocale } from "next-intl";
 import * as React from "react";
 
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import getLocaleDirection, { cn } from "@/lib/utils";
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
@@ -101,10 +102,13 @@ const Carousel = ({
   ...props
 }: React.HTMLAttributes<HTMLDivElement>
   & CarouselProps & { ref?: React.RefObject<HTMLDivElement> }) => {
+  const locale = useLocale();
+  const dir = getLocaleDirection(locale);
   const [carouselRef, api] = useEmblaCarousel(
     {
       ...opts,
       axis: orientation === "horizontal" ? "x" : "y",
+      direction: dir,
     },
     plugins,
   );

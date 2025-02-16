@@ -9,20 +9,14 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Unit from "@/components/unit";
-import getLocaleDirection from "@/lib/utils";
 import { getUnits } from "@/services/units";
 
 async function UnitsSlider() {
   const locale = await getLocale();
-  const direction = getLocaleDirection(locale);
   const units = await getUnits({ locale });
 
   return (
-    <Carousel
-      opts={{
-        direction,
-      }}
-    >
+    <Carousel>
       <CarouselContent>
         {units.map((unit) => (
           <CarouselItem key={unit.id} className="md:basis-1/2 lg:basis-1/3">
