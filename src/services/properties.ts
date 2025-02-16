@@ -1,4 +1,5 @@
 import ky from "@fetcher";
+import { HTTPError } from "ky";
 import { type Locale } from "next-intl";
 import {
   createSearchParamsCache,
@@ -154,4 +155,45 @@ export async function getProperty(propertyId: string, locale: Locale) {
     .json<PropertyResponse>();
 
   return res.data;
+}
+
+type PropertyInspectionResponse = {
+  message: string;
+  data: {
+    unit: TUnit;
+    total_score: string;
+    rooms: Array<{
+      room_type: string;
+      room_score: string;
+      inspections: Record<
+        string,
+        {
+          status: string;
+        }
+      >;
+    }>;
+  };
+};
+
+export async function getPropertyInspectionDetails(propertyId: string) {
+  try {
+    const res = await ky
+      .get("unit/get-unit-inspection", {
+        searchParams: {
+          id: propertyId,
+        },
+        cache: "force-cache",
+        next: {
+          revalidate: 60,
+        },
+      })
+      .json<PropertyInspectionResponse>();
+
+    return res.data;
+  } catch (error) {
+    if (error instanceof HTTPError && error.response.status === 400) {
+      return null;
+    }
+    throw error;
+  }
 }

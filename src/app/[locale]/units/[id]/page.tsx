@@ -17,9 +17,13 @@ import { Button } from "@/components/ui/button";
 import PropertyImages from "@/components/ui/property-images";
 import { Separator } from "@/components/ui/separator";
 import { Link } from "@/i18n/routing";
-import { getProperty } from "@/services/properties";
+import {
+  getProperty,
+  getPropertyInspectionDetails,
+} from "@/services/properties";
 
 import { ArrangeVisit } from "./arrange-visit";
+import { PropertyInspection } from "./property-inspection";
 
 export default async function UnitPage(
   props: Readonly<{
@@ -27,13 +31,16 @@ export default async function UnitPage(
   }>,
 ) {
   const params = await props.params;
-
   const { locale, id } = params;
-
   setRequestLocale(locale);
-  const property = await getProperty(id, locale);
+
   const t = await getTranslations("units");
   const formatter = await getFormatter();
+
+  const [property, inspection] = await Promise.all([
+    getProperty(id, locale),
+    getPropertyInspectionDetails(id),
+  ]);
 
   const formatCurrency = (amount: number) => {
     return formatter
@@ -44,7 +51,7 @@ export default async function UnitPage(
   return (
     <main className="min-h-dvh">
       <section className="relative mt-24 pb-16 md:pb-24">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:max-w-7xl">
           <div className="grid items-start gap-4 lg:grid-cols-5">
             <div className="lg:col-span-3">
               <PropertyImages images={property.gallary} />
@@ -175,59 +182,63 @@ export default async function UnitPage(
           </div>
         </div>
 
-        <div className="container mx-auto mt-6">
-          <div className="md:flex">
-            <div className="px-3 md:w-1/2 md:p-4 lg:w-2/3">
-              <div className="flex flex-row items-center gap-1">
-                <h3 className="text-3xl font-semibold text-slate-800">
-                  {t("propertyDescription")}
-                </h3>
-              </div>
-
-              <ul className="flex list-none items-center py-6">
-                <li className="me-4 flex items-center gap-1 lg:me-6">
-                  <span className="text-primary-900 text-xl font-medium lg:text-3xl">
-                    {formatCurrency(property.price)}
-                  </span>
-                </li>
-                <li className="me-4 flex items-center gap-1 lg:me-6">
-                  <AreaIcon className="text-primary-600 size-10" />
-                  <span className="text-xl lg:text-2xl">
-                    {formatter.number(property.area)}
-                  </span>
-                </li>
-
-                <li className="me-4 flex items-center gap-1 lg:me-6">
-                  <BedIcon className="text-primary-600 size-10" />
-                  <span className="text-xl lg:text-2xl">
-                    {t("bedrooms", {
-                      count: property.room_numbers,
-                    })}
-                  </span>
-                </li>
-
-                <li className="flex items-center gap-1">
-                  <BathIcon className="text-primary-600 size-10" />
-                  <span className="text-xl lg:text-2xl">
-                    {t("bathrooms", {
-                      count: property.bathrom_numbers,
-                    })}
-                  </span>
-                </li>
-              </ul>
-
-              <h4 className="text-2xl font-medium">{property.property_name}</h4>
-
-              <p className="mt-3 flex items-center gap-1 text-slate-500">
-                <LocationIcon color="currentColor" />
-                <span className="text-xl lg:text-2xl">
-                  {property.location.address_in_detail}
-                </span>
-              </p>
-              <p className="mt-4 text-slate-500">
-                {property.property_description}
-              </p>
+        <div className="container mx-auto mt-6 px-4 sm:px-6 lg:px-8 xl:max-w-7xl">
+          <div className="md:w-1/2 lg:w-2/3">
+            <div className="flex flex-row items-center gap-1">
+              <h3 className="text-3xl font-semibold text-slate-800">
+                {t("propertyDescription")}
+              </h3>
             </div>
+
+            <ul className="flex list-none items-center py-6">
+              <li className="me-4 flex items-center gap-1 lg:me-6">
+                <span className="text-primary-900 text-xl font-medium lg:text-3xl">
+                  {formatCurrency(property.price)}
+                </span>
+              </li>
+              <li className="me-4 flex items-center gap-1 lg:me-6">
+                <AreaIcon className="text-primary-600 size-10" />
+                <span className="text-xl lg:text-2xl">
+                  {formatter.number(property.area)}
+                </span>
+              </li>
+
+              <li className="me-4 flex items-center gap-1 lg:me-6">
+                <BedIcon className="text-primary-600 size-10" />
+                <span className="text-xl lg:text-2xl">
+                  {t("bedrooms", {
+                    count: property.room_numbers,
+                  })}
+                </span>
+              </li>
+
+              <li className="flex items-center gap-1">
+                <BathIcon className="text-primary-600 size-10" />
+                <span className="text-xl lg:text-2xl">
+                  {t("bathrooms", {
+                    count: property.bathrom_numbers,
+                  })}
+                </span>
+              </li>
+            </ul>
+
+            <h4 className="text-2xl font-medium">{property.property_name}</h4>
+
+            <p className="mt-3 flex items-center gap-1 text-slate-500">
+              <LocationIcon color="currentColor" />
+              <span className="text-xl lg:text-2xl">
+                {property.location.address_in_detail}
+              </span>
+            </p>
+            <p className="mt-4 text-slate-500">
+              {property.property_description}
+            </p>
+          </div>
+          <div className="mt-6">
+            <h3 className="text-3xl font-semibold text-slate-800">
+              Property Inspection
+            </h3>
+            <PropertyInspection inspection={inspection} />
           </div>
         </div>
       </section>
