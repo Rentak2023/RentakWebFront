@@ -51,14 +51,76 @@ export default async function UnitPage(
   return (
     <main className="min-h-dvh">
       <section className="relative mt-24 pb-16 md:pb-24">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:max-w-7xl">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid items-start gap-4 lg:grid-cols-5">
             <div className="lg:col-span-3">
               <PropertyImages images={property.gallary} />
+
+              <div className="flex flex-row items-center gap-1">
+                <h3 className="text-3xl font-semibold text-slate-800">
+                  {t("propertyDescription")}
+                </h3>
+              </div>
+
+              <ul className="flex list-none items-center py-6">
+                <li className="me-4 flex items-center gap-1 lg:me-6">
+                  <span className="text-primary-900 text-xl font-medium lg:text-3xl">
+                    {formatCurrency(property.price)}
+                  </span>
+                </li>
+                <li className="me-4 flex items-center gap-1 lg:me-6">
+                  <AreaIcon className="text-primary-600 size-10" />
+                  <span className="text-xl lg:text-2xl">
+                    {formatter.number(property.area)}
+                  </span>
+                </li>
+
+                <li className="me-4 flex items-center gap-1 lg:me-6">
+                  <BedIcon className="text-primary-600 size-10" />
+                  <span className="text-xl lg:text-2xl">
+                    {t("bedrooms", {
+                      count: property.room_numbers,
+                    })}
+                  </span>
+                </li>
+
+                <li className="flex items-center gap-1">
+                  <BathIcon className="text-primary-600 size-10" />
+                  <span className="text-xl lg:text-2xl">
+                    {t("bathrooms", {
+                      count: property.bathrom_numbers,
+                    })}
+                  </span>
+                </li>
+              </ul>
+
+              <h4 className="text-2xl font-medium">{property.property_name}</h4>
+
+              <p className="mt-3 flex items-center gap-1 text-slate-500">
+                <LocationIcon color="currentColor" />
+                <span className="text-xl lg:text-2xl">
+                  {property.location.address_in_detail}
+                </span>
+              </p>
+              <p className="mt-4 text-slate-500">
+                {property.property_description}
+              </p>
+              <div className="mt-6">
+                <h3 className="text-3xl font-semibold text-slate-800">
+                  Property Inspection
+                </h3>
+                <PropertyInspection inspection={inspection} />
+              </div>
             </div>
             <div className="sticky top-20 rounded-lg bg-slate-100/80 shadow-sm lg:col-span-2">
               <div className="p-6">
-                <h5 className="text-xl font-medium lg:text-4xl">
+                <div className="flex flex-row items-center gap-1">
+                  <StatusIcon />
+                  <p className="font-regular text-primary-950 text-xl">
+                    {t("availableForRent")}
+                  </p>
+                </div>
+                <h5 className="mt-4 text-xl font-medium lg:text-4xl">
                   {formatCurrency(property.price)}
                 </h5>
                 <p className="font-regular mt-3 flex items-center gap-1 text-base text-slate-500">
@@ -173,72 +235,6 @@ export default async function UnitPage(
                 </div>
               </div>
             </div>
-          </div>
-          <div className="mt-4 flex flex-row items-center gap-1 px-3">
-            <StatusIcon />
-            <p className="font-regular text-primary-950 text-xl">
-              {t("availableForRent")}
-            </p>
-          </div>
-        </div>
-
-        <div className="container mx-auto mt-6 px-4 sm:px-6 lg:px-8 xl:max-w-7xl">
-          <div className="md:w-1/2 lg:w-2/3">
-            <div className="flex flex-row items-center gap-1">
-              <h3 className="text-3xl font-semibold text-slate-800">
-                {t("propertyDescription")}
-              </h3>
-            </div>
-
-            <ul className="flex list-none items-center py-6">
-              <li className="me-4 flex items-center gap-1 lg:me-6">
-                <span className="text-primary-900 text-xl font-medium lg:text-3xl">
-                  {formatCurrency(property.price)}
-                </span>
-              </li>
-              <li className="me-4 flex items-center gap-1 lg:me-6">
-                <AreaIcon className="text-primary-600 size-10" />
-                <span className="text-xl lg:text-2xl">
-                  {formatter.number(property.area)}
-                </span>
-              </li>
-
-              <li className="me-4 flex items-center gap-1 lg:me-6">
-                <BedIcon className="text-primary-600 size-10" />
-                <span className="text-xl lg:text-2xl">
-                  {t("bedrooms", {
-                    count: property.room_numbers,
-                  })}
-                </span>
-              </li>
-
-              <li className="flex items-center gap-1">
-                <BathIcon className="text-primary-600 size-10" />
-                <span className="text-xl lg:text-2xl">
-                  {t("bathrooms", {
-                    count: property.bathrom_numbers,
-                  })}
-                </span>
-              </li>
-            </ul>
-
-            <h4 className="text-2xl font-medium">{property.property_name}</h4>
-
-            <p className="mt-3 flex items-center gap-1 text-slate-500">
-              <LocationIcon color="currentColor" />
-              <span className="text-xl lg:text-2xl">
-                {property.location.address_in_detail}
-              </span>
-            </p>
-            <p className="mt-4 text-slate-500">
-              {property.property_description}
-            </p>
-          </div>
-          <div className="mt-6">
-            <h3 className="text-3xl font-semibold text-slate-800">
-              Property Inspection
-            </h3>
-            <PropertyInspection inspection={inspection} />
           </div>
         </div>
       </section>
