@@ -288,8 +288,10 @@ function Steps() {
           className="flex-1 rounded-md bg-slate-100 px-6 pb-12"
         >
           <step.Icon />
-          <dt className="text-primary-900 text-xl font-medium">{step.title}</dt>
-          <dd className="text-primary-800">{step.description}</dd>
+          <dt className="text-primary-900 text-xl font-semibold">
+            {step.title}
+          </dt>
+          <dd className="text-primary-800 mt-2">{step.description}</dd>
         </div>
       ))}
     </div>
