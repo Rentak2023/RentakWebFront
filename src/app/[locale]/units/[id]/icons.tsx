@@ -201,9 +201,9 @@ export function Step1Icon() {
           />
           <path
             fill="#002D5D"
-            fill-rule="evenodd"
+            fillRule="evenodd"
             d="m75.727 71.04.127.025-.284 1.383-.009.012a249.27 249.27 0 0 1-.438.568c.05.044.114.09.194.13.223.11.435.1.533.087l.016.129c-.11.013-.351.027-.606-.1-.12-.059-.21-.133-.27-.193l-.04-.04.034-.046.237-.307.228-.295.278-1.354Z"
-            clip-rule="evenodd"
+            clipRule="evenodd"
           />
           <path
             fill="#002D5D"
@@ -211,9 +211,9 @@ export function Step1Icon() {
           />
           <path
             fill="#002D5D"
-            fill-rule="evenodd"
+            fillRule="evenodd"
             d="M76.74 73.518a1.104 1.104 0 0 1-.931.417l.007-.13a.974.974 0 0 0 .823-.368l.102.08Z"
-            clip-rule="evenodd"
+            clipRule="evenodd"
           />
           <path
             fill="#E39184"
@@ -221,9 +221,9 @@ export function Step1Icon() {
           />
           <path
             fill="#002D5D"
-            fill-rule="evenodd"
+            fillRule="evenodd"
             d="m76.18 72.062.048-.004.049-.003v.004l.002.015a.647.647 0 0 0 .079.221.407.407 0 0 0 .156.151.5.5 0 0 0 .293.046l.01.097a.595.595 0 0 1-.348-.057.503.503 0 0 1-.194-.186.691.691 0 0 1-.095-.276v-.008ZM75.198 72.207a.637.637 0 0 0 .211-.191l.08.055a.73.73 0 0 1-.494.306l-.014-.096a.634.634 0 0 0 .217-.074Z"
-            clip-rule="evenodd"
+            clipRule="evenodd"
           />
           <path
             fill="#002D5D"
@@ -243,9 +243,9 @@ export function Step1Icon() {
           />
           <path
             fill="#002D5D"
-            fill-rule="evenodd"
+            fillRule="evenodd"
             d="m78.291 72.456-.022.06-.022.061h-.003a.533.533 0 0 0-.173-.027c-.1 0-.211.028-.292.135l-.103-.078a.477.477 0 0 1 .395-.187.715.715 0 0 1 .219.035h.001Z"
-            clip-rule="evenodd"
+            clipRule="evenodd"
           />
           <path
             fill="#193157"
@@ -364,15 +364,15 @@ export function Step1Icon() {
           gradientTransform="rotate(140.673 16.611 52.304) scale(.82437 .46565)"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset=".33" stop-color="#DB6958" />
-          <stop offset=".464" stop-color="#DC6C5B" stop-opacity=".8" />
-          <stop offset=".568" stop-color="#DE7565" stop-opacity=".644" />
-          <stop offset=".662" stop-color="#E18375" stop-opacity=".503" />
-          <stop offset=".751" stop-color="#E6988D" stop-opacity=".372" />
-          <stop offset=".835" stop-color="#EDB3AB" stop-opacity=".246" />
-          <stop offset=".916" stop-color="#F5D5D0" stop-opacity=".125" />
-          <stop offset=".993" stop-color="#FEFBFB" stop-opacity=".01" />
-          <stop offset="1" stop-color="#fff" stop-opacity="0" />
+          <stop offset=".33" stopColor="#DB6958" />
+          <stop offset=".464" stopColor="#DC6C5B" stopOpacity=".8" />
+          <stop offset=".568" stopColor="#DE7565" stopOpacity=".644" />
+          <stop offset=".662" stopColor="#E18375" stopOpacity=".503" />
+          <stop offset=".751" stopColor="#E6988D" stopOpacity=".372" />
+          <stop offset=".835" stopColor="#EDB3AB" stopOpacity=".246" />
+          <stop offset=".916" stopColor="#F5D5D0" stopOpacity=".125" />
+          <stop offset=".993" stopColor="#FEFBFB" stopOpacity=".01" />
+          <stop offset="1" stopColor="#fff" stopOpacity="0" />
         </radialGradient>
         <radialGradient
           id="h"
@@ -382,15 +382,15 @@ export function Step1Icon() {
           gradientTransform="matrix(-.6556 .53717 -.48036 -.58626 62.822 81.975)"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset=".33" stop-color="#DB6958" />
-          <stop offset=".464" stop-color="#DC6C5B" stop-opacity=".8" />
-          <stop offset=".568" stop-color="#DE7565" stop-opacity=".644" />
-          <stop offset=".662" stop-color="#E18375" stop-opacity=".503" />
-          <stop offset=".751" stop-color="#E6988D" stop-opacity=".372" />
-          <stop offset=".835" stop-color="#EDB3AB" stop-opacity=".246" />
-          <stop offset=".916" stop-color="#F5D5D0" stop-opacity=".125" />
-          <stop offset=".993" stop-color="#FEFBFB" stop-opacity=".01" />
-          <stop offset="1" stop-color="#fff" stop-opacity="0" />
+          <stop offset=".33" stopColor="#DB6958" />
+          <stop offset=".464" stopColor="#DC6C5B" stopOpacity=".8" />
+          <stop offset=".568" stopColor="#DE7565" stopOpacity=".644" />
+          <stop offset=".662" stopColor="#E18375" stopOpacity=".503" />
+          <stop offset=".751" stopColor="#E6988D" stopOpacity=".372" />
+          <stop offset=".835" stopColor="#EDB3AB" stopOpacity=".246" />
+          <stop offset=".916" stopColor="#F5D5D0" stopOpacity=".125" />
+          <stop offset=".993" stopColor="#FEFBFB" stopOpacity=".01" />
+          <stop offset="1" stopColor="#fff" stopOpacity="0" />
         </radialGradient>
         <clipPath id={`${id}-1`}>
           <path fill="#fff" d="M.531.34h134.59v150.739H.53z" />
@@ -406,8 +406,8 @@ export function Step1Icon() {
           y2="41.074"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#06C" />
-          <stop offset="1" stop-color="#036" />
+          <stop stopColor="#06C" />
+          <stop offset="1" stopColor="#036" />
         </linearGradient>
       </defs>
     </svg>
@@ -2108,8 +2108,8 @@ export function Step2Icon() {
           y2="43.279"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#06C" />
-          <stop offset="1" stop-color="#036" />
+          <stop stopColor="#06C" />
+          <stop offset="1" stopColor="#036" />
         </linearGradient>
       </defs>
     </svg>
@@ -2275,7 +2275,7 @@ export function Step3Icon() {
             <path
               fill="#06C"
               stroke="#06C"
-              stroke-miterlimit="10"
+              strokeMiterlimit="10"
               strokeWidth=".158"
               d="M101.051 68.728v35.192c-4.201 2.212-9.347 3.515-15.533 3.634a25.691 25.691 0 0 1-12.057-2.82V68.729h27.59Z"
             />
@@ -3094,8 +3094,8 @@ export function Step3Icon() {
           y2="40.667"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#06C" />
-          <stop offset="1" stop-color="#036" />
+          <stop stopColor="#06C" />
+          <stop offset="1" stopColor="#036" />
         </linearGradient>
       </defs>
     </svg>
