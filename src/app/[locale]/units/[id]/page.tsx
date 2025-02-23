@@ -23,6 +23,7 @@ import {
 } from "@/services/properties";
 
 import { ArrangeVisit } from "./arrange-visit";
+import { Step1Icon, Step2Icon, Step3Icon } from "./icons";
 import { PropertyInspection } from "./property-inspection";
 
 export default async function UnitPage(
@@ -105,6 +106,13 @@ export default async function UnitPage(
               <p className="mt-4 text-slate-500">
                 {property.property_description}
               </p>
+              <div className="mt-6">
+                <h3 className="text-3xl font-semibold text-slate-800">
+                  Purchase a unit, in{" "}
+                  <span className="text-green-800">Just 3 steps</span>
+                </h3>
+                <Steps />
+              </div>
               <div className="mt-6">
                 <h3 className="text-3xl font-semibold text-slate-800">
                   Property Inspection
@@ -239,5 +247,51 @@ export default async function UnitPage(
         </div>
       </section>
     </main>
+  );
+}
+
+function Steps() {
+  const steps = [
+    {
+      title: "Choose... Book Online!",
+      description: (
+        <>
+          Choose the car that suits you on our website and book an appointment
+          to visit it in our showroom.{" "}
+          <strong className="font-semibold">No Fees!</strong>
+        </>
+      ),
+      Icon: Step1Icon,
+    },
+    {
+      title: "View and Reserve",
+      description: (
+        <>
+          View the unit in our showroom and book it for 10,000 EGP.{" "}
+          <strong className="font-semibold">(fully refundable)</strong>
+        </>
+      ),
+      Icon: Step2Icon,
+    },
+    {
+      title: "Buy Your Property",
+      description:
+        "The unit will be reserved for you for 24 hours, during which you can decide to buy it or look at other units.",
+      Icon: Step3Icon,
+    },
+  ];
+  return (
+    <div className="mt-4 flex gap-2">
+      {steps.map((step) => (
+        <div
+          key={step.title}
+          className="flex-1 rounded-md bg-slate-100 px-6 pb-12"
+        >
+          <step.Icon />
+          <dt className="text-primary-900 text-xl font-medium">{step.title}</dt>
+          <dd className="text-primary-800">{step.description}</dd>
+        </div>
+      ))}
+    </div>
   );
 }
