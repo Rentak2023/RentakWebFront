@@ -1,6 +1,7 @@
 import { useLocale, useTranslations } from "next-intl";
 
 import { Card, CardContent } from "@/components/ui/card";
+import Container from "@/components/ui/container";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import getLocaleDirection from "@/lib/utils";
 
@@ -15,7 +16,7 @@ export default function LoginRegisterPage() {
 
   return (
     <div className="pt-24">
-      <div className="container mx-auto px-4 xl:max-w-5xl">
+      <Container className="xl:max-w-5xl">
         <Card className="mx-auto w-full max-w-xl">
           <Tabs defaultValue="login" className="w-full" dir={dir}>
             <TabsList className="grid w-full grid-cols-2">
@@ -32,7 +33,7 @@ export default function LoginRegisterPage() {
             </CardContent>
           </Tabs>
         </Card>
-      </div>
+      </Container>
     </div>
   );
 }

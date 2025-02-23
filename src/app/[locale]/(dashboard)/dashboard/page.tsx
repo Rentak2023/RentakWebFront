@@ -8,6 +8,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import Container from "@/components/ui/container";
 import { getTransactionsHistory, getUserUnits } from "@/services/dashboard";
 
 import Services from "./components/services";
@@ -32,7 +33,7 @@ async function MyTransactions() {
 export default async function DashboardPage() {
   const t = await getTranslations("dashboard");
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:max-w-7xl">
+    <Container>
       <div className="mt-24 flex flex-col gap-8">
         <Breadcrumb>
           <BreadcrumbList>
@@ -76,6 +77,6 @@ export default async function DashboardPage() {
           <Services />
         </div>
       </div>
-    </div>
+    </Container>
   );
 }

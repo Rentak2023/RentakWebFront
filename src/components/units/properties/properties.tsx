@@ -5,6 +5,7 @@ import { useQueryStates } from "nuqs";
 import { Suspense } from "react";
 
 import UnitsSkeleton from "@/components/home/units/units-skeleton";
+import Container from "@/components/ui/container";
 import { Skeleton } from "@/components/ui/skeleton";
 import Unit from "@/components/unit";
 import { unitsQuery } from "@/queries/units";
@@ -16,7 +17,7 @@ import Sort from "./sort";
 
 function Properties() {
   return (
-    <div className="container mx-auto mt-4 px-8 md:mt-16 lg:mt-24">
+    <Container className="mt-4 md:mt-16 lg:mt-24">
       <PropertiesHeader />
       <div className="flex justify-between">
         <Suspense
@@ -33,7 +34,7 @@ function Properties() {
       <Suspense fallback={<UnitsSkeleton />}>
         <Units />
       </Suspense>
-    </div>
+    </Container>
   );
 }
 

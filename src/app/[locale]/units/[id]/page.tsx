@@ -14,6 +14,7 @@ import LocationIcon from "@/app/[locale]/assets/svgs/location-icon";
 import StatusIcon from "@/app/[locale]/assets/svgs/status-icon";
 import TypeIcon from "@/app/[locale]/assets/svgs/type-icon";
 import { Button } from "@/components/ui/button";
+import Container from "@/components/ui/container";
 import PropertyImages from "@/components/ui/property-images";
 import { Separator } from "@/components/ui/separator";
 import { Link } from "@/i18n/routing";
@@ -52,7 +53,7 @@ export default async function UnitPage(
   return (
     <main className="min-h-dvh">
       <section className="relative mt-24 pb-16 md:pb-24">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <Container>
           <div className="grid items-start gap-4 lg:grid-cols-5">
             <div className="lg:col-span-3">
               <PropertyImages images={property.gallary} />
@@ -244,7 +245,7 @@ export default async function UnitPage(
               </div>
             </div>
           </div>
-        </div>
+        </Container>
       </section>
     </main>
   );

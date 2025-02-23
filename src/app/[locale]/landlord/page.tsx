@@ -21,7 +21,7 @@ async function Landlord(
   setRequestLocale(locale);
 
   return (
-    <main className="min-h-screen">
+    <main>
       <Header />
       <Features />
       <Pricing />

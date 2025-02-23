@@ -47,30 +47,6 @@ const testimonials: Array<Testimonial> = [
   },
 ];
 
-const variants = {
-  enter: (direction: number) => {
-    return {
-      x: direction > 0 ? 150 : -150,
-      opacity: 0,
-      scale: 0.9,
-    };
-  },
-  center: {
-    zIndex: 1,
-    x: 0,
-    opacity: 1,
-    scale: 1,
-  },
-  exit: (direction: number) => {
-    return {
-      zIndex: 0,
-      x: direction < 0 ? 150 : -150,
-      opacity: 0,
-      scale: 0.9,
-    };
-  },
-};
-
 export default function TenantTestimonials() {
   const t = useTranslations("tenant.testimonials");
 

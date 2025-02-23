@@ -9,6 +9,7 @@ import contractImage from "@/app/[locale]/assets/images/contract.gif";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import Container from "@/components/ui/container";
 import {
   Form,
   FormControl,
@@ -73,8 +74,8 @@ function Contract() {
   });
 
   return (
-    <div className="pt-20">
-      <div className="container mx-auto grid px-4 md:grid-cols-3 xl:max-w-5xl">
+    <Container className="pt-20 xl:max-w-5xl">
+      <div className="grid md:grid-cols-3">
         <div className="col-span-2 flex flex-col justify-center">
           <h3 className="mt-10 text-7xl font-medium text-slate-800">
             {t("title")}
@@ -87,7 +88,7 @@ function Contract() {
           <Image src={contractImage} alt="" />
         </div>
       </div>
-      <Card className="container mx-auto xl:max-w-5xl">
+      <Card>
         <CardContent className="mt-6">
           <Form {...form}>
             <form onSubmit={onSubmit} encType="multipart/form-data">
@@ -354,7 +355,7 @@ function Contract() {
           </Button>
         </CardFooter>
       </Card>
-    </div>
+    </Container>
   );
 }
 

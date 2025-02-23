@@ -22,7 +22,7 @@ async function Tenant(
   setRequestLocale(locale);
 
   return (
-    <main className="min-h-screen">
+    <main>
       <Header />
       <Units />
       <PropertyRequest />

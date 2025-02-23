@@ -22,7 +22,7 @@ export default async function Home(
   setRequestLocale(locale);
 
   return (
-    <main className="min-h-screen">
+    <main>
       <Header />
       <Services />
       <WhyUs />

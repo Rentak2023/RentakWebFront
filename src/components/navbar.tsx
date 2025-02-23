@@ -39,6 +39,8 @@ import { Link, usePathname, useRouter } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 import { userLoggedInQuery } from "@/queries/user";
 
+import Container from "./ui/container";
+
 function NavRight() {
   const pathname = usePathname();
   const locale = useLocale();
@@ -171,9 +173,10 @@ export default function Navbar() {
 
   return (
     <header className="fixed top-0 z-10 w-full bg-white/80 shadow-sm backdrop-blur-md">
-      <nav
+      <Container
+        as="nav"
         aria-label="Global"
-        className="container mx-auto flex items-center justify-between gap-x-6 p-4"
+        className="flex items-center justify-between gap-x-6 py-4"
       >
         <div className="flex items-center gap-x-12">
           <Link href="/" className="-m-1.5 p-1.5">
@@ -254,7 +257,7 @@ export default function Navbar() {
             <MenuIcon aria-hidden="true" className="size-6" />
           </button>
         </div>
-      </nav>
+      </Container>
       <Dialog
         open={mobileMenuOpen}
         onClose={setMobileMenuOpen}

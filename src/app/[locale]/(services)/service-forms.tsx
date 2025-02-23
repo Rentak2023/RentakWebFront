@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import Container from "@/components/ui/container";
 import { Step, Stepper } from "@/components/ui/stepper";
 
 import { StepForm } from "./step-form";
@@ -16,7 +17,7 @@ export function ServiceForms({ steps, onSubmit, onNextStep }: ServiceForms) {
   const [useFormStore] = useState(() => createFormStore(steps));
 
   return (
-    <div className="mx-auto mt-16 flex w-full max-w-2xl flex-col gap-4">
+    <Container className="mt-16 flex w-full flex-col gap-4 xl:max-w-2xl">
       <Stepper variant="circle-alt" initialStep={0} steps={steps}>
         {steps.map((stepProps) => (
           <Step key={stepProps.label} label={stepProps.label}>
@@ -29,6 +30,6 @@ export function ServiceForms({ steps, onSubmit, onNextStep }: ServiceForms) {
           </Step>
         ))}
       </Stepper>
-    </div>
+    </Container>
   );
 }

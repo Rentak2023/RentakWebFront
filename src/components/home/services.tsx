@@ -4,6 +4,7 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/routing";
 
 import { Button } from "../ui/button";
+import Container from "../ui/container";
 import SectionTitle from "./components/section-title";
 
 type Service = {
@@ -42,17 +43,15 @@ export async function Services() {
   ];
 
   return (
-    <div className="pt-24 sm:pt-32">
-      <div className="container mx-auto flex max-w-7xl flex-col items-center justify-stretch px-6 md:px-8 xl:max-w-7xl">
-        <SectionTitle text={t("title")} />
+    <Container className="flex flex-col items-center justify-stretch pt-24 sm:pt-32">
+      <SectionTitle text={t("title")} />
 
-        <div className="mt-12 flex w-full flex-col items-center justify-between gap-6 md:flex-row">
-          {services.map((service) => (
-            <Service key={service.title} {...service} />
-          ))}
-        </div>
+      <div className="mt-12 flex w-full flex-col items-center justify-between gap-6 md:flex-row">
+        {services.map((service) => (
+          <Service key={service.title} {...service} />
+        ))}
       </div>
-    </div>
+    </Container>
   );
 }
 

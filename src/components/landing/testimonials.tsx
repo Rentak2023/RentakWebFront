@@ -7,6 +7,8 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import getLocaleDirection from "@/lib/utils";
 
+import Container from "../ui/container";
+
 export type Testimonial = {
   id: number;
   name: string;
@@ -54,7 +56,7 @@ export function Testimonials({ title, testimonials }: TestimonialsProps) {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const currentTestimonial = testimonials.find((t) => t.id === currentId)!;
   return (
-    <div className="mx-auto mt-28 max-w-7xl overflow-x-hidden px-6 pb-8 md:px-8">
+    <Container className="mt-28 overflow-x-hidden pb-8">
       <div className="flex flex-col items-center gap-y-6 lg:flex-row">
         <div className="flex max-w-lg flex-col items-center lg:items-start">
           <h3 className="text-primary-900 text-balance text-2xl font-semibold lg:text-5xl">
@@ -151,6 +153,6 @@ export function Testimonials({ title, testimonials }: TestimonialsProps) {
           </AnimatePresence>
         </div>
       </div>
-    </div>
+    </Container>
   );
 }

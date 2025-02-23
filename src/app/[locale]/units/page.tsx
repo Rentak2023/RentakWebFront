@@ -22,7 +22,7 @@ export default async function UnitsPage(
   setRequestLocale(locale);
 
   return (
-    <main className="min-h-screen">
+    <main>
       <div className="flex flex-col lg:flex-row">
         <SearchForm />
         <Properties />

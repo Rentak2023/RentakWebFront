@@ -7,6 +7,7 @@ import WhatsappIcon from "@/app/[locale]/assets/svgs/whatsapp-icon";
 import URLS from "@/shared/urls";
 
 import { Button } from "../ui/button";
+import Container from "../ui/container";
 
 async function Copyright() {
   const t = await getTranslations("footer");
@@ -32,7 +33,7 @@ async function Copyright() {
 
   return (
     <div className="border-t border-t-slate-300 px-0 py-8">
-      <div className="container mx-auto px-6 md:px-8">
+      <Container>
         <div className="grid items-center gap-6 md:grid-cols-2">
           <div className="text-center md:text-start">
             <p className="mb-0 text-slate-700">
@@ -52,7 +53,7 @@ async function Copyright() {
             ))}
           </ul>
         </div>
-      </div>
+      </Container>
     </div>
   );
 }

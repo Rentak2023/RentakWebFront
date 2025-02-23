@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import Container from "@/components/ui/container";
 import {
   Form,
   FormControl,
@@ -74,7 +75,7 @@ export default function LeadForm({
           </p>
         )}
       </div>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <Container>
         <Card className="mx-auto mt-8 xl:max-w-xl">
           <CardContent className="mt-6">
             <Form {...form}>
@@ -149,7 +150,7 @@ export default function LeadForm({
             </Button>
           </CardFooter>
         </Card>
-      </div>
+      </Container>
     </main>
   );
 }

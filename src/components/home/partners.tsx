@@ -11,6 +11,8 @@ import souhoolaLogo from "@/app/[locale]/assets/images/logos/souhoola.png";
 import valuLogo from "@/app/[locale]/assets/images/logos/valu.png";
 import visaLogo from "@/app/[locale]/assets/images/logos/visa.png";
 
+import Container from "../ui/container";
+
 const partners = [
   {
     name: "orion",
@@ -53,7 +55,7 @@ const partners = [
 export function Partners() {
   const t = useTranslations("home.partners");
   return (
-    <div className="container mx-auto mt-24 px-6 sm:mt-32 md:px-8">
+    <Container className="mt-24 sm:mt-32">
       <h3 className="text-center text-xl font-medium text-slate-700">
         {t("title")}
       </h3>
@@ -68,6 +70,6 @@ export function Partners() {
           </div>
         ))}
       </div>
-    </div>
+    </Container>
   );
 }

@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 
+import Container from "@/components/ui/container";
 import { getUser, getUserTransferMethods } from "@/services/auth";
 
 type ProfileSection = {
@@ -71,7 +72,7 @@ export default async function Profile() {
     },
   ];
   return (
-    <div className="container mx-auto mt-24 px-4 sm:px-6 lg:px-8">
+    <Container className="mt-24">
       <h1 className="text-lg text-slate-700">My Profile</h1>
 
       <div className="mt-4 flex flex-col gap-6">
@@ -100,6 +101,6 @@ export default async function Profile() {
           </div>
         ))}
       </div>
-    </div>
+    </Container>
   );
 }

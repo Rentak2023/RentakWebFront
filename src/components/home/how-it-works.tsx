@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 
+import Container from "../ui/container";
 import SectionTitle from "./components/section-title";
 
 export async function HowItWorks() {
@@ -25,31 +26,29 @@ export async function HowItWorks() {
   ];
 
   return (
-    <div className="pt-24 sm:pt-32">
-      <div className="container mx-auto flex max-w-7xl flex-col items-center justify-stretch px-6 md:px-8">
-        <SectionTitle text={t("title")} />
-        <div className="relative mt-12">
-          {steps.map((step) => (
-            <div
-              className="group relative flex items-start justify-between before:absolute before:inset-0 before:top-6 before:-z-10 before:ms-5 before:h-full before:w-0.5 before:-translate-x-3 before:bg-slate-200 last-of-type:before:hidden md:justify-normal md:before:mx-auto md:before:translate-x-0 md:odd:flex-row-reverse"
-              key={step.title}
-            >
-              <div className="bg-primary-600 ring-primary-600 mt-6 flex size-4 shrink-0 items-center justify-center rounded-full ring-4 ring-offset-2 md:order-1 md:group-odd:ltr:-translate-x-1/2 md:group-even:ltr:translate-x-1/2 md:group-odd:rtl:translate-x-1/2 md:group-even:rtl:-translate-x-1/2" />
-              <hr />
-              <div className="w-[calc(100%-3rem)] p-4 md:w-[calc(50%-1rem)]">
-                <div className="flex items-center justify-between">
-                  <p className="text-primary-800 text-xl font-semibold">
-                    {step.title}
-                  </p>
-                </div>
-                <p className="mt-4 min-h-[3lh] text-slate-500">
-                  {step.description}
+    <Container className="flex flex-col items-center justify-stretch pt-24 sm:pt-32">
+      <SectionTitle text={t("title")} />
+      <div className="relative mt-12">
+        {steps.map((step) => (
+          <div
+            className="group relative flex items-start justify-between before:absolute before:inset-0 before:top-6 before:-z-10 before:ms-5 before:h-full before:w-0.5 before:-translate-x-3 before:bg-slate-200 last-of-type:before:hidden md:justify-normal md:before:mx-auto md:before:translate-x-0 md:odd:flex-row-reverse"
+            key={step.title}
+          >
+            <div className="bg-primary-600 ring-primary-600 mt-6 flex size-4 shrink-0 items-center justify-center rounded-full ring-4 ring-offset-2 md:order-1 md:group-odd:ltr:-translate-x-1/2 md:group-even:ltr:translate-x-1/2 md:group-odd:rtl:translate-x-1/2 md:group-even:rtl:-translate-x-1/2" />
+            <hr />
+            <div className="w-[calc(100%-3rem)] p-4 md:w-[calc(50%-1rem)]">
+              <div className="flex items-center justify-between">
+                <p className="text-primary-800 text-xl font-semibold">
+                  {step.title}
                 </p>
               </div>
+              <p className="mt-4 min-h-[3lh] text-slate-500">
+                {step.description}
+              </p>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
-    </div>
+    </Container>
   );
 }

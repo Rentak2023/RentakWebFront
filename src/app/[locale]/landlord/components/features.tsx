@@ -1,6 +1,8 @@
 import { useTranslations } from "next-intl";
 import { type ReactNode, type SVGProps } from "react";
 
+import Container from "@/components/ui/container";
+
 type Service = {
   title: string;
   description: string;
@@ -197,54 +199,52 @@ const Features = () => {
     },
   ];
   return (
-    <div className="mt-24">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl lg:mx-0">
-          <h2 className="text-capitalized text-primary-900 text-3xl font-semibold tracking-tight sm:text-4xl">
-            {t("title")}
-          </h2>
-          {/* <p className="mt-6 text-lg leading-8 text-slate-600">
+    <Container className="mt-24">
+      <div className="mx-auto max-w-2xl lg:mx-0">
+        <h2 className="text-capitalized text-primary-900 text-3xl font-semibold tracking-tight sm:text-4xl">
+          {t("title")}
+        </h2>
+        {/* <p className="mt-6 text-lg leading-8 text-slate-600">
             Lorem ipsum dolor sit amet consect adipisicing elit. Possimus magnam
             voluptatum cupiditate veritatis in accusamus quisquam.
           </p> */}
-        </div>
-        <div className="mx-auto mt-8 max-w-2xl sm:mt-12 lg:mt-16 lg:max-w-none">
-          <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
-            {features.map((feature) => (
-              <div key={feature.title} className="flex flex-col">
-                <dt className="text-primary-900 flex flex-col items-start justify-start gap-3 text-base font-semibold leading-7">
-                  {/* <div className="mb-6 flex size-12 items-center justify-center rounded-lg border border-slate-300 bg-white">
+      </div>
+      <div className="mx-auto mt-8 max-w-2xl sm:mt-12 lg:mt-16 lg:max-w-none">
+        <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
+          {features.map((feature) => (
+            <div key={feature.title} className="flex flex-col">
+              <dt className="text-primary-900 flex flex-col items-start justify-start gap-3 text-base font-semibold leading-7">
+                {/* <div className="mb-6 flex size-12 items-center justify-center rounded-lg border border-slate-300 bg-white">
                     <feature.icon
                       aria-hidden="true"
                       className="size-8 text-primary-600"
                     />
                   </div> */}
-                  <div className="bg-primary-600/5 flex size-12 items-center justify-center rounded-full p-2">
-                    <feature.icon
-                      className="text-primary-800 size-6"
-                      aria-hidden="true"
-                    />
-                  </div>
-                  {feature.title}
-                </dt>
-                <dd className="mt-1 flex flex-auto flex-col text-base leading-7 text-slate-600">
-                  <h3 className="flex-auto">{feature.description}</h3>
-                  <p className="mt-4">
-                    <a
-                      href={feature.href}
-                      className="text-primary-600 text-sm font-semibold leading-6 underline"
-                    >
-                      {feature.cta}
-                      {/* <span aria-hidden="true">→</span> */}
-                    </a>
-                  </p>
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </div>
+                <div className="bg-primary-600/5 flex size-12 items-center justify-center rounded-full p-2">
+                  <feature.icon
+                    className="text-primary-800 size-6"
+                    aria-hidden="true"
+                  />
+                </div>
+                {feature.title}
+              </dt>
+              <dd className="mt-1 flex flex-auto flex-col text-base leading-7 text-slate-600">
+                <h3 className="flex-auto">{feature.description}</h3>
+                <p className="mt-4">
+                  <a
+                    href={feature.href}
+                    className="text-primary-600 text-sm font-semibold leading-6 underline"
+                  >
+                    {feature.cta}
+                    {/* <span aria-hidden="true">→</span> */}
+                  </a>
+                </p>
+              </dd>
+            </div>
+          ))}
+        </dl>
       </div>
-    </div>
+    </Container>
   );
 };
 

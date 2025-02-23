@@ -4,6 +4,7 @@ import { getTranslations } from "next-intl/server";
 
 import logo from "@/app/[locale]/assets/images/Logo.png";
 
+import Container from "../ui/container";
 import SectionTitle from "./components/section-title";
 
 export async function Plans() {
@@ -87,7 +88,7 @@ export async function Plans() {
 
       <p className="mt-4 text-center text-lg text-slate-600">{t("subtitle")}</p>
 
-      <div className="mx-auto mt-6 max-w-7xl px-6 pt-4 lg:rounded-2xl lg:px-10 lg:pb-14 lg:shadow-sm">
+      <Container className="mx-auto mt-6 pt-4 lg:rounded-2xl lg:pb-14 lg:shadow-sm">
         {/* Feature comparison (up to lg) */}
         <section
           aria-labelledby="mobile-comparison-heading"
@@ -230,7 +231,7 @@ export async function Plans() {
             </table>
           </div>
         </section>
-      </div>
+      </Container>
     </div>
   );
 }

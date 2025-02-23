@@ -8,6 +8,7 @@ import * as v from "valibot";
 import isMobilePhone from "validator/es/lib/isMobilePhone";
 import isNumeric from "validator/es/lib/isNumeric";
 
+import Container from "@/components/ui/container";
 import { useToast } from "@/components/ui/use-toast";
 import { banksQuery } from "@/queries/banks";
 import { cashInPaymentMethodsQuery } from "@/queries/payment-methods";
@@ -502,21 +503,19 @@ export default function MaintenancePayment(
 
   return (
     <main className="pt-32">
-      <div className="mx-auto max-w-7xl text-center sm:px-6 lg:px-8">
+      <Container className="text-center">
         <h1 className="mx-auto max-w-4xl text-balance text-5xl font-medium tracking-tight text-slate-900 sm:text-6xl">
           {t("maintenance-payment.title")}
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-lg tracking-tight text-slate-700">
           {t("maintenance-payment.description")}
         </p>
-      </div>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <ServiceForms
-          steps={steps}
-          onSubmit={handleSubmit}
-          onNextStep={onNextStep}
-        />
-      </div>
+      </Container>
+      <ServiceForms
+        steps={steps}
+        onSubmit={handleSubmit}
+        onNextStep={onNextStep}
+      />
     </main>
   );
 }

@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 
+import Container from "@/components/ui/container";
+
 import headerBackground from "./header-background.jpg";
 
 export default function Header() {
@@ -8,7 +10,7 @@ export default function Header() {
   return (
     <div className="bg-white">
       <div className="bg-linear-to-b from-primary-100/20 relative isolate overflow-hidden pt-24">
-        <div className="container mx-auto items-center justify-between px-4 pt-10 sm:px-6 lg:flex lg:flex-row lg:gap-x-8 lg:px-8 xl:max-w-7xl">
+        <Container className="items-center justify-between pt-10 lg:flex lg:flex-row lg:gap-x-8">
           <div className="px-6 lg:px-0 lg:pt-4">
             <div className="mx-auto max-w-2xl">
               <div className="max-w-xl">
@@ -27,7 +29,7 @@ export default function Header() {
               width={500}
             />
           </div>
-        </div>
+        </Container>
       </div>
     </div>
   );
