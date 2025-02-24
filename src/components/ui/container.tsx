@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-type PolymorphicProps<E extends React.ElementType> = React.PropsWithChildren<
+type ContainerProps<E extends React.ElementType> = React.PropsWithChildren<
   React.ComponentPropsWithRef<E> & {
     as?: E;
   }
@@ -10,8 +10,8 @@ export default function Container<T extends React.ElementType = "div">({
   className,
   as,
   ...props
-}: PolymorphicProps<T>) {
-  const Component = as || "div";
+}: ContainerProps<T>) {
+  const Component = as ?? "div";
 
   return (
     <Component

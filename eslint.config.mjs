@@ -36,7 +36,7 @@ export default ts.config(
   ...ts.configs.stylisticTypeChecked,
   // disable until it supports v4
   // ...tailwind.configs["flat/recommended"],
-  unicorn.configs["flat/recommended"],
+  unicorn.configs["recommended"],
   promise.configs["flat/recommended"],
   ...tanStackQuery.configs["flat/recommended"],
   configPrettier,
