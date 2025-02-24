@@ -1,4 +1,5 @@
 import { HeartIcon } from "lucide-react";
+import Image from "next/image";
 import { type Locale } from "next-intl";
 import {
   getFormatter,
@@ -6,6 +7,7 @@ import {
   setRequestLocale,
 } from "next-intl/server";
 
+import logo from "@/app/[locale]/assets/images/Logo.png";
 import AreaIcon from "@/app/[locale]/assets/svgs/area-icon";
 import AvailableIcon from "@/app/[locale]/assets/svgs/available-icon";
 import BathIcon from "@/app/[locale]/assets/svgs/bath-icon";
@@ -147,10 +149,21 @@ export default async function UnitPage(
                 </h3>
                 <Steps />
               </div>
-              <div className="mt-6">
-                <h3 className="text-3xl font-semibold text-slate-800">
-                  Property Inspection
-                </h3>
+              <div className="mt-16">
+                <div className="ms-2 flex items-center gap-2 text-sm text-slate-600">
+                  <span>
+                    <span className="sr-only">Rentak</span>
+
+                    <Image
+                      src={logo}
+                      className="h-5 w-auto object-contain"
+                      alt=""
+                      height={20}
+                    />
+                  </span>
+                  All Rentak units go through strict quality checks to ensure
+                  their safety and excellent condition.
+                </div>
                 <PropertyInspection inspection={inspection} />
               </div>
             </div>
