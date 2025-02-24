@@ -50,6 +50,39 @@ export default async function UnitPage(
       .replace(/^([A-Z]{3})\s*(.+)$/, "$2 $1");
   };
 
+  const stats = [
+    {
+      title: t("propertyType"),
+      value: property.finish_type.type_name,
+      icon: <TypeIcon className="size-6" />,
+    },
+    {
+      title: t("m2"),
+      value: formatter.number(property.area),
+      icon: <AreaIcon className="size-6" />,
+    },
+    {
+      title: t("rooms"),
+      value: formatter.number(property.room_numbers),
+      icon: <BedIcon className="size-6" />,
+    },
+    {
+      title: t("toilets"),
+      value: formatter.number(property.bathrom_numbers),
+      icon: <BathIcon className="size-6" />,
+    },
+    {
+      title: t("sponsored"),
+      value: property.location.governorate_name,
+      icon: <HeartIcon className="size-6" />,
+    },
+    {
+      title: t("status"),
+      value: <span className="text-green-800">{t("availableNow")}</span>,
+      icon: <AvailableIcon className="size-6" />,
+    },
+  ];
+
   return (
     <main className="min-h-dvh">
       <section className="relative mt-24 pb-16 md:pb-24">
@@ -137,103 +170,23 @@ export default async function UnitPage(
                   <span>{property.location.address_in_detail}</span>
                 </p>
 
-                <ul className="mt-4 list-none">
-                  <li className="flex items-center justify-between py-3">
-                    {property.finish_type.type_name ? (
-                      <div className="flex w-1/2 items-center gap-2">
-                        <div className="item-center flex justify-items-center rounded-lg border border-slate-300 p-3">
-                          <TypeIcon />
-                        </div>
-                        <div className="flex flex-col">
-                          <p className="text-primary-900 text-base font-medium">
-                            {t("propertyType")}
-                          </p>
-                          <p className="font-regular text-primary-900 text-base">
-                            {property.finish_type.type_name}
-                          </p>
-                        </div>
-                      </div>
-                    ) : null}
-
-                    <div className="flex w-1/2 items-center gap-2">
+                <div className="text-primary-900 mt-6 grid grid-cols-2 gap-y-4">
+                  {stats.map((stat) => (
+                    <div key={stat.title} className="flex items-center gap-2">
                       <div className="item-center flex justify-items-center rounded-lg border border-slate-300 p-3">
-                        <AreaIcon className="size-6" />
+                        {stat.icon}
                       </div>
-                      <div className="flex flex-col">
-                        <p className="text-primary-900 text-base font-medium">
-                          {t("m2")}
-                        </p>
-                        <p className="font-regular text-primary-900 text-base">
-                          {formatter.number(property.area)}
-                        </p>
+                      <div>
+                        <dt>{stat.title}</dt>
+                        <dd className="font-medium">{stat.value}</dd>
                       </div>
                     </div>
-                  </li>
-
-                  <li className="flex items-center justify-between py-3">
-                    <div className="flex w-1/2 items-center gap-2">
-                      <div className="item-center flex justify-items-center rounded-lg border border-slate-300 p-3">
-                        <BedIcon className="size-6" />
-                      </div>
-                      <div className="flex flex-col">
-                        <p className="text-primary-900 text-base font-medium">
-                          {t("rooms")}
-                        </p>
-                        <p className="font-regular text-primary-900 text-base">
-                          {formatter.number(property.room_numbers)}
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="flex w-1/2 items-center gap-2">
-                      <div className="item-center flex justify-items-center rounded-lg border border-slate-300 p-3">
-                        <BathIcon className="size-6" />
-                      </div>
-                      <div className="flex flex-col">
-                        <p className="text-primary-900 text-base font-medium">
-                          {t("toilets")}
-                        </p>
-                        <p className="font-regular text-primary-900 text-base">
-                          {formatter.number(property.bathrom_numbers)}
-                        </p>
-                      </div>
-                    </div>
-                  </li>
-
-                  <li className="flex items-center justify-between py-3">
-                    <div className="flex w-1/2 items-center gap-2">
-                      <div className="item-center flex justify-items-center rounded-lg border border-slate-300 p-3">
-                        <HeartIcon className="size-6" />
-                      </div>
-                      <div className="flex flex-col">
-                        <p className="text-primary-900 text-base font-medium">
-                          {t("sponsored")}
-                        </p>
-                        <p className="font-regular text-primary-900 text-base">
-                          {property.location.governorate_name}
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="flex w-1/2 items-center gap-2">
-                      <div className="item-center flex justify-items-center rounded-lg border border-slate-300 p-3">
-                        <AvailableIcon className="size-6" />
-                      </div>
-                      <div className="flex flex-col">
-                        <p className="text-primary-900 text-base font-medium">
-                          {t("status")}
-                        </p>
-                        <p className="font-regular text-base text-[#156F0D]">
-                          {t("availableNow")}
-                        </p>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
+                  ))}
+                </div>
 
                 <Separator className="my-4" />
 
-                <div className="flex gap-2">
+                <div className="flex flex-col gap-2">
                   <ArrangeVisit unitId={property.id} />
 
                   <Button className="flex-1" variant="outline" asChild>

@@ -75,7 +75,9 @@ export function ArrangeVisit({ unitId }: ArrangeVisitProps) {
   return (
     <Dialog modal>
       <DialogTrigger asChild>
-        <Button className="flex-1">{t("requestATour")}</Button>
+        <Button className="bg-primary-600 hover:bg-primary-600/90 flex-1">
+          {t("requestATour")}
+        </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
