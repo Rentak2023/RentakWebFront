@@ -15,6 +15,14 @@ import BedIcon from "@/app/[locale]/assets/svgs/bed-icon";
 import LocationIcon from "@/app/[locale]/assets/svgs/location-icon";
 import StatusIcon from "@/app/[locale]/assets/svgs/status-icon";
 import TypeIcon from "@/app/[locale]/assets/svgs/type-icon";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import Container from "@/components/ui/container";
 import PropertyImages from "@/components/ui/property-images";
@@ -89,6 +97,17 @@ export default async function UnitPage(
     <main className="min-h-dvh">
       <section className="relative mt-24 pb-16 md:pb-24">
         <Container>
+          <Breadcrumb className="mb-4">
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/units">Properties</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>Property Details</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
           <div className="grid items-start gap-4 lg:grid-cols-5">
             <div className="lg:col-span-3">
               <PropertyImages images={property.gallary} />
