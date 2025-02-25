@@ -1,6 +1,7 @@
 {
   "meta": {
-    "title": "Rentak"
+    "title": "Rentak",
+    "default": "%s | Rentak"
   },
   "header": {
     "title": "Your Doorway to Smart Rent Solutions",
@@ -565,7 +566,7 @@
     "status": "Status",
     "availableNow": "Available Now",
     "sponsored": "Sponsored",
-    "requestATour": "Request Viewing",
+    "requestATour": "Book a Visit",
     "contactUs": "Contact Us",
     "sort": "Sort",
     "newest": "Newest",

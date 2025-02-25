@@ -1,4 +1,5 @@
 import { HeartIcon } from "lucide-react";
+import { type Metadata } from "next";
 import Image from "next/image";
 import { type Locale } from "next-intl";
 import {
@@ -6,6 +7,7 @@ import {
   getTranslations,
   setRequestLocale,
 } from "next-intl/server";
+import { type Accommodation, type WithContext } from "schema-dts";
 
 import logo from "@/app/[locale]/assets/images/Logo.png";
 import AreaIcon from "@/app/[locale]/assets/svgs/area-icon";
@@ -39,6 +41,27 @@ import { Step1Icon, Step2Icon, Step3Icon } from "./icons";
 import { PropertyInspection } from "./property-inspection";
 import SimilarUnits from "./similar-units";
 
+export async function generateMetadata(
+  props: Readonly<{
+    params: Promise<{ locale: Locale; id: string }>;
+  }>,
+): Promise<Metadata> {
+  const params = await props.params;
+  const { locale, id } = params;
+
+  const property = await getProperty(id, locale);
+
+  return {
+    title: property.property_name,
+    description: property.property_description,
+    openGraph: {
+      title: property.property_name,
+      description: property.property_description,
+      images: property.gallary.map((img) => img.url),
+    },
+  };
+}
+
 export default async function UnitPage(
   props: Readonly<{
     params: Promise<{ locale: Locale; id: string }>;
@@ -55,6 +78,28 @@ export default async function UnitPage(
     getProperty(id, locale),
     getPropertyInspectionDetails(id),
   ]);
+
+  const jsonLd: WithContext<Accommodation> = {
+    "@context": "https://schema.org",
+    "@type": "Apartment",
+    name: property.property_name,
+    image: property.gallary.map((img) => img.url),
+    description: property.property_description,
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: "Egypt",
+      addressLocality: property.location.city_name,
+      addressRegion: property.location.governorate_name,
+      streetAddress: property.location.address_in_detail,
+    },
+    numberOfBedrooms: property.room_numbers,
+    numberOfBathroomsTotal: property.bathrom_numbers,
+    floorSize: {
+      "@type": "QuantitativeValue",
+      value: property.area,
+      unitText: "m2",
+    },
+  };
 
   const formatCurrency = (amount: number) => {
     return formatter
@@ -97,6 +142,11 @@ export default async function UnitPage(
 
   return (
     <main className="min-h-dvh">
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line @eslint-react/dom/no-dangerously-set-innerhtml
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <section className="relative mt-24 pb-16 md:pb-24">
         <Container>
           <Breadcrumb className="mb-4">

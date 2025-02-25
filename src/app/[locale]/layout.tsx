@@ -48,8 +48,17 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   });
 
   return {
-    title: t("title"),
+    title: {
+      default: t("title"),
+      template: t("default"),
+    },
     metadataBase: new URL("https://www.rentakapp.com"),
+    openGraph: {
+      title: {
+        default: t("title"),
+        template: t("default"),
+      },
+    },
     alternates: {
       canonical: "/",
       languages: {
