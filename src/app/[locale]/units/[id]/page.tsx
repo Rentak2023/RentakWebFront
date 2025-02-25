@@ -34,6 +34,7 @@ import {
 } from "@/services/properties";
 
 import { ArrangeVisit } from "./arrange-visit";
+import CustomersTestimonials from "./customers-testimonials";
 import { Step1Icon, Step2Icon, Step3Icon } from "./icons";
 import { PropertyInspection } from "./property-inspection";
 import SimilarUnits from "./similar-units";
@@ -234,6 +235,7 @@ export default async function UnitPage(
         </Container>
       </section>
       <SimilarUnits />
+      <CustomersTestimonials />
     </main>
   );
 }
