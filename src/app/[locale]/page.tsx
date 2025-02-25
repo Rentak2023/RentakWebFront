@@ -1,3 +1,4 @@
+import { type Metadata } from "next";
 import { type Locale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 
@@ -9,6 +10,24 @@ import { Plans } from "@/components/home/plans";
 import { Services } from "@/components/home/services";
 import Units from "@/components/home/units";
 import { WhyUs } from "@/components/home/why-us";
+
+export async function generateMetadata(
+  props: Readonly<{
+    params: Promise<{ locale: Locale }>;
+  }>,
+): Promise<Metadata> {
+  const { locale } = await props.params;
+
+  return {
+    alternates: {
+      canonical: "/",
+      languages: {
+        en: "/",
+        ar: "/ar",
+      },
+    },
+  };
+}
 
 export default async function Home(
   props: Readonly<{

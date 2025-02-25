@@ -58,13 +58,18 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
         default: t("title"),
         template: t("default"),
       },
+      type: "website",
     },
-    alternates: {
-      canonical: "/",
-      languages: {
-        "en-US": "/",
-        "ar-EG": "/ar",
-      },
+    robots: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+      googleBot: "index, follow",
+    },
+    verification: {
+      google: "um9lkKeKbcsNicGoHyG1jIJ8QmHiK8BLZkqfJ0_gL8A",
     },
   };
 }

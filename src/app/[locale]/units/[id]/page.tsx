@@ -59,6 +59,13 @@ export async function generateMetadata(
       description: property.property_description,
       images: property.gallary.map((img) => img.url),
     },
+    alternates: {
+      canonical: `/units/${id}`,
+      languages: {
+        en: `/units/${id}`,
+        ar: `/ar/units/${id}`,
+      },
+    },
   };
 }
 

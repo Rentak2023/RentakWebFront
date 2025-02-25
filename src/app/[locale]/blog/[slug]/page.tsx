@@ -24,6 +24,13 @@ export const generateMetadata = async (props: {
     title: article.title,
     description: article.meta_description,
     keywords: article.meta_keywords,
+    alternates: {
+      canonical: `/blog/${slug}`,
+      languages: {
+        en: `/blog/${slug}`,
+        ar: `/ar/blog/${slug}`,
+      },
+    },
   };
 };
 

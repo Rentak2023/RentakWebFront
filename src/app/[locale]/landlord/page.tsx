@@ -1,3 +1,4 @@
+import { type Metadata } from "next";
 import { type Locale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 
@@ -8,6 +9,24 @@ import Pricing from "./components/pricing";
 import Steps from "./components/steps";
 import Testimonials from "./components/testimonials";
 import WhyRentak from "./components/why-rentak";
+
+export async function generateMetadata(
+  props: Readonly<{
+    params: Promise<{ locale: Locale }>;
+  }>,
+): Promise<Metadata> {
+  const { locale } = await props.params;
+
+  return {
+    alternates: {
+      canonical: "/landlord",
+      languages: {
+        en: "/landlord",
+        ar: "/ar/landlord",
+      },
+    },
+  };
+}
 
 async function Landlord(
   props: Readonly<{
