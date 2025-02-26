@@ -60,6 +60,8 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
         template: t("default"),
       },
       type: "website",
+      description: t("description"),
+      siteName: "Rentak",
     },
     robots: {
       index: true,

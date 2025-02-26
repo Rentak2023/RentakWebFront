@@ -1,6 +1,6 @@
 import { type Metadata } from "next";
 import { type Locale } from "next-intl";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import Units from "@/components/home/units";
 import { generateAlternatesLinks } from "@/lib/utils";
@@ -18,9 +18,19 @@ export async function generateMetadata(
   }>,
 ): Promise<Metadata> {
   const { locale } = await props.params;
+  const t = await getTranslations({
+    locale,
+    namespace: "tenant.meta",
+  });
 
   return {
     alternates: generateAlternatesLinks("/tenant", locale),
+    title: t("title"),
+    description: t("description"),
+    openGraph: {
+      title: t("title"),
+      description: t("description"),
+    },
   };
 }
 

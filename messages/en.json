@@ -153,6 +153,10 @@
     }
   },
   "landlord": {
+    "meta": {
+      "title": "Landlord",
+      "description": "Maximize your rental income with Rentak's guaranteed rent and property management services. Enjoy hassle-free living with our technology-driven solutions."
+    },
     "header": {
       "title": "Maximize Your Rental Income with Guaranteed Peace of Mind",
       "subtitle": "Rentak transforms property management with technology-driven solutions and guaranteed rent, so you can sit back and relax."
@@ -274,6 +278,10 @@
     }
   },
   "tenant": {
+    "meta": {
+      "title": "Tenant",
+      "description": "Rentak is your trusted partner in finding the perfect rental home. With our user-friendly platform, you can explore a wide range of verified listings, enjoy flexible payment options, and experience hassle-free living. Discover how Rentak simplifies your rental journey today!"
+    },
     "header": {
       "title": "Find Your Ideal Home with Rentak",
       "subtitle": "Simplify your rental experience with flexible payments, hassle-free services, and secure contracts."
