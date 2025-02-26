@@ -5,6 +5,7 @@ import { type SearchParams } from "nuqs/server";
 
 import Properties from "@/components/units/properties/properties";
 import SearchForm from "@/components/units/search-form/search-form";
+import { generateAlternatesLinks } from "@/lib/utils";
 import { propertiesQueryCache } from "@/services/properties";
 
 export async function generateMetadata(
@@ -15,13 +16,7 @@ export async function generateMetadata(
   const { locale } = await props.params;
 
   return {
-    alternates: {
-      canonical: "/units",
-      languages: {
-        en: "/units",
-        ar: "/ar/units",
-      },
-    },
+    alternates: generateAlternatesLinks("/units", locale),
   };
 }
 

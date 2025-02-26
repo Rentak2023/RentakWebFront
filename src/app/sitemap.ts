@@ -22,7 +22,6 @@ function getEntries(href: Href) {
     url: getUrl(href, locale),
     alternates: {
       languages: {
-        en: getUrl(href, "en"),
         ar: getUrl(href, "ar-EG"),
       },
     },

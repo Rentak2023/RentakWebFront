@@ -8,7 +8,7 @@ import { useLocale } from "next-intl";
 import * as React from "react";
 
 import { Button } from "@/components/ui/button";
-import getLocaleDirection, { cn } from "@/lib/utils";
+import { cn, getLocaleDirection } from "@/lib/utils";
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;

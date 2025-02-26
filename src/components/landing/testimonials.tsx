@@ -5,7 +5,7 @@ import { useFormatter, useLocale } from "next-intl";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import getLocaleDirection from "@/lib/utils";
+import { getLocaleDirection } from "@/lib/utils";
 
 import Container from "../ui/container";
 

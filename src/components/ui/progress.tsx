@@ -4,7 +4,7 @@ import * as ProgressPrimitive from "@radix-ui/react-progress";
 import { useLocale } from "next-intl";
 import * as React from "react";
 
-import getLocaleDirection, { cn } from "@/lib/utils";
+import { cn, getLocaleDirection } from "@/lib/utils";
 
 const Progress = ({
   ref,

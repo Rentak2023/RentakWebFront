@@ -10,6 +10,7 @@ import { Plans } from "@/components/home/plans";
 import { Services } from "@/components/home/services";
 import Units from "@/components/home/units";
 import { WhyUs } from "@/components/home/why-us";
+import { generateAlternatesLinks } from "@/lib/utils";
 
 export async function generateMetadata(
   props: Readonly<{
@@ -19,13 +20,7 @@ export async function generateMetadata(
   const { locale } = await props.params;
 
   return {
-    alternates: {
-      canonical: "/",
-      languages: {
-        en: "/",
-        ar: "/ar",
-      },
-    },
+    alternates: generateAlternatesLinks("/", locale),
   };
 }
 

@@ -3,6 +3,7 @@ import { type Locale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 
 import Units from "@/components/home/units";
+import { generateAlternatesLinks } from "@/lib/utils";
 
 import BlogPosts from "./components/blog-posts";
 import Header from "./components/header";
@@ -19,13 +20,7 @@ export async function generateMetadata(
   const { locale } = await props.params;
 
   return {
-    alternates: {
-      canonical: "/tenant",
-      languages: {
-        en: "/tenant",
-        ar: "/ar/tenant",
-      },
-    },
+    alternates: generateAlternatesLinks("/tenant", locale),
   };
 }
 

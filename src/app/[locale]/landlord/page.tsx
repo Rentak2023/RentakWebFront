@@ -2,6 +2,8 @@ import { type Metadata } from "next";
 import { type Locale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 
+import { generateAlternatesLinks } from "@/lib/utils";
+
 import Features from "./components/features";
 import Finishing from "./components/finishing";
 import Header from "./components/header";
@@ -18,13 +20,7 @@ export async function generateMetadata(
   const { locale } = await props.params;
 
   return {
-    alternates: {
-      canonical: "/landlord",
-      languages: {
-        en: "/landlord",
-        ar: "/ar/landlord",
-      },
-    },
+    alternates: generateAlternatesLinks("/landlord", locale),
   };
 }
 

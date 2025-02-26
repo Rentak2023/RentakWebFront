@@ -17,7 +17,7 @@ import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import { Toaster } from "@/components/ui/toaster";
 import { routing } from "@/i18n/routing";
-import getLocaleDirection from "@/lib/utils";
+import { getLocaleDirection } from "@/lib/utils";
 import URLS from "@/shared/urls";
 
 import WhatsappIcon from "./assets/svgs/whatsapp-icon";
@@ -52,6 +52,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
       default: t("title"),
       template: t("default"),
     },
+    description: t("description"),
     metadataBase: new URL("https://www.rentakapp.com"),
     openGraph: {
       title: {
@@ -96,7 +97,7 @@ export default async function RootLayout(
 
   return (
     <html
-      lang={locale}
+      lang={locale === "en" ? "en" : "ar"}
       dir={direction}
       className={`${generalSans.variable} ${notoSans.variable}`}
     >

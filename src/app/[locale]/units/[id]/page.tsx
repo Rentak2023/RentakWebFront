@@ -30,6 +30,7 @@ import Container from "@/components/ui/container";
 import PropertyImages from "@/components/ui/property-images";
 import { Separator } from "@/components/ui/separator";
 import { Link } from "@/i18n/routing";
+import { generateAlternatesLinks } from "@/lib/utils";
 import {
   getProperty,
   getPropertyInspectionDetails,
@@ -59,13 +60,7 @@ export async function generateMetadata(
       description: property.property_description,
       images: property.gallary.map((img) => img.url),
     },
-    alternates: {
-      canonical: `/units/${id}`,
-      languages: {
-        en: `/units/${id}`,
-        ar: `/ar/units/${id}`,
-      },
-    },
+    alternates: generateAlternatesLinks(`/units/${id}`, locale),
   };
 }
 

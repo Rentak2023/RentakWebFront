@@ -1,8 +1,9 @@
 "use client";
 import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
 import { CalendarIcon, Loader2 } from "lucide-react";
+import { type Metadata } from "next";
 import Image from "next/image";
-import { useFormatter, useTranslations } from "next-intl";
+import { type Locale, useFormatter, useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 
 import contractImage from "@/app/[locale]/assets/images/contract.gif";
@@ -33,10 +34,22 @@ import {
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "@/components/ui/use-toast";
-import { cn } from "@/lib/utils";
+import { cn, generateAlternatesLinks } from "@/lib/utils";
 import { contractSchema } from "@/schema/contract";
 
 import { createContractAction } from "../actions/create-contract";
+
+export async function generateMetadata(
+  props: Readonly<{
+    params: Promise<{ locale: Locale }>;
+  }>,
+): Promise<Metadata> {
+  const { locale } = await props.params;
+
+  return {
+    alternates: generateAlternatesLinks("/contract", locale),
+  };
+}
 
 function Contract() {
   const formatter = useFormatter();

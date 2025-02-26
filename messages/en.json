@@ -1,7 +1,8 @@
 {
   "meta": {
     "title": "Rentak",
-    "default": "%s | Rentak"
+    "default": "%s | Rentak",
+    "description": "At Rentak, we simplify and secure the rental process, offering tailored solutions for landlords, tenants, and brokers. Experience seamless property management, transparent transactions, and flexible payment options that transform real estate into a hassle-free world."
   },
   "header": {
     "title": "Your Doorway to Smart Rent Solutions",

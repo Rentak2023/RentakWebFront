@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { type Locale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 
+import { generateAlternatesLinks } from "@/lib/utils";
 import { getAllArticles, getArticleBySlug } from "@/services/articles";
 
 import MorePosts from "./more-posts";
@@ -24,13 +25,7 @@ export const generateMetadata = async (props: {
     title: article.title,
     description: article.meta_description,
     keywords: article.meta_keywords,
-    alternates: {
-      canonical: `/blog/${slug}`,
-      languages: {
-        en: `/blog/${slug}`,
-        ar: `/ar/blog/${slug}`,
-      },
-    },
+    alternates: generateAlternatesLinks(`/blog/${slug}`, locale),
   };
 };
 
