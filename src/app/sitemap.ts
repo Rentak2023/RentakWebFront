@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...getEntries("/"),
     ...getEntries("/landlord"),
     ...getEntries("/tenant"),
+    ...getEntries("/contract"),
     ...getEntries("/units"),
   ];
 }
