@@ -8,10 +8,23 @@ const host = "https://rentakapp.com";
 export default function sitemap(): MetadataRoute.Sitemap {
   // Adapt this as necessary
   return [
+    // landing pages
     ...getEntries("/"),
     ...getEntries("/landlord"),
     ...getEntries("/tenant"),
+    // services
     ...getEntries("/contract"),
+    // lead forms
+    ...getEntries("/brokerage-commission"),
+    ...getEntries("/evaluate-property"),
+    ...getEntries("/finish-property"),
+    ...getEntries("/promote-properties"),
+    ...getEntries("/property-valuation"),
+    ...getEntries("/rent-management"),
+    ...getEntries("/request-property"),
+    ...getEntries("/rentak-basic"),
+    ...getEntries("/rentak-secure"),
+    // units
     ...getEntries("/units"),
   ];
 }
