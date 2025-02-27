@@ -14,6 +14,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...getEntries("/tenant"),
     // services
     ...getEntries("/contract"),
+    ...getEntries("/maintenance-payment"),
+    ...getEntries("/rent-payment"),
+    ...getEntries("/rent-collection"),
     // lead forms
     ...getEntries("/brokerage-commission"),
     ...getEntries("/evaluate-property"),
