@@ -53,7 +53,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
       template: t("default"),
     },
     description: t("description"),
-    metadataBase: new URL("https://www.rentakapp.com"),
+    metadataBase: new URL("https://rentakapp.com"),
     openGraph: {
       title: {
         default: t("title"),

@@ -39,17 +39,17 @@ import { contractSchema } from "@/schema/contract";
 
 import { createContractAction } from "../actions/create-contract";
 
-export async function generateMetadata(
-  props: Readonly<{
-    params: Promise<{ locale: Locale }>;
-  }>,
-): Promise<Metadata> {
-  const { locale } = await props.params;
+// export async function generateMetadata(
+//   props: Readonly<{
+//     params: Promise<{ locale: Locale }>;
+//   }>,
+// ): Promise<Metadata> {
+//   const { locale } = await props.params;
 
-  return {
-    alternates: generateAlternatesLinks("/contract", locale),
-  };
-}
+//   return {
+//     alternates: generateAlternatesLinks("/contract", locale),
+//   };
+// }
 
 function Contract() {
   const formatter = useFormatter();
