@@ -58,6 +58,12 @@ const nextConfig: NextConfig = {
         destination: "/units/:id",
         permanent: true,
       },
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.rentakapp.com" }],
+        destination: "https://rentakapp.com/:path*",
+        permanent: true,
+      },
     ];
   },
 };
