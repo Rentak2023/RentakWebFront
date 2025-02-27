@@ -1,22 +1,48 @@
 import { type Metadata } from "next";
 import { type Locale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
-import { type SearchParams } from "nuqs/server";
+import { createSerializer, type SearchParams } from "nuqs/server";
 
 import Properties from "@/components/units/properties/properties";
 import SearchForm from "@/components/units/search-form/search-form";
 import { generateAlternatesLinks } from "@/lib/utils";
-import { propertiesQueryCache } from "@/services/properties";
+import {
+  getProperties,
+  propertiesQueryCache,
+  propertiesQueryParsers,
+} from "@/services/properties";
+
+const serialize = createSerializer(propertiesQueryParsers);
 
 export async function generateMetadata(
   props: Readonly<{
     params: Promise<{ locale: Locale }>;
+    searchParams: Promise<SearchParams>;
   }>,
 ): Promise<Metadata> {
   const { locale } = await props.params;
+  const searchParams = await props.searchParams;
+
+  const parsedParams = propertiesQueryCache.parse(searchParams);
+
+  const properties = await getProperties({ ...parsedParams, lang: locale });
+  const totalPages = Math.ceil(properties.total_count / 10);
 
   return {
-    alternates: generateAlternatesLinks("/units", locale),
+    alternates: generateAlternatesLinks(
+      `/units${serialize(searchParams)}`,
+      locale,
+    ),
+    pagination: {
+      next:
+        parsedParams.page < totalPages
+          ? `/units${serialize({ ...searchParams, page: parsedParams.page + 1 })}`
+          : null,
+      previous:
+        parsedParams.page > 1
+          ? `/units${serialize({ ...searchParams, page: parsedParams.page - 1 })}`
+          : null,
+    },
   };
 }
 

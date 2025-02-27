@@ -84,7 +84,7 @@ function Units() {
           properties.items.map((item) => <Unit key={item.id} item={item} />)
         )}
       </div>
-      <Pagination totalPages={Math.floor(properties.total_count / 10)} />
+      <Pagination totalPages={Math.ceil(properties.total_count / 10)} />
     </>
   );
 }
