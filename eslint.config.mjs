@@ -2,18 +2,19 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { fixupConfigRules } from "@eslint/compat";
 import { FlatCompat } from "@eslint/eslintrc";
 import js from "@eslint/js";
 import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
 import react from "@eslint-react/eslint-plugin";
 import tanStackQuery from "@tanstack/eslint-plugin-query";
+import gitignore from "eslint-config-flat-gitignore";
 import configPrettier from "eslint-config-prettier";
 import { createOxcImportResolver } from "eslint-import-resolver-oxc";
 import barrellFiles from "eslint-plugin-barrel-files";
 import importX from "eslint-plugin-import-x";
 import promise from "eslint-plugin-promise";
 import reactCompilerPlugin from "eslint-plugin-react-compiler";
+import { configs as reactHooksConfigs } from "eslint-plugin-react-hooks";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
 // import tailwind from "eslint-plugin-tailwindcss";
 import unicorn from "eslint-plugin-unicorn";
@@ -28,9 +29,7 @@ const compat = new FlatCompat({
 });
 
 export default ts.config(
-  {
-    ignores: [".next/"],
-  },
+  gitignore(),
   js.configs.recommended,
   ...ts.configs.strictTypeChecked,
   ...ts.configs.stylisticTypeChecked,
@@ -40,13 +39,8 @@ export default ts.config(
   promise.configs["flat/recommended"],
   ...tanStackQuery.configs["flat/recommended"],
   configPrettier,
-  ...fixupConfigRules(
-    compat.extends(
-      "plugin:@next/next/recommended",
-      "plugin:@next/next/core-web-vitals",
-      "plugin:react-hooks/recommended",
-    ),
-  ),
+  reactHooksConfigs["recommended-latest"],
+  ...compat.extends("plugin:@next/next/core-web-vitals"),
   importX.flatConfigs.recommended,
   importX.flatConfigs.react,
   importX.configs.typescript,
