@@ -547,6 +547,10 @@
     "availableNow": "Available Now"
   },
   "units": {
+    "meta": {
+      "title": "Find Your Perfect Rental Unit",
+      "description": "Search and find the best rental units in your area. Filter by location, price, and features to find your ideal home."
+    },
     "units": "Units",
     "search": "Search",
     "searchKeyword": "Search your Keywords",
