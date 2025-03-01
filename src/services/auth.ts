@@ -1,9 +1,11 @@
 "use server";
 
-import ky from "@fetcher";
 import { setCookie } from "cookies-next/server";
 import { cookies } from "next/headers";
 import { type Locale } from "next-intl";
+
+import fetcher from "@/lib/fetcher";
+import privateFetcher from "@/lib/private-fetcher";
 
 export type AuthError = {
   success: boolean;
@@ -30,7 +32,7 @@ type TokenRes = {
 };
 
 export async function signUp(values: SignUpInput, locale: Locale) {
-  const res = await ky
+  const res = await fetcher
     .post("auth/register", {
       json: {
         ...values,
@@ -47,7 +49,7 @@ type LoginInput = {
 };
 
 export async function login(values: LoginInput, locale: Locale) {
-  const res = await ky
+  const res = await fetcher
     .post("auth/login", {
       json: {
         ...values,
@@ -65,7 +67,7 @@ type OTPResponse = {
 };
 
 export async function sendOTP(values: Record<string, any>) {
-  const res = await ky
+  const res = await fetcher
     .post("auth/send_otp", {
       json: values,
     })
@@ -79,7 +81,7 @@ type ResendOTP = {
 };
 
 export async function reSendOTP(values: ResendOTP, locale: Locale) {
-  const res = await ky
+  const res = await fetcher
     .post("auth/resend_otp", {
       json: {
         ...values,
@@ -97,7 +99,7 @@ type VerifyOTP = {
 };
 
 export async function verifyOTP(values: VerifyOTP, locale: Locale) {
-  const res = await ky
+  const res = await fetcher
     .post("auth/confirm-otp", {
       json: {
         ...values,
@@ -119,7 +121,7 @@ type UserRes = {
 };
 
 export async function getUser() {
-  const res = await ky.get("auth/get-user").json<UserRes>();
+  const res = await privateFetcher.get("auth/get-user").json<UserRes>();
 
   return res;
 }
@@ -130,7 +132,7 @@ type UserTransferMethods = Array<{
 }>;
 
 export async function getUserTransferMethods() {
-  const res = await ky
+  const res = await privateFetcher
     .get("dashboard/get-user-transfer_methods")
     .json<UserTransferMethods>();
 

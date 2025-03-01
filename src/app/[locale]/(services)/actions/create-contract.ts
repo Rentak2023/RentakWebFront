@@ -1,8 +1,8 @@
-import ky from "@fetcher";
 import { endOfDay, format } from "date-fns";
 import { HTTPError } from "ky";
 import * as v from "valibot";
 
+import fetcher from "@/lib/fetcher";
 import { contractSchema } from "@/schema/contract";
 
 type ContractResponse = {
@@ -29,7 +29,7 @@ export const createContractAction = async (
   }
 
   try {
-    const res = await ky
+    const res = await fetcher
       .post("public/create-contract", {
         body: formData,
       })

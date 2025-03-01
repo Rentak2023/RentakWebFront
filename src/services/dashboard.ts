@@ -1,5 +1,6 @@
-import ky from "@fetcher";
 import { type Locale } from "next-intl";
+
+import privateFetcher from "@/lib/private-fetcher";
 
 type UserStats = {
   totalIncome: number;
@@ -15,7 +16,7 @@ type UserStatsRes = {
 };
 
 export async function getUserStatistics() {
-  const res = await ky
+  const res = await privateFetcher
     .get("dashboard/get-user-statistics")
     .json<UserStatsRes>();
 
@@ -35,7 +36,7 @@ export type RentedUnit = {
 type UnitsRes = Array<RentedUnit>;
 
 export async function getUserUnits(locale: Locale) {
-  const res = await ky
+  const res = await privateFetcher
     .get("dashboard/get-user-units", {
       searchParams: {
         lang: locale === "en" ? "en" : "ar",
@@ -99,7 +100,7 @@ export type UnitContract = {
 };
 
 export async function getUnitDetails(unitId: number, locale: Locale) {
-  const res = await ky.get("dashboard/get-unit-details", {
+  const res = await privateFetcher.get("dashboard/get-unit-details", {
     searchParams: {
       unit_id: unitId,
       lang: locale === "en" ? "en" : "ar",
@@ -124,7 +125,7 @@ export type TranactionItem = {
 };
 
 export async function getTransactionsHistory(locale: Locale) {
-  const res = await ky.get("dashboard/get-transactions-history", {
+  const res = await privateFetcher.get("dashboard/get-transactions-history", {
     searchParams: {
       lang: locale === "en" ? "en" : "ar",
     },

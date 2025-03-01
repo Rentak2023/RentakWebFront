@@ -1,6 +1,7 @@
-import ky from "@fetcher";
 import { endOfDay, format } from "date-fns";
 import { HTTPError } from "ky";
+
+import fetcher from "@/lib/fetcher";
 
 type PaymentData = {
   redirect_url: string;
@@ -31,7 +32,7 @@ export const rentPaymentAction = async (data: Record<string, any>) => {
       }
     }
 
-    const res = await ky
+    const res = await fetcher
       .post("contract/create_rent_payment_contract", {
         json: {
           ...formData,

@@ -1,4 +1,4 @@
-import ky from "@fetcher";
+import fetcher from "@/lib/fetcher";
 
 type PromoCodeResponse = {
   message: string;
@@ -14,7 +14,7 @@ type PromoCodeResponse = {
 };
 
 export async function checkPromoCode(promo: string, userId: number) {
-  const res = await ky
+  const res = await fetcher
     .post("promocode/check-promocode", {
       json: {
         code: promo,

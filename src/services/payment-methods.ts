@@ -1,4 +1,4 @@
-import ky from "@fetcher";
+import fetcher from "@/lib/fetcher";
 
 type PaymentMethod = {
   id: number;
@@ -13,7 +13,7 @@ type PaymentMethodsResponse = {
 };
 
 export async function getCashInPaymentMethods() {
-  const res = await ky
+  const res = await fetcher
     .get("payment-method/get_all_cash_in_payment_methods", {
       cache: "force-cache",
       next: {
@@ -26,7 +26,7 @@ export async function getCashInPaymentMethods() {
 }
 
 export async function getCashOutPaymentMethods() {
-  const res = await ky
+  const res = await fetcher
     .get("payment-method/get_all_cash_out_payment_methods", {
       cache: "force-cache",
       next: {

@@ -1,4 +1,4 @@
-import ky from "@fetcher";
+import fetcher from "@/lib/fetcher";
 
 type Bank = {
   id: number;
@@ -12,7 +12,7 @@ type BanksResponse = {
 };
 
 export async function getBanks() {
-  const res = await ky
+  const res = await fetcher
     .get("bank/get-all-banks", {
       cache: "force-cache",
       next: {

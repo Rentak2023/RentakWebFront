@@ -1,9 +1,9 @@
 "use server";
-import ky from "@fetcher";
 import { HTTPError } from "ky";
 import { type Locale } from "next-intl";
 import * as v from "valibot";
 
+import fetcher from "@/lib/fetcher";
 import { bookCallSchema } from "@/schema/book-call";
 
 type BookCallResponse = {
@@ -24,7 +24,7 @@ export const bookCallAction = async (
   }
 
   try {
-    const res = await ky
+    const res = await fetcher
       .post("public/book-a-call", {
         json: {
           ...values.output,

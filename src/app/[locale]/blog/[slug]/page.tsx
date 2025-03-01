@@ -11,11 +11,11 @@ import { getAllArticles, getArticleBySlug } from "@/services/articles";
 
 import MorePosts from "./more-posts";
 
-// export const generateStaticParams = async () => {
-//   const articles = await getAllArticles("en");
+export const generateStaticParams = async () => {
+  const articles = await getAllArticles("en");
 
-//   articles.map((article) => ({ slug: article.slug }));
-// };
+  return articles.map((article) => ({ slug: article.slug }));
+};
 
 export const generateMetadata = async (props: {
   params: Promise<{ slug: string; locale: Locale }>;

@@ -1,7 +1,7 @@
-import ky from "@fetcher";
 import { type Locale } from "next-intl";
 
 import { type CityTypes, type DistrictTypes } from "@/components/units/types";
+import fetcher from "@/lib/fetcher";
 
 type CitiesResponse = {
   message: string;
@@ -9,7 +9,7 @@ type CitiesResponse = {
 };
 
 export async function getCities(locale: Locale) {
-  const res = await ky
+  const res = await fetcher
     .get("location/get-all-governorates", {
       searchParams: {
         lang: locale === "en" ? "en" : "ar",
@@ -33,7 +33,7 @@ export async function getDistricts(
   governorate_id: number | string,
   locale: Locale,
 ) {
-  const res = await ky
+  const res = await fetcher
     .get("location/get-all-cities", {
       searchParams: {
         governorate_id: governorate_id,

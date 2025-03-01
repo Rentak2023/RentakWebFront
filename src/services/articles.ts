@@ -1,5 +1,6 @@
-import ky from "@fetcher";
 import { type Locale } from "next-intl";
+
+import fetcher from "@/lib/fetcher";
 
 type Article = {
   id: number;
@@ -19,7 +20,7 @@ type ArticlesResponse = {
 };
 
 export async function getHomepageArticles(locale: Locale) {
-  const res = await ky
+  const res = await fetcher
     .get("article/get-homepage-articles", {
       searchParams: {
         lang: locale === "en" ? "en" : "ar",
@@ -35,7 +36,7 @@ export async function getHomepageArticles(locale: Locale) {
 }
 
 export async function getAllArticles(locale: Locale) {
-  const res = await ky
+  const res = await fetcher
     .get("article/get-all-articles", {
       searchParams: {
         lang: locale === "en" ? "en" : "ar",
@@ -56,7 +57,7 @@ type ArticleResponse = {
 };
 
 export async function getArticleBySlug(slug: string, locale: Locale) {
-  const res = await ky
+  const res = await fetcher
     .get("article/get-article-by_slug", {
       searchParams: {
         slug,

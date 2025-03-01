@@ -1,4 +1,3 @@
-import ky from "@fetcher";
 import { HTTPError } from "ky";
 import { type Locale } from "next-intl";
 import {
@@ -10,6 +9,7 @@ import {
 } from "nuqs/server";
 
 import { type UnitTypeTypes } from "@/components/units/types";
+import fetcher from "@/lib/fetcher";
 
 import { type PropertiesDataTypes, type Unit as TUnit } from "./types";
 
@@ -65,7 +65,7 @@ export async function getProperties(params: PropertiesSearchParams) {
     }
   }
 
-  const res = await ky
+  const res = await fetcher
     .get("unit/get-all-units", {
       searchParams,
       cache: "force-cache",
@@ -83,7 +83,7 @@ type TypesResponse = {
   data: Array<UnitTypeTypes>;
 };
 export async function getFinishingTypes(locale: Locale) {
-  const res = await ky
+  const res = await fetcher
     .get("unit/get-all-finish-types", {
       searchParams: {
         lang: locale === "en" ? "en" : "ar",
@@ -99,7 +99,7 @@ export async function getFinishingTypes(locale: Locale) {
 }
 
 export async function getPropertyTypes(locale: Locale) {
-  const res = await ky
+  const res = await fetcher
     .get("unit/get-all-property-types", {
       searchParams: {
         lang: locale === "en" ? "en" : "ar",
@@ -123,7 +123,7 @@ type MinMaxPriceResponse = {
 };
 
 export async function getMinMaxPrice() {
-  const res = await ky
+  const res = await fetcher
     .get("unit/get-min-max-price", {
       cache: "force-cache",
       next: {
@@ -141,7 +141,7 @@ type PropertyResponse = {
   data: TUnit | null;
 };
 export async function getProperty(propertyId: string, locale: Locale) {
-  const res = await ky
+  const res = await fetcher
     .get("unit/get-unit-details", {
       searchParams: {
         id: propertyId,
@@ -177,7 +177,7 @@ type PropertyInspectionResponse = {
 
 export async function getPropertyInspectionDetails(propertyId: string) {
   try {
-    const res = await ky
+    const res = await fetcher
       .get("unit/get-unit-inspection", {
         searchParams: {
           id: propertyId,

@@ -1,9 +1,9 @@
 "use server";
-import ky from "@fetcher";
 import { HTTPError } from "ky";
 import { type Locale } from "next-intl";
 import * as v from "valibot";
 
+import fetcher from "@/lib/fetcher";
 import { arrangeVisitSchema } from "@/schema/arrange-visit";
 
 type ArrangeVisitResponse = {
@@ -22,7 +22,7 @@ export const arrangeVisitAction = async (
     throw new Error("Invalid fields");
   }
   try {
-    const res = await ky
+    const res = await fetcher
       .post("unit/visit", {
         json: {
           ...data,

@@ -1,7 +1,7 @@
 "use server";
-import ky from "@fetcher";
 import * as v from "valibot";
 
+import fetcher from "@/lib/fetcher";
 import { contactSchema } from "@/schema/contact";
 
 type ContactResponse = {
@@ -18,7 +18,7 @@ export const contactAction = async (
     throw new Error("Invalid fields");
   }
 
-  return ky
+  return fetcher
     .post("contact-us/create", {
       json: data,
     })

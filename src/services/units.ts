@@ -1,5 +1,6 @@
-import ky from "@fetcher";
 import { type Locale } from "next-intl";
+
+import fetcher from "@/lib/fetcher";
 
 import { type Unit } from "./types";
 
@@ -9,7 +10,7 @@ type UnitsResponse = {
 };
 
 export async function getUnits({ locale }: { locale: Locale }) {
-  const res = await ky
+  const res = await fetcher
     .get("home/get-home-units", {
       searchParams: {
         lang: locale === "en" ? "en" : "ar",

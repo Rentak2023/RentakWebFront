@@ -1,4 +1,4 @@
-import ky from "@fetcher";
+import fetcher from "@/lib/fetcher";
 
 type Product = {
   id: number;
@@ -13,7 +13,7 @@ type ProductsRes = {
 };
 
 export async function getAllProducts() {
-  const res = await ky
+  const res = await fetcher
     .get<ProductsRes>("api/Product/get-all-products", {
       cache: "force-cache",
       next: {
@@ -31,7 +31,7 @@ type ProductRes = {
 };
 
 export async function getProduct(id: number) {
-  const res = await ky
+  const res = await fetcher
     .get("api/Product/get-product-by-id", {
       searchParams: {
         id,

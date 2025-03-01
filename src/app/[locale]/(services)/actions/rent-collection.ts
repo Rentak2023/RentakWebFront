@@ -1,6 +1,7 @@
-import ky from "@fetcher";
 import { endOfDay, format } from "date-fns";
 import { HTTPError } from "ky";
+
+import fetcher from "@/lib/fetcher";
 
 type RentCollectionResponse = {
   message: string;
@@ -15,7 +16,7 @@ export const rentCollectionAction = async (data: Record<string, any>) => {
         formData[key] = format(endOfDay(value), "yyyy-MM-dd");
       }
     }
-    const res = await ky
+    const res = await fetcher
       .post("contract/create_rent_collection_contract", {
         json: formData,
       })

@@ -1,7 +1,8 @@
 "use server";
 
-import ky from "@fetcher";
 import { HTTPError } from "ky";
+
+import fetcher from "@/lib/fetcher";
 
 type PaymentData = {
   redirect_url: string;
@@ -25,7 +26,7 @@ type MaintenancePaymentResponse = {
 
 export const maintenancePaymentAction = async (data: Record<string, any>) => {
   try {
-    const res = await ky
+    const res = await fetcher
       .post("contract/create_maintainance_contract", {
         json: {
           ...data,
