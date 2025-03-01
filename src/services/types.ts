@@ -44,6 +44,7 @@ export type Unit = {
   id: number;
   property_name: string;
   property_description: string;
+  meta_description: string | null;
   price: number;
   picture: string;
   room_numbers: number;

@@ -59,10 +59,10 @@ export async function generateMetadata(
 
   return {
     title: property.property_name,
-    description: property.property_description,
+    description: property.meta_description ?? property.property_description,
     openGraph: {
       title: property.property_name,
-      description: property.property_description,
+      description: property.meta_description ?? property.property_description,
       images: property.gallary.map((img) => img.url),
     },
     alternates: generateAlternatesLinks(`/units/${id}`, locale),
