@@ -1,6 +1,3 @@
-import { readFile } from "node:fs/promises";
-import path from "node:path";
-
 import { notFound } from "next/navigation";
 import { ImageResponse } from "next/og";
 import type { Locale } from "next-intl";
@@ -13,6 +10,23 @@ export const size = {
 };
 
 export const contentType = "image/png";
+
+async function loadFont() {
+  const url = `https://api.fontshare.com/v2/css?f[]=general-sans@500`;
+  const res = await fetch(url);
+  const css = await res.text();
+
+  const resource = /url\('(.+)'\) format\('(opentype|truetype)'\)/.exec(css);
+
+  if (resource) {
+    const response = await fetch(`https:${resource[1]}`);
+    if (response.status == 200) {
+      return await response.arrayBuffer();
+    }
+  }
+
+  throw new Error("failed to load font data");
+}
 
 // Image generation
 export default async function Image(
@@ -28,13 +42,6 @@ export default async function Image(
   if (property == null || property.gallary.length === 0) {
     notFound();
   }
-  // Load font - process.cwd() is Next.js project directory
-  const generalSans = await readFile(
-    path.join(
-      process.cwd(),
-      "src/app/[locale]/assets/fonts/GeneralSans-Semibold.otf",
-    ),
-  );
 
   return new ImageResponse(
     (
@@ -104,8 +111,8 @@ export default async function Image(
       ...size,
       fonts: [
         {
-          name: "GeneralSans",
-          data: generalSans,
+          name: "General Sans",
+          data: await loadFont(),
           style: "normal",
           weight: 400,
         },

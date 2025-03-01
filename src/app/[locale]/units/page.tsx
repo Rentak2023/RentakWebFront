@@ -75,7 +75,7 @@ export default async function UnitsPage(
   const parsedParams = propertiesQueryCache.parse(searchParams);
   const properties = await getProperties({ ...parsedParams, lang: locale });
 
-  const structuredData: Array<WithContext<WebPage | ItemList>> = [
+  const structuredData: [WithContext<WebPage>, WithContext<ItemList>] = [
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
