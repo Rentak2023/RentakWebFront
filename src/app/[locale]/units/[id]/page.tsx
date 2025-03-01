@@ -1,6 +1,7 @@
 import { HeartIcon } from "lucide-react";
 import { type Metadata } from "next";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 import { type Locale } from "next-intl";
 import {
   getFormatter,
@@ -52,6 +53,10 @@ export async function generateMetadata(
 
   const property = await getProperty(id, locale);
 
+  if (property == null) {
+    notFound();
+  }
+
   return {
     title: property.property_name,
     description: property.property_description,
@@ -80,6 +85,10 @@ export default async function UnitPage(
     getProperty(id, locale),
     getPropertyInspectionDetails(id),
   ]);
+
+  if (property == null) {
+    notFound();
+  }
 
   const jsonLd: WithContext<Accommodation> = {
     "@context": "https://schema.org",

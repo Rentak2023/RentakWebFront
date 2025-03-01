@@ -138,7 +138,7 @@ export async function getMinMaxPrice() {
 // Single Property
 type PropertyResponse = {
   message: string;
-  data: TUnit;
+  data: TUnit | null;
 };
 export async function getProperty(propertyId: string, locale: Locale) {
   const res = await ky
