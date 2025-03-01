@@ -1,8 +1,11 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import Script from "next/script";
 import { type Locale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
+import { type BlogPosting, type WithContext } from "schema-dts";
 
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { generateAlternatesLinks } from "@/lib/utils";
 import { getAllArticles, getArticleBySlug } from "@/services/articles";
 
@@ -21,11 +24,28 @@ export const generateMetadata = async (props: {
 
   const article = await getArticleBySlug(decodeURI(slug), locale);
   if (!article) return notFound();
+
+  const url = `https://rentakapp.com/blog/${slug}`;
+
   return {
     title: article.title,
     description: article.meta_description,
     keywords: article.meta_keywords,
     alternates: generateAlternatesLinks(`/blog/${slug}`, locale),
+    openGraph: {
+      title: article.title,
+      description: article.meta_description,
+      url,
+      type: "article",
+      publishedTime: article.created,
+      authors: [article.author || "Rentak"],
+      images: [
+        {
+          url: article.picture,
+          alt: article.title,
+        },
+      ],
+    },
   };
 };
 
@@ -39,8 +59,36 @@ const PostLayout = async (
   const article = await getArticleBySlug(decodeURI(slug), locale);
   if (article == null) return notFound();
 
+  const jsonLd: WithContext<BlogPosting> = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: article.title,
+    description: article.meta_description,
+    image: article.picture,
+    datePublished: article.created,
+    author: {
+      "@type": "Person",
+      name: article.author || "Rentak",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Rentak",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://rentakapp.com/images/logo.png",
+      },
+    },
+  };
+
   return (
     <div>
+      <Script
+        id="article-jsonld"
+        type="application/ld+json"
+        // eslint-disable-next-line @eslint-react/dom/no-dangerously-set-innerhtml
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <Breadcrumb />
       <article className="mx-auto mt-20 max-w-xl py-8">
         <div className="mb-8 text-center">
           <h1 className="text-5xl font-semibold">{article.title}</h1>
@@ -49,8 +97,10 @@ const PostLayout = async (
           <Image
             src={article.picture}
             alt={article.title}
-            fill
+            width={1200}
+            height={630}
             className="mx-auto mb-8 size-full overflow-hidden rounded-2xl object-cover"
+            priority
           />
         </div>
         <div
