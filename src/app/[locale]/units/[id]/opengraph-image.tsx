@@ -39,68 +39,32 @@ export default async function Image(
 
   const property = await getProperty(id, "en");
 
-  if (property == null || property.gallary.length === 0) {
+  if (property == null) {
     notFound();
   }
 
   return new ImageResponse(
     (
       // ImageResponse JSX element
-      <div
-        style={{
-          display: "flex",
-          width: "100%",
-          height: "100%",
-          background: "#fff",
-          position: "relative",
-        }}
-      >
-        {/* Background Image */}
-        <img
-          src={property.gallary.at(0)?.url ?? ""}
-          style={{
-            position: "absolute",
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            filter: "brightness(0.7)",
-          }}
-        />
-
-        {/* Content Container */}
-        <div
-          style={{
-            position: "relative",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: "4rem",
-            width: "100%",
-            height: "100%",
-            padding: "2rem",
-            color: "#fff",
-            textAlign: "center",
-          }}
-        >
-          {/* Website Logo */}
-          <img
-            src="https://rentakapp.com/images/logo.png"
-            style={{
-              width: "200px",
-              marginTop: "1rem",
-            }}
-          />
-
-          {/* Property Name */}
-          <h1
-            style={{
-              fontSize: "4rem",
-              marginBottom: "1rem",
-              textShadow: "2px 2px 4px rgba(0,0,0,0.5)",
-            }}
-          >
-            {property.property_name}
-          </h1>
+      <div tw="h-full w-full flex items-start justify-start">
+        <div tw="flex items-start justify-start h-full">
+          <div tw="flex w-2/5 flex-col justify-between h-full pl-12 py-12 bg-gray-50">
+            <div tw="flex flex-col">
+              <img src="https://rentakapp.com/images/logo.png" tw="w-48" />
+            </div>
+            <h1 tw="text-5xl font-black text-left mt-auto">
+              {property.property_name}
+            </h1>
+          </div>
+          {property.gallary[0] ? (
+            <div tw="flex w-3/5 h-full">
+              <img
+                tw="w-full h-full"
+                style={{ objectFit: "cover" }}
+                src={property.gallary[0].url}
+              />
+            </div>
+          ) : null}
         </div>
       </div>
     ),
