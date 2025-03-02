@@ -8,6 +8,7 @@ import {
   getTranslations,
   setRequestLocale,
 } from "next-intl/server";
+import { Fragment } from "react";
 import { type Accommodation, type WithContext } from "schema-dts";
 
 import logo from "@/app/[locale]/assets/images/Logo.png";
@@ -227,8 +228,15 @@ export default async function UnitPage(
                   {property.location.address_in_detail}
                 </span>
               </p>
-              <p className="mt-4 text-slate-500">
-                {property.property_description}
+              <p className="mt-4 text-slate-600">
+                {property.property_description
+                  .split("\n")
+                  .map((line, index) => (
+                    <Fragment key={index}>
+                      {line}
+                      <br />
+                    </Fragment>
+                  ))}
               </p>
               <div className="mt-6">
                 <h3 className="text-3xl font-semibold text-slate-800">
