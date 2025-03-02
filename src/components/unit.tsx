@@ -53,7 +53,12 @@ function Unit({ item }: UnitProps) {
         </div>
 
         <CardContent className="mt-6">
-          <div className="flex flex-col">
+          <div className="relative flex flex-col">
+            {item.is_inspection && (
+              <p className="text-primary-600 absolute end-0 top-0 text-sm font-medium">
+                Verified by Rentak
+              </p>
+            )}
             <h2 className="truncate text-base font-semibold">
               {item.property_name}
             </h2>

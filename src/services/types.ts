@@ -59,6 +59,7 @@ export type Unit = {
   location: Location;
   attributes: Array<Attribute>;
   rooms: Array<Room>;
+  is_inspection: boolean;
 };
 
 export type PropertiesDataTypes = {

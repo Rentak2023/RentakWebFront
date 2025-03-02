@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import Script from "next/script";
 import { type Locale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { type BlogPosting, type WithContext } from "schema-dts";
@@ -82,8 +81,7 @@ const PostLayout = async (
 
   return (
     <div>
-      <Script
-        id="article-jsonld"
+      <script
         type="application/ld+json"
         // eslint-disable-next-line @eslint-react/dom/no-dangerously-set-innerhtml
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
