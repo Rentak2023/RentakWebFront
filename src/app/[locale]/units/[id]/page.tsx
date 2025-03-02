@@ -180,20 +180,20 @@ export default async function UnitPage(
                 </h3>
               </div>
 
-              <ul className="flex list-none items-center py-6">
-                <li className="me-4 flex items-center gap-1 lg:me-6">
+              <ul className="flex flex-wrap items-center gap-4 py-6">
+                <li className="flex items-center gap-1 lg:me-6">
                   <span className="text-primary-900 text-xl font-medium lg:text-3xl">
                     {formatCurrency(property.price)}
                   </span>
                 </li>
-                <li className="me-4 flex items-center gap-1 lg:me-6">
+                <li className="flex items-center gap-1 lg:me-6">
                   <AreaIcon className="text-primary-600 size-10" />
                   <span className="text-xl lg:text-2xl">
                     {formatter.number(property.area)}
                   </span>
                 </li>
 
-                <li className="me-4 flex items-center gap-1 lg:me-6">
+                <li className="flex items-center gap-1 lg:me-6">
                   <BedIcon className="text-primary-600 size-10" />
                   <span className="text-xl lg:text-2xl">
                     {t("bedrooms", {
@@ -331,7 +331,7 @@ function Steps() {
     },
   ];
   return (
-    <div className="mt-4 flex gap-2">
+    <div className="mt-4 flex flex-col gap-2 lg:flex-row">
       {steps.map((step) => (
         <div
           key={step.title}

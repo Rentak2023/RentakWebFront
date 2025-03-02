@@ -59,7 +59,7 @@
         "tailwind-merge": "^3.0.2",
         "tailwindcss-animate": "^1.0.7",
         "use-debounce": "^10.0.4",
-        "valibot": "^1.0.0-rc.2",
+        "valibot": "^1.0.0-rc.3",
         "validator": "^13.12.0",
         "yet-another-react-lightbox": "^3.21.7",
         "zod": "^3.24.2",
@@ -2099,7 +2099,7 @@
 
     "uuid": ["uuid@8.3.2", "", { "bin": { "uuid": "dist/bin/uuid" } }, "sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg=="],
 
-    "valibot": ["valibot@1.0.0-rc.2", "", { "peerDependencies": { "typescript": ">=5" }, "optionalPeers": ["typescript"] }, "sha512-Tnnp7dydpihvoUbJiaxuYfsCAgAFKuFMex7PTaI25XSjRWkU70DmJPlAO1W6sF1/WUx4RNWyM2hdmBSMIUSZFA=="],
+    "valibot": ["valibot@1.0.0-rc.3", "", { "peerDependencies": { "typescript": ">=5" }, "optionalPeers": ["typescript"] }, "sha512-LT0REa7Iqx4QGcaHLiTiTkcmJqJ9QdpOy89HALFFBJgejTS64GQFRIbDF7e4f6pauQbo/myfKGmWXCLhMeM6+g=="],
 
     "validate-npm-package-license": ["validate-npm-package-license@3.0.4", "", { "dependencies": { "spdx-correct": "^3.0.0", "spdx-expression-parse": "^3.0.0" } }, "sha512-DpKm2Ui/xN7/HQKCtpZxoRWBhZ9Z0kqtygG8XCgNQ8ZlDnxuQmWhj566j8fN4Cu3/JmbhsDo7fcAJq4s9h27Ew=="],
 
