@@ -12,13 +12,11 @@ export default function Header() {
       <div className="bg-linear-to-b from-primary-100/20 relative isolate overflow-hidden pt-24">
         <Container className="items-center justify-between pt-10 lg:flex lg:flex-row lg:gap-x-8">
           <div className="px-6 lg:px-0 lg:pt-4">
-            <div className="mx-auto max-w-2xl">
-              <div className="max-w-xl">
-                <h1 className="text-primary-800 mt-10 text-balance text-3xl font-semibold tracking-tight sm:text-5xl">
-                  {t("title")}
-                </h1>
-                <p className="mt-6 text-lg text-slate-700">{t("subtitle")}</p>
-              </div>
+            <div className="mx-auto max-w-[44rem]">
+              <h1 className="text-primary-800 sm:text-6xl/16 mt-10 text-pretty text-4xl font-bold tracking-tight">
+                {t("title")}
+              </h1>
+              <p className="mt-6 text-lg text-slate-700">{t("subtitle")}</p>
             </div>
           </div>
           <div className="relative mx-auto mt-20 sm:mt-24 md:max-w-lg lg:mx-0 lg:mt-0 lg:w-screen">
