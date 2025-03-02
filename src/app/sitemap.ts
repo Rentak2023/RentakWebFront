@@ -1,11 +1,14 @@
 import { type MetadataRoute } from "next";
 
 import { getPathname, routing } from "@/i18n/routing";
+import { getAllArticles } from "@/services/articles";
 
 // Adapt this as necessary
 const host = "https://rentakapp.com";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const articles = await getAllArticles("en");
+
   // Adapt this as necessary
   return [
     // landing pages
@@ -29,6 +32,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...getEntries("/rentak-secure"),
     // units
     ...getEntries("/units"),
+    // blog
+    ...articles.flatMap((article) => getEntries(`/blog/${article.slug}`)),
   ];
 }
 
