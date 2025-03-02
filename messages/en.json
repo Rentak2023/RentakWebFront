@@ -551,6 +551,7 @@
       "title": "Find Your Perfect Rental Unit",
       "description": "Search and find the best rental units in your area. Filter by location, price, and features to find your ideal home."
     },
+    "details-title": "Rent in {cityName}: {title}",
     "units": "Units",
     "search": "Search",
     "searchKeyword": "Search your Keywords",

@@ -50,6 +50,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const params = await props.params;
   const { locale, id } = params;
+  const t = await getTranslations("units");
 
   const property = await getProperty(id, locale);
 
@@ -58,10 +59,16 @@ export async function generateMetadata(
   }
 
   return {
-    title: property.property_name,
+    title: t("details-title", {
+      cityName: property.location.city_name,
+      title: property.property_name,
+    }),
     description: property.meta_description ?? property.property_description,
     openGraph: {
-      title: property.property_name,
+      title: t("details-title", {
+        cityName: property.location.city_name,
+        title: property.property_name,
+      }),
       description: property.meta_description ?? property.property_description,
     },
     alternates: generateAlternatesLinks(`/units/${id}`, locale),
