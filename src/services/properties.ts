@@ -60,6 +60,8 @@ export async function getProperties(params: PropertiesSearchParams) {
       for (const item of value) {
         searchParams.append(key, item.toString());
       }
+    } else if (key === "lang") {
+      searchParams.append(key, value === "en" ? "en" : "ar");
     } else if (value) {
       searchParams.append(key, value.toString());
     }
