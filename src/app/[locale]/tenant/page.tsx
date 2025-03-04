@@ -12,19 +12,11 @@ import PropertyRequest from "./components/property-request";
 import Steps from "./components/steps";
 import Testimonials from "./components/testimonials";
 
-export async function generateMetadata(
-  props: Readonly<{
-    params: Promise<{ locale: Locale }>;
-  }>,
-): Promise<Metadata> {
-  const { locale } = await props.params;
-  const t = await getTranslations({
-    locale,
-    namespace: "tenant.meta",
-  });
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("tenant.meta");
 
   return {
-    alternates: generateAlternatesLinks("/tenant", locale),
+    alternates: generateAlternatesLinks("/tenant"),
     title: t("title"),
     description: t("description"),
     openGraph: {

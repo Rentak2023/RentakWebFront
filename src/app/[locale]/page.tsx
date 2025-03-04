@@ -12,15 +12,9 @@ import Units from "@/components/home/units";
 import { WhyUs } from "@/components/home/why-us";
 import { generateAlternatesLinks } from "@/lib/utils";
 
-export async function generateMetadata(
-  props: Readonly<{
-    params: Promise<{ locale: Locale }>;
-  }>,
-): Promise<Metadata> {
-  const { locale } = await props.params;
-
+export function generateMetadata(): Metadata {
   return {
-    alternates: generateAlternatesLinks("/", locale),
+    alternates: generateAlternatesLinks("/"),
   };
 }
 

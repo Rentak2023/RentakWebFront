@@ -36,16 +36,8 @@ const generalSans = localFont({
   adjustFontFallback: false,
 });
 
-type Props = {
-  params: Promise<{ locale: Locale }>;
-};
-
-export async function generateMetadata(props: Props): Promise<Metadata> {
-  const params = await props.params;
-  const t = await getTranslations({
-    locale: params.locale,
-    namespace: "meta",
-  });
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("meta");
 
   return {
     title: {
@@ -90,7 +82,6 @@ export default async function RootLayout(
   const params = await props.params;
 
   const { locale } = params;
-
   const { children } = props;
 
   setRequestLocale(locale);
@@ -103,8 +94,6 @@ export default async function RootLayout(
       dir={direction}
       className={`${generalSans.variable} ${notoSans.variable}`}
     >
-      {/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */}
-      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID!} />
       <body className="font-sans antialiased">
         <div className="flex min-h-svh flex-col">
           <NextIntlClientProvider
@@ -140,6 +129,8 @@ export default async function RootLayout(
           </NextIntlClientProvider>
         </div>
       </body>
+      {/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */}
+      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID!} />
     </html>
   );
 }

@@ -11,19 +11,12 @@ export function getLocaleDirection(locale: Locale) {
   return locale === "en" ? "ltr" : "rtl";
 }
 
-export function generateAlternatesLinks(
-  href: string,
-  locale: Locale,
-): AlternateURLs {
+export function generateAlternatesLinks(href: string): AlternateURLs {
   return {
     canonical: href,
-    languages:
-      locale === "en"
-        ? {
-            ar: `/ar${href}`,
-          }
-        : {
-            en: href,
-          },
+    languages: {
+      en: href,
+      ar: `/ar${href}`,
+    },
   };
 }

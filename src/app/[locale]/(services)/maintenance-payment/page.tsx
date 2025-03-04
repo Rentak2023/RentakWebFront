@@ -1,5 +1,5 @@
 import { type Metadata } from "next";
-import { type Locale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 
 import Container from "@/components/ui/container";
@@ -7,19 +7,11 @@ import { generateAlternatesLinks } from "@/lib/utils";
 
 import MaintenanceForm from "./maintenance-form";
 
-export async function generateMetadata(
-  props: Readonly<{
-    params: Promise<{ locale: Locale }>;
-  }>,
-): Promise<Metadata> {
-  const { locale } = await props.params;
-  const t = await getTranslations({
-    locale: locale,
-    namespace: "services",
-  });
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("services");
 
   return {
-    alternates: generateAlternatesLinks("/maintenance-payment", locale),
+    alternates: generateAlternatesLinks("/maintenance-payment"),
     title: t("maintenance-payment.title"),
     description: t("maintenance-payment.description"),
     openGraph: {

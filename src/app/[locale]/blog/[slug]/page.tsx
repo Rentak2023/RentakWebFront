@@ -30,7 +30,7 @@ export const generateMetadata = async (props: {
     title: article.title,
     description: article.meta_description,
     keywords: article.meta_keywords,
-    alternates: generateAlternatesLinks(`/blog/${slug}`, locale),
+    alternates: generateAlternatesLinks(`/blog/${slug}`),
     openGraph: {
       title: article.title,
       description: article.meta_description,

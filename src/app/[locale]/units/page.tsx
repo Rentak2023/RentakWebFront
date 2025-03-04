@@ -23,10 +23,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { locale } = await props.params;
   const searchParams = await props.searchParams;
-  const t = await getTranslations({
-    locale,
-    namespace: "units.meta",
-  });
+  const t = await getTranslations("units.meta");
 
   const parsedParams = propertiesQueryCache.parse(searchParams);
 
@@ -36,10 +33,7 @@ export async function generateMetadata(
   return {
     title: t("title"),
     description: t("description"),
-    alternates: generateAlternatesLinks(
-      `/units${serialize(searchParams)}`,
-      locale,
-    ),
+    alternates: generateAlternatesLinks(`/units${serialize(searchParams)}`),
     openGraph: {
       title: t("title"),
       description: t("description"),

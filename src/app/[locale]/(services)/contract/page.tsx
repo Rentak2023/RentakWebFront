@@ -1,6 +1,6 @@
 import { type Metadata } from "next";
 import Image from "next/image";
-import { type Locale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 
 import contractImage from "@/app/[locale]/assets/images/contract.gif";
@@ -9,19 +9,11 @@ import { generateAlternatesLinks } from "@/lib/utils";
 
 import ContractForm from "./contract-form";
 
-export async function generateMetadata(
-  props: Readonly<{
-    params: Promise<{ locale: Locale }>;
-  }>,
-): Promise<Metadata> {
-  const { locale } = await props.params;
-  const t = await getTranslations({
-    locale: locale,
-    namespace: "contract.meta",
-  });
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("contract.meta");
 
   return {
-    alternates: generateAlternatesLinks("/contract", locale),
+    alternates: generateAlternatesLinks("/contract"),
     title: t("title"),
     description: t("description"),
     openGraph: {

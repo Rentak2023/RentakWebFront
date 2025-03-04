@@ -12,19 +12,11 @@ import Steps from "./components/steps";
 import Testimonials from "./components/testimonials";
 import WhyRentak from "./components/why-rentak";
 
-export async function generateMetadata(
-  props: Readonly<{
-    params: Promise<{ locale: Locale }>;
-  }>,
-): Promise<Metadata> {
-  const { locale } = await props.params;
-  const t = await getTranslations({
-    locale,
-    namespace: "landlord.meta",
-  });
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("landlord.meta");
 
   return {
-    alternates: generateAlternatesLinks("/landlord", locale),
+    alternates: generateAlternatesLinks("/landlord"),
     title: t("title"),
     description: t("description"),
     openGraph: {

@@ -72,7 +72,7 @@ export async function generateMetadata(
       }),
       description: property.meta_description ?? property.property_description,
     },
-    alternates: generateAlternatesLinks(`/units/${id}`, locale),
+    alternates: generateAlternatesLinks(`/units/${id}`),
   };
 }
 
