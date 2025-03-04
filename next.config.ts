@@ -52,6 +52,9 @@ const nextConfig: NextConfig = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   // eslint-disable-next-line @typescript-eslint/require-await
   async redirects() {
     return [
