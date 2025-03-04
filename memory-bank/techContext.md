@@ -18,7 +18,6 @@
 
 ## Key Dependencies
 
-- Sentry for error tracking (sentry.\*.config.ts)
 - Internationalization support
 - React Query
 - next-intl
