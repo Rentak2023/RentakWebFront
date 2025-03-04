@@ -44,8 +44,14 @@ function getRoomType(roomType: string) {
     case "bathroom": {
       return "bathroom";
     }
+    case "diningroom": {
+      return "dining";
+    }
+    case "livingroom": {
+      return "living";
+    }
     default: {
-      throw new Error(`Invalid room type: ${roomType}`);
+      return "unknown";
     }
   }
 }
@@ -162,7 +168,7 @@ function UnitInspectionModal({
   );
 }
 
-function RoomIcon({ type }: { type: "kitchen" | "bedroom" | "bathroom" }) {
+function RoomIcon({ type }: { type: ReturnType<typeof getRoomType> }) {
   switch (type) {
     case "kitchen": {
       return <KitchenIcon className="w-6" />;
@@ -172,6 +178,15 @@ function RoomIcon({ type }: { type: "kitchen" | "bedroom" | "bathroom" }) {
     }
     case "bathroom": {
       return <BathroomIcon className="w-6" />;
+    }
+    case "dining": {
+      return <DiningIcon className="w-6" />;
+    }
+    case "living": {
+      return <LivingIcon className="w-6" />;
+    }
+    default: {
+      return null;
     }
   }
 }
@@ -233,6 +248,40 @@ function BedroomIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="currentColor"
         d="m35.378 22.085-.253-.126V10.977c0-1.515-.547-2.84-1.64-3.977-1.095-1.136-2.4-1.704-3.914-1.704H9.374c-1.515 0-2.82.568-3.913 1.704C4.367 8.136 3.82 9.462 3.82 10.977v10.982l-.127.126c-.673.673-1.01 1.473-1.01 2.398v8.963c0 .252.106.505.316.757.21.253.484.379.82.379h5.555c.42 0 .715-.168.883-.505l2.02-2.903h14.517l1.893 2.903c.169.337.463.505.884.505h5.68c.253 0 .484-.126.695-.379.21-.252.315-.505.315-.757v-8.962c0-.926-.294-1.726-.883-2.399ZM9.374 7.568H29.57c.926 0 1.725.337 2.398 1.01.674.674 1.01 1.473 1.01 2.399v6.69a5.749 5.749 0 0 0-1.956-1.641 4.556 4.556 0 0 0-2.588-.505H10.51c-1.599-.084-2.903.42-3.913 1.515l-.631.757v-6.816c0-.926.336-1.726 1.01-2.399.673-.673 1.472-1.01 2.398-1.01Zm22.47 13.507H7.101c0-.925.336-1.725 1.01-2.398.673-.673 1.472-1.01 2.398-1.01h17.925c.926 0 1.725.337 2.398 1.01.674.673 1.01 1.473 1.01 2.398Zm2.271 11.235h-3.913l-1.893-2.904a1.2 1.2 0 0 0-1.01-.504H11.646a1.2 1.2 0 0 0-1.01.505L8.743 32.31H4.83v-7.827c0-.336.126-.61.378-.82.253-.21.505-.316.758-.316h27.013c.253 0 .505.106.758.316.252.21.378.484.378.82v7.827Z"
       />
+    </svg>
+  );
+}
+
+function DiningIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      stroke="currentColor"
+      fill="currentColor"
+      strokeWidth="0"
+      viewBox="0 0 24 24"
+      height="24"
+      width="24"
+      {...props}
+    >
+      <path d="M8.1 13.34l2.83-2.83L3.91 3.5c-1.56 1.56-1.56 4.09 0 5.66l4.19 4.18zm6.78-1.81c1.53.71 3.68.21 5.27-1.38 1.91-1.91 2.28-4.65.81-6.12-1.46-1.46-4.2-1.1-6.12.81-1.59 1.59-2.09 3.74-1.38 5.27L3.7 19.87l1.41 1.41L12 14.41l6.88 6.88 1.41-1.41L13.41 13l1.47-1.47z"></path>
+    </svg>
+  );
+}
+
+function LivingIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      stroke="currentColor"
+      fill="currentColor"
+      stroke-width="0"
+      viewBox="0 0 32 32"
+      height="32"
+      width="32"
+      {...props}
+    >
+      <path d="M 6 7 C 4.355469 7 3 8.355469 3 10 L 3 12.1875 C 1.84375 12.605469 1 13.707031 1 15 L 1 26 L 3 26 L 3 24 L 29 24 L 29 26 L 31 26 L 31 15 C 31 13.707031 30.15625 12.605469 29 12.1875 L 29 10 C 29 8.355469 27.644531 7 26 7 Z M 6 9 L 26 9 C 26.554688 9 27 9.445313 27 10 L 27 12.1875 C 25.84375 12.605469 25 13.707031 25 15 L 25 17 L 7 17 L 7 15 C 7 13.707031 6.15625 12.605469 5 12.1875 L 5 10 C 5 9.445313 5.445313 9 6 9 Z M 4 14 C 4.554688 14 5 14.445313 5 15 L 5 19 L 27 19 L 27 15 C 27 14.445313 27.445313 14 28 14 C 28.554688 14 29 14.445313 29 15 L 29 22 L 3 22 L 3 15 C 3 14.445313 3.445313 14 4 14 Z"></path>
     </svg>
   );
 }
