@@ -12,36 +12,47 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Adapt this as necessary
   return [
     // landing pages
-    ...getEntries("/"),
-    ...getEntries("/landlord"),
-    ...getEntries("/tenant"),
+    ...getEntries("/", "weekly", 1),
+    ...getEntries("/landlord", "weekly", 0.8),
+    ...getEntries("/tenant", "weekly", 0.8),
     // services
-    ...getEntries("/contract"),
-    ...getEntries("/maintenance-payment"),
-    ...getEntries("/rent-payment"),
-    ...getEntries("/rent-collection"),
+    ...getEntries("/contract", "monthly"),
+    ...getEntries("/maintenance-payment", "monthly"),
+    ...getEntries("/rent-payment", "monthly"),
+    ...getEntries("/rent-collection", "monthly"),
     // lead forms
-    ...getEntries("/brokerage-commission"),
-    ...getEntries("/evaluate-property"),
-    ...getEntries("/finish-property"),
-    ...getEntries("/promote-properties"),
-    ...getEntries("/property-valuation"),
-    ...getEntries("/rent-management"),
-    ...getEntries("/request-property"),
-    ...getEntries("/rentak-basic"),
-    ...getEntries("/rentak-secure"),
+    ...getEntries("/brokerage-commission", "monthly"),
+    ...getEntries("/evaluate-property", "monthly"),
+    ...getEntries("/finish-property", "monthly"),
+    ...getEntries("/promote-properties", "monthly"),
+    ...getEntries("/property-valuation", "monthly"),
+    ...getEntries("/rent-management", "monthly"),
+    ...getEntries("/request-property", "monthly"),
+    ...getEntries("/rentak-basic", "monthly", 0.3),
+    ...getEntries("/rentak-secure", "monthly", 0.3),
     // units
-    ...getEntries("/units"),
+    ...getEntries("/units", "daily", 0.8),
     // blog
-    ...articles.flatMap((article) => getEntries(`/blog/${article.slug}`)),
+    ...articles.flatMap((article) =>
+      getEntries(`/blog/${article.slug}`, "weekly", 0.7),
+    ),
   ];
 }
 
 type Href = Parameters<typeof getPathname>[0]["href"];
 
-function getEntries(href: Href) {
+type ChangeFrequency = MetadataRoute.Sitemap[number]["changeFrequency"];
+
+function getEntries(
+  href: Href,
+  changeFrequency: ChangeFrequency = "weekly",
+  priority = 0.5,
+): Array<MetadataRoute.Sitemap[number]> {
   return routing.locales.map((locale) => ({
     url: getUrl(href, locale),
+    lastModified: new Date(),
+    priority,
+    changeFrequency,
     alternates: {
       languages: {
         ar: getUrl(href, "ar-EG"),
