@@ -7,6 +7,7 @@ import {
   parseAsString,
   parseAsStringEnum,
 } from "nuqs/server";
+import slugify from "slugify";
 
 import { type UnitTypeTypes } from "@/components/units/types";
 import fetcher from "@/lib/fetcher";
@@ -220,4 +221,28 @@ export async function getAllProperties() {
     .json<AllPropertiesResponse>();
 
   return res.data;
+}
+
+function titleToSlug(title: string) {
+  const uriSlug = slugify(title, {
+    lower: true,
+    strict: true,
+  });
+
+  return encodeURI(uriSlug);
+}
+
+export function getUnitSlug(unit: {
+  id: number | string;
+  english_name: string;
+}) {
+  return `${titleToSlug(unit.english_name)}-${unit.id}`;
+}
+
+export function getIdFromSlug(slug: string) {
+  const id = slug.split("-").pop();
+  if (!id) {
+    throw new Error("Invalid slug");
+  }
+  return id;
 }

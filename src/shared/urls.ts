@@ -1,4 +1,4 @@
-import { type Unit as TUnit } from "@/services/types";
+import { getUnitSlug } from "@/services/properties";
 
 // append urls here, DO NOT remove this line
 const URLS = {
@@ -23,8 +23,8 @@ const URLS = {
 
   //Properties
   units: "/units",
-  unit: "/units/:id",
-  viewUnit: (property: TUnit) => `/units/${property.id}`,
+  viewUnit: (property: { id: string | number; english_name: string }) =>
+    `/units/${getUnitSlug(property)}`,
 
   pages: {
     aboutUs: "/about-us",

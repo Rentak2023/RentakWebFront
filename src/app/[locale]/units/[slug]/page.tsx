@@ -1,7 +1,7 @@
 import { HeartIcon } from "lucide-react";
 import { type Metadata } from "next";
 import Image from "next/image";
-import { notFound } from "next/navigation";
+import { notFound, RedirectType } from "next/navigation";
 import { type Locale } from "next-intl";
 import {
   getFormatter,
@@ -31,13 +31,16 @@ import { Button } from "@/components/ui/button";
 import Container from "@/components/ui/container";
 import PropertyImages from "@/components/ui/property-images";
 import { Separator } from "@/components/ui/separator";
-import { Link } from "@/i18n/routing";
+import { Link, permanentRedirect } from "@/i18n/routing";
 import { generateAlternatesLinks } from "@/lib/utils";
 import {
   getAllProperties,
+  getIdFromSlug,
   getProperty,
   getPropertyInspectionDetails,
+  getUnitSlug,
 } from "@/services/properties";
+import URLS from "@/shared/urls";
 
 import { ArrangeVisit } from "./arrange-visit";
 import CustomersTestimonials from "./customers-testimonials";
@@ -49,17 +52,21 @@ export const generateStaticParams = async () => {
   const properties = await getAllProperties();
 
   return properties.map((property) => ({
-    id: property.id.toString(),
+    slug: getUnitSlug({
+      id: property.id,
+      english_name: property.title_en,
+    }),
   }));
 };
 
 export async function generateMetadata(
   props: Readonly<{
-    params: Promise<{ locale: Locale; id: string }>;
+    params: Promise<{ locale: Locale; slug: string }>;
   }>,
 ): Promise<Metadata> {
   const params = await props.params;
-  const { locale, id } = params;
+  const { locale, slug } = params;
+  const id = getIdFromSlug(slug);
   const t = await getTranslations("units");
 
   const property = await getProperty(id, locale);
@@ -82,18 +89,20 @@ export async function generateMetadata(
       description:
         property.meta_description ?? property.property_description ?? undefined,
     },
-    alternates: generateAlternatesLinks(`/units/${id}`),
+    alternates: generateAlternatesLinks(URLS.viewUnit(property)),
   };
 }
 
 export default async function UnitPage(
   props: Readonly<{
-    params: Promise<{ locale: Locale; id: string }>;
+    params: Promise<{ locale: Locale; slug: string }>;
   }>,
 ) {
   const params = await props.params;
-  const { locale, id } = params;
+  const { locale, slug } = params;
   setRequestLocale(locale);
+
+  const id = getIdFromSlug(slug);
 
   const t = await getTranslations("units");
   const formatter = await getFormatter();
@@ -105,6 +114,16 @@ export default async function UnitPage(
 
   if (property == null) {
     notFound();
+  }
+
+  if (slug !== getUnitSlug(property)) {
+    return permanentRedirect(
+      {
+        href: URLS.viewUnit(property),
+        locale,
+      },
+      RedirectType.replace,
+    );
   }
 
   const jsonLd: WithContext<Accommodation> = {

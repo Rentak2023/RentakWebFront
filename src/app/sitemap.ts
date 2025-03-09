@@ -3,6 +3,7 @@ import { type MetadataRoute } from "next";
 import { getPathname, routing } from "@/i18n/routing";
 import { getAllArticles } from "@/services/articles";
 import { getAllProperties } from "@/services/properties";
+import URLS from "@/shared/urls";
 
 // Adapt this as necessary
 const host = "https://rentakapp.com";
@@ -35,7 +36,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // units
     ...getEntries("/units", "daily", 0.8),
     ...properties.flatMap((property) =>
-      getEntries(`/unit/${property.id}`, "weekly", 0.5),
+      getEntries(
+        URLS.viewUnit({ id: property.id, english_name: property.title_en }),
+        "weekly",
+        0.5,
+      ),
     ),
     // blog
     ...articles.flatMap((article) =>
