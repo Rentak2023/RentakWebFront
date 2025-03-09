@@ -43,7 +43,7 @@ type Room = {
 export type Unit = {
   id: number;
   property_name: string;
-  property_description: string;
+  property_description: string | null;
   meta_description: string | null;
   price: number;
   picture: string;

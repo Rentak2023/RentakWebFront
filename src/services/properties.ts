@@ -199,3 +199,25 @@ export async function getPropertyInspectionDetails(propertyId: string) {
     throw error;
   }
 }
+
+type AllPropertiesResponse = {
+  message: string;
+  data: Array<{
+    id: number;
+    title_ar: string;
+    title_en: string;
+  }>;
+};
+
+export async function getAllProperties() {
+  const res = await fetcher
+    .get("unit/get-all-listing-units", {
+      cache: "force-cache",
+      next: {
+        revalidate: 60,
+      },
+    })
+    .json<AllPropertiesResponse>();
+
+  return res.data;
+}

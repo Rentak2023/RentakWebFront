@@ -34,6 +34,7 @@ import { Separator } from "@/components/ui/separator";
 import { Link } from "@/i18n/routing";
 import { generateAlternatesLinks } from "@/lib/utils";
 import {
+  getAllProperties,
   getProperty,
   getPropertyInspectionDetails,
 } from "@/services/properties";
@@ -43,6 +44,14 @@ import CustomersTestimonials from "./customers-testimonials";
 import { Step1Icon, Step2Icon, Step3Icon } from "./icons";
 import { PropertyInspection } from "./property-inspection";
 import SimilarUnits from "./similar-units";
+
+export const generateStaticParams = async () => {
+  const properties = await getAllProperties();
+
+  return properties.map((property) => ({
+    id: property.id.toString(),
+  }));
+};
 
 export async function generateMetadata(
   props: Readonly<{
@@ -70,7 +79,8 @@ export async function generateMetadata(
         cityName: property.location.city_name,
         title: property.property_name,
       }),
-      description: property.meta_description ?? property.property_description,
+      description:
+        property.meta_description ?? property.property_description ?? undefined,
     },
     alternates: generateAlternatesLinks(`/units/${id}`),
   };
@@ -102,7 +112,7 @@ export default async function UnitPage(
     "@type": "Apartment",
     name: property.property_name,
     image: property.gallary.map((img) => img.url),
-    description: property.property_description,
+    description: property.property_description ?? undefined,
     address: {
       "@type": "PostalAddress",
       addressCountry: "Egypt",
@@ -228,16 +238,18 @@ export default async function UnitPage(
                   {property.location.address_in_detail}
                 </span>
               </p>
-              <p className="mt-4 text-slate-600">
-                {property.property_description
-                  .split("\n")
-                  .map((line, index) => (
-                    <Fragment key={index}>
-                      {line}
-                      <br />
-                    </Fragment>
-                  ))}
-              </p>
+              {property.property_description && (
+                <p className="mt-4 text-slate-600">
+                  {property.property_description
+                    .split("\n")
+                    .map((line, index) => (
+                      <Fragment key={index}>
+                        {line}
+                        <br />
+                      </Fragment>
+                    ))}
+                </p>
+              )}
               <div className="mt-6">
                 <h3 className="text-3xl font-semibold text-slate-800">
                   Purchase a unit, in{" "}

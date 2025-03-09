@@ -2,12 +2,14 @@ import { type MetadataRoute } from "next";
 
 import { getPathname, routing } from "@/i18n/routing";
 import { getAllArticles } from "@/services/articles";
+import { getAllProperties } from "@/services/properties";
 
 // Adapt this as necessary
 const host = "https://rentakapp.com";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const articles = await getAllArticles("en");
+  const properties = await getAllProperties();
 
   // Adapt this as necessary
   return [
@@ -32,6 +34,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...getEntries("/rentak-secure", "monthly", 0.3),
     // units
     ...getEntries("/units", "daily", 0.8),
+    ...properties.flatMap((property) =>
+      getEntries(`/unit/${property.id}`, "weekly", 0.5),
+    ),
     // blog
     ...articles.flatMap((article) =>
       getEntries(`/blog/${article.slug}`, "weekly", 0.7),
