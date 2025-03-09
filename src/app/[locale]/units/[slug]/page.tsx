@@ -34,7 +34,6 @@ import { Separator } from "@/components/ui/separator";
 import { Link, permanentRedirect } from "@/i18n/routing";
 import { generateAlternatesLinks } from "@/lib/utils";
 import {
-  getAllProperties,
   getIdFromSlug,
   getProperty,
   getPropertyInspectionDetails,
@@ -47,17 +46,6 @@ import CustomersTestimonials from "./customers-testimonials";
 import { Step1Icon, Step2Icon, Step3Icon } from "./icons";
 import { PropertyInspection } from "./property-inspection";
 import SimilarUnits from "./similar-units";
-
-export const generateStaticParams = async () => {
-  const properties = await getAllProperties();
-
-  return properties.map((property) => ({
-    slug: getUnitSlug({
-      id: property.id,
-      english_name: property.title_en,
-    }),
-  }));
-};
 
 export async function generateMetadata(
   props: Readonly<{
