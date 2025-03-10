@@ -1,3 +1,4 @@
+import { unstable_rootParams as rootParams } from "next/server";
 import { type Formats, hasLocale } from "next-intl";
 import { getRequestConfig } from "next-intl/server";
 
@@ -13,13 +14,13 @@ export const formats = {
   },
 } satisfies Formats;
 
-export default getRequestConfig(async ({ requestLocale }) => {
+export default getRequestConfig(async () => {
   // This typically corresponds to the `[locale]` segment
-  const requested = await requestLocale;
+  const params = await rootParams();
 
   // Ensure that a valid locale is used
-  const locale = hasLocale(routing.locales, requested)
-    ? requested
+  const locale = hasLocale(routing.locales, params.locale)
+    ? params.locale
     : routing.defaultLocale;
 
   return {

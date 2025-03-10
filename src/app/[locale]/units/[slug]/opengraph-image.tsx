@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import { ImageResponse } from "next/og";
-import type { Locale } from "next-intl";
 
 import { getIdFromSlug, getProperty } from "@/services/properties";
 
@@ -31,7 +30,7 @@ async function loadFont() {
 // Image generation
 export default async function Image(
   props: Readonly<{
-    params: Promise<{ locale: Locale; slug: string }>;
+    params: Promise<{ slug: string }>;
   }>,
 ) {
   const params = await props.params;

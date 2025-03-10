@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { type Locale } from "next-intl";
-import { setRequestLocale } from "next-intl/server";
+import { getLocale } from "next-intl/server";
 import { type BlogPosting, type WithContext } from "schema-dts";
 
 import { Breadcrumb } from "@/components/ui/breadcrumb";
@@ -17,9 +16,11 @@ export const generateStaticParams = async () => {
 };
 
 export const generateMetadata = async (props: {
-  params: Promise<{ slug: string; locale: Locale }>;
+  params: Promise<{ slug: string }>;
 }) => {
-  const { slug, locale } = await props.params;
+  const { slug } = await props.params;
+
+  const locale = await getLocale();
 
   const article = await getArticleBySlug(decodeURI(slug), locale);
   if (!article) return notFound();
@@ -49,11 +50,10 @@ export const generateMetadata = async (props: {
 };
 
 const PostLayout = async (
-  props: Readonly<{ params: Promise<{ slug: string; locale: Locale }> }>,
+  props: Readonly<{ params: Promise<{ slug: string }> }>,
 ) => {
-  const { slug, locale } = await props.params;
-
-  setRequestLocale(locale);
+  const { slug } = await props.params;
+  const locale = await getLocale();
 
   const article = await getArticleBySlug(decodeURI(slug), locale);
   if (article == null) return notFound();

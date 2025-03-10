@@ -2,12 +2,7 @@ import { HeartIcon } from "lucide-react";
 import { type Metadata } from "next";
 import Image from "next/image";
 import { notFound, RedirectType } from "next/navigation";
-import { type Locale } from "next-intl";
-import {
-  getFormatter,
-  getTranslations,
-  setRequestLocale,
-} from "next-intl/server";
+import { getFormatter, getLocale, getTranslations } from "next-intl/server";
 import { Fragment } from "react";
 import { type Accommodation, type WithContext } from "schema-dts";
 
@@ -34,6 +29,7 @@ import { Separator } from "@/components/ui/separator";
 import { Link, permanentRedirect } from "@/i18n/routing";
 import { generateAlternatesLinks } from "@/lib/utils";
 import {
+  getAllProperties,
   getIdFromSlug,
   getProperty,
   getPropertyInspectionDetails,
@@ -47,13 +43,26 @@ import { Step1Icon, Step2Icon, Step3Icon } from "./icons";
 import { PropertyInspection } from "./property-inspection";
 import SimilarUnits from "./similar-units";
 
+export const generateStaticParams = async () => {
+  const properties = await getAllProperties();
+
+  return properties.map((property) => ({
+    slug: getUnitSlug({
+      id: property.id,
+      english_name: property.title_en,
+    }),
+  }));
+};
+
 export async function generateMetadata(
   props: Readonly<{
-    params: Promise<{ locale: Locale; slug: string }>;
+    params: Promise<{ slug: string }>;
   }>,
 ): Promise<Metadata> {
   const params = await props.params;
-  const { locale, slug } = params;
+  const { slug } = params;
+  const locale = await getLocale();
+
   const id = getIdFromSlug(slug);
   const t = await getTranslations("units");
 
@@ -83,12 +92,12 @@ export async function generateMetadata(
 
 export default async function UnitPage(
   props: Readonly<{
-    params: Promise<{ locale: Locale; slug: string }>;
+    params: Promise<{ slug: string }>;
   }>,
 ) {
   const params = await props.params;
-  const { locale, slug } = params;
-  setRequestLocale(locale);
+  const { slug } = params;
+  const locale = await getLocale();
 
   const id = getIdFromSlug(slug);
 

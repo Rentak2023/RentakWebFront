@@ -1,6 +1,5 @@
 import { type Metadata } from "next";
-import { type Locale } from "next-intl";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { createSerializer, type SearchParams } from "nuqs/server";
 import type { ItemList, WebPage, WithContext } from "schema-dts";
 
@@ -17,11 +16,10 @@ const serialize = createSerializer(propertiesQueryParsers);
 
 export async function generateMetadata(
   props: Readonly<{
-    params: Promise<{ locale: Locale }>;
     searchParams: Promise<SearchParams>;
   }>,
 ): Promise<Metadata> {
-  const { locale } = await props.params;
+  const locale = await getLocale();
   const searchParams = await props.searchParams;
   const t = await getTranslations("units.meta");
 
@@ -55,16 +53,11 @@ export async function generateMetadata(
 
 export default async function UnitsPage(
   props: Readonly<{
-    params: Promise<{ locale: Locale }>;
     searchParams: Promise<SearchParams>;
   }>,
 ) {
   const searchParams = await props.searchParams;
-  const params = await props.params;
-
-  const { locale } = params;
-
-  setRequestLocale(locale);
+  const locale = await getLocale();
 
   const parsedParams = propertiesQueryCache.parse(searchParams);
   const properties = await getProperties({ ...parsedParams, lang: locale });
@@ -94,7 +87,7 @@ export default async function UnitsPage(
         item: {
           "@type": "Product",
           name: property.property_name,
-          description: property.property_description,
+          description: property.property_description ?? undefined,
           url: `https://rentak.com/units/${property.id}`,
           image: property.picture,
           offers: {

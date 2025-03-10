@@ -1,6 +1,5 @@
 import { type Metadata } from "next";
-import { type Locale } from "next-intl";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 
 import Units from "@/components/home/units";
 import { generateAlternatesLinks } from "@/lib/utils";
@@ -26,17 +25,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-async function Tenant(
-  props: Readonly<{
-    params: Promise<{ locale: Locale }>;
-  }>,
-) {
-  const params = await props.params;
-
-  const { locale } = params;
-
-  setRequestLocale(locale);
-
+function Tenant() {
   return (
     <main>
       <Header />

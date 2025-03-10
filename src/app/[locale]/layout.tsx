@@ -4,12 +4,8 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { type Metadata } from "next";
 import { Noto_Sans_Arabic } from "next/font/google";
 import localFont from "next/font/local";
-import { type Locale, NextIntlClientProvider } from "next-intl";
-import {
-  getMessages,
-  getTranslations,
-  setRequestLocale,
-} from "next-intl/server";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages, getTranslations } from "next-intl/server";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { Suspense } from "react";
 
@@ -76,15 +72,12 @@ export function generateStaticParams() {
 export default async function RootLayout(
   props: Readonly<{
     children: React.ReactNode;
-    params: Promise<{ locale: Locale }>;
   }>,
 ) {
-  const params = await props.params;
+  const locale = await getLocale();
 
-  const { locale } = params;
   const { children } = props;
 
-  setRequestLocale(locale);
   const direction = getLocaleDirection(locale);
   const messages = await getMessages();
 

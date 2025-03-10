@@ -1,6 +1,4 @@
 import { type Metadata } from "next";
-import { type Locale } from "next-intl";
-import { setRequestLocale } from "next-intl/server";
 
 import Contact from "@/components/home/contact";
 import { Header } from "@/components/home/header";
@@ -18,17 +16,7 @@ export function generateMetadata(): Metadata {
   };
 }
 
-export default async function Home(
-  props: Readonly<{
-    params: Promise<{ locale: Locale }>;
-  }>,
-) {
-  const params = await props.params;
-
-  const { locale } = params;
-
-  setRequestLocale(locale);
-
+export default function Home() {
   return (
     <main>
       <Header />
