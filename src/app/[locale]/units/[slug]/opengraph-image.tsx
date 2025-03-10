@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { ImageResponse } from "next/og";
 import type { Locale } from "next-intl";
 
-import { getProperty } from "@/services/properties";
+import { getIdFromSlug, getProperty } from "@/services/properties";
 
 export const size = {
   width: 1200,
@@ -31,11 +31,13 @@ async function loadFont() {
 // Image generation
 export default async function Image(
   props: Readonly<{
-    params: Promise<{ locale: Locale; id: string }>;
+    params: Promise<{ locale: Locale; slug: string }>;
   }>,
 ) {
   const params = await props.params;
-  const { id } = params;
+  const { slug } = params;
+
+  const id = getIdFromSlug(slug);
 
   const property = await getProperty(id, "en");
 
