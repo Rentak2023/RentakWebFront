@@ -509,7 +509,25 @@
     },
     "rent-payment": {
       "title": "Rent Now, Pay Later!",
-      "description": "Whether it’s a chalet, apartment, or villa—choose your ideal unit, agree on the price, provide the owner’s bank details, and fill out our form. Rentak takes care of the rest, including transferring the payment within 4 working days."
+      "description": "Whether it’s a chalet, apartment, or villa—choose your ideal unit, agree on the price, provide the owner’s bank details, and fill out our form. Rentak takes care of the rest, including transferring the payment within 4 working days.",
+      "steps": {
+        "select-unit": {
+          "title": "Select Your Unit",
+          "description": "Choose your ideal chalet, apartment, or villa."
+        },
+        "agree-terms": {
+          "title": "Agree on Terms",
+          "description": "Finalize the price and rental terms with the owner."
+        },
+        "bank-details": {
+          "title": "Provide Bank Details",
+          "description": "Share the owner's bank account information."
+        },
+        "rentak-handles": {
+          "title": "Rentak Handles It All",
+          "description": "Complete our form, and we'll transfer the payment within 4 working days."
+        }
+      }
     },
     "rent-management": {
       "title": "Manage Your Property",

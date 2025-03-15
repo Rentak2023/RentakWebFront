@@ -5,7 +5,7 @@ import { type Metadata } from "next";
 import { Noto_Sans_Arabic } from "next/font/google";
 import localFont from "next/font/local";
 import { NextIntlClientProvider } from "next-intl";
-import { getLocale, getMessages, getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { Suspense } from "react";
 
@@ -79,7 +79,6 @@ export default async function RootLayout(
   const { children } = props;
 
   const direction = getLocaleDirection(locale);
-  const messages = await getMessages();
 
   return (
     <html
@@ -89,18 +88,7 @@ export default async function RootLayout(
     >
       <body className="font-sans antialiased">
         <div className="flex min-h-svh flex-col">
-          <NextIntlClientProvider
-            messages={messages}
-            formats={{
-              number: {
-                money: {
-                  style: "currency",
-                  currency: "EGP",
-                  minimumFractionDigits: 0,
-                },
-              },
-            }}
-          >
+          <NextIntlClientProvider>
             <NuqsAdapter>
               <Providers>
                 <Navbar />
