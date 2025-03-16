@@ -613,6 +613,9 @@
         "label": "Date",
         "placeholder": "Pick a date"
       },
+      "time-slot": {
+        "label": "Preferred Time Slot"
+      },
       "name": {
         "label": "Name"
       },

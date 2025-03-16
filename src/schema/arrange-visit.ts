@@ -17,5 +17,6 @@ export const arrangeVisitSchema = v.object({
       "Enter a valid phone number",
     ),
   ),
+  time_slot: v.pipe(v.string(), v.trim(), v.nonEmpty("Time slot is required")),
   message: v.optional(v.pipe(v.string(), v.trim())),
 });

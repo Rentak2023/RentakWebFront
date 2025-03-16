@@ -30,6 +30,13 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
@@ -40,6 +47,12 @@ import { arrangeVisitAction } from "../../actions/arrange-visit";
 type ArrangeVisitProps = {
   unitId: number;
 };
+
+const availableTimeSlots = [
+  "10:00 AM To 1:00 PM",
+  "1:00 PM To 4:00 PM",
+  "4:00 PM To 7:00 PM",
+];
 
 export function ArrangeVisit({ unitId }: ArrangeVisitProps) {
   const form = useForm({
@@ -128,6 +141,30 @@ export function ArrangeVisit({ unitId }: ArrangeVisitProps) {
                       />
                     </PopoverContent>
                   </Popover>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="time_slot"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{t("fields.time-slot.label")}</FormLabel>
+                  <FormControl>
+                    <Select onValueChange={field.onChange} value={field.value}>
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {availableTimeSlots.map((option) => (
+                          <SelectItem key={option} value={option}>
+                            <span>{option}</span>
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
