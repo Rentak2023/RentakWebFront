@@ -49,13 +49,11 @@ export default async function Image(
       // ImageResponse JSX element
       <div tw="h-full w-full flex items-start justify-start">
         <div tw="flex items-start justify-start h-full">
-          <div tw="flex w-2/5 flex-col justify-between h-full pl-12 py-12 bg-gray-50">
+          <div tw="flex w-2/5 flex-col justify-between h-full pl-12 py-12 bg-slate-50">
             <div tw="flex flex-col">
               <img src="https://rentakapp.com/images/logo.png" tw="w-48" />
             </div>
-            <h1 tw="text-5xl font-black text-left mt-auto">
-              {property.property_name}
-            </h1>
+            <h1 tw="text-5xl text-left mt-auto">{property.property_name}</h1>
           </div>
           {property.gallary[0] ? (
             <div tw="flex w-3/5 h-full">

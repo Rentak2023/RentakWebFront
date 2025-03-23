@@ -47,7 +47,7 @@ export default function RentPayment() {
 
   return (
     <main className="mt-24">
-      <Container className="text-primary-900 mx-auto flex flex-col items-center justify-between gap-4 rounded-lg bg-stone-100 py-16 lg:flex-row">
+      <Container className="text-primary-900 mx-auto flex flex-col items-center justify-between gap-4 rounded-lg bg-slate-100 py-16 lg:flex-row">
         <div className="flex flex-col items-start">
           <h1 className="max-w-lg text-balance text-5xl font-medium tracking-tight sm:text-6xl">
             {t("rent-payment.title")}

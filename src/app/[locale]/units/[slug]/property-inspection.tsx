@@ -1,6 +1,7 @@
 "use client";
 import { ChevronRightIcon } from "lucide-react";
 import { useState } from "react";
+import * as R from "remeda";
 
 import {
   Dialog,
@@ -33,7 +34,7 @@ type PropertyInspectionProps = {
 };
 
 function getRoomType(roomType: string) {
-  const formatted = roomType.toLowerCase().replaceAll(/[0-9]/g, "");
+  const formatted = roomType.toLowerCase().replaceAll(/\d/g, "");
   switch (formatted) {
     case "kitchen": {
       return "kitchen";
@@ -56,7 +57,9 @@ function getRoomType(roomType: string) {
   }
 }
 
-export function PropertyInspection({ inspection }: PropertyInspectionProps) {
+export function PropertyInspection({
+  inspection,
+}: Readonly<PropertyInspectionProps>) {
   const [modalOpen, setModalOpen] = useState(false);
   const [currentTab, setCurrentTab] = useState("");
 
@@ -69,20 +72,26 @@ export function PropertyInspection({ inspection }: PropertyInspectionProps) {
       </div>
     );
   }
+  const roomTypes = R.pipe(
+    inspection.rooms,
+    R.countBy((room) => getRoomType(room.room_type)),
+  );
+
   return (
     <div className="bg-linear-to-b/oklch to-primary-600/4 from-primary-600/1 mt-4 flex flex-col divide-y divide-slate-200 rounded-md p-4">
-      {inspection.rooms.map((room) => (
+      {R.entries(roomTypes).map(([roomType, count]) => (
         <button
-          key={room.room_type}
+          key={roomType}
           type="button"
           className="flex cursor-pointer items-center justify-between py-3"
           onClick={() => {
-            setCurrentTab(room.room_type);
+            // setCurrentTab(room.room_type);
             setModalOpen(true);
           }}
         >
           <span className="text-primary-800 flex items-center gap-2.5 text-2xl font-medium">
-            <RoomIcon type={getRoomType(room.room_type)} /> {room.room_type}
+            <RoomIcon type={roomType} /> {R.capitalize(roomType)}
+            {count > 1 && "s"}
           </span>
 
           <span className="inline-flex items-center gap-1 text-lg tabular-nums">
@@ -115,14 +124,18 @@ function UnitInspectionModal({
   onOpenChange,
   currentTab,
   onTabChange,
-}: UnitInspectionModalProps) {
+}: Readonly<UnitInspectionModalProps>) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-4xl">
+      <DialogContent className="max-w-5xl">
         <DialogHeader>
           <DialogTitle>Unit Inspection</DialogTitle>
-          <DialogDescription className="mt-2">
-            <Tabs value={currentTab} onValueChange={onTabChange}>
+          <DialogDescription className="mt-2 flex">
+            <Tabs
+              value={currentTab}
+              onValueChange={onTabChange}
+              className="mx-auto"
+            >
               <TabsList>
                 {rooms.map((room) => (
                   <TabsTrigger
@@ -168,7 +181,9 @@ function UnitInspectionModal({
   );
 }
 
-function RoomIcon({ type }: { type: ReturnType<typeof getRoomType> }) {
+function RoomIcon({
+  type,
+}: Readonly<{ type: ReturnType<typeof getRoomType> }>) {
   switch (type) {
     case "kitchen": {
       return <KitchenIcon className="w-6" />;
@@ -191,7 +206,7 @@ function RoomIcon({ type }: { type: ReturnType<typeof getRoomType> }) {
   }
 }
 
-function KitchenIcon(props: React.SVGProps<SVGSVGElement>) {
+function KitchenIcon(props: Readonly<React.SVGProps<SVGSVGElement>>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -215,7 +230,7 @@ function KitchenIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-function BathroomIcon(props: React.SVGProps<SVGSVGElement>) {
+function BathroomIcon(props: Readonly<React.SVGProps<SVGSVGElement>>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -236,7 +251,7 @@ function BathroomIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-function BedroomIcon(props: React.SVGProps<SVGSVGElement>) {
+function BedroomIcon(props: Readonly<React.SVGProps<SVGSVGElement>>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -252,7 +267,7 @@ function BedroomIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-function DiningIcon(props: React.SVGProps<SVGSVGElement>) {
+function DiningIcon(props: Readonly<React.SVGProps<SVGSVGElement>>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -269,13 +284,13 @@ function DiningIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-function LivingIcon(props: React.SVGProps<SVGSVGElement>) {
+function LivingIcon(props: Readonly<React.SVGProps<SVGSVGElement>>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       stroke="currentColor"
       fill="currentColor"
-      stroke-width="0"
+      strokeWidth="0"
       viewBox="0 0 32 32"
       height="32"
       width="32"

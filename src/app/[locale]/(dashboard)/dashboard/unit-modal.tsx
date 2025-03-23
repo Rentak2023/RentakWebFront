@@ -230,8 +230,8 @@ function CalendarIcon(props: SVGProps<SVGSVGElement>) {
       <path
         fill="#fff"
         stroke="currentColor"
-        stroke-linejoin="round"
-        stroke-width=".75"
+        strokeLinejoin="round"
+        strokeWidth=".75"
         d="M13 2.498H3a1.5 1.5 0 0 0-1.5 1.5v9a1.5 1.5 0 0 0 1.5 1.5h10a1.5 1.5 0 0 0 1.5-1.5v-9a1.5 1.5 0 0 0-1.5-1.5Z"
       />
       <path

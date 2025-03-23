@@ -35,6 +35,7 @@ import {
   getPropertyInspectionDetails,
   getUnitSlug,
 } from "@/services/properties";
+import { type Unit } from "@/services/types";
 import URLS from "@/shared/urls";
 
 import { ArrangeVisit } from "./arrange-visit";
@@ -271,7 +272,7 @@ export default async function UnitPage(
                   Purchase a unit, in{" "}
                   <span className="text-green-800">Just 3 steps</span>
                 </h3>
-                <Steps />
+                <Steps property={property} />
               </div>
               <div className="mt-16">
                 <div className="ms-2 flex items-center gap-2 text-sm text-slate-600">
@@ -343,13 +344,15 @@ export default async function UnitPage(
   );
 }
 
-function Steps() {
+async function Steps({ property }: Readonly<{ property: Unit }>) {
+  const formatter = await getFormatter();
+
   const steps = [
     {
       title: "Choose... Book Online!",
       description: (
         <>
-          Choose the car that suits you on our website and book an appointment
+          Choose the unit that suits you on our website and book an appointment
           to visit it in our showroom.{" "}
           <strong className="font-semibold">No Fees!</strong>
         </>
@@ -360,16 +363,17 @@ function Steps() {
       title: "View and Reserve",
       description: (
         <>
-          View the unit in our showroom and book it for 10,000 EGP.{" "}
+          View the unit in our showroom and book it for{" "}
+          {formatter.number(property.price)} EGP.{" "}
           <strong className="font-semibold">(fully refundable)</strong>
         </>
       ),
       Icon: Step2Icon,
     },
     {
-      title: "Buy Your Property",
+      title: "Rent Your Property",
       description:
-        "The unit will be reserved for you for 24 hours, during which you can decide to buy it or look at other units.",
+        "The unit will be reserved for you for 24 hours, during which you can decide to rent it or look at other units.",
       Icon: Step3Icon,
     },
   ];
