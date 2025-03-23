@@ -49,9 +49,7 @@ export function Transactions({ transactions }: Transactions) {
 
         const parsedDate = new Date(date);
 
-        return formatter.dateTime(parsedDate, {
-          dateStyle: "long",
-        });
+        return formatter.dateTime(parsedDate, "long");
       },
       header: (info) => (
         <DataTableColumnHeader column={info.column} title={t("date")} />

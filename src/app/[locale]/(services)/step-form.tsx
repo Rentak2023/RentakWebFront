@@ -282,7 +282,7 @@ function StepField({ formField, field, useFormStore }: StepFieldProps) {
                 )}
               >
                 {field.value ? (
-                  format.dateTime(field.value, { dateStyle: "long" })
+                  format.dateTime(field.value, "long")
                 ) : (
                   <span>{formField.placeholder}</span>
                 )}

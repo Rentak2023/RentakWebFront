@@ -66,15 +66,11 @@ export function RentedUnits({ units }: RentedUnits) {
 
         if (isPast(parsedDate))
           return t("overdue", {
-            date: formatter.dateTime(parsedDate, {
-              dateStyle: "medium",
-            }),
+            date: formatter.dateTime(parsedDate, "medium"),
           });
 
         return t("due-in", {
-          date: formatter.dateTime(parsedDate, {
-            dateStyle: "medium",
-          }),
+          date: formatter.dateTime(parsedDate, "medium"),
         });
       },
       header: (info) => (

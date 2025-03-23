@@ -11,6 +11,15 @@ export const formats = {
       currency: "EGP",
       minimumFractionDigits: 0,
     },
+    numbers: {},
+  },
+  dateTime: {
+    long: {
+      dateStyle: "long",
+    },
+    medium: {
+      dateStyle: "medium",
+    },
   },
 } satisfies Formats;
 
@@ -27,6 +36,28 @@ export default getRequestConfig(async () => {
     locale,
     // eslint-disable-next-line unicorn/no-await-expression-member
     messages: (await import(`../../messages/${locale}.json`)).default,
-    formats,
+    formats: {
+      number: {
+        money: {
+          style: "currency",
+          currency: "EGP",
+          minimumFractionDigits: 0,
+          numberingSystem: locale === "ar" ? "arab" : "latn",
+        },
+        numbers: {
+          numberingSystem: locale === "ar" ? "arab" : "latn",
+        },
+      },
+      dateTime: {
+        long: {
+          dateStyle: "long",
+          numberingSystem: locale === "ar" ? "arab" : "latn",
+        },
+        medium: {
+          dateStyle: "medium",
+          numberingSystem: locale === "ar" ? "arab" : "latn",
+        },
+      },
+    },
   };
 });

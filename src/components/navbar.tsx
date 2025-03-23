@@ -64,7 +64,7 @@ function NavRight() {
   return (
     <div className="flex flex-1 items-center justify-end gap-x-2">
       <Button asChild className="rounded-full" size="icon">
-        <Link locale={locale === "en" ? "ar-EG" : "en"} href={pathname}>
+        <Link locale={locale === "en" ? "ar" : "en"} href={pathname}>
           {locale === "en" ? "ع" : "EN"}
         </Link>
       </Button>

@@ -121,9 +121,7 @@ export function ArrangeVisit({ unitId }: ArrangeVisitProps) {
                         >
                           {/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition */}
                           {field.value ? (
-                            formatter.dateTime(field.value, {
-                              dateStyle: "long",
-                            })
+                            formatter.dateTime(field.value, "long")
                           ) : (
                             <span>{t("fields.date.placeholder")}</span>
                           )}

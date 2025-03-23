@@ -160,17 +160,17 @@ export default async function UnitPage(
     },
     {
       title: t("m2"),
-      value: formatter.number(property.area),
+      value: formatter.number(property.area, "numbers"),
       icon: <AreaIcon className="size-6" />,
     },
     {
       title: t("rooms"),
-      value: formatter.number(property.room_numbers),
+      value: formatter.number(property.room_numbers, "numbers"),
       icon: <BedIcon className="size-6" />,
     },
     {
       title: t("toilets"),
-      value: formatter.number(property.bathrom_numbers),
+      value: formatter.number(property.bathrom_numbers, "numbers"),
       icon: <BathIcon className="size-6" />,
     },
     {
@@ -224,7 +224,7 @@ export default async function UnitPage(
                 <li className="flex items-center gap-1 lg:me-6">
                   <AreaIcon className="text-primary-600 size-10" />
                   <span className="text-xl lg:text-2xl">
-                    {formatter.number(property.area)}
+                    {formatter.number(property.area, "numbers")}
                   </span>
                 </li>
 
@@ -364,7 +364,7 @@ async function Steps({ property }: Readonly<{ property: Unit }>) {
       description: (
         <>
           View the unit in our showroom and book it for{" "}
-          {formatter.number(property.price)} EGP.{" "}
+          {formatter.number(property.price, "numbers")} EGP.{" "}
           <strong className="font-semibold">(fully refundable)</strong>
         </>
       ),

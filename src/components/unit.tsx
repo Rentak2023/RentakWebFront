@@ -90,7 +90,7 @@ function Unit({ item }: UnitProps) {
             </div>
             <div className="flex items-center gap-1">
               <AreaIcon className="size-4" />
-              <span>{formatter.number(item.area)}</span>
+              <span>{formatter.number(item.area, "numbers")}</span>
             </div>
           </div>
 

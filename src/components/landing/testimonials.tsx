@@ -124,11 +124,7 @@ export function Testimonials({ title, testimonials }: TestimonialsProps) {
                     {currentTestimonial.name}
                   </span>
                   <span>
-                    {formatter.dateTime(currentTestimonial.date, {
-                      day: "numeric",
-                      month: "short",
-                      year: "numeric",
-                    })}
+                    {formatter.dateTime(currentTestimonial.date, "long")}
                   </span>
                 </div>
                 <p className="sr-only">

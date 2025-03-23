@@ -65,7 +65,7 @@ function getEntries(
     changeFrequency,
     alternates: {
       languages: {
-        ar: getUrl(href, "ar-EG"),
+        ar: getUrl(href, "ar"),
       },
     },
   }));

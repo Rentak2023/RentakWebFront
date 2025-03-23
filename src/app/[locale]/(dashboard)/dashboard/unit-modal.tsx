@@ -37,9 +37,7 @@ function TransactionItem({
     <div className="flex items-center justify-between">
       <div className="flex flex-col">
         <span className="text-sm font-semibold text-slate-700">
-          {formmater.dateTime(new Date(transaction.due_date), {
-            dateStyle: "long",
-          })}
+          {formmater.dateTime(new Date(transaction.due_date), "long")}
         </span>
         <span className="text-xs text-slate-500">
           {transaction.payment_method || "..."}
@@ -139,9 +137,7 @@ export function UnitModal({ unitId }: UnitModalProps) {
                       {t("start-date")}
                     </dt>
                     <dd className="mt-1 text-sm font-medium text-slate-700">
-                      {formater.dateTime(new Date(contract.from), {
-                        dateStyle: "medium",
-                      })}
+                      {formater.dateTime(new Date(contract.from), "medium")}
                     </dd>
                   </div>
                 </div>
@@ -153,9 +149,7 @@ export function UnitModal({ unitId }: UnitModalProps) {
                   <div>
                     <dt className="text-xs text-slate-500">{t("end-date")}</dt>
                     <dd className="mt-1 text-sm font-medium text-slate-700">
-                      {formater.dateTime(new Date(contract.to), {
-                        dateStyle: "medium",
-                      })}
+                      {formater.dateTime(new Date(contract.to), "medium")}
                     </dd>
                   </div>
                 </div>
@@ -175,9 +169,15 @@ export function UnitModal({ unitId }: UnitModalProps) {
                 }
               />
               <span className="text-slate-500">
-                {formater.number(contract.rent_collected.rent_collected)}
+                {formater.number(
+                  contract.rent_collected.rent_collected,
+                  "numbers",
+                )}
                 {locale === "en" ? "/" : "\\"}
-                {formater.number(contract.rent_collected.total_transactions)}
+                {formater.number(
+                  contract.rent_collected.total_transactions,
+                  "numbers",
+                )}
               </span>
             </div>
           </div>

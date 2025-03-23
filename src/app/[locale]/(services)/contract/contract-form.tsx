@@ -227,9 +227,7 @@ function ContractForm() {
                             >
                               {/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition  */}
                               {field.value ? (
-                                formatter.dateTime(field.value, {
-                                  dateStyle: "long",
-                                })
+                                formatter.dateTime(field.value, "long")
                               ) : (
                                 <span>
                                   {t("fields.contract-start-date.placeholder")}
