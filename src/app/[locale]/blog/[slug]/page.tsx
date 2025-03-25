@@ -63,8 +63,13 @@ const PostLayout = async (
     "@type": "BlogPosting",
     headline: article.title,
     description: article.meta_description,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://rentakapp.com/blog/${slug}`,
+    },
     image: article.picture,
     datePublished: article.created,
+    articleBody: article.description,
     author: {
       "@type": "Person",
       name: article.author || "Rentak",
@@ -94,14 +99,19 @@ const PostLayout = async (
         <div className="relative mb-8 min-h-96">
           <Image
             src={article.picture}
-            alt={article.title}
+            alt={`Featured image for article: ${article.title}`}
             width={1200}
             height={630}
             className="mx-auto mb-8 size-full overflow-hidden rounded-2xl object-cover"
             priority
+            loading="eager"
+            fetchPriority="high"
+            itemProp="image"
           />
         </div>
-        <div
+        <article
+          aria-label="Article content"
+          itemProp="articleBody"
           className="prose prose-slate md:prose-lg lg:prose-xl"
           // eslint-disable-next-line @eslint-react/dom/no-dangerously-set-innerhtml
           dangerouslySetInnerHTML={{
