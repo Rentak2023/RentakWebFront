@@ -17,12 +17,12 @@ function getQueryClient() {
   if (isServer) {
     return makeQueryClient();
   } else {
-    if (!browserQueryClient) browserQueryClient = makeQueryClient();
+    browserQueryClient ??= makeQueryClient();
     return browserQueryClient;
   }
 }
 
-export function Providers(props: { children: React.ReactNode }) {
+export function Providers(props: Readonly<{ children: React.ReactNode }>) {
   const queryClient = getQueryClient();
 
   return (
