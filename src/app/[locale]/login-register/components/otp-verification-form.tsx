@@ -34,7 +34,6 @@ export function OTPVerificationForm({
 }: OTPVerificationFormProps) {
   const t = useTranslations("auth");
   const [resendTimer, setResendTimer] = useState(30);
-  const [isResendDisabled, setIsResendDisabled] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   const form = useForm({
@@ -43,6 +42,7 @@ export function OTPVerificationForm({
       otp: "",
     },
   });
+  const isResendDisabled = resendTimer > 0;
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -50,8 +50,6 @@ export function OTPVerificationForm({
       timer = setInterval(() => {
         setResendTimer((prev) => prev - 1);
       }, 1000);
-    } else {
-      setIsResendDisabled(false);
     }
     return () => {
       clearInterval(timer);
@@ -61,7 +59,6 @@ export function OTPVerificationForm({
   const handleResend = async () => {
     try {
       setError(null);
-      setIsResendDisabled(true);
       setResendTimer(30);
       await onResend();
     } catch {

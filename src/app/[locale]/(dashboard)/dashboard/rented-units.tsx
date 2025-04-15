@@ -8,7 +8,6 @@ import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { DataTable, DataTableColumnHeader } from "@/components/ui/data-table";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
-import { Link } from "@/i18n/routing";
 import { type RentedUnit } from "@/services/dashboard";
 
 import { UnitModal } from "./unit-modal";

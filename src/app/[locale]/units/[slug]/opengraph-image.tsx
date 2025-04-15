@@ -1,3 +1,4 @@
+/* eslint "@eslint-react/dom/no-unknown-property": ["warn", { ignore: ["tw"] }] */
 import { notFound } from "next/navigation";
 import { ImageResponse } from "next/og";
 

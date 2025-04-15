@@ -1,4 +1,3 @@
-/* eslint-disable import-x/no-named-as-default-member */
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -7,7 +6,7 @@ import js from "@eslint/js";
 import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
 import react from "@eslint-react/eslint-plugin";
 import tanStackQuery from "@tanstack/eslint-plugin-query";
-import gitignore from "eslint-config-flat-gitignore";
+import { defineConfig, globalIgnores } from "eslint/config";
 import configPrettier from "eslint-config-prettier";
 import { createOxcImportResolver } from "eslint-import-resolver-oxc";
 import barrellFiles from "eslint-plugin-barrel-files";
@@ -28,31 +27,39 @@ const compat = new FlatCompat({
   resolvePluginsRelativeTo: baseDirectory,
 });
 
-export default ts.config(
-  gitignore(),
-  js.configs.recommended,
-  ...ts.configs.strictTypeChecked,
-  ...ts.configs.stylisticTypeChecked,
-  // disable until it supports v4
-  // ...tailwind.configs["flat/recommended"],
-  unicorn.configs["recommended"],
-  promise.configs["flat/recommended"],
-  ...tanStackQuery.configs["flat/recommended"],
-  configPrettier,
-  reactHooksConfigs["recommended-latest"],
-  ...compat.extends("plugin:@next/next/core-web-vitals"),
-  importX.flatConfigs.recommended,
-  importX.flatConfigs.react,
-  importX.configs.typescript,
-  comments.recommended,
-  barrellFiles.configs.recommended,
+export default defineConfig(
+  globalIgnores(["build", ".next", ".vercel", "out", "node_modules"]),
   {
+    extends: [
+      js.configs.recommended,
+      ts.configs.strictTypeChecked,
+      ts.configs.stylisticTypeChecked,
+      react.configs["recommended-type-checked"],
+      // disable until it supports v4
+      // ...tailwind.configs["flat/recommended"],
+      unicorn.configs["recommended"],
+      promise.configs["flat/recommended"],
+      tanStackQuery.configs["flat/recommended"],
+      configPrettier,
+      reactHooksConfigs["recommended-latest"],
+      compat.extends("plugin:@next/next/core-web-vitals"),
+      importX.flatConfigs.recommended,
+      importX.flatConfigs.react,
+      importX.configs.typescript,
+      comments.recommended,
+      barrellFiles.configs.recommended,
+    ],
     plugins: {
       "simple-import-sort": simpleImportSort,
       "react-compiler": reactCompilerPlugin,
     },
     rules: {
       "func-style": ["error", "declaration", { allowArrowFunctions: true }],
+      "import-x/namespace": "off",
+      "import-x/named": "off",
+      "import-x/default": "off",
+      "import-x/no-named-as-default-member": "off",
+      "import-x/no-unresolved": "off",
       "prefer-arrow-callback": "error",
       "unicorn/prevent-abbreviations": "off",
       "unicorn/no-null": "off",
@@ -90,6 +97,7 @@ export default ts.config(
         "error",
         {
           allowList: [
+            "@radix-ui/react-accordion",
             "@radix-ui/react-checkbox",
             "@radix-ui/react-collapsible",
             "@radix-ui/react-dialog",
@@ -103,6 +111,7 @@ export default ts.config(
             "@radix-ui/react-slider",
             "@radix-ui/react-tabs",
             "@radix-ui/react-toast",
+            "motion/react-client",
             "remeda",
             "react",
             "valibot",
@@ -155,6 +164,14 @@ export default ts.config(
         { allowWholeFile: true },
       ],
       "@eslint-community/eslint-comments/no-unused-disable": "error",
+      "@eslint-react/no-useless-fragment": "error",
+      "@eslint-react/prefer-react-namespace-import": "error",
+      // "@eslint-react/prefer-read-only-props": "warn", // enable later when ready to fix
+      "@eslint-react/dom/no-unknown-property": "warn",
+      "@eslint-react/naming-convention/filename": [
+        "warn",
+        { rule: "kebab-case" },
+      ],
     },
     languageOptions: {
       parserOptions: {
@@ -181,12 +198,18 @@ export default ts.config(
     },
   },
   {
-    files: ["**/*.{ts,tsx}"],
-    ...react.configs["recommended-type-checked"],
+    // shadcn components
+    files: ["src/components/ui/**/*.ts", "src/components/ui/**/*.tsx"],
+    rules: {
+      "@eslint-react/prefer-read-only-props": "off",
+      "@eslint-react/hooks-extra/no-direct-set-state-in-use-effect": "off",
+    },
   },
-  react.configs.dom,
   {
     files: ["**/*.js", "**/*.jsx", "**/*.mjs", "**/*.cjs"],
-    extends: [ts.configs.disableTypeChecked],
+    extends: [
+      ts.configs.disableTypeChecked,
+      react.configs["disable-type-checked"],
+    ],
   },
 );

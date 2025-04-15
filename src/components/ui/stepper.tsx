@@ -95,7 +95,6 @@ function usePrevious<T>(value: T): T | undefined {
     ref.current = value;
   }, [value]);
 
-  // eslint-disable-next-line react-compiler/react-compiler
   return ref.current;
 }
 
