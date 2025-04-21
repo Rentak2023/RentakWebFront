@@ -144,7 +144,7 @@ export default function LeadForm({
               disabled={form.formState.isSubmitting}
             >
               {form.formState.isSubmitting ? (
-                <Loader2 className="mr-2 size-4 animate-spin" />
+                <Loader2 className="me-2 size-4 animate-spin" />
               ) : null}{" "}
               {t("actions.submit")}
             </Button>

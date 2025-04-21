@@ -1,10 +1,4 @@
-import {
-  BadgeCheck,
-  ClipboardCheck,
-  Home,
-  ShieldCheck,
-  UserCheck,
-} from "lucide-react";
+import { BadgeCheck, Home, ShieldCheck, UserCheck } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import Container from "@/components/ui/container";
@@ -14,34 +8,24 @@ export default function WhyRentak() {
 
   const reasons = [
     {
-      title: "Guaranteed Rent",
-      description:
-        "Get paid on time, every month, no matter what. Even if your tenant is late or the unit is vacant, you'll receive your rent—guaranteed.",
+      title: t("features.guaranteed-rent.title"),
+      description: t("features.guaranteed-rent.description"),
       Icon: ShieldCheck,
     },
     {
-      title: "Verified Listings",
-      description:
-        "Stand out with a “Verified by Rentak” badge after inspection, ensuring tenants trust the authenticity and condition of your property.",
+      title: t("features.verified-listings.title"),
+      description: t("features.verified-listings.description"),
       Icon: BadgeCheck,
     },
     {
-      title: "Tenant Screening",
-      description:
-        "We conduct comprehensive background and credit checks, so you only get reliable, pre-vetted tenants without the hassle.",
+      title: t("features.tenant-screening.title"),
+      description: t("features.tenant-screening.description"),
       Icon: UserCheck,
     },
     {
-      title: "Property Inspections",
-      description:
-        "Regular inspections and detailed reports help keep your property in top condition while detecting potential issues early.",
+      title: t("features.property-inspection.title"),
+      description: t("features.property-inspection.description"),
       Icon: Home,
-    },
-    {
-      title: "Tenant Screening ",
-      description:
-        "We conduct comprehensive background and credit checks, so you only get reliable, pre-vetted tenants without the hassle.",
-      Icon: ClipboardCheck,
     },
   ];
 
@@ -53,13 +37,10 @@ export default function WhyRentak() {
         </h2>
         <p className="mt-8 text-xl/8 text-slate-600">{t("subtitle")}</p>
       </div>
-      <div className="m-16 mx-auto max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
-        <dl className="flex flex-wrap justify-center gap-x-4 gap-y-16">
+      <div className="m-16 mx-auto max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
+        <dl className="grid place-items-center gap-x-4 gap-y-16 md:grid-cols-2">
           {reasons.map((reason) => (
-            <div
-              key={reason.title}
-              className="w-full max-w-sm sm:w-1/2 lg:w-1/3"
-            >
+            <div key={reason.title} className="max-w-sm">
               <div className="flex h-full flex-col items-center text-center">
                 <div className="flex items-center justify-center">
                   <div className="bg-primary-800 flex size-12 items-center justify-center rounded-full">

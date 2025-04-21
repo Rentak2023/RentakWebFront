@@ -31,21 +31,21 @@ export async function generateMetadata(
   return {
     title: t("title"),
     description: t("description"),
-    alternates: generateAlternatesLinks(`/units${serialize(searchParams)}`),
+    alternates: generateAlternatesLinks(`/units${serialize(parsedParams)}`),
     openGraph: {
       title: t("title"),
       description: t("description"),
-      url: `/units${serialize(searchParams)}`,
+      url: `/units${serialize(parsedParams)}`,
       type: "website",
     },
     pagination: {
       next:
         parsedParams.page < totalPages
-          ? `/units${serialize({ ...searchParams, page: parsedParams.page + 1 })}`
+          ? `/units${serialize({ ...parsedParams, page: parsedParams.page + 1 })}`
           : null,
       previous:
         parsedParams.page > 1
-          ? `/units${serialize({ ...searchParams, page: parsedParams.page - 1 })}`
+          ? `/units${serialize({ ...parsedParams, page: parsedParams.page - 1 })}`
           : null,
     },
   };

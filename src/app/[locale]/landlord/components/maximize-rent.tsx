@@ -1,8 +1,11 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
 
 export default function MaximizeRent() {
+  const t = useTranslations("landlord.summary");
+
   return (
     <section
       className="mt-12 flex flex-col items-center justify-between rounded-ee-[480px] bg-black px-6 pb-16 text-white md:flex-row md:px-24 md:pb-32"
@@ -13,25 +16,22 @@ export default function MaximizeRent() {
           id="maximize-rent-heading"
           className="text-4xl font-bold md:text-6xl"
         >
-          Ready to maximize your rental income with zero hassle?
+          {t("title")}
         </h2>
-        <p className="mt-8 text-lg md:text-2xl">
-          Join hundreds of landlords who trust Rentak for peace of mind and
-          guaranteed rent.
-        </p>
+        <p className="mt-8 text-lg md:text-2xl">{t("subtitle")}</p>
         <div className="mt-12 flex flex-col gap-6 sm:flex-row">
           <Button
-            className="bg-orange-500 text-white hover:bg-orange-500/90"
+            className="bg-orange-500 text-white hover:bg-orange-500/90 focus-visible:ring-orange-500/50"
             size="xl"
           >
-            Get instant offer
+            {t("get-instant-offer")}
           </Button>
           <Button
-            className="border-orange-500 text-orange-500 hover:bg-orange-50 hover:text-orange-600"
+            className="border-orange-500 text-orange-500 hover:bg-orange-50 hover:text-orange-600 focus-visible:ring-orange-500/50"
             size="xl"
             variant="outline"
           >
-            List your unit now
+            {t("list-unit")}
           </Button>
         </div>
       </div>

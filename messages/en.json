@@ -159,39 +159,47 @@
     },
     "header": {
       "title": "Maximize Your Rental Income with Guaranteed Peace of Mind",
-      "subtitle": "Rentak transforms property management with technology-driven solutions and guaranteed rent, so you can sit back and relax."
+      "subtitle": "Rentak transforms property management with technology-driven solutions and guaranteed rent, so you can sit back and relax.",
+      "cta": "Add Property"
+    },
+    "why-rentak": {
+      "title": "Why choose rentak?",
+      "subtitle": "At Rentak, we provide landlords with a seamless and worry-free rental experience. Here’s how we add value to your property management:",
+      "features": {
+        "guaranteed-rent": {
+          "title": "Guaranteed Rent",
+          "description": "Get paid on time, every month, no matter what. Even if your tenant is late or the unit is vacant, you’ll receive your rent—guaranteed."
+        },
+        "verified-listings": {
+          "title": "Verified Listings",
+          "description": "Stand out with a “Verified by Rentak” badge after inspection, ensuring tenants trust the authenticity and condition of your property."
+        },
+        "tenant-screening": {
+          "title": "Tenant Screening",
+          "description": "We conduct comprehensive background and credit checks, so you only get reliable, pre-vetted tenants without the hassle."
+        },
+        "property-inspection": {
+          "title": "Property Inspections",
+          "description": "Regular inspections and detailed reports help keep your property in top condition while detecting potential issues early."
+        }
+      }
     },
     "services": {
       "title": "Landlord Services",
-      "property-management": {
-        "title": "Property Management",
-        "description": "Let us handle the day-to-day management of your property. From tenant screening to rent collection till the end of your rental contract, Rentak ensures your property is well-managed and tenants are happy.",
-        "cta": "Simplify Property Management"
+      "finishing-financing": {
+        "title": "Finishing Financing",
+        "description": "Need to complete construction or renovations before renting out your property? Rentak offers financing solutions to help you finish projects faster, ensuring your property is rent-ready without financial strain.",
+        "cta": "Get Started"
       },
-      "rent-collection": {
-        "title": "Rent Collection",
-        "description": "Automate your rent collection process with our secure and reliable system. Receive payments on time, every time, with full transparency and detailed reporting.",
-        "cta": "Start Collecting with Ease"
+      "maintenance-financing": {
+        "title": "Maintenance Financing",
+        "description": "Annual maintenance fees can be a significant burden. With our tailored financing options, landlords can spread these costs over 6 to 60 months, avoiding large upfront payments and maintaining cash flow.",
+        "cta": "Get Started"
       },
-      "promote-property": {
-        "title": "Promote Your Property",
-        "description": "Reach more potential tenants by promoting your property on Rentak. Our platform connects you with high-quality brokers and tenants faster.",
-        "cta": "Promote My Property"
-      },
-      "property-valuation": {
-        "title": "Property Valuation",
-        "description": "Understand the true value of your property with our comprehensive valuation service. Get insights into market trends and rental potential to make informed decisions.",
-        "cta": "Get Your Property Valued"
-      },
-      "legal-contract": {
-        "title": "Legal Contract Creation",
-        "description": "Create rental contract in a minute. Our contracts are tailored to protect your interests and comply with all relevant regulations.",
-        "cta": "Create Your Contract"
-      },
-      "maintenance-payment": {
-        "title": "Pay Annual Maintenance Fees",
-        "description": "Easily manage and pay your property’s annual maintenance fees directly through Rentak. Through our various payment methods, you can pay your fees from 6-60 months, so you avoid any penalties.",
-        "cta": "Manage Maintenance Fees"
+      "contract-creation": {
+        "title": "Rental Contract Creation",
+        "description": "Ensure a seamless leasing process with our legally compliant, professionally drafted rental contracts. Simply enter your property and tenant details, and receive a ready-to-use lease agreement instantly.",
+        "cta": "Create Contract"
       }
     },
     "plans": {
@@ -237,10 +245,6 @@
         "cta": "Choose"
       }
     },
-    "why-rentak": {
-      "title": "Why choose rentak?",
-      "subtitle": "At Rentak, we provide landlords with a seamless and worry-free rental experience. Here’s how we add value to your property management:"
-    },
     "steps": {
       "title": "Getting started is easy, sign up in minutes",
       "get-started": {
@@ -268,6 +272,28 @@
         "description": "Enjoy on-time rent payments until we return your property in its original condition."
       }
     },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "description": "Find questions and answers related to the design system, purchase, updates, and support.",
+      "questions": {
+        "instarent": {
+          "question": "What is Instarent and how does the instant offer work?",
+          "answer": "Rentak evaluates your property and offers a guaranteed monthly rent. There's no obligation until you accept, and it eliminates vacancy risk."
+        },
+        "rentak-guarantee": {
+          "question": "How does Rentak guarantee my rent?",
+          "answer": "Rentak has a dedicated system to ensure landlords get paid on time, even if tenants are late or the property is vacant. You receive rent consistently, stress-free."
+        },
+        "maintenance": {
+          "question": "Who handles maintenance and tenant calls?",
+          "answer": "Rentak's property management team takes care of all tenant communications, maintenance requests, and service provider coordination. You only get involved if you choose to."
+        },
+        "verified": {
+          "question": "What does the ‘Verified by Rentak’ badge mean for my listing?",
+          "answer": "It means Rentak has inspected and verified your property details. This mark of quality increases trust and helps attract tenants faster."
+        }
+      }
+    },
     "finishing": {
       "title": "Enhancing Your Investment with Efficient Finishing",
       "subtitle": "Enhance the appeal and value of your property with Rentak’s specialized finishing packages. Tailored for efficiency and cost-effectiveness, our services are designed to prepare your property for the rental market swiftly, ensuring it looks its best and attracts premium tenants. Ready to transform your space?",
@@ -275,6 +301,12 @@
     },
     "testimonials": {
       "title": "Hear from Our Happy Homeowners"
+    },
+    "summary": {
+      "title": "Ready to maximize your rental income with zero hassle?",
+      "subtitle": "Join hundreds of landlords who trust Rentak for peace of mind and guaranteed rent.",
+      "get-instant-offer": "Get Instant Offer",
+      "list-unit": "List Your Unit Now"
     }
   },
   "tenant": {

@@ -1,7 +1,9 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 
+import { Button } from "@/components/ui/button";
 import Container from "@/components/ui/container";
+import { Link } from "@/i18n/routing";
 
 import headerBackground from "./header-background.png";
 
@@ -26,7 +28,14 @@ export default function Header() {
             {t("title")}
           </h1>
           <p className="mt-6 text-lg/8 text-slate-300">{t("subtitle")}</p>
-          {/* TODO: ADD CTA */}
+          {/* TODO: UPDATE CTA link */}
+          {/* <Button
+            size="xl"
+            className="bg-primary-600 hover:bg-primary-600/90 mt-10"
+            asChild
+          >
+            <Link href="/">{t("cta")}</Link>
+          </Button> */}
         </div>
       </Container>
     </div>

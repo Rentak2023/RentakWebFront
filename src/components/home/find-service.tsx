@@ -281,7 +281,7 @@ export function FindService() {
         )}
       </div>
       <button
-        className="ml-4 mt-6 flex items-center justify-center gap-2 text-slate-800"
+        className="ms-4 mt-6 flex items-center justify-center gap-2 text-slate-800"
         onClick={() => {
           setCurrentQuestion(previousQuestion ?? questions);
           setPreviousQuestion(questions);

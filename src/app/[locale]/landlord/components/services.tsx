@@ -1,4 +1,9 @@
-import { BadgeCheckIcon, ShieldCheckIcon, UserCheckIcon } from "lucide-react";
+import {
+  BadgeCheckIcon,
+  MoveRightIcon,
+  ShieldCheckIcon,
+  UserCheckIcon,
+} from "lucide-react";
 import { useTranslations } from "next-intl";
 import { type ReactNode, type SVGProps } from "react";
 
@@ -14,30 +19,30 @@ type Service = {
   href: string;
 };
 
-const Features = () => {
+export default function Services() {
   const t = useTranslations("landlord.services");
 
-  const features: Array<Service> = [
+  const services: Array<Service> = [
     {
-      title: t("property-valuation.title"),
-      description: t("property-valuation.description"),
-      cta: t("property-valuation.cta"),
+      title: t("finishing-financing.title"),
+      description: t("finishing-financing.description"),
+      cta: t("finishing-financing.cta"),
       Icon: ShieldCheckIcon,
       href: "/property-valuation",
     },
     {
-      title: t("legal-contract.title"),
-      description: t("legal-contract.description"),
-      cta: t("legal-contract.cta"),
-      Icon: BadgeCheckIcon,
-      href: "/contract",
-    },
-    {
-      title: t("maintenance-payment.title"),
-      description: t("maintenance-payment.description"),
-      cta: t("maintenance-payment.cta"),
+      title: t("maintenance-financing.title"),
+      description: t("maintenance-financing.description"),
+      cta: t("maintenance-financing.cta"),
       Icon: UserCheckIcon,
       href: "/maintenance-payment",
+    },
+    {
+      title: t("contract-creation.title"),
+      description: t("contract-creation.description"),
+      cta: t("contract-creation.cta"),
+      Icon: BadgeCheckIcon,
+      href: "/contract",
     },
   ];
   return (
@@ -49,19 +54,19 @@ const Features = () => {
       </div>
       <div className="mx-auto mt-8 sm:mt-12 lg:-mt-28">
         <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none">
-          {features.map((feature) => (
+          {services.map((service) => (
             <div
-              key={feature.title}
-              className="flex items-start gap-12 rounded-3xl bg-slate-50 p-4 odd:ms-auto even:me-auto"
+              key={service.title}
+              className="bg-primary-600/10 relative flex items-center gap-12 rounded-3xl py-8 pe-8 ps-24 odd:ms-auto even:me-auto"
             >
               <div
                 className={cn(
-                  "flex size-32 shrink-0 items-center justify-center rounded-full p-[3px]",
+                  "absolute -start-16 flex size-32 shrink-0 items-center justify-center rounded-full p-[3px]",
                   "bg-linear-to-b from-[#3BF686] to-[#4CA9FF]",
                 )}
               >
                 <div className="bg-primary-800 flex size-full items-center justify-center rounded-full p-2">
-                  <feature.Icon
+                  <service.Icon
                     className="size-12 text-slate-50"
                     aria-hidden="true"
                   />
@@ -69,22 +74,23 @@ const Features = () => {
               </div>
               <div className="max-w-xl lg:max-w-lg xl:max-w-xl">
                 <dt className="text-primary-900 text-2xl font-semibold">
-                  {feature.title}
+                  {service.title}
                 </dt>
                 <div className="mt-1 flex flex-col items-start gap-4">
                   <dd className="text-primary-800 text-lg/7">
-                    {feature.description}
+                    {service.description}
                   </dd>
                   <Button
                     asChild
                     variant="outline"
-                    className="border-primary-900 text-primary-900 rounded-full"
+                    className="border-primary-900 text-primary-900 hover:bg-primary-600/5 rounded-full bg-transparent"
                   >
-                    <a href={feature.href}>
-                      {feature.cta}
-                      <span className="ms-2" aria-hidden="true">
-                        →
-                      </span>
+                    <a href={service.href} className="inline-flex items-center">
+                      {service.cta}
+                      <MoveRightIcon
+                        className="ms-2 rtl:rotate-180"
+                        aria-hidden="true"
+                      />
                     </a>
                   </Button>
                 </div>
@@ -95,6 +101,4 @@ const Features = () => {
       </div>
     </Container>
   );
-};
-
-export default Features;
+}
