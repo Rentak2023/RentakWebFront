@@ -19,9 +19,8 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
+import { otpSchema } from "@/schemas/auth";
 import { type AuthError } from "@/services/auth";
-
-import { otpSchema } from "../schemas";
 
 type OTPVerificationFormProps = {
   onVerify: (otp: string) => Promise<void>;

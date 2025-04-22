@@ -8,11 +8,11 @@ import LinkIcon from "@/app/[locale]/assets/svgs/link-icon";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Link } from "@/i18n/routing";
-import { type Unit as TUnit } from "@/services/types";
+import { type UnitSchema } from "@/schemas/units";
 import URLS from "@/shared/urls";
 
 type UnitProps = {
-  item: TUnit;
+  item: UnitSchema;
 };
 
 function Unit({ item }: UnitProps) {
@@ -88,10 +88,12 @@ function Unit({ item }: UnitProps) {
                 })}
               </span>
             </div>
-            <div className="flex items-center gap-1">
-              <AreaIcon className="size-4" />
-              <span>{formatter.number(item.area, "numbers")}</span>
-            </div>
+            {!!item.area && (
+              <div className="flex items-center gap-1">
+                <AreaIcon className="size-4" />
+                <span>{formatter.number(item.area, "numbers")}</span>
+              </div>
+            )}
           </div>
 
           <Separator className="my-6" />

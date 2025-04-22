@@ -10,9 +10,7 @@ import isNumeric from "validator/es/lib/isNumeric";
 
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "@/i18n/routing";
-import { banksQuery } from "@/queries/banks";
-import { cashInPaymentMethodsQuery } from "@/queries/payment-methods";
-import { productQuery } from "@/queries/products";
+import { orpc } from "@/lib/orpc";
 import { sendOTP, verifyOTP } from "@/services/auth";
 import { checkPromoCode } from "@/services/promo";
 
@@ -61,14 +59,22 @@ function onNextStep(index: number) {
 export default function RentPaymentForm() {
   const locale = useLocale();
 
-  const { data: paymentMethods } = useSuspenseQuery(cashInPaymentMethodsQuery);
-  const { data: banks } = useSuspenseQuery(banksQuery);
+  const { data: paymentMethods } = useSuspenseQuery(
+    orpc.paymentMethods.cashIn.queryOptions(),
+  );
+  const { data: banks } = useSuspenseQuery(orpc.banks.list.queryOptions());
   const t = useTranslations("services");
   const [userId, setUserId] = useState<number | null>(null);
   const [discount, setDiscount] = useState<number>(0);
   const { toast } = useToast();
   const router = useRouter();
-  const { data: product } = useSuspenseQuery(productQuery(1));
+  const { data: product } = useSuspenseQuery(
+    orpc.products.find.queryOptions({
+      input: {
+        id: 1,
+      },
+    }),
+  );
 
   const steps = [
     {

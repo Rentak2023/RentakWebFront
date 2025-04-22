@@ -2,7 +2,8 @@
 import { notFound } from "next/navigation";
 import { ImageResponse } from "next/og";
 
-import { getIdFromSlug, getProperty } from "@/services/properties";
+import { orpcClient } from "@/lib/orpc";
+import { getIdFromSlug } from "@/services/properties";
 
 export const size = {
   width: 1200,
@@ -39,7 +40,10 @@ export default async function Image(
 
   const id = getIdFromSlug(slug);
 
-  const property = await getProperty(id, "en");
+  const property = await orpcClient.units.find({
+    id,
+    lang: "en",
+  });
 
   if (property == null) {
     notFound();

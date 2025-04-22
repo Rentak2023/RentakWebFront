@@ -5,9 +5,9 @@ import type { ItemList, WebPage, WithContext } from "schema-dts";
 
 import Properties from "@/components/units/properties/properties";
 import SearchForm from "@/components/units/search-form/search-form";
+import { orpcClient } from "@/lib/orpc";
 import { generateAlternatesLinks } from "@/lib/utils";
 import {
-  getProperties,
   propertiesQueryCache,
   propertiesQueryParsers,
 } from "@/services/properties";
@@ -25,7 +25,10 @@ export async function generateMetadata(
 
   const parsedParams = propertiesQueryCache.parse(searchParams);
 
-  const properties = await getProperties({ ...parsedParams, lang: locale });
+  const properties = await orpcClient.units.list({
+    ...parsedParams,
+    lang: locale,
+  });
   const totalPages = Math.ceil(properties.total_count / 10);
 
   return {
@@ -60,7 +63,10 @@ export default async function UnitsPage(
   const locale = await getLocale();
 
   const parsedParams = propertiesQueryCache.parse(searchParams);
-  const properties = await getProperties({ ...parsedParams, lang: locale });
+  const properties = await orpcClient.units.list({
+    ...parsedParams,
+    lang: locale,
+  });
 
   const structuredData: [WithContext<WebPage>, WithContext<ItemList>] = [
     {

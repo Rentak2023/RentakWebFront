@@ -8,8 +8,7 @@ import isMobilePhone from "validator/es/lib/isMobilePhone";
 import isNumeric from "validator/es/lib/isNumeric";
 
 import { useToast } from "@/components/ui/use-toast";
-import { banksQuery } from "@/queries/banks";
-import { productQuery } from "@/queries/products";
+import { orpc } from "@/lib/orpc";
 
 import { rentCollectionAction } from "../actions/rent-collection";
 import { ServiceForms } from "../service-forms";
@@ -54,8 +53,14 @@ function onNextStep(index: number) {
 }
 
 export default function RentCollectionForm() {
-  const { data: banks } = useSuspenseQuery(banksQuery);
-  const { data: product } = useSuspenseQuery(productQuery(3));
+  const { data: banks } = useSuspenseQuery(orpc.banks.list.queryOptions());
+  const { data: product } = useSuspenseQuery(
+    orpc.products.find.queryOptions({
+      input: {
+        id: 3,
+      },
+    }),
+  );
 
   const t = useTranslations("services");
   const { toast } = useToast();

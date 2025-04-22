@@ -49,7 +49,7 @@ function NavRight() {
 
   const queryCLient = useQueryClient();
 
-  const { data: isLoggedIn } = useQuery(userLoggedInQuery);
+  const { data: isLoggedIn, isLoading } = useQuery(userLoggedInQuery);
 
   const onLogoutClick = async () => {
     deleteCookie("authToken");
@@ -57,7 +57,7 @@ function NavRight() {
     router.refresh();
   };
 
-  if (isLoggedIn == undefined) {
+  if (isLoading) {
     return <div className="h-9" />;
   }
 

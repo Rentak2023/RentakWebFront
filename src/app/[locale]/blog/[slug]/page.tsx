@@ -4,13 +4,13 @@ import { getLocale } from "next-intl/server";
 import { type BlogPosting, type WithContext } from "schema-dts";
 
 import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { orpcClient } from "@/lib/orpc";
 import { generateAlternatesLinks } from "@/lib/utils";
-import { getAllArticles, getArticleBySlug } from "@/services/articles";
 
 import MorePosts from "./more-posts";
 
 export const generateStaticParams = async () => {
-  const articles = await getAllArticles("en");
+  const articles = await orpcClient.articles.list("en");
 
   return articles.map((article) => ({ slug: article.slug }));
 };
@@ -22,7 +22,10 @@ export const generateMetadata = async (props: {
 
   const locale = await getLocale();
 
-  const article = await getArticleBySlug(decodeURI(slug), locale);
+  const article = await orpcClient.articles.find({
+    slug: decodeURI(slug),
+    lang: locale,
+  });
   if (!article) return notFound();
 
   const url = `https://rentakapp.com/blog/${slug}`;
@@ -55,7 +58,10 @@ const PostLayout = async (
   const { slug } = await props.params;
   const locale = await getLocale();
 
-  const article = await getArticleBySlug(decodeURI(slug), locale);
+  const article = await orpcClient.articles.find({
+    slug: decodeURI(slug),
+    lang: locale,
+  });
   if (article == null) return notFound();
 
   const jsonLd: WithContext<BlogPosting> = {

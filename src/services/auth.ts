@@ -112,20 +112,6 @@ export async function verifyOTP(values: VerifyOTP, locale: Locale) {
   return res;
 }
 
-type UserRes = {
-  id: number;
-  fullname: string;
-  email: string;
-  national_id: string;
-  phone: string;
-};
-
-export async function getUser() {
-  const res = await privateFetcher.get("auth/get-user").json<UserRes>();
-
-  return res;
-}
-
 type UserTransferMethods = Array<{
   methodName: string;
   value: string;

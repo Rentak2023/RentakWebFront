@@ -20,3 +20,18 @@ export function generateAlternatesLinks(href: string): AlternateURLs {
     },
   };
 }
+
+export function inputToSearchParams(input: Record<string, any>) {
+  const searchParams = new URLSearchParams();
+
+  for (const [key, value] of Object.entries(input)) {
+    if (Array.isArray(value)) {
+      for (const item of value) {
+        searchParams.append(key, item.toString());
+      }
+    } else if (value) {
+      searchParams.append(key, value.toString());
+    }
+  }
+  return searchParams;
+}

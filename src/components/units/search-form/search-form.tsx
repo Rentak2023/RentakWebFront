@@ -14,7 +14,7 @@ import { useDebouncedCallback } from "use-debounce";
 
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
-import { minMaxPriceQuery } from "@/queries/units";
+import { orpc } from "@/lib/orpc";
 
 import { type FormValues } from "../types";
 import CitiesAndRegions from "./cities-and-regions";
@@ -27,15 +27,17 @@ import RoomsAndToilets from "./rooms-and-toilets";
 export default function SearchForm() {
   const t = useTranslations("units");
 
-  const { data: minMaxPrice } = useSuspenseQuery(minMaxPriceQuery);
+  const { data: priceRange } = useSuspenseQuery(
+    orpc.units.priceRange.queryOptions(),
+  );
 
   const [searchParams, setSearchParams] = useQueryStates(
     {
       keyword: parseAsString.withDefault(""),
       governoment_id: parseAsString.withDefault(""),
       city_id: parseAsString.withDefault(""),
-      price_from: parseAsInteger.withDefault(minMaxPrice.min_price),
-      price_to: parseAsInteger.withDefault(minMaxPrice.max_price),
+      price_from: parseAsInteger.withDefault(priceRange.min_price),
+      price_to: parseAsInteger.withDefault(priceRange.max_price),
       finish_type: parseAsString.withDefault(""),
       property_type: parseAsArrayOf(parseAsString).withDefault([]),
       bathroom_numbers: parseAsString.withDefault(""),
@@ -104,8 +106,8 @@ export default function SearchForm() {
       keyword: "",
       governoment_id: "",
       city_id: "",
-      price_from: minMaxPrice.min_price,
-      price_to: minMaxPrice.max_price,
+      price_from: priceRange.min_price,
+      price_to: priceRange.max_price,
       finish_type: "",
       property_type: [],
       bathroom_numbers: "",
@@ -126,8 +128,8 @@ export default function SearchForm() {
           <FinishingTypes />
           <PropertyTypes />
           <MultiRangeSlider
-            min={minMaxPrice.min_price}
-            max={minMaxPrice.max_price}
+            min={priceRange.min_price}
+            max={priceRange.max_price}
           />
           <Button
             onClick={clearSearchParams}

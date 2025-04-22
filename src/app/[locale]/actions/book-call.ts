@@ -4,7 +4,7 @@ import { type Locale } from "next-intl";
 import * as v from "valibot";
 
 import fetcher from "@/lib/fetcher";
-import { bookCallSchema } from "@/schema/book-call";
+import { bookCallSchema } from "@/schemas/book-call";
 
 type BookCallResponse = {
   success: boolean;

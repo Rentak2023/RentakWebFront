@@ -1,7 +1,8 @@
 import { getTranslations } from "next-intl/server";
 
 import Container from "@/components/ui/container";
-import { getUser, getUserTransferMethods } from "@/services/auth";
+import { orpcClient } from "@/lib/orpc";
+import { getUserTransferMethods } from "@/services/auth";
 
 type ProfileSection = {
   title: string;
@@ -13,7 +14,7 @@ type ProfileSection = {
 
 export default async function Profile() {
   const t = await getTranslations("profile");
-  const user = await getUser();
+  const user = await orpcClient.auth.me();
   const userTransferMethods = await getUserTransferMethods();
 
   const profileSections: Array<ProfileSection> = [

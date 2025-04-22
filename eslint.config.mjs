@@ -12,7 +12,6 @@ import { createOxcImportResolver } from "eslint-import-resolver-oxc";
 import barrellFiles from "eslint-plugin-barrel-files";
 import importX from "eslint-plugin-import-x";
 import promise from "eslint-plugin-promise";
-import reactCompilerPlugin from "eslint-plugin-react-compiler";
 import { configs as reactHooksConfigs } from "eslint-plugin-react-hooks";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
 // import tailwind from "eslint-plugin-tailwindcss";
@@ -41,7 +40,7 @@ export default defineConfig(
       promise.configs["flat/recommended"],
       tanStackQuery.configs["flat/recommended"],
       configPrettier,
-      reactHooksConfigs["recommended-latest"],
+      reactHooksConfigs.recommended,
       compat.extends("plugin:@next/next/core-web-vitals"),
       importX.flatConfigs.recommended,
       importX.flatConfigs.react,
@@ -51,7 +50,6 @@ export default defineConfig(
     ],
     plugins: {
       "simple-import-sort": simpleImportSort,
-      "react-compiler": reactCompilerPlugin,
     },
     rules: {
       "func-style": ["error", "declaration", { allowArrowFunctions: true }],
@@ -66,7 +64,8 @@ export default defineConfig(
       "unicorn/no-array-reduce": "off",
       "simple-import-sort/imports": "error",
       "simple-import-sort/exports": "error",
-      "react-compiler/react-compiler": "error",
+      // Enable explicitly until it's added to recommended
+      "react-hooks/react-compiler": "error",
       "no-restricted-imports": [
         "error",
         {
@@ -157,6 +156,12 @@ export default defineConfig(
         "error",
         {
           allowNumber: true,
+        },
+      ],
+      "@typescript-eslint/no-unnecessary-condition": [
+        "error",
+        {
+          allowConstantLoopConditions: "only-allowed-literals",
         },
       ],
       "@eslint-community/eslint-comments/disable-enable-pair": [

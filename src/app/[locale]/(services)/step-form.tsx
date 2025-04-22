@@ -72,7 +72,7 @@ export function StepForm({
     formData,
     getFormData,
     actions: { updateFormData },
-    // eslint-disable-next-line react-compiler/react-compiler
+    // eslint-disable-next-line react-hooks/react-compiler
   } = useFormStore();
 
   const defaultValues = useMemo(
@@ -189,7 +189,7 @@ type StepFieldProps = {
 };
 
 function StepField({ formField, field, useFormStore }: StepFieldProps) {
-  // eslint-disable-next-line react-compiler/react-compiler
+  // eslint-disable-next-line react-hooks/react-compiler
   const { formData } = useFormStore();
   const form = useFormContext();
   const currentValues = useWatch({ control: form.control });

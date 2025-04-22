@@ -9,9 +9,7 @@ import isMobilePhone from "validator/es/lib/isMobilePhone";
 import isNumeric from "validator/es/lib/isNumeric";
 
 import { useToast } from "@/components/ui/use-toast";
-import { banksQuery } from "@/queries/banks";
-import { cashInPaymentMethodsQuery } from "@/queries/payment-methods";
-import { productQuery } from "@/queries/products";
+import { orpc } from "@/lib/orpc";
 import { sendOTP, verifyOTP } from "@/services/auth";
 import { checkPromoCode } from "@/services/promo";
 
@@ -60,9 +58,17 @@ function onNextStep(index: number) {
 export default function MaintenanceForm() {
   const locale = useLocale();
 
-  const { data: paymentMethods } = useSuspenseQuery(cashInPaymentMethodsQuery);
-  const { data: banks } = useSuspenseQuery(banksQuery);
-  const { data: product } = useSuspenseQuery(productQuery(2));
+  const { data: paymentMethods } = useSuspenseQuery(
+    orpc.paymentMethods.cashIn.queryOptions(),
+  );
+  const { data: banks } = useSuspenseQuery(orpc.banks.list.queryOptions());
+  const { data: product } = useSuspenseQuery(
+    orpc.products.find.queryOptions({
+      input: {
+        id: 2,
+      },
+    }),
+  );
 
   const t = useTranslations("services");
   const [userId, setUserId] = useState<number | null>(null);

@@ -27,15 +27,14 @@ import Container from "@/components/ui/container";
 import PropertyImages from "@/components/ui/property-images";
 import { Separator } from "@/components/ui/separator";
 import { Link, permanentRedirect } from "@/i18n/routing";
+import { orpcClient } from "@/lib/orpc";
 import { generateAlternatesLinks } from "@/lib/utils";
+import { type UnitSchema } from "@/schemas/units";
 import {
   getAllProperties,
   getIdFromSlug,
-  getProperty,
-  getPropertyInspectionDetails,
   getUnitSlug,
 } from "@/services/properties";
-import { type Unit } from "@/services/types";
 import URLS from "@/shared/urls";
 
 import { ArrangeVisit } from "./arrange-visit";
@@ -67,7 +66,10 @@ export async function generateMetadata(
   const id = getIdFromSlug(slug);
   const t = await getTranslations("units");
 
-  const property = await getProperty(id, locale);
+  const property = await orpcClient.units.find({
+    id,
+    lang: locale,
+  });
 
   if (property == null) {
     notFound();
@@ -75,13 +77,13 @@ export async function generateMetadata(
 
   return {
     title: t("details-title", {
-      cityName: property.location.city_name,
+      cityName: property.location.city_name ?? "",
       title: property.property_name,
     }),
     description: property.meta_description ?? property.property_description,
     openGraph: {
       title: t("details-title", {
-        cityName: property.location.city_name,
+        cityName: property.location.city_name ?? "",
         title: property.property_name,
       }),
       description:
@@ -106,8 +108,13 @@ export default async function UnitPage(
   const formatter = await getFormatter();
 
   const [property, inspection] = await Promise.all([
-    getProperty(id, locale),
-    getPropertyInspectionDetails(id),
+    orpcClient.units.find({
+      id,
+      lang: locale,
+    }),
+    orpcClient.units.inspection({
+      id,
+    }),
   ]);
 
   if (property == null) {
@@ -133,15 +140,15 @@ export default async function UnitPage(
     address: {
       "@type": "PostalAddress",
       addressCountry: "Egypt",
-      addressLocality: property.location.city_name,
-      addressRegion: property.location.governorate_name,
-      streetAddress: property.location.address_in_detail,
+      addressLocality: property.location.city_name ?? undefined,
+      addressRegion: property.location.governorate_name ?? undefined,
+      streetAddress: property.location.address_in_detail ?? undefined,
     },
     numberOfBedrooms: property.room_numbers,
     numberOfBathroomsTotal: property.bathrom_numbers,
     floorSize: {
       "@type": "QuantitativeValue",
-      value: property.area,
+      value: property.area ?? undefined,
       unitText: "m2",
     },
   };
@@ -160,7 +167,7 @@ export default async function UnitPage(
     },
     {
       title: t("m2"),
-      value: formatter.number(property.area, "numbers"),
+      value: property.area ? formatter.number(property.area, "numbers") : "N/A",
       icon: <AreaIcon className="size-6" />,
     },
     {
@@ -221,12 +228,14 @@ export default async function UnitPage(
                     {formatCurrency(property.price)}
                   </span>
                 </li>
-                <li className="flex items-center gap-1 lg:me-6">
-                  <AreaIcon className="text-primary-600 size-10" />
-                  <span className="text-xl lg:text-2xl">
-                    {formatter.number(property.area, "numbers")}
-                  </span>
-                </li>
+                {property.area ? (
+                  <li className="flex items-center gap-1 lg:me-6">
+                    <AreaIcon className="text-primary-600 size-10" />
+                    <span className="text-xl lg:text-2xl">
+                      {formatter.number(property.area, "numbers")}
+                    </span>
+                  </li>
+                ) : null}
 
                 <li className="flex items-center gap-1 lg:me-6">
                   <BedIcon className="text-primary-600 size-10" />
@@ -344,7 +353,7 @@ export default async function UnitPage(
   );
 }
 
-async function Steps({ property }: Readonly<{ property: Unit }>) {
+async function Steps({ property }: Readonly<{ property: UnitSchema }>) {
   const formatter = await getFormatter();
 
   const steps = [

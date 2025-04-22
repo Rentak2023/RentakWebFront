@@ -10,14 +10,18 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { finishTypesQuery } from "@/queries/units";
+import { orpc } from "@/lib/orpc";
 
 function FinishingTypes() {
   const t = useTranslations("units");
   const locale = useLocale();
   const form = useFormContext();
 
-  const { data: finishingTypes } = useSuspenseQuery(finishTypesQuery(locale));
+  const { data: finishingTypes } = useSuspenseQuery(
+    orpc.units.finishings.queryOptions({
+      input: locale,
+    }),
+  );
 
   return (
     <div>

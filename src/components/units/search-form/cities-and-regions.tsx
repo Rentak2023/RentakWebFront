@@ -1,4 +1,4 @@
-import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
+import { skipToken, useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import { useLocale, useTranslations } from "next-intl";
 import { useFormContext } from "react-hook-form";
 
@@ -16,7 +16,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { citiesQuery, districtsQuery } from "@/queries/location";
+import { orpc } from "@/lib/orpc";
 
 function CitiesAndRegions() {
   const t = useTranslations("units");
@@ -26,8 +26,22 @@ function CitiesAndRegions() {
   const governorate = form.watch("governoment_id");
   const locale = useLocale();
 
-  const { data: cities } = useSuspenseQuery(citiesQuery(locale));
-  const { data: districts } = useQuery(districtsQuery(governorate, locale));
+  const { data: governorates } = useSuspenseQuery(
+    orpc.locations.governorates.queryOptions({
+      input: locale,
+    }),
+  );
+  const citiesOptions = orpc.locations.cities.queryOptions({
+    input: {
+      governorate_id: governorate,
+      lang: locale,
+    },
+  });
+
+  const { data: cities } = useQuery({
+    ...citiesOptions,
+    queryFn: governorate ? citiesOptions.queryFn : skipToken,
+  });
 
   return (
     <div>
@@ -45,9 +59,12 @@ function CitiesAndRegions() {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  {cities.map((city) => (
-                    <SelectItem key={city.value} value={city.value.toString()}>
-                      {city.label}
+                  {governorates.map((governorate) => (
+                    <SelectItem
+                      key={governorate.governorate_id}
+                      value={governorate.governorate_id.toString()}
+                    >
+                      {governorate.governorate_name}
                     </SelectItem>
                   ))}
                   <Button
@@ -80,12 +97,12 @@ function CitiesAndRegions() {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  {districts?.map((district) => (
+                  {cities?.map((district) => (
                     <SelectItem
-                      key={district.value}
-                      value={district.value.toString()}
+                      key={district.city_id}
+                      value={district.city_name.toString()}
                     >
-                      {district.label}
+                      {district.city_name}
                     </SelectItem>
                   ))}
                   <Button

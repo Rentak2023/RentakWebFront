@@ -12,7 +12,6 @@ import {
 } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
-import type { Unit as TUnit } from "@/services/types";
 
 type Room = {
   room_type: string;
@@ -27,7 +26,6 @@ type Room = {
 
 type PropertyInspectionProps = {
   inspection?: {
-    unit: TUnit;
     total_score: string;
     rooms: Array<Room>;
   } | null;

@@ -40,3 +40,17 @@ export const signUpSchema = v.object({
     ),
   ),
 });
+
+export const UserSchema = v.object({
+  id: v.number(),
+  fullname: v.string(),
+  email: v.string(),
+  national_id: v.string(),
+  phone: v.string(),
+});
+
+export const AuthResponse = v.object({
+  success: v.boolean(),
+  user_id: v.number(),
+  message: v.string(),
+});

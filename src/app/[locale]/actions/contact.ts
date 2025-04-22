@@ -2,7 +2,7 @@
 import * as v from "valibot";
 
 import fetcher from "@/lib/fetcher";
-import { contactSchema } from "@/schema/contact";
+import { contactSchema } from "@/schemas/contact";
 
 type ContactResponse = {
   message: string;

@@ -34,6 +34,6 @@ export const config = {
      * - favicon.ico (favicon file)
      * - .swa (Azure Static Web Apps)
      */
-    `/((?!.swa|api|monitoring|assets|images|_next|_vercel|.*\\..*).*)`,
+    `/((?!.swa|api|rpc|monitoring|assets|images|_next|_vercel|.*\\..*).*)`,
   ],
 };

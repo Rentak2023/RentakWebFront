@@ -8,7 +8,7 @@ import UnitsSkeleton from "@/components/home/units/units-skeleton";
 import Container from "@/components/ui/container";
 import { Skeleton } from "@/components/ui/skeleton";
 import Unit from "@/components/unit";
-import { unitsQuery } from "@/queries/units";
+import { orpc } from "@/lib/orpc";
 import { propertiesQueryParsers } from "@/services/properties";
 
 import Pagination from "../pagination";
@@ -44,9 +44,11 @@ function UnitsCount() {
   const [searchParams] = useQueryStates(propertiesQueryParsers);
 
   const { data: properties } = useSuspenseQuery(
-    unitsQuery({
-      ...searchParams,
-      lang: locale,
+    orpc.units.list.queryOptions({
+      input: {
+        ...searchParams,
+        lang: locale,
+      },
     }),
   );
 
@@ -67,9 +69,11 @@ function Units() {
   const [searchParams] = useQueryStates(propertiesQueryParsers);
   const locale = useLocale();
   const { data: properties } = useSuspenseQuery(
-    unitsQuery({
-      ...searchParams,
-      lang: locale,
+    orpc.units.list.queryOptions({
+      input: {
+        ...searchParams,
+        lang: locale,
+      },
     }),
   );
 

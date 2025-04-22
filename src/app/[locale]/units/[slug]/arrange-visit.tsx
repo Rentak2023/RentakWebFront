@@ -40,7 +40,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
-import { arrangeVisitSchema } from "@/schema/arrange-visit";
+import { arrangeVisitSchema } from "@/schemas/arrange-visit";
 
 import { arrangeVisitAction } from "../../actions/arrange-visit";
 

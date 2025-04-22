@@ -20,9 +20,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { useRouter } from "@/i18n/routing";
 import { userLoggedInQuery } from "@/queries/user";
+import { signUpSchema } from "@/schemas/auth";
 import { type AuthError, reSendOTP, signUp, verifyOTP } from "@/services/auth";
 
-import { signUpSchema } from "../schemas";
 import { OTPVerificationForm } from "./otp-verification-form";
 
 export function SignUpForm() {
