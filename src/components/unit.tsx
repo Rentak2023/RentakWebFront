@@ -54,14 +54,16 @@ function Unit({ item }: UnitProps) {
 
         <CardContent className="mt-6">
           <div className="relative flex flex-col">
-            {item.is_inspection && (
-              <p className="text-primary-600 absolute end-0 top-0 text-sm font-medium">
-                Verified by Rentak
-              </p>
-            )}
-            <h2 className="truncate text-base font-semibold">
-              {item.property_name}
-            </h2>
+            <div className="flex items-center justify-between">
+              <h2 className="truncate text-base font-semibold">
+                {item.property_name}
+              </h2>
+              {item.is_inspection && (
+                <p className="text-primary-600 shrink-0 text-sm font-medium">
+                  Verified by Rentak
+                </p>
+              )}
+            </div>
             {item.property_type.type_name ? (
               <p className="inline-block text-sm text-slate-500">
                 {item.property_type.type_name}
