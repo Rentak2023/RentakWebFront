@@ -44,23 +44,6 @@ export async function signUp(values: SignUpInput, locale: Locale) {
   return res;
 }
 
-type LoginInput = {
-  phone_number: string;
-};
-
-export async function login(values: LoginInput, locale: Locale) {
-  const res = await fetcher
-    .post("auth/login", {
-      json: {
-        ...values,
-        lang: locale === "en" ? "en" : "ar",
-      },
-    })
-    .json<AuthResponse>();
-
-  return res;
-}
-
 type OTPResponse = {
   success: string;
   userId: number;

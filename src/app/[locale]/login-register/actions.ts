@@ -5,13 +5,13 @@ import * as v from "valibot";
 
 import { pub } from "@/orpc";
 import { AuthResponse, loginSchema } from "@/schemas/auth";
+import { LocaleSchema } from "@/schemas/common";
 
 export const login = pub
-
   .input(
     v.object({
       values: loginSchema,
-      lang: v.picklist(["en", "ar"]),
+      lang: LocaleSchema,
     }),
   )
   .output(v.nullable(AuthResponse))
