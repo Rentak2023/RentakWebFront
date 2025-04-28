@@ -7,7 +7,6 @@ export const ValidationErrorSchema = v.object({
 
 export const GenericErrorSchema = v.object({
   message: v.string(),
-  success: v.literal(false),
 });
 
 export const LocaleSchema = v.picklist(["en", "ar"]);

@@ -54,3 +54,14 @@ export const AuthResponse = v.object({
   user_id: v.number(),
   message: v.string(),
 });
+
+export const TokenResponse = v.object({
+  success: v.boolean(),
+  token: v.string(),
+});
+
+export const OTPResponse = v.object({
+  success: v.optional(v.boolean()),
+  userId: v.number(),
+  message: v.optional(v.string()),
+});

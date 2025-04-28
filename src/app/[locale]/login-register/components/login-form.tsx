@@ -3,7 +3,6 @@
 import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
 import { isDefinedError, onError, onSuccess } from "@orpc/client";
 import { useServerAction } from "@orpc/react/hooks";
-import { useQueryClient } from "@tanstack/react-query";
 import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -19,10 +18,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useRouter } from "@/i18n/routing";
-import { userLoggedInQuery } from "@/queries/user";
 import { loginSchema } from "@/schemas/auth";
-import { reSendOTP, verifyOTP } from "@/services/auth";
 
 import { login } from "../actions";
 import { OTPVerificationForm } from "./otp-verification-form";
@@ -32,8 +28,6 @@ export function LoginForm() {
   const [isVerifying, setIsVerifying] = useState(false);
   const [userId, setUserId] = useState<number | null>(null);
   const locale = useLocale();
-  const router = useRouter();
-  const queryCLient = useQueryClient();
   const form = useForm({
     resolver: standardSchemaResolver(loginSchema),
     defaultValues: {
@@ -63,29 +57,15 @@ export function LoginForm() {
     ],
   });
 
-  const onSubmit = form.handleSubmit(async (data) => {
-    await execute({
+  const onSubmit = form.handleSubmit((data) => {
+    return execute({
       values: { phone: data.phone },
       lang: locale,
     });
   });
 
-  const handleVerify = async (otp: string) => {
-    if (!userId) return;
-    await verifyOTP({ userId, otp }, locale);
-    await queryCLient.invalidateQueries(userLoggedInQuery);
-    router.push("/dashboard");
-  };
-
-  const handleResendOTP = async () => {
-    if (!userId) return;
-    await reSendOTP({ user_id: userId }, locale);
-  };
-
-  if (isVerifying) {
-    return (
-      <OTPVerificationForm onVerify={handleVerify} onResend={handleResendOTP} />
-    );
+  if (isVerifying && userId) {
+    return <OTPVerificationForm userId={userId} />;
   }
 
   return (

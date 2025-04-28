@@ -1,7 +1,5 @@
 import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
-import { HTTPError } from "ky";
-import { useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -20,20 +18,23 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 import { otpSchema } from "@/schemas/auth";
-import { type AuthError } from "@/services/auth";
+
+import { useResendOTP, useVerifyOTP } from "../hooks";
 
 type OTPVerificationFormProps = {
-  onVerify: (otp: string) => Promise<void>;
-  onResend: () => Promise<void>;
+  userId: number;
 };
 
-export function OTPVerificationForm({
-  onVerify,
-  onResend,
-}: OTPVerificationFormProps) {
+export function OTPVerificationForm({ userId }: OTPVerificationFormProps) {
   const t = useTranslations("auth");
-  const [resendTimer, setResendTimer] = useState(30);
-  const [error, setError] = useState<string | null>(null);
+  const locale = useLocale();
+  const verifyOTP = useVerifyOTP({
+    setError: (error) => {
+      form.setError("root", {
+        message: error,
+      });
+    },
+  });
 
   const form = useForm({
     resolver: standardSchemaResolver(otpSchema),
@@ -41,42 +42,25 @@ export function OTPVerificationForm({
       otp: "",
     },
   });
-  const isResendDisabled = resendTimer > 0;
 
-  useEffect(() => {
-    let timer: NodeJS.Timeout;
-    if (resendTimer > 0 && isResendDisabled) {
-      timer = setInterval(() => {
-        setResendTimer((prev) => prev - 1);
-      }, 1000);
-    }
-    return () => {
-      clearInterval(timer);
-    };
-  }, [resendTimer, isResendDisabled]);
+  const { resendOTP, isResendDisabled, resendTimer } = useResendOTP({
+    setError: (error) => {
+      form.setError("root", {
+        message: error,
+      });
+    },
+  });
 
   const handleResend = async () => {
-    try {
-      setError(null);
-      setResendTimer(30);
-      await onResend();
-    } catch {
-      setError(t("errors.resend-otp-failed"));
-    }
+    form.clearErrors();
+    await resendOTP({
+      userId: userId,
+      lang: locale,
+    });
   };
 
-  const onSubmit = form.handleSubmit(async (data) => {
-    try {
-      setError(null);
-      await onVerify(data.otp);
-    } catch (error) {
-      if (error instanceof HTTPError) {
-        const responseData = await error.response.json<AuthError>();
-        setError(responseData.message);
-        return;
-      }
-      setError(t("errors.invalid-otp"));
-    }
+  const onSubmit = form.handleSubmit((data) => {
+    return verifyOTP({ userId, otp: data.otp, lang: locale });
   });
 
   return (
@@ -87,9 +71,11 @@ export function OTPVerificationForm({
           <p className="text-sm text-slate-700">{t("messages.otp-sent")}</p>
         </div>
 
-        {error && (
+        {form.formState.errors.root?.message && (
           <Alert variant="destructive">
-            <AlertDescription>{error}</AlertDescription>
+            <AlertDescription>
+              {form.formState.errors.root.message}
+            </AlertDescription>
           </Alert>
         )}
 
