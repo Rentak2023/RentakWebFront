@@ -17,7 +17,7 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
-import { otpSchema } from "@/schemas/auth";
+import { OTPSchema } from "@/schemas/auth";
 
 import { useResendOTP, useVerifyOTP } from "../hooks";
 
@@ -37,7 +37,7 @@ export function OTPVerificationForm({ userId }: OTPVerificationFormProps) {
   });
 
   const form = useForm({
-    resolver: standardSchemaResolver(otpSchema),
+    resolver: standardSchemaResolver(OTPSchema),
     defaultValues: {
       otp: "",
     },

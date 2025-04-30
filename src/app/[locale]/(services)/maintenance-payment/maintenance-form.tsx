@@ -9,8 +9,7 @@ import isMobilePhone from "validator/es/lib/isMobilePhone";
 import isNumeric from "validator/es/lib/isNumeric";
 
 import { useToast } from "@/components/ui/use-toast";
-import { orpc } from "@/lib/orpc";
-import { sendOTP, verifyOTP } from "@/services/auth";
+import { orpc, orpcClient } from "@/lib/orpc";
 import { checkPromoCode } from "@/services/promo";
 
 import { maintenancePaymentAction } from "../actions/maintenance-payment";
@@ -109,7 +108,11 @@ export default function MaintenanceForm() {
               if (userId == null) {
                 return false;
               }
-              await verifyOTP({ userId, otp }, locale);
+              await orpcClient.auth.verifyOTP({
+                lang: locale,
+                userId,
+                otp,
+              });
 
               return true;
             } catch {
@@ -142,7 +145,7 @@ export default function MaintenanceForm() {
           actionText: t("fields.user-phone.action-text"),
           action: async (values) => {
             try {
-              const res = await sendOTP({
+              const res = await orpcClient.auth.sendOTP({
                 user_name: values.tenant_name,
                 user_email: values.tenant_email,
                 user_phone: values.tenant_phone,
@@ -152,19 +155,13 @@ export default function MaintenanceForm() {
                 title: "OTP Sent",
                 description: "OTP has been sent to your phone number",
               });
-            } catch (error) {
-              if (error instanceof HTTPError) {
-                const errorRes = await error.response.json<any>();
-                for (const fieldError of Object.values(errorRes.errors)) {
-                  toast({
-                    title: "Error",
-                    // @ts-expect-error TODO: add types later
-                    description: fieldError[0],
-                    variant: "destructive",
-                    duration: 5000,
-                  });
-                }
-              }
+            } catch {
+              toast({
+                title: "Error",
+                description: "Failed to send OTP",
+                variant: "destructive",
+                duration: 5000,
+              });
             }
           },
         },

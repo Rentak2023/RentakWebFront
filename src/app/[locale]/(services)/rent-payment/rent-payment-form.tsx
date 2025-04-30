@@ -10,8 +10,7 @@ import isNumeric from "validator/es/lib/isNumeric";
 
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "@/i18n/routing";
-import { orpc } from "@/lib/orpc";
-import { sendOTP, verifyOTP } from "@/services/auth";
+import { orpc, orpcClient } from "@/lib/orpc";
 import { checkPromoCode } from "@/services/promo";
 
 import { rentPaymentAction } from "../actions/rent-payment";
@@ -110,7 +109,11 @@ export default function RentPaymentForm() {
               if (userId == null) {
                 return false;
               }
-              await verifyOTP({ userId, otp }, locale);
+              await orpcClient.auth.verifyOTP({
+                userId,
+                otp,
+                lang: locale,
+              });
 
               return true;
             } catch {
@@ -143,7 +146,7 @@ export default function RentPaymentForm() {
           actionText: t("fields.user-phone.action-text"),
           action: async (values) => {
             try {
-              const res = await sendOTP({
+              const res = await orpcClient.auth.sendOTP({
                 user_name: values.tenant_name,
                 user_email: values.tenant_email,
                 user_phone: values.tenant_phone,
@@ -153,19 +156,13 @@ export default function RentPaymentForm() {
                 title: "OTP Sent",
                 description: "OTP has been sent to your phone number",
               });
-            } catch (error) {
-              if (error instanceof HTTPError) {
-                const errorRes = await error.response.json<any>();
-                for (const fieldError of Object.values(errorRes.errors)) {
-                  toast({
-                    title: "Error",
-                    // @ts-expect-error TODO: add types later
-                    description: fieldError[0],
-                    variant: "destructive",
-                    duration: 5000,
-                  });
-                }
-              }
+            } catch {
+              toast({
+                title: "Error",
+                description: "Failed to send OTP",
+                variant: "destructive",
+                duration: 5000,
+              });
             }
           },
         },

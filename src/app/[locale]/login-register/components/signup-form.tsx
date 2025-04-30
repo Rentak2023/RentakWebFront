@@ -18,7 +18,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { signUpSchema } from "@/schemas/auth";
+import { SignUpSchema } from "@/schemas/auth";
 
 import { signUp } from "../actions";
 import { OTPVerificationForm } from "./otp-verification-form";
@@ -30,7 +30,7 @@ export function SignUpForm() {
   const locale = useLocale();
 
   const form = useForm({
-    resolver: standardSchemaResolver(signUpSchema),
+    resolver: standardSchemaResolver(SignUpSchema),
     defaultValues: {
       full_name: "",
       email: "",

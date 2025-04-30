@@ -1,7 +1,7 @@
 import * as v from "valibot";
 import isMobilePhone from "validator/es/lib/isMobilePhone";
 
-export const loginSchema = v.object({
+export const LoginSchema = v.object({
   phone: v.pipe(
     v.string(),
     v.trim(),
@@ -13,7 +13,7 @@ export const loginSchema = v.object({
   ),
 });
 
-export const otpSchema = v.object({
+export const OTPSchema = v.object({
   otp: v.pipe(
     v.string(),
     v.trim(),
@@ -22,7 +22,7 @@ export const otpSchema = v.object({
   ),
 });
 
-export const signUpSchema = v.object({
+export const SignUpSchema = v.object({
   full_name: v.string(),
   email: v.pipe(
     v.string(),
@@ -39,6 +39,12 @@ export const signUpSchema = v.object({
       "Enter a valid phone number",
     ),
   ),
+});
+
+export const SendOTPSchema = v.object({
+  user_name: v.string(),
+  user_email: v.string(),
+  user_phone: v.string(),
 });
 
 export const UserSchema = v.object({

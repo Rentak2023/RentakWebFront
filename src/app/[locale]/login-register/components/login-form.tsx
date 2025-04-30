@@ -18,7 +18,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { loginSchema } from "@/schemas/auth";
+import { LoginSchema } from "@/schemas/auth";
 
 import { login } from "../actions";
 import { OTPVerificationForm } from "./otp-verification-form";
@@ -29,7 +29,7 @@ export function LoginForm() {
   const [userId, setUserId] = useState<number | null>(null);
   const locale = useLocale();
   const form = useForm({
-    resolver: standardSchemaResolver(loginSchema),
+    resolver: standardSchemaResolver(LoginSchema),
     defaultValues: {
       phone: "",
     },

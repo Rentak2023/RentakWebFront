@@ -769,6 +769,7 @@
       "name": "Name",
       "amount": "Amount",
       "contract-type": "Contract Type",
+      "user-type": "User Type",
       "next-rent": "Next Rent",
       "actions": "Actions",
       "view-details": "View Details",

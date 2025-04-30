@@ -772,6 +772,7 @@
       "name": "الاسم",
       "amount": "المبلغ",
       "contract-type": "نوع العقد",
+      "user-type": "النوع",
       "next-rent": "الإيجار التالي",
       "actions": "الإجراءات",
       "view-details": "عرض التفاصيل",
