@@ -1,8 +1,8 @@
 "use client";
 
 import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
-import { isDefinedError, onError, onSuccess } from "@orpc/client";
-import { useServerAction } from "@orpc/react/hooks";
+import { isDefinedError } from "@orpc/client";
+import { useMutation } from "@tanstack/react-query";
 import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -18,9 +18,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { orpc } from "@/lib/orpc";
 import { SignUpSchema } from "@/schemas/auth";
 
-import { signUp } from "../actions";
 import { OTPVerificationForm } from "./otp-verification-form";
 
 export function SignUpForm() {
@@ -37,16 +37,13 @@ export function SignUpForm() {
       phone: "",
     },
   });
-
-  const { execute } = useServerAction(signUp, {
-    interceptors: [
-      onSuccess((data) => {
-        if (data?.success) {
-          setUserId(data.user_id);
-          setIsVerifying(true);
-        }
-      }),
-      onError((error) => {
+  const signUpMutation = useMutation(
+    orpc.auth.signUp.mutationOptions({
+      onSuccess: (data) => {
+        setUserId(data.user_id);
+        setIsVerifying(true);
+      },
+      onError: (error) => {
         if (isDefinedError(error) && error.code === "GENERIC_ERROR") {
           form.setError("root", {
             message: error.data.message,
@@ -56,12 +53,12 @@ export function SignUpForm() {
             message: t("errors.signup-failed"),
           });
         }
-      }),
-    ],
-  });
+      },
+    }),
+  );
 
   const onSubmit = form.handleSubmit(async (data) => {
-    await execute({
+    await signUpMutation.mutateAsync({
       values: data,
       lang: locale,
     });

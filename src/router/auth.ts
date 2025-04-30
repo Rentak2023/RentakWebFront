@@ -41,7 +41,7 @@ export const login = pub
       lang: LocaleSchema,
     }),
   )
-  .output(v.nullable(AuthResponse))
+  .output(AuthResponse)
   .handler(async ({ input, context, errors }) => {
     try {
       const res = await context.fetcher
@@ -80,7 +80,7 @@ export const signUp = pub
       lang: LocaleSchema,
     }),
   )
-  .output(v.nullable(AuthResponse))
+  .output(AuthResponse)
   .handler(async ({ input, context, errors }) => {
     try {
       const res = await context.fetcher

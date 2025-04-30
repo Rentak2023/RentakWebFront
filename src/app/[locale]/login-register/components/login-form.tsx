@@ -1,8 +1,8 @@
 "use client";
 
 import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
-import { isDefinedError, onError, onSuccess } from "@orpc/client";
-import { useServerAction } from "@orpc/react/hooks";
+import { isDefinedError } from "@orpc/client";
+import { useMutation } from "@tanstack/react-query";
 import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -18,9 +18,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { orpc } from "@/lib/orpc";
 import { LoginSchema } from "@/schemas/auth";
 
-import { login } from "../actions";
 import { OTPVerificationForm } from "./otp-verification-form";
 
 export function LoginForm() {
@@ -35,15 +35,13 @@ export function LoginForm() {
     },
   });
 
-  const { execute } = useServerAction(login, {
-    interceptors: [
-      onSuccess((data) => {
-        if (data?.success) {
-          setUserId(data.user_id);
-          setIsVerifying(true);
-        }
-      }),
-      onError((error) => {
+  const loginMutation = useMutation(
+    orpc.auth.login.mutationOptions({
+      onSuccess: (data) => {
+        setUserId(data.user_id);
+        setIsVerifying(true);
+      },
+      onError: (error) => {
         if (isDefinedError(error) && error.code === "GENERIC_ERROR") {
           form.setError("root", {
             message: error.data.message,
@@ -53,12 +51,12 @@ export function LoginForm() {
             message: t("errors.login-failed"),
           });
         }
-      }),
-    ],
-  });
+      },
+    }),
+  );
 
   const onSubmit = form.handleSubmit((data) => {
-    return execute({
+    return loginMutation.mutateAsync({
       values: { phone: data.phone },
       lang: locale,
     });
