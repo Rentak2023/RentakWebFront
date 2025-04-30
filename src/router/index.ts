@@ -8,4 +8,5 @@ export const router = {
   locations: os.lazy(() => import("./locations")),
   paymentMethods: os.lazy(() => import("./payment-methods")),
   products: os.lazy(() => import("./products")),
+  dashboard: os.lazy(() => import("./dashboard")),
 };

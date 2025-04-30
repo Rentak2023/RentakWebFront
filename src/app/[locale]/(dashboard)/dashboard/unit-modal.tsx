@@ -4,11 +4,11 @@ import { type SVGProps } from "react";
 
 import { DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Progress } from "@/components/ui/progress";
-import { unitContract } from "@/queries/dashboard";
-import { type UnitContract } from "@/services/dashboard";
+import { orpc } from "@/lib/orpc";
+import { type UnitContractSchema } from "@/schemas/dashboard";
 
 function getTransactionStatus(
-  transaction: UnitContract["transactions"][number],
+  transaction: UnitContractSchema["transactions"][number],
 ) {
   if (
     transaction.cashin_payment_status === "It has not been issued yet"
@@ -29,7 +29,7 @@ function getTransactionStatus(
 
 function TransactionItem({
   transaction,
-}: Readonly<{ transaction: UnitContract["transactions"][number] }>) {
+}: Readonly<{ transaction: UnitContractSchema["transactions"][number] }>) {
   const paymentStatus = getTransactionStatus(transaction);
   const formmater = useFormatter();
 
@@ -70,7 +70,14 @@ export function UnitModal({ unitId }: UnitModalProps) {
   const locale = useLocale();
   const formater = useFormatter();
   const t = useTranslations("dashboard.unit-modal");
-  const { data: contract } = useSuspenseQuery(unitContract(unitId, locale));
+  const { data: contract } = useSuspenseQuery(
+    orpc.dashboard.unitDetails.queryOptions({
+      input: {
+        unitId,
+        lang: locale,
+      },
+    }),
+  );
 
   const currentTransaction = contract.transactions.find(
     (transaction) => getTransactionStatus(transaction) === "pending",
