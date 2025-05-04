@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
+import { Link } from "@/i18n/routing";
 
 export default function MaximizeRent() {
   const t = useTranslations("landlord.summary");
@@ -23,15 +24,17 @@ export default function MaximizeRent() {
           <Button
             className="bg-orange-500 text-white hover:bg-orange-500/90 focus-visible:ring-orange-500/50"
             size="xl"
+            asChild
           >
-            {t("get-instant-offer")}
+            <Link href="#">{t("get-instant-offer")}</Link>
           </Button>
           <Button
             className="border-orange-500 text-orange-500 hover:bg-orange-50 hover:text-orange-600 focus-visible:ring-orange-500/50"
             size="xl"
             variant="outline"
+            asChild
           >
-            {t("list-unit")}
+            <Link href="#">{t("list-unit")}</Link>
           </Button>
         </div>
       </div>
