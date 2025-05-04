@@ -18,7 +18,9 @@ const URLS = {
   wallet: "/wallet",
   invoices: "/invoices",
   rentPayment: "/rent-payment",
+  vacayNow: "/vacay-now",
   rentCollection: "/rent-collection",
+  rentManagement: "/rent-management",
   maintenancePayment: "/maintenance-payment",
 
   //Properties
@@ -31,8 +33,8 @@ const URLS = {
     termsConditions: "/terms-conditions",
     privacyPolicy: "/privacy-policy",
   },
-  landlord: "#",
-  tenants: "#",
+  landlord: "/landlord",
+  tenant: "/tenant",
 
   //Pages
   aboutUs: "#",

@@ -158,7 +158,7 @@ const questions: Question = {
           {
             title: "Pay Rent",
             arTitle: "دفع الإيجار",
-            href: "/rent-payment",
+            href: "/vacay-now",
           },
         ],
       },

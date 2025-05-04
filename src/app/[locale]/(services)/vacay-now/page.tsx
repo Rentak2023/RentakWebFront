@@ -1,3 +1,4 @@
+import { type Metadata } from "next";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import Player from "next-video/player";
@@ -5,8 +6,21 @@ import Player from "next-video/player";
 import { Button } from "@/components/ui/button";
 import Container from "@/components/ui/container";
 import { Link } from "@/i18n/routing";
+import { generateAlternatesLinks } from "@/lib/utils";
 
 import poster from "./poster.png";
+
+export function generateMetadata(): Metadata {
+  return {
+    alternates: generateAlternatesLinks("/vacay-now"),
+    title: "Vacay Now, Pay Later!",
+    description: "Pay in up to 60 months installments",
+    openGraph: {
+      title: "Vacay Now, Pay Later!",
+      description: "Pay in up to 60 months installments",
+    },
+  };
+}
 
 export default function VacayNow() {
   const t = useTranslations("services");

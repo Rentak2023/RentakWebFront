@@ -38,6 +38,7 @@ import {
 import { Link, usePathname, useRouter } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 import { userLoggedInQuery } from "@/queries/user";
+import URLS from "@/shared/urls";
 
 import Container from "./ui/container";
 
@@ -129,15 +130,15 @@ export default function Navbar() {
   }> = [
     {
       name: t("home"),
-      path: "/",
+      path: URLS.home,
     },
     {
       name: t("landlord"),
-      path: "/landlord",
+      path: URLS.landlord,
     },
     {
       name: t("tenant"),
-      path: "/tenant",
+      path: URLS.tenant,
     },
     {
       name: t("services"),
@@ -145,27 +146,27 @@ export default function Navbar() {
       subRoutes: [
         {
           name: t("listing"),
-          path: "/units",
+          path: URLS.units,
         },
         {
           name: t("manage-property"),
-          path: "/rent-management",
+          path: URLS.rentManagement,
         },
         {
           name: t("rent-payment"),
-          path: "/rent-payment",
+          path: URLS.vacayNow,
         },
         {
           name: t("maintenance-payment"),
-          path: "/maintenance-payment",
+          path: URLS.maintenancePayment,
         },
         {
           name: t("rent-collection"),
-          path: "/rent-collection",
+          path: URLS.rentCollection,
         },
         {
           name: t("free-contract"),
-          path: "/contract",
+          path: URLS.contract,
         },
       ],
     },
