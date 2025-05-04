@@ -51,7 +51,7 @@ jobs:
       # run: zip release.zip ./* -r
 
       - name: Add .next folder to zip artifact for deployment
-        run: cp -r public .next/standalone/ && cp -r .next/static .next/standalone/.next/ && zip release.zip ./.next -r
+        run: cp -r public .next/standalone/ && cp -r .next/static .next/standalone/.next/ && zip release.zip ./.next/standalone -r
 
       - name: "Deploy to Azure Web App"
         id: deploy-to-webapp
@@ -60,4 +60,4 @@ jobs:
           app-name: "RentakWebsite"
           slot-name: "production"
           package: release.zip
-          clean: false
+          clean: true
