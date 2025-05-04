@@ -3,12 +3,53 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import Player from "next-video/player";
 
+import forsaLogo from "@/app/[locale]/assets/images/logos/forsa.png";
+import halanLogo from "@/app/[locale]/assets/images/logos/halan.png";
+import mastercardLogo from "@/app/[locale]/assets/images/logos/mastercard.png";
+import meezaLogo from "@/app/[locale]/assets/images/logos/Meeza.svg";
+import souhoolaLogo from "@/app/[locale]/assets/images/logos/souhoola.png";
+import valuLogo from "@/app/[locale]/assets/images/logos/valu.png";
+import visaLogo from "@/app/[locale]/assets/images/logos/visa.png";
 import { Button } from "@/components/ui/button";
 import Container from "@/components/ui/container";
 import { Link } from "@/i18n/routing";
 import { generateAlternatesLinks } from "@/lib/utils";
 
 import poster from "./poster.png";
+
+const partners = [
+  {
+    name: "valu",
+    logo: valuLogo,
+  },
+
+  {
+    name: "souhoola",
+    logo: souhoolaLogo,
+  },
+  {
+    name: "Forsa",
+    logo: forsaLogo,
+  },
+
+  {
+    name: "halan",
+    logo: halanLogo,
+  },
+  {
+    name: "mastercard",
+    logo: mastercardLogo,
+  },
+  {
+    name: "visa",
+    logo: visaLogo,
+  },
+
+  {
+    name: "Meeza",
+    logo: meezaLogo,
+  },
+];
 
 export function generateMetadata(): Metadata {
   return {
@@ -69,6 +110,26 @@ export default function VacayNow() {
           </Button>
         </Container>
       </header>
+      <div>
+        <Container className="mt-16 flex flex-col items-center">
+          <h2 className="text-3xl text-slate-600">Trusted Payments</h2>
+          <ul className="mt-12 flex gap-x-12 gap-y-8">
+            <li className="hidden md:block"></li>
+            {partners.map((partner) => (
+              <li
+                key={partner.name}
+                className="relative inline-flex aspect-video h-12 items-center justify-center"
+              >
+                <Image
+                  className="size-full object-contain"
+                  src={partner.logo}
+                  alt={partner.name}
+                />
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </div>
       <Container className="text-primary-900 mx-auto mt-16 flex flex-col items-center justify-between gap-4 rounded-lg bg-slate-100 py-16 lg:flex-row">
         <div className="flex flex-col items-start">
           <ol className="[counter-reset:item mt-8 flex max-w-2xl flex-col gap-4">
