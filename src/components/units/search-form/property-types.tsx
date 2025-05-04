@@ -10,14 +10,18 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { propertyTypesQuery } from "@/queries/units";
+import { orpc } from "@/lib/orpc";
 
 function PropertyTypes() {
   const t = useTranslations("units");
   const locale = useLocale();
   const form = useFormContext();
 
-  const { data: propertyTypes } = useSuspenseQuery(propertyTypesQuery(locale));
+  const { data: propertyTypes } = useSuspenseQuery(
+    orpc.units.propertyTypes.queryOptions({
+      input: locale,
+    }),
+  );
 
   return (
     <div>

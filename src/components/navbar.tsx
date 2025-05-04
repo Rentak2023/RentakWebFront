@@ -38,6 +38,7 @@ import {
 import { Link, usePathname, useRouter } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 import { userLoggedInQuery } from "@/queries/user";
+import URLS from "@/shared/urls";
 
 import Container from "./ui/container";
 
@@ -49,7 +50,7 @@ function NavRight() {
 
   const queryCLient = useQueryClient();
 
-  const { data: isLoggedIn } = useQuery(userLoggedInQuery);
+  const { data: isLoggedIn, isLoading } = useQuery(userLoggedInQuery);
 
   const onLogoutClick = async () => {
     deleteCookie("authToken");
@@ -57,8 +58,8 @@ function NavRight() {
     router.refresh();
   };
 
-  if (isLoggedIn == undefined) {
-    return <div className="h-10" />;
+  if (isLoading) {
+    return <div className="h-9" />;
   }
 
   return (
@@ -129,15 +130,15 @@ export default function Navbar() {
   }> = [
     {
       name: t("home"),
-      path: "/",
+      path: URLS.home,
     },
     {
       name: t("landlord"),
-      path: "/landlord",
+      path: URLS.landlord,
     },
     {
       name: t("tenant"),
-      path: "/tenant",
+      path: URLS.tenant,
     },
     {
       name: t("services"),
@@ -145,27 +146,27 @@ export default function Navbar() {
       subRoutes: [
         {
           name: t("listing"),
-          path: "/units",
+          path: URLS.units,
         },
         {
           name: t("manage-property"),
-          path: "/rent-management",
+          path: URLS.rentManagement,
         },
         {
           name: t("rent-payment"),
-          path: "/rent-payment",
+          path: URLS.vacayNow,
         },
         {
           name: t("maintenance-payment"),
-          path: "/maintenance-payment",
+          path: URLS.maintenancePayment,
         },
         {
           name: t("rent-collection"),
-          path: "/rent-collection",
+          path: URLS.rentCollection,
         },
         {
           name: t("free-contract"),
-          path: "/contract",
+          path: URLS.contract,
         },
       ],
     },
@@ -205,7 +206,7 @@ export default function Navbar() {
 
                   <PopoverPanel
                     transition
-                    className="data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-leave:duration-150 data-enter:ease-out data-leave:ease-in absolute -left-8 top-full z-20 mt-3 w-56 rounded-xl bg-white p-2 shadow-lg ring-1 ring-slate-900/5 transition"
+                    className="data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-leave:duration-150 data-enter:ease-out data-leave:ease-in absolute -start-8 top-full z-20 mt-3 w-56 rounded-xl bg-white p-2 shadow-lg ring-1 ring-slate-900/5 transition"
                   >
                     {route.subRoutes.map((item) => (
                       <a
@@ -264,7 +265,7 @@ export default function Navbar() {
         className="lg:hidden"
       >
         <div className="fixed inset-0 z-20" />
-        <DialogPanel className="fixed inset-y-0 right-0 z-20 w-full overflow-y-auto bg-white p-6 sm:max-w-sm sm:ring-1 sm:ring-slate-900/10">
+        <DialogPanel className="fixed inset-y-0 end-0 z-20 w-full overflow-y-auto bg-white p-6 sm:max-w-sm sm:ring-1 sm:ring-slate-900/10">
           <div className="flex items-center justify-between">
             <a href="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Rentak</span>
@@ -294,7 +295,7 @@ export default function Navbar() {
                 {routes.map((route) =>
                   route.subRoutes ? (
                     <Disclosure as="div" className="-mx-3" key={route.name}>
-                      <DisclosureButton className="focus:outline-hidden group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base/7 font-medium text-slate-700 hover:bg-slate-50">
+                      <DisclosureButton className="focus:outline-hidden group flex w-full items-center justify-between rounded-lg py-2 pe-3.5 ps-3 text-base/7 font-medium text-slate-700 hover:bg-slate-50">
                         {route.name}
                         <ChevronDownIcon
                           aria-hidden="true"
@@ -311,7 +312,7 @@ export default function Navbar() {
                               setMobileMenuOpen(false);
                             }}
                             className={cn(
-                              "block rounded-lg py-2 pl-6 pr-3 text-sm/7 hover:bg-slate-50",
+                              "block rounded-lg py-2 pe-3 ps-6 text-sm/7 hover:bg-slate-50",
                               pathname === item.path
                                 ? "font-semibold text-slate-900"
                                 : "font-medium text-slate-700",

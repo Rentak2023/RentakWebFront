@@ -5,12 +5,14 @@ import type { ItemList, WebPage, WithContext } from "schema-dts";
 
 import Properties from "@/components/units/properties/properties";
 import SearchForm from "@/components/units/search-form/search-form";
+import { orpc, orpcClient } from "@/lib/orpc";
 import { generateAlternatesLinks } from "@/lib/utils";
 import {
-  getProperties,
   propertiesQueryCache,
   propertiesQueryParsers,
 } from "@/services/properties";
+
+import { makeQueryClient } from "../get-query-client";
 
 const serialize = createSerializer(propertiesQueryParsers);
 
@@ -25,27 +27,30 @@ export async function generateMetadata(
 
   const parsedParams = propertiesQueryCache.parse(searchParams);
 
-  const properties = await getProperties({ ...parsedParams, lang: locale });
+  const properties = await orpcClient.units.list({
+    ...parsedParams,
+    lang: locale,
+  });
   const totalPages = Math.ceil(properties.total_count / 10);
 
   return {
     title: t("title"),
     description: t("description"),
-    alternates: generateAlternatesLinks(`/units${serialize(searchParams)}`),
+    alternates: generateAlternatesLinks(`/units${serialize(parsedParams)}`),
     openGraph: {
       title: t("title"),
       description: t("description"),
-      url: `/units${serialize(searchParams)}`,
+      url: `/units${serialize(parsedParams)}`,
       type: "website",
     },
     pagination: {
       next:
         parsedParams.page < totalPages
-          ? `/units${serialize({ ...searchParams, page: parsedParams.page + 1 })}`
+          ? `/units${serialize({ ...parsedParams, page: parsedParams.page + 1 })}`
           : null,
       previous:
         parsedParams.page > 1
-          ? `/units${serialize({ ...searchParams, page: parsedParams.page - 1 })}`
+          ? `/units${serialize({ ...parsedParams, page: parsedParams.page - 1 })}`
           : null,
     },
   };
@@ -60,7 +65,17 @@ export default async function UnitsPage(
   const locale = await getLocale();
 
   const parsedParams = propertiesQueryCache.parse(searchParams);
-  const properties = await getProperties({ ...parsedParams, lang: locale });
+
+  const queryCLient = makeQueryClient();
+
+  const properties = await queryCLient.fetchQuery(
+    orpc.units.list.queryOptions({
+      input: {
+        ...parsedParams,
+        lang: locale,
+      },
+    }),
+  );
 
   const structuredData: [WithContext<WebPage>, WithContext<ItemList>] = [
     {

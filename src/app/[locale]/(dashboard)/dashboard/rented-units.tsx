@@ -8,7 +8,6 @@ import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { DataTable, DataTableColumnHeader } from "@/components/ui/data-table";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
-import { Link } from "@/i18n/routing";
 import { type RentedUnit } from "@/services/dashboard";
 
 import { UnitModal } from "./unit-modal";
@@ -50,11 +49,7 @@ export function RentedUnits({ units }: RentedUnits) {
     }),
     columnHelper.accessor("user_type", {
       cell: (info) => info.getValue(),
-      header: () => t("contract-type"),
-    }),
-    columnHelper.accessor("contract_type", {
-      cell: (info) => info.getValue() || "N/A",
-      header: () => t("contract-type"),
+      header: () => t("user-type"),
     }),
     columnHelper.accessor("next_rent", {
       cell: (info) => {

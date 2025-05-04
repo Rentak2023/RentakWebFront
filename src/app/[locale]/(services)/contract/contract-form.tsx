@@ -33,7 +33,7 @@ import { Separator } from "@/components/ui/separator";
 import { toast } from "@/components/ui/use-toast";
 import { useRouter } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
-import { contractSchema } from "@/schema/contract";
+import { contractSchema } from "@/schemas/contract";
 
 import { createContractAction } from "../actions/create-contract";
 function ContractForm() {

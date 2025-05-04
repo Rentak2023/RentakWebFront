@@ -11,7 +11,6 @@ import {
 import Container from "@/components/ui/container";
 import { getTransactionsHistory, getUserUnits } from "@/services/dashboard";
 
-import Services from "./components/services";
 import { Stats } from "./components/stats";
 import { RentedUnits } from "./rented-units";
 import { Transactions } from "./tranactions";
@@ -71,10 +70,6 @@ export default async function DashboardPage() {
             {/* <Button>Add Unit</Button> */}
           </div>
           <MyTransactions />
-        </div>
-
-        <div className="flex flex-col gap-4">
-          <Services />
         </div>
       </div>
     </Container>

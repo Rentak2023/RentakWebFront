@@ -1,7 +1,7 @@
 "use client";
 import { sendGAEvent } from "@next/third-parties/google";
-import { useSuspenseQuery } from "@tanstack/react-query";
-import { HTTPError } from "ky";
+import { isDefinedError } from "@orpc/client";
+import { useMutation, useSuspenseQuery } from "@tanstack/react-query";
 import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 import * as v from "valibot";
@@ -9,11 +9,7 @@ import isMobilePhone from "validator/es/lib/isMobilePhone";
 import isNumeric from "validator/es/lib/isNumeric";
 
 import { useToast } from "@/components/ui/use-toast";
-import { banksQuery } from "@/queries/banks";
-import { cashInPaymentMethodsQuery } from "@/queries/payment-methods";
-import { productQuery } from "@/queries/products";
-import { sendOTP, verifyOTP } from "@/services/auth";
-import { checkPromoCode } from "@/services/promo";
+import { orpc, orpcClient } from "@/lib/orpc";
 
 import { maintenancePaymentAction } from "../actions/maintenance-payment";
 import { ServiceForms } from "../service-forms";
@@ -60,15 +56,41 @@ function onNextStep(index: number) {
 export default function MaintenanceForm() {
   const locale = useLocale();
 
-  const { data: paymentMethods } = useSuspenseQuery(cashInPaymentMethodsQuery);
-  const { data: banks } = useSuspenseQuery(banksQuery);
-  const { data: product } = useSuspenseQuery(productQuery(2));
+  const { data: paymentMethods } = useSuspenseQuery(
+    orpc.paymentMethods.cashIn.queryOptions(),
+  );
+  const { data: banks } = useSuspenseQuery(orpc.banks.list.queryOptions());
+  const { data: product } = useSuspenseQuery(
+    orpc.products.find.queryOptions({
+      input: {
+        id: 2,
+      },
+    }),
+  );
 
   const t = useTranslations("services");
   const [userId, setUserId] = useState<number | null>(null);
   const [discount, setDiscount] = useState<number>(0);
   const { toast } = useToast();
-
+  const checkPromoMutation = useMutation(
+    orpc.promo.check.mutationOptions({
+      onSuccess: (data) => {
+        setDiscount(data.promocode.discount);
+        toast({
+          title: "Success",
+          description: "Promo code applied",
+        });
+      },
+      onError: (error) => {
+        if (isDefinedError(error) && error.code === "GENERIC_ERROR") {
+          toast({
+            title: error.data.message,
+            variant: "destructive",
+          });
+        }
+      },
+    }),
+  );
   const steps = [
     {
       label: t("steps.profile-info.label"),
@@ -103,7 +125,11 @@ export default function MaintenanceForm() {
               if (userId == null) {
                 return false;
               }
-              await verifyOTP({ userId, otp }, locale);
+              await orpcClient.auth.verifyOTP({
+                lang: locale,
+                userId,
+                otp,
+              });
 
               return true;
             } catch {
@@ -136,7 +162,7 @@ export default function MaintenanceForm() {
           actionText: t("fields.user-phone.action-text"),
           action: async (values) => {
             try {
-              const res = await sendOTP({
+              const res = await orpcClient.auth.sendOTP({
                 user_name: values.tenant_name,
                 user_email: values.tenant_email,
                 user_phone: values.tenant_phone,
@@ -146,19 +172,13 @@ export default function MaintenanceForm() {
                 title: "OTP Sent",
                 description: "OTP has been sent to your phone number",
               });
-            } catch (error) {
-              if (error instanceof HTTPError) {
-                const errorRes = await error.response.json<any>();
-                for (const fieldError of Object.values(errorRes.errors)) {
-                  toast({
-                    title: "Error",
-                    // @ts-expect-error TODO: add types later
-                    description: fieldError[0],
-                    variant: "destructive",
-                    duration: 5000,
-                  });
-                }
-              }
+            } catch {
+              toast({
+                title: "Error",
+                description: "Failed to send OTP",
+                variant: "destructive",
+                duration: 5000,
+              });
             }
           },
         },
@@ -392,28 +412,16 @@ export default function MaintenanceForm() {
           description: t("fields.promo-code.description"),
           actionText: t("fields.promo-code.action-text"),
           action: async (data) => {
-            try {
+            const res = await checkPromoMutation.mutateAsync({
+              code: data.promo_code,
               // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-              const res = await checkPromoCode(data.promo_code, userId!);
-              setDiscount(res.promocode.discount);
-              toast({
-                title: "Success",
-                description: "Promo code applied",
-              });
-            } catch (error) {
-              let message = "Something went wrong";
-              if (error instanceof HTTPError && error.response.status === 400) {
-                const errorRes = await error.response.json<{
-                  message: string;
-                }>();
-                message = errorRes.message;
-              }
-              toast({
-                title: "Error",
-                description: message,
-                variant: "destructive",
-              });
-            }
+              user_id: userId!,
+            });
+            setDiscount(res.promocode.discount);
+            toast({
+              title: "Success",
+              description: "Promo code applied",
+            });
           },
         },
         {

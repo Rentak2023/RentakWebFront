@@ -2,15 +2,15 @@ type Owner = {
   id: number;
   name: string;
   email: string;
-  picture: string;
+  phone: string;
 };
 type PropertyType = {
   id: number;
-  type_name?: string;
+  type_name: string | null;
 };
 type FinishType = {
   id: number;
-  type_name?: string;
+  type_name: string | null;
 };
 
 type GallaryItem = {
@@ -26,8 +26,8 @@ type Location = {
   city_name: string;
   governorate_id: number;
   governorate_name: string;
-  latitude?: number;
-  longitude?: number;
+  latitude: number | null;
+  longitude: number | null;
 };
 type Attribute = {
   id: number;
@@ -61,10 +61,4 @@ export type Unit = {
   attributes: Array<Attribute>;
   rooms: Array<Room>;
   is_inspection: boolean;
-};
-
-export type PropertiesDataTypes = {
-  items: Array<Unit>;
-  page: number;
-  total_count: number;
 };

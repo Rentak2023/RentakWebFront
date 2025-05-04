@@ -2,6 +2,7 @@ import { BriefcaseIcon, HomeIcon, KeyIcon } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
 import { Link } from "@/i18n/routing";
+import URLS from "@/shared/urls";
 
 import { Button } from "../ui/button";
 import Container from "../ui/container";
@@ -24,21 +25,21 @@ export async function Services() {
       description: t("rent-management.description"),
       icon: HomeIcon,
       cta: t("rent-management.cta"),
-      href: "/rent-management",
+      href: URLS.rentManagement,
     },
     {
       title: t("rent-collection.title"),
       description: t("rent-collection.description"),
       icon: BriefcaseIcon,
       cta: t("rent-collection.cta"),
-      href: "/rent-collection",
+      href: URLS.rentCollection,
     },
     {
       title: t("rent-payment.title"),
       description: t("rent-payment.description"),
       icon: KeyIcon,
       cta: t("rent-payment.cta"),
-      href: "/rent-payment",
+      href: URLS.vacayNow,
     },
   ];
 

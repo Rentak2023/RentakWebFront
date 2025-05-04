@@ -4,7 +4,7 @@ import { type Locale } from "next-intl";
 import * as v from "valibot";
 
 import fetcher from "@/lib/fetcher";
-import { arrangeVisitSchema } from "@/schema/arrange-visit";
+import { arrangeVisitSchema } from "@/schemas/arrange-visit";
 
 type ArrangeVisitResponse = {
   message: string;

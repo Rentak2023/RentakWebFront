@@ -1,8 +1,8 @@
 "use client";
 
 import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
-import { useQueryClient } from "@tanstack/react-query";
-import { HTTPError } from "ky";
+import { isDefinedError } from "@orpc/client";
+import { useMutation } from "@tanstack/react-query";
 import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -18,73 +18,62 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useRouter } from "@/i18n/routing";
-import { userLoggedInQuery } from "@/queries/user";
-import { type AuthError, login, reSendOTP, verifyOTP } from "@/services/auth";
+import { orpc } from "@/lib/orpc";
+import { LoginSchema } from "@/schemas/auth";
 
-import { loginSchema } from "../schemas";
 import { OTPVerificationForm } from "./otp-verification-form";
 
 export function LoginForm() {
   const t = useTranslations("auth");
   const [isVerifying, setIsVerifying] = useState(false);
   const [userId, setUserId] = useState<number | null>(null);
-  const [error, setError] = useState<string | null>(null);
   const locale = useLocale();
-  const router = useRouter();
-  const queryCLient = useQueryClient();
-
   const form = useForm({
-    resolver: standardSchemaResolver(loginSchema),
+    resolver: standardSchemaResolver(LoginSchema),
     defaultValues: {
       phone: "",
     },
   });
 
-  const onSubmit = form.handleSubmit(async (data) => {
-    try {
-      setError(null);
-      const response = await login({ phone_number: data.phone }, locale);
-      if (response.success) {
-        setUserId(response.user_id);
+  const loginMutation = useMutation(
+    orpc.auth.login.mutationOptions({
+      onSuccess: (data) => {
+        setUserId(data.user_id);
         setIsVerifying(true);
-      }
-    } catch (error) {
-      if (error instanceof HTTPError) {
-        const responseData = await error.response.json<AuthError>();
-        setError(responseData.message);
-        return;
-      }
-      setError(t("errors.login-failed"));
-    }
+      },
+      onError: (error) => {
+        if (isDefinedError(error) && error.code === "GENERIC_ERROR") {
+          form.setError("root", {
+            message: error.data.message,
+          });
+        } else {
+          form.setError("root", {
+            message: t("errors.login-failed"),
+          });
+        }
+      },
+    }),
+  );
+
+  const onSubmit = form.handleSubmit((data) => {
+    return loginMutation.mutateAsync({
+      values: { phone: data.phone },
+      lang: locale,
+    });
   });
 
-  const handleVerify = async (otp: string) => {
-    if (!userId) return;
-    setError(null);
-    await verifyOTP({ userId, otp }, locale);
-    await queryCLient.invalidateQueries(userLoggedInQuery);
-    router.push("/dashboard");
-  };
-
-  const handleResendOTP = async () => {
-    if (!userId) return;
-    setError(null);
-    await reSendOTP({ user_id: userId }, locale);
-  };
-
-  if (isVerifying) {
-    return (
-      <OTPVerificationForm onVerify={handleVerify} onResend={handleResendOTP} />
-    );
+  if (isVerifying && userId) {
+    return <OTPVerificationForm userId={userId} />;
   }
 
   return (
     <Form {...form}>
       <form onSubmit={onSubmit} className="flex flex-col gap-4">
-        {error && (
+        {form.formState.errors.root?.message && (
           <Alert variant="destructive">
-            <AlertDescription>{error}</AlertDescription>
+            <AlertDescription>
+              {form.formState.errors.root.message}
+            </AlertDescription>
           </Alert>
         )}
 

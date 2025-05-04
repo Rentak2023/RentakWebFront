@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
 
-import { getUserStatistics } from "@/services/dashboard";
+import { orpcClient } from "@/lib/orpc";
 
 import {
   RentOverdueIcon,
@@ -13,7 +13,7 @@ const formatter = new Intl.NumberFormat("en-US", {});
 
 export async function Stats() {
   const t = await getTranslations("dashboard.stats");
-  const landlordStats = await getUserStatistics();
+  const landlordStats = await orpcClient.dashboard.userStatistics();
 
   const stats = [
     {

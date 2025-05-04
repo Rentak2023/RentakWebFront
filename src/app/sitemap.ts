@@ -1,7 +1,7 @@
 import { type MetadataRoute } from "next";
 
 import { getPathname, routing } from "@/i18n/routing";
-import { getAllArticles } from "@/services/articles";
+import { orpcClient } from "@/lib/orpc";
 import { getAllProperties } from "@/services/properties";
 import URLS from "@/shared/urls";
 
@@ -9,7 +9,7 @@ import URLS from "@/shared/urls";
 const host = "https://rentakapp.com";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const articles = await getAllArticles("en");
+  const articles = await orpcClient.articles.list("en");
   const properties = await getAllProperties();
 
   // Adapt this as necessary

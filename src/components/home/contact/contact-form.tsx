@@ -18,7 +18,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
-import { contactSchema } from "@/schema/contact";
+import { contactSchema } from "@/schemas/contact";
 
 function ContactForm() {
   const t = useTranslations("home.contact");

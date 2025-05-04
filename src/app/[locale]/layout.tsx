@@ -1,4 +1,5 @@
 import "./globals.css";
+import "@/lib/orpc.server";
 
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { type Metadata } from "next";

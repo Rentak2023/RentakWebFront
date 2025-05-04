@@ -72,7 +72,7 @@ export function StepForm({
     formData,
     getFormData,
     actions: { updateFormData },
-    // eslint-disable-next-line react-compiler/react-compiler
+    // eslint-disable-next-line react-hooks/react-compiler
   } = useFormStore();
 
   const defaultValues = useMemo(
@@ -189,7 +189,7 @@ type StepFieldProps = {
 };
 
 function StepField({ formField, field, useFormStore }: StepFieldProps) {
-  // eslint-disable-next-line react-compiler/react-compiler
+  // eslint-disable-next-line react-hooks/react-compiler
   const { formData } = useFormStore();
   const form = useFormContext();
   const currentValues = useWatch({ control: form.control });
@@ -331,7 +331,7 @@ function StepField({ formField, field, useFormStore }: StepFieldProps) {
                 disabled={actionMutation.isPending}
               >
                 {actionMutation.isPending && (
-                  <Loader2 className="mr-2 size-4 animate-spin" />
+                  <Loader2 className="me-2 size-4 animate-spin" />
                 )}
                 {formField.actionText}
               </Button>
@@ -369,7 +369,7 @@ function StepField({ formField, field, useFormStore }: StepFieldProps) {
                 disabled={actionMutation.isPending}
               >
                 {actionMutation.isPending ? (
-                  <Loader2 className="mr-2 size-4 animate-spin" />
+                  <Loader2 className="me-2 size-4 animate-spin" />
                 ) : null}
                 {formField.actionText}
               </Button>
@@ -407,7 +407,7 @@ function StepperFormActions({ onPrevStep }: StepperFormActions) {
         }
       >
         {form.formState.isSubmitting && (
-          <Loader2 className="mr-2 size-4 animate-spin" />
+          <Loader2 className="me-2 size-4 animate-spin" />
         )}
         {isLastStep ? submitMessage : isOptionalStep ? t("skip") : t("next")}
         {!isLastStep && !isOptionalStep && (

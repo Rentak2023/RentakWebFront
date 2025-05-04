@@ -24,10 +24,10 @@ export async function Header() {
       <Container className="flex min-h-dvh flex-col items-center justify-between gap-12 lg:flex-row lg:gap-0">
         <div className="pt-12 lg:max-w-md lg:py-48 xl:max-w-[44rem]">
           <div className="text-start">
-            <h1 className="text-balance text-4xl font-bold tracking-tight text-white sm:text-6xl sm:leading-[70px]">
+            <h1 className="sm:text-6xl/18 text-balance text-4xl font-bold tracking-tight text-white">
               {t("title")}
             </h1>
-            <p className="mt-4 text-balance text-lg leading-8 text-slate-300">
+            <p className="mt-4 text-balance text-lg/8 text-slate-300">
               {t("subtitle")}
             </p>
             {/* <div className="mt-14 flex items-center justify-start gap-x-6">

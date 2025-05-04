@@ -3,10 +3,11 @@ import { getTranslations } from "next-intl/server";
 
 import { generateAlternatesLinks } from "@/lib/utils";
 
-import Features from "./components/features";
-import Finishing from "./components/finishing";
+import FAQ from "./components/faq";
 import Header from "./components/header";
+import MaximizeRent from "./components/maximize-rent";
 import Pricing from "./components/pricing";
+import Services from "./components/services";
 import Steps from "./components/steps";
 import Testimonials from "./components/testimonials";
 import WhyRentak from "./components/why-rentak";
@@ -29,12 +30,13 @@ function Landlord() {
   return (
     <main>
       <Header />
-      <Features />
-      <Pricing />
       <WhyRentak />
+      <Pricing />
+      <Services />
       <Steps />
-      <Finishing />
+      <FAQ />
       <Testimonials />
+      <MaximizeRent />
     </main>
   );
 }

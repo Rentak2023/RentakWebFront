@@ -59,7 +59,7 @@ export default function PayRent() {
 
           <p className="mt-4 max-w-xl text-slate-500">{t("description")}</p>
           <Button variant="dark" size="lg" className="mt-10" asChild>
-            <Link href="/rent-payment">{t("cta")}</Link>
+            <Link href="/vacay-now">{t("cta")}</Link>
           </Button>
         </div>
         <div className="max-w-md">

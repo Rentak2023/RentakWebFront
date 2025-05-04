@@ -18,7 +18,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
-import { bookCallSchema } from "@/schema/book-call";
+import { bookCallSchema } from "@/schemas/book-call";
 
 import { bookCallAction } from "../actions/book-call";
 
@@ -144,7 +144,7 @@ export default function LeadForm({
               disabled={form.formState.isSubmitting}
             >
               {form.formState.isSubmitting ? (
-                <Loader2 className="mr-2 size-4 animate-spin" />
+                <Loader2 className="me-2 size-4 animate-spin" />
               ) : null}{" "}
               {t("actions.submit")}
             </Button>

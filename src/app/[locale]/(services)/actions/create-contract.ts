@@ -3,7 +3,7 @@ import { HTTPError } from "ky";
 import * as v from "valibot";
 
 import fetcher from "@/lib/fetcher";
-import { contractSchema } from "@/schema/contract";
+import { contractSchema } from "@/schemas/contract";
 
 type ContractResponse = {
   message: string;

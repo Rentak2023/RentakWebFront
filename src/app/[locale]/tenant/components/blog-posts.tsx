@@ -2,7 +2,7 @@ import Image from "next/image";
 import { getLocale, getTranslations } from "next-intl/server";
 
 import Container from "@/components/ui/container";
-import { getHomepageArticles } from "@/services/articles";
+import { orpcClient } from "@/lib/orpc";
 
 export const createExcerpt = (body: string) => {
   return body
@@ -14,7 +14,7 @@ export const createExcerpt = (body: string) => {
 export default async function BlogPosts() {
   const t = await getTranslations("tenant.blog");
   const locale = await getLocale();
-  const articles = await getHomepageArticles(locale);
+  const articles = await orpcClient.articles.home(locale);
 
   return (
     <Container className="py-24 sm:py-32">

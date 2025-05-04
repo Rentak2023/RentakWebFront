@@ -2,27 +2,6 @@ import { type Locale } from "next-intl";
 
 import privateFetcher from "@/lib/private-fetcher";
 
-type UserStats = {
-  totalIncome: number;
-  totalExpense: number;
-  upcomingPaymentsLandlord: number;
-  upcomingPaymentsTenant: number;
-  daysToNextRentLandlord: number;
-  daysToNextRentTenant: number;
-};
-
-type UserStatsRes = {
-  result: UserStats;
-};
-
-export async function getUserStatistics() {
-  const res = await privateFetcher
-    .get("dashboard/get-user-statistics")
-    .json<UserStatsRes>();
-
-  return res.result;
-}
-
 export type RentedUnit = {
   contract_id: number;
   user_type: "tenant" | "landlord";
@@ -45,69 +24,6 @@ export async function getUserUnits(locale: Locale) {
     .json<UnitsRes>();
 
   return res;
-}
-
-export type UnitContract = {
-  id: number;
-  contract_code: string;
-  unit: {
-    id: number;
-    name: string;
-    address: null | {
-      governorate: string;
-      city: string;
-    };
-    picture: string | null;
-  };
-  contract_type: {
-    id: number;
-    type_name: string;
-  };
-  created_at: string;
-  from: string;
-  to: string;
-  price: number;
-  final_price: number;
-  collection_day: number;
-  rent_collected: {
-    total_transactions: number;
-    rent_collected: number;
-  };
-  annual_increase_percentage: number;
-  promo_code: string | null;
-  tenant: {
-    id: number;
-    fullname: string;
-    email: string | null;
-    phone: string | null;
-    national_id: string | null;
-  };
-  landlord: {
-    id: number;
-    fullname: string;
-    email: string | null;
-    phone: string | null;
-    national_id: string | null;
-  };
-  transactions: Array<{
-    id: number;
-    due_date: string;
-    payment_method: string;
-    cashin_payment_status: string;
-    cashout_payment_status: string | null;
-  }>;
-  ago: string;
-};
-
-export async function getUnitDetails(unitId: number, locale: Locale) {
-  const res = await privateFetcher.get("dashboard/get-unit-details", {
-    searchParams: {
-      unit_id: unitId,
-      lang: locale === "en" ? "en" : "ar",
-    },
-  });
-
-  return res.json<UnitContract>();
 }
 
 enum TransactionStatus {

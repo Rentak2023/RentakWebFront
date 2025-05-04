@@ -8,12 +8,14 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import Unit from "@/components/unit";
-import { getUnits } from "@/services/units";
+import Unit from "@/components/units/unit";
+import { orpcClient } from "@/lib/orpc";
 
 async function UnitsSlider() {
   const locale = await getLocale();
-  const units = await getUnits({ locale });
+  const units = await orpcClient.units.home({
+    locale,
+  });
 
   return (
     <Carousel>

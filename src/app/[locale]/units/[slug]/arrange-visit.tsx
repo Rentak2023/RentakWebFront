@@ -40,7 +40,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
-import { arrangeVisitSchema } from "@/schema/arrange-visit";
+import { arrangeVisitSchema } from "@/schemas/arrange-visit";
 
 import { arrangeVisitAction } from "../../actions/arrange-visit";
 
@@ -209,7 +209,7 @@ export function ArrangeVisit({ unitId }: ArrangeVisitProps) {
             <DialogFooter>
               <Button type="submit" disabled={form.formState.isSubmitting}>
                 {form.formState.isSubmitting ? (
-                  <Loader2 className="mr-2 size-4 animate-spin" />
+                  <Loader2 className="me-2 size-4 animate-spin" />
                 ) : null}
                 {t("fields.submit")}
               </Button>

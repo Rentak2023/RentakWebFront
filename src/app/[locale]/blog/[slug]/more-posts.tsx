@@ -1,14 +1,14 @@
 import Image from "next/image";
 import { getLocale } from "next-intl/server";
 
-import { getHomepageArticles } from "@/services/articles";
+import { orpcClient } from "@/lib/orpc";
 
 import { createExcerpt } from "../../tenant/components/blog-posts";
 
 export default async function MorePosts() {
   const locale = await getLocale();
 
-  const articles = await getHomepageArticles(locale);
+  const articles = await orpcClient.articles.home(locale);
 
   return (
     <div className="bg-white">
