@@ -1,5 +1,3 @@
-import "@/lib/orpc.server";
-
 import { type Metadata } from "next";
 import { getLocale, getTranslations } from "next-intl/server";
 import { createSerializer, type SearchParams } from "nuqs/server";
