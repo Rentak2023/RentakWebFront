@@ -1,3 +1,5 @@
+import "@/lib/orpc.server";
+
 import { HeartIcon } from "lucide-react";
 import { type Metadata } from "next";
 import Image from "next/image";
