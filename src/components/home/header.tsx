@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { Image } from "@unpic/react/nextjs";
 import { getTranslations } from "next-intl/server";
 
 import headerBackground from "@/app/[locale]/assets/images/header-background.png";
@@ -13,12 +13,11 @@ export async function Header() {
     <div className="relative min-h-dvh overflow-hidden pt-14">
       <Image
         src={headerBackground}
-        className="absolute inset-0 -z-20 size-full object-cover"
-        placeholder="blur"
+        className="absolute inset-0 -z-20 size-full"
+        layout="fullWidth"
         alt=""
-        fill
         priority
-        sizes="100vw"
+        background={headerBackground.blurDataURL}
       />
       <div className="absolute inset-0 -z-10 bg-slate-900/50" />
       <Container className="flex min-h-dvh flex-col items-center justify-between gap-12 lg:flex-row lg:gap-0">

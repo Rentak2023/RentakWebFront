@@ -44,6 +44,7 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     // typedRoutes: true,
+    useCache: true,
     reactCompiler: true,
     staleTimes: {
       dynamic: 30,

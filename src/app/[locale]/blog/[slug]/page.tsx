@@ -1,4 +1,5 @@
-import Image from "next/image";
+import { blurhashToCssGradientString } from "@unpic/placeholder";
+import { Image } from "@unpic/react/nextjs";
 import { notFound } from "next/navigation";
 import { getLocale } from "next-intl/server";
 import { type BlogPosting, type WithContext } from "schema-dts";
@@ -64,6 +65,12 @@ const PostLayout = async (
   });
   if (article == null) return notFound();
 
+  const blurhash = await orpcClient.placeholder.blurhash({
+    url: article.picture,
+  });
+
+  const gradient = blurhashToCssGradientString(blurhash.encoded);
+
   const jsonLd: WithContext<BlogPosting> = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -106,13 +113,14 @@ const PostLayout = async (
           <Image
             src={article.picture}
             alt={`Featured image for article: ${article.title}`}
-            width={1200}
-            height={630}
-            className="mx-auto mb-8 size-full overflow-hidden rounded-2xl object-cover"
+            width={576}
+            height={384}
+            className="mx-auto mb-8 size-full overflow-hidden rounded-2xl"
             priority
             loading="eager"
             fetchPriority="high"
             itemProp="image"
+            background={gradient}
           />
         </div>
         <article

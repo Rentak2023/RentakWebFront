@@ -1,5 +1,5 @@
 "use client";
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useSuspenseQueries, useSuspenseQuery } from "@tanstack/react-query";
 import { useLocale, useTranslations } from "next-intl";
 import { useQueryStates } from "nuqs";
 import { Suspense } from "react";
@@ -77,6 +77,12 @@ function Units() {
     }),
   );
 
+  const blurHashQueries = useSuspenseQueries({
+    queries: properties.items.map((item) =>
+      orpc.placeholder.blurhash.queryOptions({ input: { url: item.picture } }),
+    ),
+  });
+
   return (
     <>
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
@@ -85,7 +91,13 @@ function Units() {
             <p className="text-lg text-slate-600">{t("noProperties")}</p>
           </div>
         ) : (
-          properties.items.map((item) => <Unit key={item.id} item={item} />)
+          properties.items.map((item, index) => (
+            <Unit
+              key={item.id}
+              item={item}
+              blurhash={blurHashQueries.at(index)?.data.encoded}
+            />
+          ))
         )}
       </div>
       <Pagination totalPages={Math.ceil(properties.total_count / 10)} />

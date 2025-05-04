@@ -10,4 +10,5 @@ export const router = {
   products: os.lazy(() => import("./products")),
   dashboard: os.lazy(() => import("./dashboard")),
   promo: os.lazy(() => import("./promo")),
+  placeholder: os.lazy(() => import("./placeholder")),
 };

@@ -16,13 +16,16 @@ async function UnitsSlider() {
   const units = await orpcClient.units.home({
     locale,
   });
+  const blurHashes = await Promise.all(
+    units.map((unit) => orpcClient.placeholder.blurhash({ url: unit.picture })),
+  );
 
   return (
     <Carousel>
       <CarouselContent>
-        {units.map((unit) => (
+        {units.map((unit, index) => (
           <CarouselItem key={unit.id} className="md:basis-1/2 lg:basis-1/3">
-            <Unit item={unit} />
+            <Unit item={unit} blurhash={blurHashes.at(index)?.encoded} />
           </CarouselItem>
         ))}
       </CarouselContent>

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { Image } from "@unpic/react/nextjs";
 import { getTranslations } from "next-intl/server";
 
 import whyUsBackground from "@/app/[locale]/assets/images/why-choose-us.png";
@@ -70,10 +70,10 @@ export async function WhyUs() {
           <Image
             src={whyUsBackground}
             alt=""
-            className="w-full rounded-lg object-cover"
-            placeholder="blur"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="rounded-lg"
+            background={whyUsBackground.blurDataURL}
             width={416}
+            height={548}
           />
         </div>
       </div>

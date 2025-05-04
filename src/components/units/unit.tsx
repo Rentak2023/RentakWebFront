@@ -1,4 +1,5 @@
-import Image from "next/image";
+import { blurhashToCssGradientString } from "@unpic/placeholder";
+import { Image } from "@unpic/react/nextjs";
 import { useFormatter, useTranslations } from "next-intl";
 
 import AreaIcon from "@/app/[locale]/assets/svgs/area-icon";
@@ -25,11 +26,14 @@ type UnitProps = {
     | "property_name"
     | "property_type"
   >;
+  blurhash?: string;
 };
 
-function Unit({ item }: UnitProps) {
+function Unit({ item, blurhash }: UnitProps) {
   const t = useTranslations("unit");
   const formatter = useFormatter();
+
+  const gradient = blurhash ? blurhashToCssGradientString(blurhash) : "";
 
   const formatCurrency = (amount: number) => {
     return formatter
@@ -51,9 +55,11 @@ function Unit({ item }: UnitProps) {
           <Image
             src={item.picture}
             className="rounded-t-lg object-cover"
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            height={320}
+            width={500}
+            layout="fullWidth"
             alt=""
+            background={gradient}
           />
 
           <div className="absolute bottom-4 end-4 rounded-lg bg-white px-3 py-1.5">

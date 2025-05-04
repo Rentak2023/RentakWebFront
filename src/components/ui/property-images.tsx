@@ -2,8 +2,8 @@
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 
+import { Image } from "@unpic/react/nextjs";
 import { CameraIcon } from "lucide-react";
-import Image from "next/image";
 import { useState } from "react";
 import { Lightbox } from "yet-another-react-lightbox";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
@@ -28,7 +28,7 @@ type PropertyImagesTypes = {
 
 export default function PropertyImages({ images }: PropertyImagesTypes) {
   const [isOpen, setIsOpen] = useState(false);
-  const [photoIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const [firstImage, ...otherImages] = images;
 
@@ -48,11 +48,12 @@ export default function PropertyImages({ images }: PropertyImagesTypes) {
           }}
         >
           <Image
-            className="object-cover"
+            className="object-center"
             src={firstImage.url}
+            layout="fullWidth"
+            height={600}
+            width={900}
             alt=""
-            sizes="(max-width: 1024px) 100vw, 50vw"
-            fill
             priority
           />
           <div className="absolute inset-0 transition-all duration-200 group-hover:bg-slate-900/70" />
@@ -75,12 +76,11 @@ export default function PropertyImages({ images }: PropertyImagesTypes) {
                 }}
               >
                 <Image
-                  className="object-cover"
                   src={image.url}
                   alt=""
-                  sizes="(max-width: 1024px) 25vw, 15vw"
-                  fill
                   priority
+                  height={250}
+                  width={250}
                 />
                 <div className="absolute inset-0 transition-all duration-200 group-hover:bg-slate-900/70" />
                 <div className="invisible absolute end-0 start-0 top-1/2 -translate-y-1/2 text-center group-hover:visible">
@@ -101,7 +101,7 @@ export default function PropertyImages({ images }: PropertyImagesTypes) {
 
       <Lightbox
         open={isOpen}
-        index={photoIndex}
+        index={activeIndex}
         close={() => {
           setIsOpen(false);
         }}
