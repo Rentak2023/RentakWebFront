@@ -9,4 +9,5 @@ export const router = {
   paymentMethods: os.lazy(() => import("./payment-methods")),
   products: os.lazy(() => import("./products")),
   dashboard: os.lazy(() => import("./dashboard")),
+  promo: os.lazy(() => import("./promo")),
 };

@@ -84,7 +84,7 @@ export function getUnitSlug(unit: {
 
 export function getIdFromSlug(slug: string) {
   const id = slug.split("-").pop();
-  if (!id) {
+  if (!id || Number.isNaN(Number(id))) {
     throw new Error("Invalid slug");
   }
   return id;

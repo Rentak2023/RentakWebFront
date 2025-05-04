@@ -8,7 +8,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import Unit from "@/components/unit";
+import Unit from "@/components/units/unit";
 import { orpcClient } from "@/lib/orpc";
 
 async function UnitsSlider() {

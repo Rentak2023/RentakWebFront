@@ -1,7 +1,7 @@
 "use client";
 import { sendGAEvent } from "@next/third-parties/google";
-import { useSuspenseQuery } from "@tanstack/react-query";
-import { HTTPError } from "ky";
+import { isDefinedError } from "@orpc/client";
+import { useMutation, useSuspenseQuery } from "@tanstack/react-query";
 import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 import * as v from "valibot";
@@ -10,7 +10,6 @@ import isNumeric from "validator/es/lib/isNumeric";
 
 import { useToast } from "@/components/ui/use-toast";
 import { orpc, orpcClient } from "@/lib/orpc";
-import { checkPromoCode } from "@/services/promo";
 
 import { maintenancePaymentAction } from "../actions/maintenance-payment";
 import { ServiceForms } from "../service-forms";
@@ -73,7 +72,25 @@ export default function MaintenanceForm() {
   const [userId, setUserId] = useState<number | null>(null);
   const [discount, setDiscount] = useState<number>(0);
   const { toast } = useToast();
-
+  const checkPromoMutation = useMutation(
+    orpc.promo.check.mutationOptions({
+      onSuccess: (data) => {
+        setDiscount(data.promocode.discount);
+        toast({
+          title: "Success",
+          description: "Promo code applied",
+        });
+      },
+      onError: (error) => {
+        if (isDefinedError(error) && error.code === "GENERIC_ERROR") {
+          toast({
+            title: error.data.message,
+            variant: "destructive",
+          });
+        }
+      },
+    }),
+  );
   const steps = [
     {
       label: t("steps.profile-info.label"),
@@ -395,28 +412,16 @@ export default function MaintenanceForm() {
           description: t("fields.promo-code.description"),
           actionText: t("fields.promo-code.action-text"),
           action: async (data) => {
-            try {
+            const res = await checkPromoMutation.mutateAsync({
+              code: data.promo_code,
               // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-              const res = await checkPromoCode(data.promo_code, userId!);
-              setDiscount(res.promocode.discount);
-              toast({
-                title: "Success",
-                description: "Promo code applied",
-              });
-            } catch (error) {
-              let message = "Something went wrong";
-              if (error instanceof HTTPError && error.response.status === 400) {
-                const errorRes = await error.response.json<{
-                  message: string;
-                }>();
-                message = errorRes.message;
-              }
-              toast({
-                title: "Error",
-                description: message,
-                variant: "destructive",
-              });
-            }
+              user_id: userId!,
+            });
+            setDiscount(res.promocode.discount);
+            toast({
+              title: "Success",
+              description: "Promo code applied",
+            });
           },
         },
         {

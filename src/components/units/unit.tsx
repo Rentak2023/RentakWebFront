@@ -12,7 +12,19 @@ import { type UnitSchema } from "@/schemas/units";
 import URLS from "@/shared/urls";
 
 type UnitProps = {
-  item: UnitSchema;
+  item: Pick<
+    UnitSchema,
+    | "id"
+    | "picture"
+    | "english_name"
+    | "rooms"
+    | "area"
+    | "bathrom_numbers"
+    | "price"
+    | "is_inspection"
+    | "property_name"
+    | "property_type"
+  >;
 };
 
 function Unit({ item }: UnitProps) {

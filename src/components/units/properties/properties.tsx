@@ -7,7 +7,7 @@ import { Suspense } from "react";
 import UnitsSkeleton from "@/components/home/units/units-skeleton";
 import Container from "@/components/ui/container";
 import { Skeleton } from "@/components/ui/skeleton";
-import Unit from "@/components/unit";
+import Unit from "@/components/units/unit";
 import { orpc } from "@/lib/orpc";
 import { propertiesQueryParsers } from "@/services/properties";
 

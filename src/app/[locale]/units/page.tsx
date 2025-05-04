@@ -5,12 +5,14 @@ import type { ItemList, WebPage, WithContext } from "schema-dts";
 
 import Properties from "@/components/units/properties/properties";
 import SearchForm from "@/components/units/search-form/search-form";
-import { orpcClient } from "@/lib/orpc";
+import { orpc, orpcClient } from "@/lib/orpc";
 import { generateAlternatesLinks } from "@/lib/utils";
 import {
   propertiesQueryCache,
   propertiesQueryParsers,
 } from "@/services/properties";
+
+import { makeQueryClient } from "../get-query-client";
 
 const serialize = createSerializer(propertiesQueryParsers);
 
@@ -63,10 +65,17 @@ export default async function UnitsPage(
   const locale = await getLocale();
 
   const parsedParams = propertiesQueryCache.parse(searchParams);
-  const properties = await orpcClient.units.list({
-    ...parsedParams,
-    lang: locale,
-  });
+
+  const queryCLient = makeQueryClient();
+
+  const properties = await queryCLient.fetchQuery(
+    orpc.units.list.queryOptions({
+      input: {
+        ...parsedParams,
+        lang: locale,
+      },
+    }),
+  );
 
   const structuredData: [WithContext<WebPage>, WithContext<ItemList>] = [
     {
