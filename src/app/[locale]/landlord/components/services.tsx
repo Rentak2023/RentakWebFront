@@ -28,7 +28,7 @@ export default function Services() {
       description: t("finishing-financing.description"),
       cta: t("finishing-financing.cta"),
       Icon: ShieldCheckIcon,
-      href: "/property-valuation",
+      href: "/finish-property",
     },
     {
       title: t("maintenance-financing.title"),
