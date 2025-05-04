@@ -25,7 +25,7 @@ async function UnitsSlider() {
       <CarouselContent>
         {units.map((unit, index) => (
           <CarouselItem key={unit.id} className="md:basis-1/2 lg:basis-1/3">
-            <Unit item={unit} blurhash={blurHashes.at(index)?.encoded} />
+            <Unit item={unit} blurhash={blurHashes.at(index)} />
           </CarouselItem>
         ))}
       </CarouselContent>
