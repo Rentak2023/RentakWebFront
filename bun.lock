@@ -37,6 +37,7 @@
         "@tanstack/react-query-devtools": "^5.75.2",
         "@tanstack/react-query-next-experimental": "^5.75.2",
         "@tanstack/react-table": "^8.21.3",
+        "@unpic/placeholder": "^0.1.2",
         "@unpic/react": "^1.0.1",
         "babel-plugin-react-compiler": "^19.1.0-rc.1",
         "blurhash": "^2.0.5",
@@ -946,6 +947,8 @@
     "@typescript-eslint/visitor-keys": ["@typescript-eslint/visitor-keys@8.31.0", "", { "dependencies": { "@typescript-eslint/types": "8.31.0", "eslint-visitor-keys": "^4.2.0" } }, "sha512-QcGHmlRHWOl93o64ZUMNewCdwKGU6WItOU52H0djgNmn1EOrhVudrDzXz4OycCRSCPwFCDrE2iIt5vmuUdHxuQ=="],
 
     "@unpic/core": ["@unpic/core@1.0.1", "", { "dependencies": { "unpic": "^4.0.1" } }, "sha512-e0cwxOhtWPd4J32rV1V6jFmDGAi1r4p/f+lDqlnx+fhgFwMTyQQKw5lL7VEthUPBHFNaNBsXNbNKwnaIs2V71Q=="],
+
+    "@unpic/placeholder": ["@unpic/placeholder@0.1.2", "", { "dependencies": { "blurhash": "^2.0.5" } }, "sha512-O++tS97biojo5sqn5TeTt+jUjl5gWOdIQuOXe8YluTJWq4L0GM6VuTkaspNpsmxHfioJw/6YBirzOpG4t87l8Q=="],
 
     "@unpic/react": ["@unpic/react@1.0.1", "", { "dependencies": { "@unpic/core": "^1.0.1" }, "peerDependencies": { "next": "^13.0.0 || ^14.0.0 || ^15.0.0", "react": "^17.0.0 || ^18.0.0 || ^19.0.0", "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0" }, "optionalPeers": ["next"] }, "sha512-JmKVmf7ZhKDlVFK8yfbgiWp9K4rXXovE8mWrbkqjDJHKhDqbF5uUp7754Tk7oNSYJcvIXfH8P/nYRCfG2ca0/w=="],
 

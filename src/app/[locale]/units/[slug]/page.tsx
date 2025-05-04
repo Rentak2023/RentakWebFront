@@ -121,6 +121,20 @@ export default async function UnitPage(
     notFound();
   }
 
+  const images = await Promise.all(
+    property.gallary.map(async (img) => {
+      const blurhashResult = await orpcClient.placeholder.blurhash({
+        url: img.url,
+      });
+      return {
+        id: img.id,
+        url: img.url,
+        type: img.type,
+        blurhash: blurhashResult.encoded,
+      };
+    }),
+  );
+
   if (slug !== getUnitSlug(property)) {
     return permanentRedirect(
       {
@@ -214,7 +228,7 @@ export default async function UnitPage(
           </Breadcrumb>
           <div className="grid items-start gap-4 lg:grid-cols-5">
             <div className="lg:col-span-3">
-              <PropertyImages images={property.gallary} />
+              <PropertyImages images={images} />
 
               <div className="flex flex-row items-center gap-1">
                 <h3 className="text-3xl font-semibold text-slate-800">

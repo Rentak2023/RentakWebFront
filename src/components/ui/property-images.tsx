@@ -2,6 +2,7 @@
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 
+import { blurhashToCssGradientString } from "@unpic/placeholder";
 import { Image } from "@unpic/react/nextjs";
 import { CameraIcon } from "lucide-react";
 import { useState } from "react";
@@ -23,6 +24,7 @@ type PropertyImagesTypes = {
     id: number;
     url: string;
     type: number | null;
+    blurhash?: string;
   }>;
 };
 
@@ -55,6 +57,10 @@ export default function PropertyImages({ images }: PropertyImagesTypes) {
             width={900}
             alt=""
             priority
+            background={
+              firstImage.blurhash
+              && blurhashToCssGradientString(firstImage.blurhash)
+            }
           />
           <div className="absolute inset-0 transition-all duration-200 group-hover:bg-slate-900/70" />
           <div className="invisible absolute end-0 start-0 top-1/2 -translate-y-1/2 text-center group-hover:visible">
@@ -81,6 +87,10 @@ export default function PropertyImages({ images }: PropertyImagesTypes) {
                   priority
                   height={250}
                   width={250}
+                  background={
+                    image.blurhash
+                    && blurhashToCssGradientString(image.blurhash)
+                  }
                 />
                 <div className="absolute inset-0 transition-all duration-200 group-hover:bg-slate-900/70" />
                 <div className="invisible absolute end-0 start-0 top-1/2 -translate-y-1/2 text-center group-hover:visible">
