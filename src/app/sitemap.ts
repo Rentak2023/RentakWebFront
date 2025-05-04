@@ -1,3 +1,5 @@
+import "@/lib/orpc.server";
+
 import { type MetadataRoute } from "next";
 
 import { getPathname, routing } from "@/i18n/routing";
