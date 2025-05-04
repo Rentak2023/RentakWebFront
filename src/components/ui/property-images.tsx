@@ -24,7 +24,7 @@ type PropertyImagesTypes = {
     id: number;
     url: string;
     type: number | null;
-    blurhash?: string;
+    blurhash?: string | null;
   }>;
 };
 
@@ -59,7 +59,8 @@ export default function PropertyImages({ images }: PropertyImagesTypes) {
             priority
             background={
               firstImage.blurhash
-              && blurhashToCssGradientString(firstImage.blurhash)
+                ? blurhashToCssGradientString(firstImage.blurhash)
+                : ""
             }
           />
           <div className="absolute inset-0 transition-all duration-200 group-hover:bg-slate-900/70" />
@@ -89,7 +90,8 @@ export default function PropertyImages({ images }: PropertyImagesTypes) {
                   width={250}
                   background={
                     image.blurhash
-                    && blurhashToCssGradientString(image.blurhash)
+                      ? blurhashToCssGradientString(image.blurhash)
+                      : ""
                   }
                 />
                 <div className="absolute inset-0 transition-all duration-200 group-hover:bg-slate-900/70" />

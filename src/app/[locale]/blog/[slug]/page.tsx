@@ -69,7 +69,7 @@ const PostLayout = async (
     url: article.picture,
   });
 
-  const gradient = blurhashToCssGradientString(blurhash.encoded);
+  const gradient = blurhash ? blurhashToCssGradientString(blurhash) : "";
 
   const jsonLd: WithContext<BlogPosting> = {
     "@context": "https://schema.org",

@@ -122,17 +122,14 @@ export default async function UnitPage(
   }
 
   const images = await Promise.all(
-    property.gallary.map(async (img) => {
-      const blurhashResult = await orpcClient.placeholder.blurhash({
+    property.gallary.map(async (img) => ({
+      id: img.id,
+      url: img.url,
+      type: img.type,
+      blurhash: await orpcClient.placeholder.blurhash({
         url: img.url,
-      });
-      return {
-        id: img.id,
-        url: img.url,
-        type: img.type,
-        blurhash: blurhashResult.encoded,
-      };
-    }),
+      }),
+    })),
   );
 
   if (slug !== getUnitSlug(property)) {

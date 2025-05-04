@@ -95,7 +95,7 @@ function Units() {
             <Unit
               key={item.id}
               item={item}
-              blurhash={blurHashQueries.at(index)?.data.encoded}
+              blurhash={blurHashQueries.at(index)?.data}
             />
           ))
         )}

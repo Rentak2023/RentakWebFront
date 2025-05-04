@@ -3,12 +3,6 @@ import * as v from "valibot";
 import { blurhashFromURL } from "@/lib/placeholder";
 import { pub } from "@/orpc";
 
-const PlaceholderSchema = v.object({
-  encoded: v.string(),
-  width: v.number(),
-  height: v.number(),
-});
-
 export const blurhash = pub
   .route({
     method: "GET",
@@ -21,9 +15,14 @@ export const blurhash = pub
       url: v.string(),
     }),
   )
-  .output(PlaceholderSchema)
+  .output(v.nullable(v.string()))
   .handler(async ({ input }) => {
-    return blurhashFromURL(input.url);
+    try {
+      const res = await blurhashFromURL(input.url);
+      return res.encoded;
+    } catch {
+      return null;
+    }
   });
 
 export default {

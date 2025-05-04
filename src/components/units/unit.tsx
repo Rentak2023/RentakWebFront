@@ -26,7 +26,7 @@ type UnitProps = {
     | "property_name"
     | "property_type"
   >;
-  blurhash?: string;
+  blurhash?: string | null;
 };
 
 function Unit({ item, blurhash }: UnitProps) {
