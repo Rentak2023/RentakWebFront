@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "eslint": {
+      "command": "npx",
+      "args": ["eslint", "--mcp"]
+    },
+    "git": {
+      "command": "uvx",
+      "args": ["mcp-server-git"],
+      "alwaysAllow": [
+        "git_status",
+        "git_diff_unstaged",
+        "git_diff_staged",
+        "git_diff",
+        "git_show"
+      ]
+    }
+  }
+}
