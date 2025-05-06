@@ -1,7 +1,7 @@
 "use client";
 
-import * as ProgressPrimitive from "@radix-ui/react-progress";
 import { useLocale } from "next-intl";
+import { Progress as ProgressPrimitive } from "radix-ui";
 import * as React from "react";
 
 import { cn, getLocaleDirection } from "@/lib/utils";

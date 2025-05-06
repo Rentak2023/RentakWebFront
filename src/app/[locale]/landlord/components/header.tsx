@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { Image } from "@unpic/react/nextjs";
 import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
@@ -14,12 +14,11 @@ export default function Header() {
     <div className="relative isolate min-h-dvh overflow-hidden pt-16">
       <Image
         src={headerBackground}
-        className="absolute inset-0 -z-20 size-full object-cover"
-        placeholder="blur"
+        className="absolute inset-0 -z-20 size-full"
+        background={headerBackground.blurDataURL}
         alt=""
-        fill
+        layout="fullWidth"
         priority
-        sizes="100vw"
       />
       <div className="absolute inset-0 -z-10 bg-[#181A20]/60" />
       <Container className="flex min-h-dvh flex-col items-center justify-start gap-12 lg:flex-row lg:gap-0">

@@ -95,26 +95,7 @@ export default defineConfig(
       "barrel-files/avoid-namespace-import": [
         "error",
         {
-          allowList: [
-            "@radix-ui/react-accordion",
-            "@radix-ui/react-checkbox",
-            "@radix-ui/react-collapsible",
-            "@radix-ui/react-dialog",
-            "@radix-ui/react-dropdown-menu",
-            "@radix-ui/react-label",
-            "@radix-ui/react-popover",
-            "@radix-ui/react-progress",
-            "@radix-ui/react-radio-group",
-            "@radix-ui/react-select",
-            "@radix-ui/react-separator",
-            "@radix-ui/react-slider",
-            "@radix-ui/react-tabs",
-            "@radix-ui/react-toast",
-            "motion/react-client",
-            "remeda",
-            "react",
-            "valibot",
-          ],
+          allowList: ["motion/react-client", "remeda", "react", "valibot"],
         },
       ],
       // `lucid-react` is exporting barrel files. but nextjs handles it correctly
