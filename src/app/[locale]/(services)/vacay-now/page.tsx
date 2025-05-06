@@ -1,3 +1,4 @@
+import { PlayIcon } from "lucide-react";
 import { type Metadata } from "next";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
@@ -12,10 +13,12 @@ import valuLogo from "@/app/[locale]/assets/images/logos/valu.png";
 import visaLogo from "@/app/[locale]/assets/images/logos/visa.png";
 import { Button } from "@/components/ui/button";
 import Container from "@/components/ui/container";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Link } from "@/i18n/routing";
 import { generateAlternatesLinks } from "@/lib/utils";
 
 import poster from "./poster.png";
+import videoPreview from "./video-preview.png";
 
 const partners = [
   {
@@ -65,6 +68,7 @@ export function generateMetadata(): Metadata {
 
 export default function VacayNow() {
   const t = useTranslations("services");
+
   const steps = [
     {
       title: t("rent-payment.steps.select-unit.title"),
@@ -90,6 +94,7 @@ export default function VacayNow() {
         <Image
           className="absolute inset-0 -z-20 size-full object-cover"
           src={poster}
+          placeholder="blur"
           alt=""
           fill
         />
@@ -111,10 +116,9 @@ export default function VacayNow() {
         </Container>
       </header>
       <div>
-        <Container className="mt-16 flex flex-col items-center">
-          <h2 className="text-3xl text-slate-600">Trusted Payments</h2>
-          <ul className="mt-12 flex gap-x-12 gap-y-8">
-            <li className="hidden md:block"></li>
+        <Container className="mt-8 flex flex-col items-center">
+          <h2 className="text-lg text-slate-600">Trusted Payments</h2>
+          <ul className="mt-8 flex flex-wrap items-center justify-center gap-x-12 gap-y-8">
             {partners.map((partner) => (
               <li
                 key={partner.name}
@@ -146,9 +150,31 @@ export default function VacayNow() {
             ))}
           </ol>
         </div>
-        <div className="max-w-sm">
-          <Player src="https://3djfa6xdh712ppgh.public.blob.vercel-storage.com/videos/vacay-now-wIly0m3ERIALWWgax0V2e4vmjYTFXa.mp4" />
-        </div>
+        <Dialog>
+          <DialogTrigger asChild>
+            <div className="relative cursor-pointer rounded-lg shadow-lg">
+              <Image
+                src={videoPreview}
+                alt="Video Preview"
+                width={400}
+                height={225}
+                className="rounded-lg"
+              />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="inline-flex items-center justify-center rounded-full bg-slate-900/40 p-4">
+                  <PlayIcon className="size-12 fill-white text-white" />
+                </span>
+              </div>
+            </div>
+          </DialogTrigger>
+          <DialogContent className="w-fit p-1">
+            <Player
+              src="https://3djfa6xdh712ppgh.public.blob.vercel-storage.com/videos/vacay-now-wIly0m3ERIALWWgax0V2e4vmjYTFXa.mp4"
+              autoPlay
+              className="max-h-[calc(100dvh-6rem)]"
+            />
+          </DialogContent>
+        </Dialog>
       </Container>
     </main>
   );
