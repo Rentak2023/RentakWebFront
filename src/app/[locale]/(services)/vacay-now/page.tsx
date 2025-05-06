@@ -1,6 +1,8 @@
 import { PlayIcon } from "lucide-react";
 import { type Metadata } from "next";
 import Image from "next/image";
+// eslint-disable-next-line no-restricted-imports
+import Link from "next/link";
 import { useTranslations } from "next-intl";
 import Player from "next-video/player";
 
@@ -14,7 +16,6 @@ import visaLogo from "@/app/[locale]/assets/images/logos/visa.png";
 import { Button } from "@/components/ui/button";
 import Container from "@/components/ui/container";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { Link } from "@/i18n/routing";
 import { generateAlternatesLinks } from "@/lib/utils";
 
 import poster from "./poster.png";
@@ -111,7 +112,9 @@ export default function VacayNow() {
             className="bg-primary-600 hover:bg-primary-600/90 mt-6"
             asChild
           >
-            <Link href="/rent-payment">Vacay Now</Link>
+            <Link href="/rent-payment" key="123">
+              Vacay Now
+            </Link>
           </Button>
         </Container>
       </header>
