@@ -99,22 +99,21 @@ export default function VacayNow() {
           alt=""
           fill
         />
-        <div className="absolute inset-0 -z-10 bg-[#181A20]/60" />
+        <div className="absolute inset-0 -z-10 bg-black/60" />
         <Container className="flex flex-1 flex-col items-center justify-center">
-          <h1 className="text-pretty text-4xl font-bold tracking-tight text-white sm:text-6xl">
+          <h1 className="text-pretty text-4xl font-semibold tracking-tight text-white sm:text-6xl">
             Vacay Now, Pay Later!
           </h1>
-          <p className="mt-6 text-lg/8 text-slate-300">
-            Pay in up to 60 months installments
+          <p className="mt-6 max-w-60 text-balance text-lg/8 text-slate-100 sm:text-3xl">
+            Installment plan up to <strong className="font-semibold">60</strong>{" "}
+            months
           </p>
           <Button
             size="xl"
-            className="bg-primary-600 hover:bg-primary-600/90 mt-6"
+            className="bg-primary-600 hover:bg-primary-600/90 mt-12"
             asChild
           >
-            <Link href="/rent-payment" key="123">
-              Vacay Now
-            </Link>
+            <Link href="/rent-payment">Pay Now</Link>
           </Button>
         </Container>
       </header>
@@ -137,12 +136,13 @@ export default function VacayNow() {
           </ul>
         </Container>
       </div>
-      <Container className="text-primary-900 mx-auto mt-16 flex flex-col items-center justify-between gap-4 rounded-lg bg-slate-100 py-16 lg:flex-row">
+      <Container className="text-primary-900 mx-auto mt-16 flex flex-col items-center justify-between gap-4 rounded-lg bg-slate-100 py-12 lg:flex-row">
         <div className="flex flex-col items-start">
+          <h2 className="text-3xl font-semibold sm:text-5xl">How it works</h2>
           <ol className="[counter-reset:item mt-8 flex max-w-2xl flex-col gap-4">
             {steps.map((step) => (
               <li
-                className="before:bg-primary-600 flex items-baseline gap-4 [counter-increment:item] before:inline-flex before:size-6 before:shrink-0 before:items-center before:justify-center before:rounded-full before:text-sm before:text-white before:content-[counter(item)]"
+                className="before:bg-primary-800 flex items-baseline gap-4 [counter-increment:item] before:inline-flex before:size-6 before:shrink-0 before:items-center before:justify-center before:rounded-full before:text-sm before:text-white before:content-[counter(item)]"
                 key={step.title}
               >
                 <div className="flex flex-col gap-1">

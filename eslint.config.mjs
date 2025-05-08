@@ -8,7 +8,7 @@ import react from "@eslint-react/eslint-plugin";
 import tanStackQuery from "@tanstack/eslint-plugin-query";
 import { defineConfig, globalIgnores } from "eslint/config";
 import configPrettier from "eslint-config-prettier";
-import { createOxcImportResolver } from "eslint-import-resolver-oxc";
+import { createTypeScriptImportResolver } from "eslint-import-resolver-typescript";
 import barrellFiles from "eslint-plugin-barrel-files";
 import importX from "eslint-plugin-import-x";
 import promise from "eslint-plugin-promise";
@@ -177,7 +177,7 @@ export default defineConfig(
       tailwindcss: {
         callees: ["cn"],
       },
-      "import-x/resolver-next": [createOxcImportResolver({})],
+      "import-x/resolver-next": [createTypeScriptImportResolver({})],
     },
     linterOptions: {
       reportUnusedDisableDirectives: "warn",
