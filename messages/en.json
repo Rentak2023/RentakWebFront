@@ -481,7 +481,7 @@
       },
       "total-amount": {
         "label": "Total Amount",
-        "description": "Total amount = rent amount + {fees, number}% service fees"
+        "description": "Total Amount Including {fees, number}% Service Fees"
       },
       "contract-start-date": {
         "label": "Contract Start Date",
