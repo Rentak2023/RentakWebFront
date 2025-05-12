@@ -11,6 +11,7 @@ import halanLogo from "@/app/[locale]/assets/images/logos/halan.png";
 import mastercardLogo from "@/app/[locale]/assets/images/logos/mastercard.png";
 import meezaLogo from "@/app/[locale]/assets/images/logos/Meeza.svg";
 import souhoolaLogo from "@/app/[locale]/assets/images/logos/souhoola.png";
+import truLogo from "@/app/[locale]/assets/images/logos/tru.png";
 import valuLogo from "@/app/[locale]/assets/images/logos/valu.png";
 import visaLogo from "@/app/[locale]/assets/images/logos/visa.png";
 import { Button } from "@/components/ui/button";
@@ -23,35 +24,36 @@ import videoPreview from "./video-preview.png";
 
 const partners = [
   {
-    name: "valu",
-    logo: valuLogo,
-  },
-
-  {
-    name: "souhoola",
-    logo: souhoolaLogo,
-  },
-  {
-    name: "Forsa",
-    logo: forsaLogo,
-  },
-
-  {
-    name: "halan",
-    logo: halanLogo,
+    name: "visa",
+    logo: visaLogo,
   },
   {
     name: "mastercard",
     logo: mastercardLogo,
   },
   {
-    name: "visa",
-    logo: visaLogo,
-  },
-
-  {
     name: "Meeza",
     logo: meezaLogo,
+  },
+  {
+    name: "valu",
+    logo: valuLogo,
+  },
+  {
+    name: "souhoola",
+    logo: souhoolaLogo,
+  },
+  {
+    name: "halan",
+    logo: halanLogo,
+  },
+  {
+    name: "Forsa",
+    logo: forsaLogo,
+  },
+  {
+    name: "Tru",
+    logo: truLogo,
   },
 ];
 
@@ -91,7 +93,7 @@ export default function VacayNow() {
 
   return (
     <main>
-      <header className="min-h-140 relative isolate flex">
+      <header className="min-h-120 relative isolate flex pt-12">
         <Image
           className="absolute inset-0 -z-20 size-full object-cover"
           src={poster}
