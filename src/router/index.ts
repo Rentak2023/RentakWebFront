@@ -11,4 +11,5 @@ export const router = {
   dashboard: os.lazy(() => import("./dashboard")),
   promo: os.lazy(() => import("./promo")),
   placeholder: os.lazy(() => import("./placeholder")),
+  leads: os.lazy(() => import("./leads")),
 };
