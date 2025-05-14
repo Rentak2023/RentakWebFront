@@ -17,7 +17,6 @@ export function NavigationEvents() {
     const _push = router.push.bind(router);
     const _replace = router.replace.bind(router);
 
-    // eslint-disable-next-line react-hooks/react-compiler
     router.push = (href, options) => {
       startTransition(() => {
         nProgress.start();

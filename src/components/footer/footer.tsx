@@ -1,4 +1,5 @@
-import Container from "../ui/container";
+import Container from "@/components/ui/container";
+
 import Copyright from "./footer-copyright";
 import Links from "./links";
 import Logo from "./logo";

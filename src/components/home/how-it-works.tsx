@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 
-import Container from "../ui/container";
+import Container from "@/components/ui/container";
+
 import SectionTitle from "./components/section-title";
 
 export async function HowItWorks() {

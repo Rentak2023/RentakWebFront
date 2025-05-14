@@ -4,10 +4,9 @@ import FacebookIcon from "@/app/[locale]/assets/svgs/facebook-icon";
 import InstagramIcon from "@/app/[locale]/assets/svgs/instagram-icon";
 import LinkedinIcon from "@/app/[locale]/assets/svgs/linkedin-icon";
 import WhatsappIcon from "@/app/[locale]/assets/svgs/whatsapp-icon";
+import { Button } from "@/components/ui/button";
+import Container from "@/components/ui/container";
 import URLS from "@/shared/urls";
-
-import { Button } from "../ui/button";
-import Container from "../ui/container";
 
 async function Copyright() {
   const t = await getTranslations("footer");

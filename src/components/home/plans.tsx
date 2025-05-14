@@ -3,8 +3,8 @@ import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 
 import logo from "@/app/[locale]/assets/images/Logo.png";
+import Container from "@/components/ui/container";
 
-import Container from "../ui/container";
 import SectionTitle from "./components/section-title";
 
 export async function Plans() {

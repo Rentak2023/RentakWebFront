@@ -5,6 +5,7 @@ import { CalendarIcon, Loader2 } from "lucide-react";
 import { useFormatter, useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 
+import { createContractAction } from "@/app/[locale]/(services)/actions/create-contract";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
@@ -34,8 +35,6 @@ import { toast } from "@/components/ui/use-toast";
 import { useRouter } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 import { contractSchema } from "@/schemas/contract";
-
-import { createContractAction } from "../actions/create-contract";
 function ContractForm() {
   const t = useTranslations("contract");
   const formatter = useFormatter();

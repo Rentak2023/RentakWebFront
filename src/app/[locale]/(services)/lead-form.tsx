@@ -4,6 +4,7 @@ import { Loader2 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 
+import { bookCallAction } from "@/app/[locale]/actions/book-call";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import Container from "@/components/ui/container";
@@ -19,8 +20,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import { bookCallSchema } from "@/schemas/book-call";
-
-import { bookCallAction } from "../actions/book-call";
 
 type LeadFormProps = {
   serviceName: string;

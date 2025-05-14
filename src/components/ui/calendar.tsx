@@ -6,8 +6,9 @@ import { useLocale } from "next-intl";
 import type * as React from "react";
 import { DayPicker } from "react-day-picker";
 
-import { buttonVariants } from "@/components/ui/button";
 import { cn, getLocaleDirection } from "@/lib/utils";
+
+import { buttonVariants } from "./button";
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>;
 

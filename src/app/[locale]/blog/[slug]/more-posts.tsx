@@ -1,9 +1,8 @@
 import Image from "next/image";
 import { getLocale } from "next-intl/server";
 
+import { createExcerpt } from "@/app/[locale]/tenant/components/blog-posts";
 import { orpcClient } from "@/lib/orpc";
-
-import { createExcerpt } from "../../tenant/components/blog-posts";
 
 export default async function MorePosts() {
   const locale = await getLocale();

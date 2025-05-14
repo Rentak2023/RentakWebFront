@@ -1,7 +1,6 @@
-import { type formats } from "@/i18n/request";
-import { type routing } from "@/i18n/routing";
-
 import type en from "./messages/en.json";
+import { type formats } from "./src/i18n/request";
+import { type routing } from "./src/i18n/routing";
 
 declare module "next-intl" {
   // eslint-disable-next-line @typescript-eslint/consistent-type-definitions

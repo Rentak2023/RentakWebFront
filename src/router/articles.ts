@@ -1,9 +1,8 @@
 import * as v from "valibot";
 
+import { pub } from "@/orpc";
 import { ArticleSchema } from "@/schemas/articles";
 import { LocaleSchema } from "@/schemas/common";
-
-import { pub } from "../orpc";
 
 export const homeArticlesList = pub
   .route({

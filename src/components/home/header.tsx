@@ -2,8 +2,8 @@ import { Image } from "@unpic/react/nextjs";
 import { getTranslations } from "next-intl/server";
 
 import headerBackground from "@/app/[locale]/assets/images/header-background.png";
+import Container from "@/components/ui/container";
 
-import Container from "../ui/container";
 import { FindService } from "./find-service";
 
 export async function Header() {

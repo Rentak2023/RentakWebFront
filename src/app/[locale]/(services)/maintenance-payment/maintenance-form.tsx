@@ -8,12 +8,11 @@ import * as v from "valibot";
 import isMobilePhone from "validator/es/lib/isMobilePhone";
 import isNumeric from "validator/es/lib/isNumeric";
 
+import { maintenancePaymentAction } from "@/app/[locale]/(services)/actions/maintenance-payment";
+import { ServiceForms } from "@/app/[locale]/(services)/service-forms";
+import { type TStep } from "@/app/[locale]/(services)/types";
 import { useToast } from "@/components/ui/use-toast";
 import { orpc, orpcClient } from "@/lib/orpc";
-
-import { maintenancePaymentAction } from "../actions/maintenance-payment";
-import { ServiceForms } from "../service-forms";
-import { type TStep } from "../types";
 
 enum PaymentMethod {
   Bank = "4",

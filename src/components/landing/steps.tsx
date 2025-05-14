@@ -1,7 +1,7 @@
 import { type Variants } from "motion/react";
 import * as motion from "motion/react-client";
 
-import Container from "../ui/container";
+import Container from "@/components/ui/container";
 
 export type Step = {
   title: string;

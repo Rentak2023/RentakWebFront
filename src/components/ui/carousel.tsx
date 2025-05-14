@@ -7,8 +7,9 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useLocale } from "next-intl";
 import * as React from "react";
 
-import { Button } from "@/components/ui/button";
 import { cn, getLocaleDirection } from "@/lib/utils";
+
+import { Button } from "./button";
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;

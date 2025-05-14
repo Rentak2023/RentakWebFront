@@ -5,9 +5,8 @@ import { useFormatter, useLocale } from "next-intl";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
+import Container from "@/components/ui/container";
 import { getLocaleDirection } from "@/lib/utils";
-
-import Container from "../ui/container";
 
 export type Testimonial = {
   id: number;

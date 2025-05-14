@@ -25,7 +25,13 @@ import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 
 import logo from "@/app/[locale]/assets/images/Logo.png";
-import { Button } from "@/components/ui/button";
+import { Link, usePathname, useRouter } from "@/i18n/routing";
+import { cn } from "@/lib/utils";
+import { userLoggedInQuery } from "@/queries/user";
+import URLS from "@/shared/urls";
+
+import { Button } from "./ui/button";
+import Container from "./ui/container";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -34,13 +40,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Link, usePathname, useRouter } from "@/i18n/routing";
-import { cn } from "@/lib/utils";
-import { userLoggedInQuery } from "@/queries/user";
-import URLS from "@/shared/urls";
-
-import Container from "./ui/container";
+} from "./ui/dropdown-menu";
 
 function NavRight() {
   const pathname = usePathname();

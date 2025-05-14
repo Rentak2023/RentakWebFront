@@ -1,8 +1,7 @@
 import { type Metadata } from "next";
 
+import LeadForm from "@/app/[locale]/(services)/lead-form";
 import { generateAlternatesLinks } from "@/lib/utils";
-
-import LeadForm from "../lead-form";
 
 export function generateMetadata(): Metadata {
   return {

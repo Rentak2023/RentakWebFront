@@ -1,11 +1,11 @@
 import { getTranslations } from "next-intl/server";
 import { Suspense } from "react";
 
+import SectionTitle from "@/components/home/components/section-title";
 import Container from "@/components/ui/container";
 import { Link } from "@/i18n/routing";
 import URLS from "@/shared/urls";
 
-import SectionTitle from "../components/section-title";
 import UnitsSkeleton from "./units-skeleton";
 import UnitsSlider from "./units-slider";
 

@@ -6,8 +6,7 @@ import CertificateIcon from "@/app/[locale]/assets/svgs/certificate-icon";
 import CertifiedHomeIcon from "@/app/[locale]/assets/svgs/certified-home-icon";
 import PaymentOptionsIcon from "@/app/[locale]/assets/svgs/payment-options-icon";
 import RentIcon from "@/app/[locale]/assets/svgs/rent-icon";
-
-import Container from "../ui/container";
+import Container from "@/components/ui/container";
 
 export async function WhyUs() {
   const t = await getTranslations("home.why-us");

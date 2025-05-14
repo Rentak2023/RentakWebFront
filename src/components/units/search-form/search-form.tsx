@@ -14,9 +14,9 @@ import { useDebouncedCallback } from "use-debounce";
 
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
+import { type FormValues } from "@/components/units/types";
 import { orpc } from "@/lib/orpc";
 
-import { type FormValues } from "../types";
 import CitiesAndRegions from "./cities-and-regions";
 import FinishingTypes from "./finishing-types";
 import KeywordInput from "./keyword-input";

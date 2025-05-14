@@ -1,11 +1,11 @@
 import { BriefcaseIcon, HomeIcon, KeyIcon } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
+import { Button } from "@/components/ui/button";
+import Container from "@/components/ui/container";
 import { Link } from "@/i18n/routing";
 import URLS from "@/shared/urls";
 
-import { Button } from "../ui/button";
-import Container from "../ui/container";
 import SectionTitle from "./components/section-title";
 
 type Service = {

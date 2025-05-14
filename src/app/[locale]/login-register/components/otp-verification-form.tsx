@@ -2,6 +2,10 @@ import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
 import { useLocale, useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 
+import {
+  useResendOTP,
+  useVerifyOTP,
+} from "@/app/[locale]/login-register/hooks";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import {
@@ -18,8 +22,6 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 import { OTPSchema } from "@/schemas/auth";
-
-import { useResendOTP, useVerifyOTP } from "../hooks";
 
 type OTPVerificationFormProps = {
   userId: number;

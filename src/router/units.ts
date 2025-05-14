@@ -3,14 +3,13 @@ import { HTTPError } from "ky";
 import * as v from "valibot";
 
 import { inputToSearchParams } from "@/lib/utils";
+import { pub } from "@/orpc";
 import { LocaleSchema } from "@/schemas/common";
 import {
   UnitInspectionSchema,
   UnitSchema,
   UnitsListResponseSchema,
 } from "@/schemas/units";
-
-import { pub } from "../orpc";
 
 export const homeUnits = pub
   .route({

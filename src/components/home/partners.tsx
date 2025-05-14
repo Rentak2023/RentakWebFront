@@ -10,8 +10,7 @@ import paytabsLogo from "@/app/[locale]/assets/images/logos/paytabs.svg";
 import souhoolaLogo from "@/app/[locale]/assets/images/logos/souhoola.png";
 import valuLogo from "@/app/[locale]/assets/images/logos/valu.png";
 import visaLogo from "@/app/[locale]/assets/images/logos/visa.png";
-
-import Container from "../ui/container";
+import Container from "@/components/ui/container";
 
 const partners = [
   {

@@ -3,6 +3,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { createSerializer, type SearchParams } from "nuqs/server";
 import type { ItemList, WebPage, WithContext } from "schema-dts";
 
+import { makeQueryClient } from "@/app/[locale]/get-query-client";
 import Properties from "@/components/units/properties/properties";
 import SearchForm from "@/components/units/search-form/search-form";
 import { orpc, orpcClient } from "@/lib/orpc";
@@ -11,8 +12,6 @@ import {
   propertiesQueryCache,
   propertiesQueryParsers,
 } from "@/services/properties";
-
-import { makeQueryClient } from "../get-query-client";
 
 const serialize = createSerializer(propertiesQueryParsers);
 

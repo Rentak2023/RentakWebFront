@@ -7,11 +7,11 @@ import { Suspense } from "react";
 import UnitsSkeleton from "@/components/home/units/units-skeleton";
 import Container from "@/components/ui/container";
 import { Skeleton } from "@/components/ui/skeleton";
+import Pagination from "@/components/units/pagination";
 import Unit from "@/components/units/unit";
 import { orpc } from "@/lib/orpc";
 import { propertiesQueryParsers } from "@/services/properties";
 
-import Pagination from "../pagination";
 import PropertiesHeader from "./properties-header";
 import Sort from "./sort";
 

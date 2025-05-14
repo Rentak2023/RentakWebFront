@@ -1,6 +1,7 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
+import importAlias from "@dword-design/eslint-plugin-import-alias";
 import { FlatCompat } from "@eslint/eslintrc";
 import js from "@eslint/js";
 import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
@@ -50,6 +51,7 @@ export default defineConfig(
     ],
     plugins: {
       "simple-import-sort": simpleImportSort,
+      "import-alias": importAlias,
     },
     rules: {
       "func-style": ["error", "declaration", { allowArrowFunctions: true }],
@@ -64,6 +66,14 @@ export default defineConfig(
       "unicorn/no-array-reduce": "off",
       "simple-import-sort/imports": "error",
       "simple-import-sort/exports": "error",
+      "import-alias/prefer-alias": [
+        "error",
+        {
+          alias: {
+            "@": "./src",
+          },
+        },
+      ],
       // Enable explicitly until it's added to recommended
       "react-hooks/react-compiler": "error",
       "no-restricted-imports": [
