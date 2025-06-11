@@ -61,4 +61,4 @@ jobs:
           app-name: "RentakWebsiteNew"
           slot-name: "production"
           package: .
-          clean: true
+          # clean: true
