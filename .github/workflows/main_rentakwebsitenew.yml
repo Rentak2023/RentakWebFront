@@ -60,5 +60,5 @@ jobs:
         with:
           app-name: "RentakWebsiteNew"
           slot-name: "production"
-          package: .
+          package: release.zip
           # clean: true
