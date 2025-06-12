@@ -42,6 +42,8 @@ const URLS = {
   contactUs: "https://rent-ak.com/Home/ContactUs",
   team: "#",
   services: "#",
+  refundPolicy: "/refund-policy",
+  privacyPolicy: "/privacy-policy",
 
   //Services
   kitchen: "#",

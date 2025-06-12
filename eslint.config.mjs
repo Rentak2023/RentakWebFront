@@ -48,10 +48,10 @@ export default defineConfig(
       importX.configs.typescript,
       comments.recommended,
       barrellFiles.configs.recommended,
+      importAlias.configs.recommended,
     ],
     plugins: {
       "simple-import-sort": simpleImportSort,
-      "import-alias": importAlias,
     },
     rules: {
       "func-style": ["error", "declaration", { allowArrowFunctions: true }],
@@ -66,7 +66,7 @@ export default defineConfig(
       "unicorn/no-array-reduce": "off",
       "simple-import-sort/imports": "error",
       "simple-import-sort/exports": "error",
-      "import-alias/prefer-alias": [
+      "@dword-design/import-alias/prefer-alias": [
         "error",
         {
           alias: {

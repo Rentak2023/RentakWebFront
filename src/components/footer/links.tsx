@@ -20,6 +20,18 @@ async function Links() {
           icon: null,
         },
         {
+          id: "privacy-policy",
+          url: URLS.privacyPolicy,
+          text: t("privacyPolicy"),
+          icon: null,
+        },
+        {
+          id: "refund-policy",
+          url: URLS.refundPolicy,
+          text: t("refundPolicy"),
+          icon: null,
+        },
+        {
           id: "faq",
           url: URLS.faq,
           text: t("faq"),
