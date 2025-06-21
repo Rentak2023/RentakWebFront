@@ -1,6 +1,7 @@
 import { type Metadata } from "next";
 import { getLocale, getTranslations } from "next-intl/server";
 import { createSerializer, type SearchParams } from "nuqs/server";
+import { Suspense } from "react";
 
 import Properties from "@/components/units/properties/properties";
 import SearchForm from "@/components/units/search-form/search-form";
@@ -61,7 +62,9 @@ export default function UnitsPage(
   return (
     <main>
       <div className="flex flex-col lg:flex-row">
-        <SearchForm />
+        <Suspense>
+          <SearchForm />
+        </Suspense>
         <Properties />
       </div>
     </main>
