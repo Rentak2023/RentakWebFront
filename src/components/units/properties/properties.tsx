@@ -28,8 +28,8 @@ function Properties() {
           }
         >
           <UnitsCount />
+          <Sort />
         </Suspense>
-        <Sort />
       </div>
       <Suspense fallback={<UnitsSkeleton />}>
         <Units />
