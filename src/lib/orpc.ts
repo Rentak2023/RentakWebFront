@@ -10,7 +10,6 @@ import { type RouterClient } from "@orpc/server";
 import type { router } from "@/router";
 
 declare global {
-  // eslint-disable-next-line no-var
   var $client: RouterClient<typeof router> | undefined;
 }
 
@@ -18,7 +17,8 @@ const rpcLink = new RPCLink({
   url: () => {
     // eslint-disable-next-line unicorn/prefer-global-this
     if (typeof window === "undefined") {
-      throw new TypeError("RPCLink is not allowed on the server side.");
+      const port = process.env.PORT ?? 3000;
+      return `http://localhost:${port}/rpc`;
     }
 
     return new URL("/rpc", globalThis.location.href);
