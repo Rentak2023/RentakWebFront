@@ -289,7 +289,7 @@ export default async function UnitPage(
               )}
               <div className="mt-6">
                 <h3 className="text-3xl font-semibold text-slate-800">
-                  Purchase a unit, in{" "}
+                  Rent a unit, in{" "}
                   <span className="text-green-800">Just 3 steps</span>
                 </h3>
                 <Steps property={property} />
