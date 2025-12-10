@@ -18,8 +18,7 @@ const rpcLink = new RPCLink({
     // eslint-disable-next-line unicorn/prefer-global-this
     if (typeof window === "undefined") {
       const port = process.env.PORT ?? 3000;
-      const hostname = process.env.HOSTNAME ?? "localhost";
-      return `http://${hostname}:${port}/rpc`;
+      return `http://localhost:${port}/rpc`;
     }
 
     return new URL("/rpc", globalThis.location.href);
