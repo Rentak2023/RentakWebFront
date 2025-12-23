@@ -44,28 +44,39 @@ jobs:
       - name: Prepare deployment package
         run: |
           # Find the actual standalone directory (handles worktree paths)
-          STANDALONE_DIR=$(find .next/standalone -type f -name "server.js" -exec dirname {} \; | head -1)
+          # Exclude node_modules to find the root server.js only
+          STANDALONE_DIR=$(find .next/standalone -type f -name "server.js" -not -path "*/node_modules/*" | head -1)
 
           if [ -z "$STANDALONE_DIR" ]; then
             echo "Error: Could not find server.js in standalone build"
             exit 1
           fi
 
+          # Get the directory containing server.js
+          STANDALONE_DIR=$(dirname "$STANDALONE_DIR")
           echo "Found standalone directory: $STANDALONE_DIR"
 
           # Create deployment package
           mkdir -p deployment-package
           cp -r "$STANDALONE_DIR"/* deployment-package/
+
+          # Ensure .next directory exists and copy static files
+          mkdir -p deployment-package/.next
           cp -r .next/static deployment-package/.next/static
+
+          # Copy public files (may already be copied from standalone, but ensure it's complete)
           cp -r public deployment-package/public
 
-          # Verify server.js exists
+          # Verify server.js exists in deployment package
           if [ ! -f deployment-package/server.js ]; then
             echo "Error: server.js not found in deployment package"
+            ls -la deployment-package/
             exit 1
           fi
 
           echo "Deployment package prepared successfully"
+          echo "Package contents:"
+          ls -la deployment-package/
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
