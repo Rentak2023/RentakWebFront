@@ -44,7 +44,6 @@ jobs:
       - name: Prepare deployment package
         run: |
           # Find the actual standalone directory (handles worktree paths)
-          # Exclude node_modules to find the root server.js only
           STANDALONE_DIR=$(find .next/standalone -type f -name "server.js" -not -path "*/node_modules/*" | head -1)
 
           if [ -z "$STANDALONE_DIR" ]; then
@@ -56,28 +55,31 @@ jobs:
           STANDALONE_DIR=$(dirname "$STANDALONE_DIR")
           echo "Found standalone directory: $STANDALONE_DIR"
 
-          # Create deployment package
+          # Copy build artifacts into standalone directory (matching working workflow approach)
+          cp -r public "$STANDALONE_DIR/"
+          cp -r .next/static "$STANDALONE_DIR/.next/"
+          cp -r .next/server "$STANDALONE_DIR/.next/"
+
+          # Create deployment package from the prepared standalone directory
           mkdir -p deployment-package
           cp -r "$STANDALONE_DIR"/* deployment-package/
 
-          # Ensure .next directory exists and copy build artifacts
-          mkdir -p deployment-package/.next
-          cp -r .next/static deployment-package/.next/static
-          cp -r .next/server deployment-package/.next/server
-
-          # Copy public files (may already be copied from standalone, but ensure it's complete)
-          cp -r public deployment-package/public
-
-          # Verify server.js exists in deployment package
+          # Verify critical files exist
           if [ ! -f deployment-package/server.js ]; then
             echo "Error: server.js not found in deployment package"
-            ls -la deployment-package/
+            exit 1
+          fi
+
+          if [ ! -d deployment-package/.next/server ]; then
+            echo "Error: .next/server directory not found in deployment package"
             exit 1
           fi
 
           echo "Deployment package prepared successfully"
-          echo "Package contents:"
+          echo "Package structure:"
           ls -la deployment-package/
+          echo ".next contents:"
+          ls -la deployment-package/.next/
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
