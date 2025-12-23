@@ -52,4 +52,5 @@ jobs:
           app-name: 'rentak-web-app'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_84BB0B6D0948454C8B7DA801CA02B1BD }}
+
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
