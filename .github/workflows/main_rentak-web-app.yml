@@ -110,11 +110,23 @@ jobs:
           echo ".next contents:"
           ls -la deployment-package/.next/
 
+      - name: Create deployment zip
+        run: |
+          echo "Creating deployment zip in build job..."
+          cd deployment-package
+          zip -r ../deployment.zip . -x "*.git*"
+          cd ..
+          echo "Zip file created:"
+          ls -lh deployment.zip
+          echo ""
+          echo "Verifying zip contents include .next:"
+          unzip -l deployment.zip | grep -E "\.next/(BUILD_ID|server/|static/)" | head -10
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: deployment-package
+          path: deployment.zip
 
   deploy:
     runs-on: ubuntu-latest
@@ -129,15 +141,13 @@ jobs:
         with:
           name: node-app
 
-      - name: Create deployment zip
+      - name: Verify downloaded zip
         run: |
-          echo "Creating deployment zip file..."
-          ls -la
-          echo "Checking .next directory before zip:"
-          ls -la .next/ || echo ".next not found!"
-          zip -r deployment.zip . -x "*.git*"
-          echo "Zip created:"
-          ls -lh deployment.zip
+          echo "Downloaded artifact:"
+          ls -lh
+          echo ""
+          echo "Verifying deployment.zip contents:"
+          unzip -l deployment.zip | grep -E "\.next/(BUILD_ID|server/|static/)|server\.js" | head -15
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
