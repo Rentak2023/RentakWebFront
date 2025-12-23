@@ -60,9 +60,10 @@ jobs:
           mkdir -p deployment-package
           cp -r "$STANDALONE_DIR"/* deployment-package/
 
-          # Ensure .next directory exists and copy static files
+          # Ensure .next directory exists and copy build artifacts
           mkdir -p deployment-package/.next
           cp -r .next/static deployment-package/.next/static
+          cp -r .next/server deployment-package/.next/server
 
           # Copy public files (may already be copied from standalone, but ensure it's complete)
           cp -r public deployment-package/public
