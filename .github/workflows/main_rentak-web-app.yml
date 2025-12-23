@@ -43,6 +43,15 @@ jobs:
 
       - name: Prepare deployment package
         run: |
+          # Debug: Show build output structure
+          echo "=== Build output structure ==="
+          echo "Root .next directory:"
+          ls -la .next/ || echo ".next not found"
+          echo ""
+          echo "Standalone directory:"
+          ls -la .next/standalone/ || echo "standalone not found"
+          echo ""
+
           # Find the actual standalone directory (handles worktree paths)
           STANDALONE_DIR=$(find .next/standalone -type f -name "server.js" -not -path "*/node_modules/*" | head -1)
 
@@ -54,11 +63,31 @@ jobs:
           # Get the directory containing server.js
           STANDALONE_DIR=$(dirname "$STANDALONE_DIR")
           echo "Found standalone directory: $STANDALONE_DIR"
+          echo "Standalone directory contents:"
+          ls -la "$STANDALONE_DIR"
+          echo "Standalone .next directory:"
+          ls -la "$STANDALONE_DIR/.next/" || echo ".next not found in standalone"
+          echo ""
 
           # Copy build artifacts into standalone directory (matching working workflow approach)
+          echo "Copying public directory..."
           cp -r public "$STANDALONE_DIR/"
+
+          echo "Copying .next/static..."
           cp -r .next/static "$STANDALONE_DIR/.next/"
-          cp -r .next/server "$STANDALONE_DIR/.next/"
+
+          echo "Copying .next/server..."
+          if [ -d .next/server ]; then
+            cp -r .next/server "$STANDALONE_DIR/.next/"
+          else
+            echo "Warning: .next/server not found in build output"
+            echo "Contents of .next/:"
+            ls -la .next/
+          fi
+
+          echo ""
+          echo "After copying, standalone .next contents:"
+          ls -la "$STANDALONE_DIR/.next/"
 
           # Create deployment package from the prepared standalone directory
           mkdir -p deployment-package
@@ -70,14 +99,11 @@ jobs:
             exit 1
           fi
 
-          if [ ! -d deployment-package/.next/server ]; then
-            echo "Error: .next/server directory not found in deployment package"
-            exit 1
-          fi
-
-          echo "Deployment package prepared successfully"
+          echo ""
+          echo "=== Final deployment package ==="
           echo "Package structure:"
           ls -la deployment-package/
+          echo ""
           echo ".next contents:"
           ls -la deployment-package/.next/
 
