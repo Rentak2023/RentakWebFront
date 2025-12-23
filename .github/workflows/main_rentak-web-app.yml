@@ -90,8 +90,11 @@ jobs:
           ls -la "$STANDALONE_DIR/.next/"
 
           # Create deployment package from the prepared standalone directory
+          # Use . and shopt to copy hidden files like .next and .env
           mkdir -p deployment-package
+          shopt -s dotglob
           cp -r "$STANDALONE_DIR"/* deployment-package/
+          shopt -u dotglob
 
           # Verify critical files exist
           if [ ! -f deployment-package/server.js ]; then
