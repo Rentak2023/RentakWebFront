@@ -129,11 +129,21 @@ jobs:
         with:
           name: node-app
 
+      - name: Create deployment zip
+        run: |
+          echo "Creating deployment zip file..."
+          ls -la
+          echo "Checking .next directory before zip:"
+          ls -la .next/ || echo ".next not found!"
+          zip -r deployment.zip . -x "*.git*"
+          echo "Zip created:"
+          ls -lh deployment.zip
+
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'rentak-web-app'
           slot-name: 'Production'
-          package: .
+          package: deployment.zip
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_RENTAK_WEB_APP }}
