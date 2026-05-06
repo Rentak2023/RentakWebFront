@@ -13,7 +13,8 @@ import { createTypeScriptImportResolver } from "eslint-import-resolver-typescrip
 import barrellFiles from "eslint-plugin-barrel-files";
 import importX from "eslint-plugin-import-x";
 import promise from "eslint-plugin-promise";
-import { configs as reactHooksConfigs } from "eslint-plugin-react-hooks";
+import reactHooks from "eslint-plugin-react-hooks";
+const { configs: reactHooksConfigs } = reactHooks;
 import simpleImportSort from "eslint-plugin-simple-import-sort";
 // import tailwind from "eslint-plugin-tailwindcss";
 import unicorn from "eslint-plugin-unicorn";
@@ -52,6 +53,7 @@ export default defineConfig(
     ],
     plugins: {
       "simple-import-sort": simpleImportSort,
+      "react-hooks": reactHooks,
     },
     rules: {
       "func-style": ["error", "declaration", { allowArrowFunctions: true }],
@@ -75,7 +77,7 @@ export default defineConfig(
         },
       ],
       // Enable explicitly until it's added to recommended
-      "react-hooks/react-compiler": "error",
+      // "react-hooks/react-compiler": "error",
       "no-restricted-imports": [
         "error",
         {

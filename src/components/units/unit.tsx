@@ -1,13 +1,12 @@
 import { blurhashToCssGradientString } from "@unpic/placeholder";
 import { Image } from "@unpic/react/nextjs";
+import { Calendar } from "lucide-react";
 import { useFormatter, useTranslations } from "next-intl";
 
 import AreaIcon from "@/app/[locale]/assets/svgs/area-icon";
 import BathIcon from "@/app/[locale]/assets/svgs/bath-icon";
 import BedIcon from "@/app/[locale]/assets/svgs/bed-icon";
-import LinkIcon from "@/app/[locale]/assets/svgs/link-icon";
 import { Card, CardContent } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 import { Link } from "@/i18n/routing";
 import { type UnitSchema } from "@/schemas/units";
 import URLS from "@/shared/urls";
@@ -49,79 +48,66 @@ function Unit({ item, blurhash }: UnitProps) {
   );
 
   return (
-    <Card className="transition duration-300 hover:shadow-lg">
+    <Card className="rounded-[2rem] border-slate-100 transition duration-300 hover:shadow-xl">
       <Link href={URLS.viewUnit(item)}>
-        <div className="relative h-80">
+        <div className="relative h-80 overflow-hidden rounded-t-[2rem]">
           <Image
             src={item.picture}
-            className="rounded-t-lg object-cover"
+            className="object-cover"
             height={320}
             width={500}
             layout="fullWidth"
             alt=""
             background={gradient}
           />
-
-          <div className="absolute bottom-4 end-4 rounded-lg bg-white px-3 py-1.5">
-            <p className="font-semibold text-slate-800">
-              {formatCurrency(item.price)} /{" "}
-              <span className="font-normal">{t("month")}</span>
-            </p>
-          </div>
         </div>
 
-        <CardContent className="mt-6">
-          <div className="relative flex flex-col">
-            <div className="flex items-center justify-between">
-              <h2 className="truncate text-base font-semibold">
-                {item.property_name}
-              </h2>
-              {item.is_inspection && (
-                <p className="text-primary-600 shrink-0 text-sm font-medium">
-                  Verified by Rentak
-                </p>
+        <CardContent className="p-6">
+          <div className="flex flex-col gap-2">
+            <h2 className="text-sky-950 truncate text-lg font-bold">
+              {item.property_name}
+            </h2>
+
+            <div className="flex items-baseline gap-1.5">
+              <p className="text-sky-950 text-xl font-bold">
+                {formatCurrency(item.price)}
+              </p>
+              <span className="text-slate-400 text-sm font-medium">
+                / {t("month")}
+              </span>
+            </div>
+
+            <div className="mt-2 flex items-center gap-2 text-sky-900/80">
+              <Calendar className="size-5" />
+              <span className="text-sm font-bold">
+                {t("availableNow")}
+              </span>
+            </div>
+
+            <div className="bg-slate-100 my-4 h-px w-full" />
+
+            <div className="flex items-center justify-between gap-4 text-slate-500">
+              <div className="flex items-center gap-1.5">
+                <BedIcon className="size-5" />
+                <span className="text-sm font-bold">
+                  BR: {bedroom ? bedroom.num_of_rooms : 0}
+                </span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <BathIcon className="size-5" />
+                <span className="text-sm font-bold">
+                  BA: {bathroom ? bathroom.num_of_rooms : 0}
+                </span>
+              </div>
+              {!!item.area && (
+                <div className="flex items-center gap-1.5">
+                  <AreaIcon className="size-5" />
+                  <span className="text-sm font-bold">
+                    {item.area} m²
+                  </span>
+                </div>
               )}
             </div>
-            {item.property_type.type_name ? (
-              <p className="inline-block text-sm text-slate-500">
-                {item.property_type.type_name}
-              </p>
-            ) : (
-              <div className="h-5" />
-            )}
-          </div>
-
-          <div className="mt-6 flex items-center gap-4 text-sm text-slate-900">
-            <div className="flex items-center gap-1">
-              <BedIcon className="size-4" />
-              <span>
-                {t("bedrooms", {
-                  count: bedroom ? bedroom.num_of_rooms : 0,
-                })}
-              </span>
-            </div>
-            <div className="flex items-center gap-1">
-              <BathIcon className="size-4" />
-              <span>
-                {t("bathrooms", {
-                  count: bathroom ? bathroom.num_of_rooms : 0,
-                })}
-              </span>
-            </div>
-            {!!item.area && (
-              <div className="flex items-center gap-1">
-                <AreaIcon className="size-4" />
-                <span>{formatter.number(item.area, "numbers")}</span>
-              </div>
-            )}
-          </div>
-
-          <Separator className="my-6" />
-
-          <div className="flex list-none items-center justify-between">
-            <span className="text-sm font-normal">{t("availableNow")}</span>
-
-            <LinkIcon className="size-4" />
           </div>
         </CardContent>
       </Link>
@@ -130,3 +116,4 @@ function Unit({ item, blurhash }: UnitProps) {
 }
 
 export default Unit;
+

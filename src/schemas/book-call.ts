@@ -1,3 +1,4 @@
+import { StrictMode } from "react";     
 import * as v from "valibot";
 import isMobilePhone from "validator/es/lib/isMobilePhone";
 
@@ -8,7 +9,7 @@ export const bookCallSchema = v.object({
     v.trim(),
     v.nonEmpty("Phone number cannot be empty"),
     v.check(
-      (input) => isMobilePhone(input, "ar-EG"),
+      (input) => isMobilePhone(input, "any", {strictMode: false}),
       "Phone number is invalid",
     ),
   ),
