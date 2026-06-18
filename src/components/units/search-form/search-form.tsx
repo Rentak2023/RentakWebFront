@@ -8,7 +8,7 @@ import {
   parseAsString,
   useQueryStates,
 } from "nuqs";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { useDebouncedCallback } from "use-debounce";
 
@@ -49,8 +49,11 @@ export default function SearchForm() {
     },
   );
 
+  const isInternalChangeRef = useRef(false);
+
   const updateSearchParams = useDebouncedCallback(
     (value: Record<string, any>) => {
+      isInternalChangeRef.current = true;
       setSearchParams(value);
     },
     300,
@@ -73,6 +76,26 @@ export default function SearchForm() {
   const currentValues = useWatch({
     control: form.control,
   });
+
+  // Sync form values when searchParams change externally (e.g. from banner CTA)
+  useEffect(() => {
+    if (isInternalChangeRef.current) {
+      isInternalChangeRef.current = false;
+      return;
+    }
+
+    form.reset({
+      keyword: searchParams.keyword,
+      governoment_id: searchParams.governoment_id,
+      city_id: searchParams.city_id,
+      price_from: searchParams.price_from,
+      price_to: searchParams.price_to,
+      finish_type: searchParams.finish_type,
+      property_type: searchParams.property_type,
+      bathroom_numbers: searchParams.bathroom_numbers,
+      room_numers: searchParams.room_numers,
+    });
+  }, [searchParams, form]);
 
   useEffect(() => {
     const newSearchParams: Record<string, any> = {

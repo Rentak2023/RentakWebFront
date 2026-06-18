@@ -14,6 +14,8 @@ export const UnitSchema = v.object({
   created_at: v.string(),
   ago: v.string(),
   is_inspection: v.boolean(),
+  available_from: v.optional(v.nullable(v.string())),
+  AvailableFrom: v.optional(v.nullable(v.string())),
   // owner: v.nullable(
   //   v.object({
   //     id: v.number(),

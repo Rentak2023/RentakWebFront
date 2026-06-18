@@ -1,6 +1,6 @@
 import { blurhashToCssGradientString } from "@unpic/placeholder";
 import { Image } from "@unpic/react/nextjs";
-import { Calendar } from "lucide-react";
+import { Calendar, Sparkles } from "lucide-react";
 import { useFormatter, useTranslations } from "next-intl";
 
 import AreaIcon from "@/app/[locale]/assets/svgs/area-icon";
@@ -8,6 +8,7 @@ import BathIcon from "@/app/[locale]/assets/svgs/bath-icon";
 import BedIcon from "@/app/[locale]/assets/svgs/bed-icon";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "@/i18n/routing";
+import { cn } from "@/lib/utils";
 import { type UnitSchema } from "@/schemas/units";
 import URLS from "@/shared/urls";
 
@@ -24,6 +25,8 @@ type UnitProps = {
     | "is_inspection"
     | "property_name"
     | "property_type"
+    | "available_from"
+    | "AvailableFrom"
   >;
   blurhash?: string | null;
 };
@@ -47,13 +50,44 @@ function Unit({ item, blurhash }: UnitProps) {
     (room: { room_name: string }) => room.room_name === "Bathroom",
   );
 
+  const rawAvailableFrom = item.available_from ?? item.AvailableFrom;
+  const availableDate = rawAvailableFrom ? new Date(rawAvailableFrom) : null;
+  const isFuture = availableDate && !Number.isNaN(availableDate.getTime()) && availableDate > new Date();
+
+  // Premium condition check (e.g. Sodic)
+  const isPremium =
+    item.property_name.toLowerCase().includes("sodic") ||
+    item.property_name.includes("سوديك") ||
+    (item.english_name &&
+      (item.english_name.toLowerCase().includes("sodic") ||
+        item.english_name.includes("سوديك")));
+
   return (
-    <Card className="rounded-[2rem] border-slate-100 transition duration-300 hover:shadow-xl">
+    <Card
+      className={cn(
+        "rounded-[2rem] transition duration-300 relative overflow-hidden group/card",
+        isPremium
+          ? "border-[#00a6ca]/60 bg-[#00a6ca]/[0.01] shadow-md shadow-[#00a6ca]/5 hover:shadow-[#00a6ca]/15 hover:border-[#00a6ca] hover:scale-[1.01]"
+          : "border-slate-100 hover:shadow-xl",
+      )}
+    >
       <Link href={URLS.viewUnit(item)}>
+        {/* Top curved brand colored line for premium cards */}
+        {isPremium && (
+          <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-[#00a6ca] to-[#00bada] z-20" />
+        )}
+
         <div className="relative h-80 overflow-hidden rounded-t-[2rem]">
+          {/* Brand/Sodic Tag */}
+          {isPremium && (
+            <span className="absolute top-4 start-4 z-10 inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-[#00a6ca] to-[#00bada] px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-white shadow-md border border-cyan-300/20">
+              <Sparkles className="size-3 text-white" />
+              {t("premium")}
+            </span>
+          )}
           <Image
             src={item.picture}
-            className="object-cover"
+            className="object-cover transition-transform duration-500 group-hover/card:scale-105"
             height={320}
             width={500}
             layout="fullWidth"
@@ -64,7 +98,13 @@ function Unit({ item, blurhash }: UnitProps) {
 
         <CardContent className="p-6">
           <div className="flex flex-col gap-2">
-            <h2 className="text-sky-950 truncate text-lg font-bold">
+            <h2
+              className={cn(
+                "truncate text-lg font-bold flex items-center gap-1.5",
+                isPremium ? "text-[#008ba9]" : "text-sky-950",
+              )}
+            >
+              {isPremium && <Sparkles className="size-4 text-[#00a6ca] shrink-0" />}
               {item.property_name}
             </h2>
 
@@ -80,11 +120,22 @@ function Unit({ item, blurhash }: UnitProps) {
             <div className="mt-2 flex items-center gap-2 text-sky-900/80">
               <Calendar className="size-5" />
               <span className="text-sm font-bold">
-                {t("availableNow")}
+                {isFuture
+                  ? t("availableFromDate", {
+                      date: formatter.dateTime(availableDate, {
+                        dateStyle: "medium",
+                      }),
+                    })
+                  : t("availableNow")}
               </span>
             </div>
 
-            <div className="bg-slate-100 my-4 h-px w-full" />
+            <div
+              className={cn(
+                "my-4 h-px w-full",
+                isPremium ? "bg-[#00a6ca]/20" : "bg-slate-100",
+              )}
+            />
 
             <div className="flex items-center justify-between gap-4 text-slate-500">
               <div className="flex items-center gap-1.5">
@@ -102,9 +153,7 @@ function Unit({ item, blurhash }: UnitProps) {
               {!!item.area && (
                 <div className="flex items-center gap-1.5">
                   <AreaIcon className="size-5" />
-                  <span className="text-sm font-bold">
-                    {item.area} m²
-                  </span>
+                  <span className="text-sm font-bold">{item.area} m²</span>
                 </div>
               )}
             </div>
@@ -116,4 +165,3 @@ function Unit({ item, blurhash }: UnitProps) {
 }
 
 export default Unit;
-

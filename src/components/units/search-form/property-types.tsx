@@ -31,7 +31,7 @@ function PropertyTypes() {
           control={form.control}
           name="property_type"
           render={() => (
-            <FormItem>
+            <FormItem className="space-y-4">
               {propertyTypes.map((item) => (
                 <FormField
                   key={item.id}

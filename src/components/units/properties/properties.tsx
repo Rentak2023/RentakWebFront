@@ -14,10 +14,12 @@ import { propertiesQueryParsers } from "@/services/properties";
 
 import PropertiesHeader from "./properties-header";
 import Sort from "./sort";
+import SodicBanner from "../sodic-banner";
 
 function Properties() {
   return (
-    <Container className="mt-4 md:mt-16 lg:mt-24">
+    <Container className="mt-4 md:mt-16 lg:mt-24 space-y-6">
+      <SodicBanner />
       <PropertiesHeader />
       <div className="flex justify-between">
         <Suspense

@@ -133,7 +133,7 @@
       }
     },
     "units": {
-      "title": "Browse Verified Listings",
+      "title": "Listings built for decisions, not endless browsing.",
       "subtitle": "Explore a wide range of properties that are verified and ready for move-in. Each listing comes with detailed photos and pricing transparency.",
       "viewAll": "View Available Properties"
     },
@@ -596,9 +596,17 @@
     "month": "mo",
     "bedrooms": "{count, plural, =0 {No Beds} =1 {1 Bed} other {# Beds}}",
     "bathrooms": "{count, plural, =0 {No Baths} =1 {1 Bath} other {# Baths}}",
-    "availableNow": "Available Now"
+    "availableNow": "Available Now",
+    "availableFromDate": "Available from {date}",
+    "premium": "Sodic"
   },
   "units": {
+    "sodicBanner": {
+      "title": "Exclusive Homes by SODIC",
+      "description": "Experience luxury living in Egypt's most prestigious developments. Explore premium villas, townhouses, and chalets designed for refined tastes, in partnership with SODIC.",
+      "badge": "OFFICIAL PARTNER",
+      "cta": "Explore SODIC Properties"
+    },
     "meta": {
       "title": "Find Your Perfect Rental Unit",
       "description": "Search and find the best rental units in your area. Filter by location, price, and features to find your ideal home."
@@ -631,7 +639,8 @@
     "bathrooms": "{count, plural, =0 {No Baths} =1 {1 Bath} other {# Baths}}",
     "status": "Status",
     "availableNow": "Available Now",
-    "sponsored": "Sponsored",
+    "availableFromDate": "Available from {date}",
+    "governorate": "Governorate",
     "requestATour": "Book a Visit",
     "contactUs": "Contact Us",
     "sort": "Sort",

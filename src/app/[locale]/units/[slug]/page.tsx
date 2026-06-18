@@ -1,4 +1,4 @@
-import { HeartIcon } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { type Metadata } from "next";
 import Image from "next/image";
 import { notFound, RedirectType } from "next/navigation";
@@ -170,6 +170,10 @@ export default async function UnitPage(
       .replace(/^([A-Z]{3})\s*(.+)$/, "$2 $1");
   };
 
+  const rawAvailableFrom = property.available_from ?? property.AvailableFrom;
+  const availableDate = rawAvailableFrom ? new Date(rawAvailableFrom) : null;
+  const isFuture = availableDate && !Number.isNaN(availableDate.getTime()) && availableDate > new Date();
+
   const stats = [
     {
       title: t("propertyType"),
@@ -192,13 +196,23 @@ export default async function UnitPage(
       icon: <BathIcon className="size-6" />,
     },
     {
-      title: t("sponsored"),
+      title: t("governorate"),
       value: property.location.governorate_name,
-      icon: <HeartIcon className="size-6" />,
+      icon: <MapPin className="size-6" />,
     },
     {
       title: t("status"),
-      value: <span className="text-green-800">{t("availableNow")}</span>,
+      value: (
+        <span className="text-green-800">
+          {isFuture
+            ? t("availableFromDate", {
+                date: formatter.dateTime(availableDate, {
+                  dateStyle: "medium",
+                }),
+              })
+            : t("availableNow")}
+        </span>
+      ),
       icon: <AvailableIcon className="size-6" />,
     },
   ];

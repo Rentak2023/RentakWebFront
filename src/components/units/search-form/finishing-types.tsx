@@ -35,7 +35,7 @@ function FinishingTypes() {
               <RadioGroup
                 onValueChange={field.onChange}
                 defaultValue={field.value}
-                className="flex flex-row space-y-1"
+                className="flex flex-col space-y-4"
               >
                 {finishingTypes.map((type) => (
                   <FormItem
