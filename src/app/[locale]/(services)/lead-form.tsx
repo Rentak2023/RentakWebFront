@@ -17,6 +17,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { PhoneInput } from "@/components/ui/phone-input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import { bookCallSchema } from "@/schemas/book-call";
@@ -99,7 +100,7 @@ export default function LeadForm({
                     <FormItem>
                       <FormLabel>{t("fields.phone-number.label")}</FormLabel>
                       <FormControl>
-                        <Input type="tel" {...field} />
+                        <PhoneInput {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
