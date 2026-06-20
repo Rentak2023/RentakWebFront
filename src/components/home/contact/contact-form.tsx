@@ -16,6 +16,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { PhoneInput } from "@/components/ui/phone-input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import { contactSchema } from "@/schemas/contact";
@@ -87,7 +88,7 @@ function ContactForm() {
               <FormItem>
                 <FormLabel>{t("yourPhone")}</FormLabel>
                 <FormControl>
-                  <Input placeholder={`${t("phone")}:`} type="tel" {...field} />
+                  <PhoneInput {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
