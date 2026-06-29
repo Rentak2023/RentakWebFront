@@ -607,6 +607,13 @@
       "badge": "شريك رسمي",
       "cta": "استكشف وحدات سوديك"
     },
+    "whyRent": {
+      "badge": "مزايا رنتاك",
+      "title": "لماذا تستأجر عبر رنتاك؟",
+      "moveIn": "شهر إيجار واحد فقط للانتقال والعيش",
+      "paymentMethods": "سداد شهري بالبطاقات البنكية، فاليو، حالا والمزيد",
+      "installments": "تقسيط عمولة الوساطة حتى 60 شهراً"
+    },
     "meta": {
       "title": "اعثر على الوحدة الإيجارية المثالية",
       "description": "ابحث واعثر على أفضل الوحدات الإيجارية في منطقتك. قم بالبحث حسب الموقع والسعر والميزات للعثور على منزلك المثالي."
@@ -626,12 +633,24 @@
     "findPlace": "البحث عن مكان",
     "countUnit": "وحدة العد",
     "clear": "مسح",
+    "reset": "إعادة ضبط",
     "title": "اعثر على <colored>المنزل المثالي</colored> <wbr></wbr>الذي تحبه",
     "description": "Most bookkeeping software is accurate, but hard to use. We make the opposite trade-off, and hope you don’t get audited.",
     "noProperties": "لم يتم العثور على أي عقارات.",
     "propertiesFound": "{count, plural, =0 {لم يتم العثور على عقارات} =1 { تم العثور على <colored>عقار واحد</colored>} other {تم العثور على <colored>#</colored> عقار}}",
     "availableForRent": "متاح للإيجار",
     "propertyDescription": "وصف الوحدة",
+    "termsBenefits": {
+      "title": "الشروط والفوائد",
+      "contractDuration": "مدة العقد: حتى 3 سنوات",
+      "monthlyRent": "الإيجار الشهري: الدفع بالبطاقة، ValU، TRU، Halan والمزيد",
+      "rentInAdvance": "الإيجار مقدماً: شهر واحد فقط",
+      "securityDeposit": "مبلغ التأمين: شهرين (نقداً أو شيك)",
+      "brokerageFee": "عمولة الوساطة: شهر واحد (تقسيط حتى 60 شهراً متاح)",
+      "yearlyMaintenance": "الصيانة السنوية: متضمنة",
+      "paymentReminders": "تذكيرات الدفع: إشعارات شهرية"
+    },
+    "amenities": "المميزات",
     "m2": "م²",
     "rooms": "غرف",
     "toilets": "الحمامات",

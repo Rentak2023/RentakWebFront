@@ -21,7 +21,7 @@ function SodicBanner() {
   };
 
   return (
-    <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-xl md:p-10 lg:p-12">
+    <div className="relative isolate overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-xl md:p-10 lg:p-12">
       {/* Background Decorative Glows */}
       <div className="pointer-events-none absolute -right-16 -top-16 h-96 w-96 rounded-full bg-indigo-50 blur-3xl" />
       <div className="pointer-events-none absolute -left-16 -bottom-16 h-96 w-96 rounded-full bg-blue-50 blur-3xl" />

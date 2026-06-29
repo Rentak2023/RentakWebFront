@@ -27,6 +27,7 @@ type UnitProps = {
     | "property_type"
     | "available_from"
     | "AvailableFrom"
+    | "location"
   >;
   blurhash?: string | null;
 };
@@ -65,13 +66,13 @@ function Unit({ item, blurhash }: UnitProps) {
   return (
     <Card
       className={cn(
-        "rounded-[2rem] transition duration-300 relative overflow-hidden group/card",
+        "isolate h-full flex flex-col rounded-[2rem] transition duration-300 relative overflow-hidden group/card",
         isPremium
           ? "border-[#00a6ca]/60 bg-[#00a6ca]/[0.01] shadow-md shadow-[#00a6ca]/5 hover:shadow-[#00a6ca]/15 hover:border-[#00a6ca] hover:scale-[1.01]"
           : "border-slate-100 hover:shadow-xl",
       )}
     >
-      <Link href={URLS.viewUnit(item)}>
+      <Link href={URLS.viewUnit(item)} className="flex flex-col flex-1">
         {/* Top curved brand colored line for premium cards */}
         {isPremium && (
           <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-[#00a6ca] to-[#00bada] z-20" />
@@ -96,19 +97,25 @@ function Unit({ item, blurhash }: UnitProps) {
           />
         </div>
 
-        <CardContent className="p-6">
-          <div className="flex flex-col gap-2">
+        <CardContent className="p-6 flex flex-col flex-1">
+          {/* Top section — grows to fill space */}
+          <div className="flex flex-col gap-1.5 flex-1">
             <h2
               className={cn(
-                "truncate text-lg font-bold flex items-center gap-1.5",
+                "line-clamp-2 text-lg font-bold leading-snug",
                 isPremium ? "text-[#008ba9]" : "text-sky-950",
               )}
             >
-              {isPremium && <Sparkles className="size-4 text-[#00a6ca] shrink-0" />}
               {item.property_name}
             </h2>
 
-            <div className="flex items-baseline gap-1.5">
+            {item.location.city_name && (
+              <p className="text-slate-400 text-xs font-medium truncate">
+                {item.location.city_name}
+              </p>
+            )}
+
+            <div className="flex items-baseline gap-1.5 mt-1">
               <p className="text-sky-950 text-xl font-bold">
                 {formatCurrency(item.price)}
               </p>
@@ -116,23 +123,13 @@ function Unit({ item, blurhash }: UnitProps) {
                 / {t("month")}
               </span>
             </div>
+          </div>
 
-            <div className="mt-2 flex items-center gap-2 text-sky-900/80">
-              <Calendar className="size-5" />
-              <span className="text-sm font-bold">
-                {isFuture
-                  ? t("availableFromDate", {
-                      date: formatter.dateTime(availableDate, {
-                        dateStyle: "medium",
-                      }),
-                    })
-                  : t("availableNow")}
-              </span>
-            </div>
-
+          {/* Bottom section — always pinned to bottom */}
+          <div className="mt-4">
             <div
               className={cn(
-                "my-4 h-px w-full",
+                "mb-3 h-px w-full",
                 isPremium ? "bg-[#00a6ca]/20" : "bg-slate-100",
               )}
             />
@@ -141,13 +138,13 @@ function Unit({ item, blurhash }: UnitProps) {
               <div className="flex items-center gap-1.5">
                 <BedIcon className="size-5" />
                 <span className="text-sm font-bold">
-                  BR: {bedroom ? bedroom.num_of_rooms : 0}
+                  Bedrooms: {bedroom ? bedroom.num_of_rooms : 0}
                 </span>
               </div>
               <div className="flex items-center gap-1.5">
                 <BathIcon className="size-5" />
                 <span className="text-sm font-bold">
-                  BA: {bathroom ? bathroom.num_of_rooms : 0}
+                  Bathrooms: {bathroom ? bathroom.num_of_rooms : 0}
                 </span>
               </div>
               {!!item.area && (
@@ -157,6 +154,25 @@ function Unit({ item, blurhash }: UnitProps) {
                 </div>
               )}
             </div>
+
+            {isFuture ? (
+              <div className="flex items-center gap-1.5 text-sky-900/70 mt-2">
+                <Calendar className="size-3.5 shrink-0" />
+                <span className="text-xs font-medium">
+                  {t("availableFromDate", {
+                    date: formatter.dateTime(availableDate, {
+                      month: "short",
+                      year: "numeric",
+                    }),
+                  })}
+                </span>
+              </div>
+            ) : (
+              <div className="flex items-center gap-1.5 text-sky-900/70 mt-2">
+                <Calendar className="size-3.5 shrink-0" />
+                <span className="text-xs font-medium">{t("availableNow")}</span>
+              </div>
+            )}
           </div>
         </CardContent>
       </Link>

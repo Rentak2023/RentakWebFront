@@ -102,7 +102,7 @@
   "lint-staged": {
     "*.{js,jsx,cjs,mjs,ts,tsx}": [
       "eslint --fix",
-      "prettier --write --experimental-cli"
+      "prettier --write"
     ],
     "*.{json,md}": "prettier --write"
   },

@@ -87,7 +87,7 @@ export function PropertyInspection({
             setModalOpen(true);
           }}
         >
-          <span className="text-primary-800 flex items-center gap-2.5 text-2xl font-medium">
+          <span className="flex items-center gap-2.5 text-base font-medium text-slate-700">
             <RoomIcon type={roomType} /> {R.capitalize(roomType)}
             {count > 1 && "s"}
           </span>

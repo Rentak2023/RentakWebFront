@@ -1,12 +1,10 @@
 import { MapPin } from "lucide-react";
 import { type Metadata } from "next";
-import Image from "next/image";
 import { notFound, RedirectType } from "next/navigation";
 import { getFormatter, getLocale, getTranslations } from "next-intl/server";
 import { Fragment } from "react";
 import { type Accommodation, type WithContext } from "schema-dts";
 
-import logo from "@/app/[locale]/assets/images/Logo.png";
 import AreaIcon from "@/app/[locale]/assets/svgs/area-icon";
 import AvailableIcon from "@/app/[locale]/assets/svgs/available-icon";
 import BathIcon from "@/app/[locale]/assets/svgs/bath-icon";
@@ -37,6 +35,7 @@ import {
 } from "@/services/properties";
 import URLS from "@/shared/urls";
 
+import Amenities from "./amenities";
 import { ArrangeVisit } from "./arrange-visit";
 import CustomersTestimonials from "./customers-testimonials";
 import { Step1Icon, Step2Icon, Step3Icon } from "./icons";
@@ -241,54 +240,15 @@ export default async function UnitPage(
             <div className="lg:col-span-3">
               <PropertyImages images={images} />
 
-              <div className="flex flex-row items-center gap-1">
-                <h3 className="text-3xl font-semibold text-slate-800">
-                  {t("propertyDescription")}
-                </h3>
-              </div>
+              
 
-              <ul className="flex flex-wrap items-center gap-4 py-6">
-                <li className="flex items-center gap-1 lg:me-6">
-                  <span className="text-primary-900 text-xl font-medium lg:text-3xl">
-                    {formatCurrency(property.price)}
-                  </span>
-                </li>
-                {property.area ? (
-                  <li className="flex items-center gap-1 lg:me-6">
-                    <AreaIcon className="text-primary-600 size-10" />
-                    <span className="text-xl lg:text-2xl">
-                      {formatter.number(property.area, "numbers")}
-                    </span>
-                  </li>
-                ) : null}
-
-                <li className="flex items-center gap-1 lg:me-6">
-                  <BedIcon className="text-primary-600 size-10" />
-                  <span className="text-xl lg:text-2xl">
-                    {t("bedrooms", {
-                      count: property.room_numbers,
-                    })}
-                  </span>
-                </li>
-
-                <li className="flex items-center gap-1">
-                  <BathIcon className="text-primary-600 size-10" />
-                  <span className="text-xl lg:text-2xl">
-                    {t("bathrooms", {
-                      count: property.bathrom_numbers,
-                    })}
-                  </span>
-                </li>
-              </ul>
-
-              <h4 className="text-2xl font-medium">{property.property_name}</h4>
-
-              <p className="mt-3 flex items-center gap-1 text-slate-500">
-                <LocationIcon color="currentColor" />
-                <span className="text-xl lg:text-2xl">
-                  {property.location.address_in_detail}
-                </span>
-              </p>
+              <h4 className="text-3xl font-semibold text-slate-800">{property.property_name}</h4>
+               {property.attributes && property.attributes.length > 0 && (
+                <Amenities attributes={property.attributes} />
+              )}
+              
+              <br />
+              <br />
               {property.property_description && (
                 <p className="mt-4 text-slate-600">
                   {property.property_description
@@ -301,29 +261,36 @@ export default async function UnitPage(
                     ))}
                 </p>
               )}
+
+              <div className="mt-8">
+                <h3 className="text-2xl font-semibold text-slate-800 mb-6">
+                  {t("termsBenefits.title")}
+                </h3>
+                <div className="rounded-lg bg-slate-50 p-4">
+                  <ul className="text-slate-600 list-disc list-inside space-y-1">
+                  
+                    <li>{t("termsBenefits.monthlyRent")}</li>
+                    <li>{t("termsBenefits.rentInAdvance")}</li>
+                    <li>{t("termsBenefits.securityDeposit")}</li>
+                    <li>{t("termsBenefits.brokerageFee")}</li>
+                    <li>{t("termsBenefits.yearlyMaintenance")}</li>
+                    <li>{t("termsBenefits.paymentReminders")}</li>
+                  </ul>
+                </div>
+              </div>
+             
+              <div className="mt-16">
+                <h3 className="text-2xl font-semibold text-slate-800 mb-6">
+                  Unit Condition
+                </h3>
+                <PropertyInspection inspection={inspection} />
+              </div>
               <div className="mt-6">
                 <h3 className="text-3xl font-semibold text-slate-800">
                   Rent a unit, in{" "}
                   <span className="text-green-800">Just 3 steps</span>
                 </h3>
                 <Steps property={property} />
-              </div>
-              <div className="mt-16">
-                <div className="ms-2 flex items-center gap-2 text-sm text-slate-600">
-                  <span>
-                    <span className="sr-only">Rentak</span>
-
-                    <Image
-                      src={logo}
-                      className="h-5 w-auto object-contain"
-                      alt=""
-                      height={20}
-                    />
-                  </span>
-                  All Rentak units go through strict quality checks to ensure
-                  their safety and excellent condition.
-                </div>
-                <PropertyInspection inspection={inspection} />
               </div>
             </div>
             <div className="sticky top-20 rounded-lg bg-slate-100/80 shadow-sm lg:col-span-2">

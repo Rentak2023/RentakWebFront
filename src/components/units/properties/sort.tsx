@@ -27,42 +27,40 @@ function Sort() {
       searchParamsObj.delete("sort_by");
     } else if (
       value !== ""
-      && searchParamsObj.get("sort_by") !== value.toString()
+      && searchParamsObj.get("sort_by") !== value
     ) {
-      searchParamsObj.set("sort_by", value.toString());
+      searchParamsObj.set("sort_by", value);
     }
 
     globalThis.history.pushState(null, "", `?${searchParamsObj.toString()}`);
   };
 
   return (
-    <div className="my-7">
-      <Select
-        onValueChange={onChange}
-        value={searchParams.get("sort_by") ?? ""}
-      >
-        <SelectTrigger>
-          <SelectValue placeholder={t("sort")} />
-        </SelectTrigger>
-        <SelectContent>
-          {sortOptions.map((sort) => (
-            <SelectItem key={sort.value} value={sort.value.toString()}>
-              {sort.label}
-            </SelectItem>
-          ))}
-          <Button
-            className="w-full px-2"
-            variant="secondary"
-            size="sm"
-            onClick={() => {
-              onChange(null);
-            }}
-          >
-            {t("clear")}
-          </Button>
-        </SelectContent>
-      </Select>
-    </div>
+    <Select
+      onValueChange={onChange}
+      value={searchParams.get("sort_by") ?? ""}
+    >
+      <SelectTrigger>
+        <SelectValue placeholder={t("sort")} />
+      </SelectTrigger>
+      <SelectContent>
+        {sortOptions.map((sort) => (
+          <SelectItem key={sort.value} value={sort.value}>
+            {sort.label}
+          </SelectItem>
+        ))}
+        <Button
+          className="w-full px-2"
+          variant="secondary"
+          size="sm"
+          onClick={() => {
+            onChange(null);
+          }}
+        >
+          {t("clear")}
+        </Button>
+      </SelectContent>
+    </Select>
   );
 }
 

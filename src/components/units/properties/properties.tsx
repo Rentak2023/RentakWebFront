@@ -13,6 +13,7 @@ import { orpc } from "@/lib/orpc";
 import { propertiesQueryParsers } from "@/services/properties";
 
 import PropertiesHeader from "./properties-header";
+import ResetFilters from "./reset-filters";
 import Sort from "./sort";
 import SodicBanner from "../sodic-banner";
 
@@ -21,7 +22,7 @@ function Properties() {
     <Container className="mt-4 md:mt-16 lg:mt-24 space-y-6">
       <SodicBanner />
       <PropertiesHeader />
-      <div className="flex justify-between">
+      <div className="flex justify-between items-center">
         <Suspense
           fallback={
             <div className="my-7">
@@ -30,7 +31,10 @@ function Properties() {
           }
         >
           <UnitsCount />
-          <Sort />
+          <div className="flex items-center gap-2 my-7">
+            <ResetFilters />
+            <Sort />
+          </div>
         </Suspense>
       </div>
       <Suspense fallback={<UnitsSkeleton />}>

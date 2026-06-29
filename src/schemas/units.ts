@@ -49,13 +49,15 @@ export const UnitSchema = v.object({
     // latitude: v.nullable(v.number()),
     // longitude: v.nullable(v.number()),
   }),
-  // attributes: v.array(
-  //   v.object({
-  //     id: v.number(),
-  //     attribute_id: v.number(),
-  //     attribute_name: v.string(),
-  //   }),
-  // ),
+  attributes: v.optional(
+    v.array(
+      v.object({
+        id: v.number(),
+        attribute_id: v.number(),
+        attribute_name: v.string(),
+      }),
+    ),
+  ),
   rooms: v.array(
     v.object({
       id: v.number(),
