@@ -56,7 +56,9 @@ type AllPropertiesResponse = {
 export async function getAllProperties() {
   const res = await fetcher
     .get("unit/get-all-listing-units", {
-      cache: "no-store",
+      next: {
+        revalidate: 60,
+      },
     })
     .json<AllPropertiesResponse>();
 
