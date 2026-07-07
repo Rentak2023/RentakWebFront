@@ -24,7 +24,6 @@ import { contactSchema } from "@/schemas/contact";
 function ContactForm() {
   const t = useTranslations("home.contact");
   const { toast } = useToast();
-
   const form = useForm({
     resolver: standardSchemaResolver(contactSchema),
     defaultValues: {

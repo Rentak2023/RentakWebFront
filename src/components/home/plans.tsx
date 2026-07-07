@@ -1,4 +1,5 @@
 import { clsx } from "clsx";
+import { Check, X } from "lucide-react";
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 
@@ -120,19 +121,30 @@ export async function Plans() {
                   {/* Fake card background */}
                   <div
                     aria-hidden="true"
-                    className="absolute inset-y-0 end-0 -z-10 block w-2/3 rounded-lg bg-slate-50"
+                    className={clsx(
+                      "absolute inset-y-0 end-0 -z-10 block w-2/3 rounded-lg",
+                      tier.featured ? "border border-primary-600/25 border-t-4 border-t-primary-600 bg-white shadow-xl shadow-primary-900/5" : "bg-slate-50"
+                    )}
                   />
 
                   <dl className="text-sm leading-6">
-                    {plans.features.map((feature) => (
+                    {plans.features.map((feature, idx) => (
                       <div
                         key={feature.name}
-                        className="grid grid-cols-3 items-center justify-between px-0 py-3"
+                        className={clsx(
+                          "grid grid-cols-3 items-center justify-between px-3 py-3 border-b border-slate-100 last:border-b-0 rounded-md",
+                          idx % 2 === 1 && "bg-slate-100/40"
+                        )}
                       >
                         <dt className="font-medium text-slate-800">
                           {feature.name}
                         </dt>
-                        <dd className="col-span-2 flex items-center justify-start px-4">
+                        <dd className="col-span-2 flex items-start gap-2 px-4">
+                          {tier.id === "rentak" ? (
+                            <Check className="h-4 w-4 text-primary-800 shrink-0 mt-1" />
+                          ) : (
+                            <X className="h-4 w-4 text-rose-500 shrink-0 mt-1" />
+                          )}
                           <span className="text-slate-500">
                             {feature.tiers[tier.id]}
                           </span>
@@ -186,7 +198,7 @@ export async function Plans() {
             >
               <div className="me-8 size-full" />
               <div className="col-span-4 grid size-full grid-cols-2 rounded-lg bg-slate-50">
-                <div />
+                <div className="rounded-s-lg border border-primary-600/25 border-t-4 border-t-primary-600 bg-white shadow-xl shadow-primary-900/5" />
                 <div className="my-8 ms-4 border-s" />
               </div>
             </div>
@@ -205,8 +217,14 @@ export async function Plans() {
                 </tr>
               </thead>
               <tbody>
-                {plans.features.map((feature) => (
-                  <tr key={feature.name} className="grid grid-cols-5 gap-x-8">
+                {plans.features.map((feature, idx) => (
+                  <tr
+                    key={feature.name}
+                    className={clsx(
+                      "grid grid-cols-5 gap-x-8 border-b border-slate-200/60 last:border-b-0 px-4 rounded-lg transition-colors",
+                      idx % 2 === 1 && "bg-slate-100/40"
+                    )}
+                  >
                     <th
                       scope="row"
                       className="py-3 pe-4 text-start text-lg font-medium text-slate-800"
@@ -218,7 +236,12 @@ export async function Plans() {
                         key={tier.name}
                         className="col-span-2 px-6 py-4 text-start"
                       >
-                        <span className="size-full py-3">
+                        <span className="size-full py-3 flex items-start gap-2.5">
+                          {tier.id === "rentak" ? (
+                            <Check className="h-5 w-5 text-primary-800 shrink-0 mt-1" />
+                          ) : (
+                            <X className="h-5 w-5 text-rose-500 shrink-0 mt-1" />
+                          )}
                           <span className="text-lg text-slate-500">
                             {feature.tiers[tier.id]}
                           </span>

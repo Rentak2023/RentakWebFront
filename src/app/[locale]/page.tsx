@@ -9,6 +9,7 @@ import { Plans } from "@/components/home/plans";
 import { Services } from "@/components/home/services";
 import Units from "@/components/home/units";
 import { WhyUs } from "@/components/home/why-us";
+import { StepsFlow } from "@/components/home/steps-flow";
 import { generateAlternatesLinks } from "@/lib/utils";
 
 export function generateMetadata(): Metadata {
@@ -23,6 +24,7 @@ export default function Home() {
       <Header />
       <Services />
       <WhyUs />
+      <StepsFlow />
       <PayYourRent />
       <Plans />
       <HowItWorks />

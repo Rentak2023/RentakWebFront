@@ -77,6 +77,30 @@
         "description": "Say goodbye to burdensome cash deposits. Start with just the first month's rent."
       }
     },
+    "steps-flow": {
+      "title": "From unit to payout in five clear steps.",
+      "subtitle": "The flow is designed to reduce uncertainty for landlords, tenants, and brokers before money changes hands.",
+      "step-1": {
+        "title": "Submit",
+        "description": "Owner, tenant, or broker submits a request with area, budget, documents, or unit details."
+      },
+      "step-2": {
+        "title": "Verify",
+        "description": "Rentak checks unit details, owner approval, tenant documents, and commercial terms."
+      },
+      "step-3": {
+        "title": "Match",
+        "description": "The right unit, tenant, broker, and payment option are matched in one workflow."
+      },
+      "step-4": {
+        "title": "Contract",
+        "description": "Deposit, rent schedule, services, and responsibilities are clarified before signing."
+      },
+      "step-5": {
+        "title": "Collect",
+        "description": "Rentak manages reminders, digital payments, landlord payout tracking, and support."
+      }
+    },
     "plans": {
       "title": "Rentak vs. Traditional renting",
       "subtitle": "Elevate Your Rental Experiences",
@@ -84,33 +108,33 @@
       "traditional-rent": "Traditional rent",
       "finding-tenants": {
         "title": "Finding Tenants",
-        "traditional": "Landlords typically rely on word of mouth, local ads, or basic online listings. This process can be slow and inefficient, often attracting a broad range of unqualified applicants.",
-        "rentak": "Uses advanced algorithms and a robust online platform to match landlords with pre-screened tenants quickly and efficiently, ensuring compatibility and reducing time-to-rent."
+        "traditional": "Word of mouth and basic listings. Slow, and open to anyone.",
+        "rentak": "Smart matching connects you with pre-screened tenants—fast."
       },
       "rent-collection": {
         "title": "Rent Collection",
-        "traditional": "Rent collection can be inconsistent and relies on manual processes like cash payments or bank transfers, which may delay funds and complicate financial management.",
-        "rentak": "Automates the rent collection process, ensuring landlords receive payments on time every month via direct deposit, reducing hassle and improving cash flow stability."
+        "traditional": "Cash or bank transfers. Delays and confusion guaranteed.",
+        "rentak": "Rent lands in your account automatically, every month."
       },
       "property-management": {
         "title": "Property Management",
-        "traditional": "Often involves reactive maintenance and manual coordination, which can lead to delays in repairs and increased costs.",
-        "rentak": "Provides proactive, streamlined property management services. Our platform enables easy reporting and tracking of maintenance issues, ensuring higher tenant satisfaction."
+        "traditional": "Reactive fixes, manual coordination. Costs pile up.",
+        "rentak": "Track maintenance and repairs from one simple dashboard."
       },
       "tenant-screening": {
         "title": "Tenant Screening",
-        "traditional": "Screening is often rudimentary, based on simple credit checks and references, which may not fully reveal potential issues.",
-        "rentak": "Offers comprehensive tenant screening, including credit, employment, and background checks, leveraging technology to gather and analyze data more deeply and accurately."
+        "traditional": "A quick credit check. Hidden risks stay hidden.",
+        "rentak": "Deep checks — credit, employment, background. All verified."
       },
       "security-deposit": {
         "title": "Security Deposits and Disputes",
-        "traditional": "Handling security deposits manually can lead to disputes at the end of tenancy periods, often stemming from miscommunication or unclear terms.",
-        "rentak": "Acts as a neutral third party to hold and manage security deposits, with clear terms set out at the start. Disputes are handled fairly and swiftly, mediated by Rentak’s expert team."
+        "traditional": "Deposits handled manually. Disputes are almost inevitable.",
+        "rentak": "Rentak holds the deposit, sets clear terms, resolves disputes fast."
       },
       "flexible-payment": {
         "title": "Flexibility and Payment Options",
-        "traditional": "Limited payment options and rigid rent terms.",
-        "rentak": "Offers flexible payment solutions, including the innovative \"Rent Now, Pay Later\" option, allowing tenants to manage financial flows better and giving landlords enhancing collection leadtime."
+        "traditional": "Fixed terms, one way to pay. Take it or leave it.",
+        "rentak": "Rent Now, Pay Later — flexible payments that fit your budget."
       }
     },
     "how-it-works": {

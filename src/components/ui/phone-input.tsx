@@ -83,7 +83,7 @@ export type PhoneInputProps = {
   disabled?: boolean;
 }
 
-export const PhoneInput = ({ ref, value, onChange, className, disabled: disabledProp }: PhoneInputProps & { ref?: React.RefObject<HTMLInputElement | null> }) => {
+export const PhoneInput = ({ ref, value, onChange, className, disabled: disabledProp }: PhoneInputProps & { ref?: React.RefObject<HTMLInputElement> | React.RefCallback<HTMLInputElement> }) => {
     const locale = useLocale();
     const [open, setOpen] = React.useState(false);
     const [searchQuery, setSearchQuery] = React.useState("");
