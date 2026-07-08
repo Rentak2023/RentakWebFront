@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 
+import algoFinanceLogo from "@/app/[locale]/assets/images/logos/algo-finance.png";
 import forsaLogo from "@/app/[locale]/assets/images/logos/forsa.png";
 import halanLogo from "@/app/[locale]/assets/images/logos/halan.png";
 import mastercardLogo from "@/app/[locale]/assets/images/logos/mastercard.png";
@@ -42,6 +43,10 @@ const partners = [
     logo: souhoolaLogo,
   },
   {
+    name: "Algo Finance",
+    logo: algoFinanceLogo,
+  },
+  {
     name: "visa",
     logo: visaLogo,
   },
@@ -58,7 +63,7 @@ export function Partners() {
       <h3 className="text-center text-xl font-medium text-slate-700">
         {t("title")}
       </h3>
-      <div className="mt-8 grid grid-cols-3 items-center justify-items-center gap-6 lg:grid-cols-9 lg:flex-row xl:gap-12">
+      <div className="mt-8 grid grid-cols-2 items-center justify-items-center gap-6 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-10 lg:flex-row xl:gap-12">
         {partners.map((partner) => (
           <div key={partner.name} className="flex-1">
             <Image
