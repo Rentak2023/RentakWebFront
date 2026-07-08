@@ -27,7 +27,7 @@ export default function Home() {
       <StepsFlow />
       <PayYourRent />
       <Plans />
-      <HowItWorks />
+      {/* <HowItWorks /> */}
       <Units />
       <Partners />
       <Contact />
