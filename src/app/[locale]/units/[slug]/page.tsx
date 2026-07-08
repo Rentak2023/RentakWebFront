@@ -42,6 +42,8 @@ import { Step1Icon, Step2Icon, Step3Icon } from "./icons";
 import { PropertyInspection } from "./property-inspection";
 import SimilarUnits from "./similar-units";
 
+export const revalidate = 30;
+
 export const generateStaticParams = async () => {
   const properties = await getAllProperties();
 
