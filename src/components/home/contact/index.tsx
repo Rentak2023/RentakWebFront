@@ -1,27 +1,20 @@
-import { getTranslations } from "next-intl/server";
-
 import Container from "@/components/ui/container";
 
 import ContactForm from "./contact-form";
+import FAQ from "./faq";
 
-async function Contact() {
-  const t = await getTranslations("home.contact");
-
+function Contact() {
   return (
     <Container className="relative py-16 lg:py-24">
-      <div className="mt-12 flex flex-col items-stretch lg:grid lg:grid-cols-2 lg:items-start">
-        <div className="flex h-full flex-col justify-center">
-          <h2 className="text-center text-5xl font-semibold uppercase leading-7 tracking-tight text-slate-900 lg:text-start">
-            {t("title")}
-          </h2>
-
-          <h3 className="mt-8 text-lg text-slate-600 lg:me-16">
-            {t("subtitle")}
-          </h3>
+      <div className="mt-12 flex flex-col items-stretch gap-8 lg:grid lg:grid-cols-2 lg:gap-12 lg:items-start">
+        {/* Left Side - FAQ */}
+        <div className="flex h-full flex-col justify-start">
+          <FAQ />
         </div>
 
-        <div className="mt-8 lg:me-5 lg:mt-0">
-          <div className="rounded-md bg-white p-6 shadow-sm">
+        {/* Right Side - Contact Form */}
+        <div className="flex h-full flex-col justify-start">
+          <div className="rounded-md bg-white p-6 shadow-sm lg:sticky lg:top-24">
             <ContactForm />
           </div>
         </div>

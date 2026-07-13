@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import Player from "next-video/player";
 
+import algoFinanceLogo from "@/app/[locale]/assets/images/logos/algo-finance.png";
 import forsaLogo from "@/app/[locale]/assets/images/logos/forsa.png";
 import halanLogo from "@/app/[locale]/assets/images/logos/halan.png";
 import mastercardLogo from "@/app/[locale]/assets/images/logos/mastercard.png";
@@ -54,6 +55,10 @@ const partners = [
   {
     name: "Tru",
     logo: truLogo,
+  },
+  {
+    name: "Algo Finance",
+    logo: algoFinanceLogo,
   },
 ];
 

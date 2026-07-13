@@ -14,7 +14,7 @@
   },
   "navbar": {
     "home": "Home",
-    "listing": "Discover Units",
+    "listing": "Explore Units",
     "services": "Services",
     "manage-property": "Manage Your Property",
     "rent-collection": "Rent Collection",
@@ -165,8 +165,30 @@
       "title": "Our Partners"
     },
     "contact": {
-      "title": "Contact Us",
-      "subtitle": "Have questions or need assistance? Our dedicated team is ready to help you. Contact us today to learn more about our services or to get started with Rentak.",
+      "title": "Questions That Matter",
+      "subtitle": "Clear answers before you take action.",
+      "questions": {
+        "listing-platform": {
+          "question": "Is Rentak only a listing platform?",
+          "answer": "No. Listings are the entry point. Rentak also supports verification, tenant screening, contract flow, payments, payout tracking, maintenance coordination, and eligible financing products."
+        },
+        "guaranteed-rent": {
+          "question": "Does every landlord get guaranteed rent?",
+          "answer": "No. Payout terms depend on the selected package, unit, tenant profile, contract, and eligibility. Rentak should only use guaranteed wording where the signed product terms support it."
+        },
+        "instarent": {
+          "question": "What is Instarent?",
+          "answer": "Instarent is Rentak's upfront rent and predictable payout product for eligible landlords. Terms are reviewed case by case and may be supported by finance partners."
+        },
+        "flexible-payments": {
+          "question": "Can tenants pay monthly instead of heavy upfront payments?",
+          "answer": "Some units are eligible for flexible payments through Rentak and partner channels. Eligibility depends on tenant documents, landlord approval, payment partner rules, and unit terms."
+        },
+        "sodic-badge": {
+          "question": "How does SODIC appear on Rentak?",
+          "answer": "Eligible SODIC units appear in the same Rentak listings with a SODIC badge, SODIC filter, owner listing flow, and tenant viewing/application flow."
+        }
+      },
       "submit": "Send Message",
       "yourName": "Your Name",
       "name": "Name",
