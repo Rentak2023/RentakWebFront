@@ -6,8 +6,8 @@ export const LoginSchema = v.object({
     v.string(),
     v.trim(),
     v.nonEmpty("Phone number is required"),
-    v.check(
-      (input) => isMobilePhone(input, "ar-EG"),
+    v.regex(
+      /^\+?[0-9]{7,15}$/,
       "Enter a valid phone number",
     ),
   ),
@@ -34,8 +34,8 @@ export const SignUpSchema = v.object({
     v.string(),
     v.trim(),
     v.nonEmpty("Phone number is required"),
-    v.check(
-      (input) => isMobilePhone(input, "ar-EG"),
+    v.regex(
+      /^\+?[0-9]{7,15}$/,
       "Enter a valid phone number",
     ),
   ),

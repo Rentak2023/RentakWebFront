@@ -18,6 +18,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { PhoneInput } from "@/components/ui/phone-input";
 import { orpc } from "@/lib/orpc";
 import { SignUpSchema } from "@/schemas/auth";
 
@@ -114,7 +115,7 @@ export function SignUpForm() {
             <FormItem>
               <FormLabel>{t("fields.phone.label")}</FormLabel>
               <FormControl>
-                <Input type="tel" dir="ltr" className="mt-2" {...field} />
+                <PhoneInput className="mt-2" dir="ltr" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
