@@ -10,7 +10,7 @@ const Input = ({
   type,
   ...props
 }: InputProps & {
-  ref?: React.RefObject<HTMLInputElement> | React.RefCallback<HTMLInputElement>;
+  ref?: React.Ref<HTMLInputElement>;
 }) => {
   return (
     <input

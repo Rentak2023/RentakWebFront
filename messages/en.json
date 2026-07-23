@@ -641,6 +641,11 @@
       "title": "Thank You!",
       "description": "Your request has been submitted successfully. We will contact you shortly.",
       "back-to-home": "Back to Home"
+    },
+    "payment-success": {
+      "title": "Payment Successful!",
+      "description": "Your transaction has been completed successfully.",
+      "back-to-home": "Back to Home"
     }
   },
   "unit": {
