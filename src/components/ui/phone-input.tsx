@@ -76,14 +76,13 @@ const sortedCountries = [...countries].sort(
   (a, b) => b.dialCode.length - a.dialCode.length,
 );
 
-export type PhoneInputProps = {
+export type PhoneInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "value" | "onChange"> & {
   value: string;
   onChange: (value: string) => void;
-  className?: string;
-  disabled?: boolean;
-}
+};
 
-export const PhoneInput = ({ ref, value, onChange, className, disabled: disabledProp }: PhoneInputProps & { ref?: React.RefObject<HTMLInputElement> | React.RefCallback<HTMLInputElement> }) => {
+export const PhoneInput = React.forwardRef<HTMLInputElement, PhoneInputProps>(
+  ({ value, onChange, className, disabled: disabledProp, ...props }, ref) => {
     const locale = useLocale();
     const [open, setOpen] = React.useState(false);
     const [searchQuery, setSearchQuery] = React.useState("");
@@ -215,9 +214,11 @@ export const PhoneInput = ({ ref, value, onChange, className, disabled: disabled
           value={nationalNumber}
           onChange={handlePhoneChange}
           className="border-0 bg-transparent h-full px-3 focus-visible:ring-0 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:bg-slate-50/50"
+          {...props}
         />
       </div>
     );
-  };
+  }
+);
 
 PhoneInput.displayName = "PhoneInput";

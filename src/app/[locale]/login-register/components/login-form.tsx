@@ -39,7 +39,7 @@ export function LoginForm() {
   const loginMutation = useMutation(
     orpc.auth.login.mutationOptions({
       onSuccess: (data) => {
-        setUserId(data.user_id);
+        setUserId(data.userId || data.user_id || null);
         setIsVerifying(true);
       },
       onError: (error) => {

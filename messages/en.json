@@ -636,6 +636,11 @@
     "finish-property": {
       "title": "Finish My Property",
       "description": "Enhance the appeal and value of your property with Rentak’s specialized finishing packages. Tailored for efficiency and cost-effectiveness, our services are designed to prepare your property for the rental market swiftly, ensuring it looks its best and attracts premium tenants. Ready to transform your space?"
+    },
+    "thank-you": {
+      "title": "Thank You!",
+      "description": "Your request has been submitted successfully. We will contact you shortly.",
+      "back-to-home": "Back to Home"
     }
   },
   "unit": {

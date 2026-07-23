@@ -57,7 +57,8 @@ export const UserSchema = v.object({
 
 export const AuthResponse = v.object({
   success: v.boolean(),
-  user_id: v.number(),
+  user_id: v.optional(v.number()),
+  userId: v.optional(v.number()),
   message: v.string(),
 });
 

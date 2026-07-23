@@ -41,7 +41,7 @@ export function SignUpForm() {
   const signUpMutation = useMutation(
     orpc.auth.signUp.mutationOptions({
       onSuccess: (data) => {
-        setUserId(data.user_id);
+        setUserId(data.userId || data.user_id || null);
         setIsVerifying(true);
       },
       onError: (error) => {

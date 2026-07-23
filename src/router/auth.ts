@@ -61,6 +61,8 @@ export const login = pub
           throw errors.VALIDATION_ERROR({ data: responseData });
         } else if (error.response.status === 401) {
           throw errors.GENERIC_ERROR({ data: responseData });
+        } else if (error.response.status === 450) {
+          throw errors.GENERIC_ERROR({ data: responseData });
         }
       }
       throw errors.GENERIC_ERROR({ data: { message: "Something went wrong" } });

@@ -4,6 +4,7 @@ import { Loader2 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 
+import { useRouter } from "@/i18n/routing";
 import { bookCallAction } from "@/app/[locale]/actions/book-call";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
@@ -36,6 +37,7 @@ export default function LeadForm({
   const t = useTranslations("services");
   const { toast } = useToast();
   const locale = useLocale();
+  const router = useRouter();
   const form = useForm({
     resolver: standardSchemaResolver(bookCallSchema),
     defaultValues: {
@@ -50,10 +52,7 @@ export default function LeadForm({
     const res = await bookCallAction(data, locale, serviceName);
 
     if (res.type === "success") {
-      toast({
-        title: "Success",
-        description: res.data.message,
-      });
+      router.push("/thank-you");
     } else {
       toast({
         title: "Error",
