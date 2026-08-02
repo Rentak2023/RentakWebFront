@@ -1,4 +1,5 @@
-import { useTranslations } from "next-intl";
+import { cookies } from "next/headers";
+import { redirect } from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";
 import { type Metadata } from "next";
 import { CheckCircle } from "lucide-react";
@@ -14,8 +15,15 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function ThankYouPage() {
-  const t = useTranslations("services");
+export default async function ThankYouPage() {
+  const cookieStore = await cookies();
+  const hasSubmitted = cookieStore.get("form_submitted");
+
+  if (!hasSubmitted) {
+    redirect("/");
+  }
+
+  const t = await getTranslations("services");
 
   return (
     <main className="pt-32 pb-16 min-h-[70vh] flex flex-col justify-center items-center">

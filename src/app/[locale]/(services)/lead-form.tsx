@@ -52,6 +52,8 @@ export default function LeadForm({
     const res = await bookCallAction(data, locale, serviceName);
 
     if (res.type === "success") {
+      // eslint-disable-next-line unicorn/no-document-cookie
+      document.cookie = "form_submitted=true; path=/; max-age=120"; // Expire after 2 minutes
       router.push("/thank-you");
     } else {
       toast({
