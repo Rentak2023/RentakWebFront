@@ -1,11 +1,11 @@
-import { cookies } from "next/headers";
-import { redirect } from "@/i18n/routing";
-import { getTranslations } from "next-intl/server";
-import { type Metadata } from "next";
 import { CheckCircle } from "lucide-react";
-import { Link } from "@/i18n/routing";
+import { type Metadata } from "next";
+import { cookies } from "next/headers";
+import { getTranslations } from "next-intl/server";
+
 import { Button } from "@/components/ui/button";
 import Container from "@/components/ui/container";
+import { Link, redirect } from "@/i18n/routing";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("services");
@@ -15,26 +15,31 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function ThankYouPage() {
+export default async function ThankYouPage({
+  params,
+}: {
+  params: Promise<{ locale: "en" | "ar" }>;
+}) {
+  const { locale } = await params;
   const cookieStore = await cookies();
   const hasSubmitted = cookieStore.get("form_submitted");
 
   if (!hasSubmitted) {
-    redirect("/");
+    redirect({ href: "/", locale });
   }
 
   const t = await getTranslations("services");
 
   return (
-    <main className="pt-32 pb-16 min-h-[70vh] flex flex-col justify-center items-center">
+    <main className="flex min-h-[70vh] flex-col items-center justify-center pb-16 pt-32">
       <Container className="max-w-2xl text-center">
-        <div className="flex justify-center mb-8">
-          <CheckCircle className="size-24 text-green-500 animate-in zoom-in duration-500" />
+        <div className="mb-8 flex justify-center">
+          <CheckCircle className="animate-in zoom-in size-24 text-green-500 duration-500" />
         </div>
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 mb-6">
+        <h1 className="mb-6 text-4xl font-bold tracking-tight text-slate-900 md:text-5xl">
           {t("thank-you.title")}
         </h1>
-        <p className="text-lg md:text-xl text-slate-600 mb-10">
+        <p className="mb-10 text-lg text-slate-600 md:text-xl">
           {t("thank-you.description")}
         </p>
         <Button asChild size="lg" className="rounded-full px-8">
