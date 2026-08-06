@@ -5,9 +5,19 @@
     "description": "At Rentak, we simplify and secure the rental process, offering tailored solutions for landlords, tenants, and brokers. Experience seamless property management, transparent transactions, and flexible payment options that transform real estate into a hassle-free world."
   },
   "header": {
-    "title": "Your Doorway to Smart Rent Solutions",
-    "subtitle": "At Rentak, we simplify and secure the rental process, offering tailored solutions for landlords, tenants, and brokers. Experience seamless property management, transparent transactions, and flexible payment options that transform real estate into a hassle-free world.",
-    "cta": "Discover Units"
+    "title": "The End of Rental Chaos",
+    "subtitle": "One place to rent, collect, and pay. The way it should've worked all along!",
+    "cta": "Discover Units",
+    "find_out_more": "Find Out More"
+  },
+  "what-does-rentak-do": {
+    "title": "What does Rentak Do?",
+    "landlord_title": "Landlords",
+    "landlord_desc": "months with no tenant, no rent, and endless chasing. That is not your job anymore. We handle the listing, find the tenant, and pay you every month. Guaranteed.",
+    "tenant_title": "Tenants",
+    "tenant_desc": "the right home shouldn't cost you your savings up front. Verified listings, flexible payments, and an easier way in.",
+    "landlord_cta": "Landlord",
+    "tenant_cta": "Tenant"
   },
   "find-service": {
     "title": "Find the perfect service with <bold>Rentak</bold>"
@@ -201,18 +211,42 @@
     }
   },
   "landlord": {
+    "how-it-works": {
+      "title": "How Does it Work",
+      "step-1": {
+        "title": "Hand us your unit",
+        "description": "Send us the details via WhatsApp or our contact form. That's the whole ask."
+      },
+      "step-2": {
+        "title": "Get it rent-ready",
+        "description": "We review the unit, build the listing, and put it live. All handled for you."
+      },
+      "step-3": {
+        "title": "Reach the right people",
+        "description": "Your unit goes out through Rentak, our broker partners, and our sales team. Seen everywhere it should be."
+      },
+      "step-4": {
+        "title": "Find your tenant",
+        "description": "We support every step from first interest to viewing and paperwork. Right through to move-in."
+      },
+      "step-5": {
+        "title": "Collect your rent",
+        "description": "We manage the tenancy and collect the rent. Guaranteed, on time."
+      }
+    },
     "meta": {
       "title": "Landlord",
       "description": "Maximize your rental income with Rentak's guaranteed rent and property management services. Enjoy hassle-free living with our technology-driven solutions."
     },
     "header": {
-      "title": "Maximize Your Rental Income with Guaranteed Peace of Mind",
-      "subtitle": "Rentak transforms property management with technology-driven solutions and guaranteed rent, so you can sit back and relax.",
-      "cta": "Add Property"
+      "title": "Your property Managed. Your Rent Guaranteed",
+      "subtitle": "No chasing tenants. No chasing rent. Give us the keys we'll take it from here.",
+      "cta": "Add Property",
+      "cta_list_property": "List Your Property"
     },
     "why-rentak": {
-      "title": "Why choose rentak?",
-      "subtitle": "At Rentak, we provide landlords with a seamless and worry-free rental experience. Here’s how we add value to your property management:",
+      "title": "Why Choose Rentak?",
+      "subtitle": "At Rentak, we provide landlords with a seamless and worry-free rental experience. Here’s how we add value to your property management",
       "features": {
         "guaranteed-rent": {
           "title": "Guaranteed Rent",
@@ -358,13 +392,34 @@
     }
   },
   "tenant": {
+    "how-it-works": {
+      "title": "How Does it Work",
+      "step-1": {
+        "title": "Tell Us What You Need",
+        "description": "Your area, your budget, your move-in date. Start there!"
+      },
+      "step-2": {
+        "title": "Browse Places You Can Trust",
+        "description": "Real units, current prices, honest details.\n No surprises!"
+      },
+      "step-3": {
+        "title": "Pay Your Way",
+        "description": "Pay in a way that fits, with no upfront shock. Within reach at last!"
+      },
+      "step-4": {
+        "title": "Move In Stress-Free",
+        "description": "We are with you every step of the process. Right up to the keys!"
+      }
+    },
     "meta": {
       "title": "Tenant",
       "description": "Rentak is your trusted partner in finding the perfect rental home. With our user-friendly platform, you can explore a wide range of verified listings, enjoy flexible payment options, and experience hassle-free living. Discover how Rentak simplifies your rental journey today!"
     },
     "header": {
-      "title": "Find Your Ideal Home with Rentak",
-      "subtitle": "Simplify your rental experience with flexible payments, hassle-free services, and secure contracts."
+      "title": "Search Less. Pay Smarter. Rent Happier.",
+      "subtitle": "No lump sums. No cash upfront. Browse verified homes and pay monthly, Your way.",
+      "cta_pay_now": "Pay Now",
+      "cta_browse_listing": "Browse Listing"
     },
     "property-request": {
       "question": "Can’t find what you’re looking for?",

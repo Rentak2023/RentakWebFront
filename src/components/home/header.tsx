@@ -2,6 +2,8 @@ import { Image } from "@unpic/react/nextjs";
 import { getTranslations } from "next-intl/server";
 
 import headerBackground from "@/app/[locale]/assets/images/header-background.png";
+import heroImage from "../../../public/images/Home Hero Section Image.png";
+import { Button } from "@/components/ui/button";
 import Container from "@/components/ui/container";
 
 import { FindService } from "./find-service";
@@ -12,7 +14,7 @@ export async function Header() {
   return (
     <div className="relative min-h-dvh overflow-hidden pt-14">
       <Image
-        src={headerBackground}
+        src={heroImage}
         className="absolute inset-0 -z-20 size-full"
         layout="fullWidth"
         alt=""
@@ -29,11 +31,11 @@ export async function Header() {
             <p className="mt-4 text-balance text-lg/8 text-slate-300">
               {t("subtitle")}
             </p>
-            {/* <div className="mt-14 flex items-center justify-start gap-x-6">
+            <div className="mt-14 flex items-center justify-start gap-x-6">
               <Button asChild size="lg">
-                <Link href="/units">{t("cta")}</Link>
+                <a href="#what-does-rentak-do">{t("find_out_more")}</a>
               </Button>
-            </div> */}
+            </div>
           </div>
         </div>
         <FindService />

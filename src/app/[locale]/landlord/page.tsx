@@ -5,6 +5,7 @@ import { generateAlternatesLinks } from "@/lib/utils";
 
 import FAQ from "./components/faq";
 import Header from "./components/header";
+import HowItWorks from "./components/how-it-works";
 import MaximizeRent from "./components/maximize-rent";
 import Pricing from "./components/pricing";
 import Services from "./components/services";
@@ -30,10 +31,12 @@ function Landlord() {
   return (
     <main>
       <Header />
+      <Services />
+      <HowItWorks />
       <WhyRentak />
       <Pricing />
-      <Services />
       <Steps />
+      <HowItWorks />
       <FAQ />
       <Testimonials />
       <MaximizeRent />

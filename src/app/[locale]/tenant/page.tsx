@@ -6,6 +6,7 @@ import { generateAlternatesLinks } from "@/lib/utils";
 
 import BlogPosts from "./components/blog-posts";
 import Header from "./components/header";
+import HowItWorks from "./components/how-it-works";
 import PayRent from "./components/pay-rent";
 import PropertyRequest from "./components/property-request";
 import Steps from "./components/steps";
@@ -29,6 +30,7 @@ function Tenant() {
   return (
     <main>
       <Header />
+      <HowItWorks />
       <Units />
       <PropertyRequest />
       <PayRent />

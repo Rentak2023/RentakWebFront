@@ -4,8 +4,9 @@ import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import Container from "@/components/ui/container";
 import { Link } from "@/i18n/routing";
+import URLS from "@/shared/urls";
 
-import headerBackground from "./header-background.png";
+const HEADER_IMAGE = "/images/Landlord Hero Section.png";
 
 export default function Header() {
   const t = useTranslations("landlord.header");
@@ -13,9 +14,8 @@ export default function Header() {
   return (
     <div className="relative isolate min-h-dvh overflow-hidden pt-16">
       <Image
-        src={headerBackground}
+        src={HEADER_IMAGE}
         className="absolute inset-0 -z-20 size-full"
-        background={headerBackground.blurDataURL}
         alt=""
         layout="fullWidth"
         priority
@@ -27,14 +27,15 @@ export default function Header() {
             {t("title")}
           </h1>
           <p className="mt-6 text-lg/8 text-slate-300">{t("subtitle")}</p>
-          {/* TODO: UPDATE CTA link */}
-          {/* <Button
-            size="xl"
-            className="bg-primary-600 hover:bg-primary-600/90 mt-10"
-            asChild
-          >
-            <Link href="/">{t("cta")}</Link>
-          </Button> */}
+          <div className="mt-10">
+            <Button
+              size="xl"
+              className="bg-primary-600 hover:bg-primary-600/90"
+              asChild
+            >
+              <Link href={URLS.rentManagement}>{t("cta_list_property")}</Link>
+            </Button>
+          </div>
         </div>
       </Container>
     </div>

@@ -8,6 +8,7 @@ import { PayYourRent } from "@/components/home/pay-your-rent";
 import { Plans } from "@/components/home/plans";
 import { Services } from "@/components/home/services";
 import Units from "@/components/home/units";
+import { WhatDoesRentakDo } from "@/components/home/what-does-rentak-do";
 import { WhyUs } from "@/components/home/why-us";
 import { StepsFlow } from "@/components/home/steps-flow";
 import { generateAlternatesLinks } from "@/lib/utils";
@@ -22,6 +23,7 @@ export default function Home() {
   return (
     <main>
       <Header />
+      <WhatDoesRentakDo />
       <Services />
       <WhyUs />
       <StepsFlow />
