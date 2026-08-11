@@ -15,6 +15,22 @@ import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "@/i18n/routing";
 import { orpc, orpcClient } from "@/lib/orpc";
 
+
+
+// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
+declare global {
+  interface Window {
+    fbq?: (...args: any[]) => void;
+  }
+}
+
+function trackPixelEvent(name: string, options: Record<string, any> = {}) {
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  if (typeof window !== "undefined" && window.fbq) {
+    window.fbq("track", name, options);
+  }
+}
+
 enum PaymentMethod {
   Bank = "4",
   Wallet = "5",
@@ -472,6 +488,9 @@ export default function RentPaymentForm() {
         event_category: "Rent Payment",
       });
       if (res.data.redirect) {
+        trackPixelEvent("InitiateCheckout", {
+          content_name: "Rent Payment",
+        });
         toast({
           title: "Success",
           description: "Payment Request created successfully",
