@@ -52,7 +52,13 @@ function CitiesAndRegions() {
           name="governoment_id"
           render={({ field }) => (
             <FormItem>
-              <Select onValueChange={field.onChange} value={field.value}>
+              <Select
+                onValueChange={(val) => {
+                  field.onChange(val);
+                  form.setValue("city_id", "");
+                }}
+                value={field.value}
+              >
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder={t("selectCity")} />
@@ -73,6 +79,7 @@ function CitiesAndRegions() {
                     size="sm"
                     onClick={() => {
                       field.onChange(null);
+                      form.setValue("city_id", "");
                     }}
                   >
                     {t("clear")}
@@ -100,7 +107,7 @@ function CitiesAndRegions() {
                   {cities?.map((district) => (
                     <SelectItem
                       key={district.city_id}
-                      value={district.city_name.toString()}
+                      value={district.city_id.toString()}
                     >
                       {district.city_name}
                     </SelectItem>

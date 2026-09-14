@@ -43,16 +43,20 @@ export const citiesList = pub
   })
   .input(
     v.object({
-      governorate_id: v.pipe(v.string(), v.trim(), v.decimal()),
+      governorate_id: v.nullish(v.union([v.string(), v.number()])),
       lang: LocaleSchema,
     }),
   )
   .output(v.array(citySchema))
   .handler(async ({ input, context }) => {
+    if (!input.governorate_id) {
+      return [];
+    }
+
     const res = await context.fetcher
       .get("location/get-all-cities", {
         searchParams: {
-          governorate_id: input.governorate_id,
+          governorate_id: input.governorate_id.toString(),
           lang: input.lang,
         },
       })
