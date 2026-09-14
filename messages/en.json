@@ -13,9 +13,9 @@
   "what-does-rentak-do": {
     "title": "What does Rentak Do?",
     "landlord_title": "Landlords",
-    "landlord_desc": "months with no tenant, no rent, and endless chasing. That is not your job anymore. We handle the listing, find the tenant, and pay you every month. Guaranteed.",
+    "landlord_desc": "Months with no tenant, no rent, and endless chasing. That is not your job anymore. We handle the listing, find the tenant, and pay you every month. Guaranteed.",
     "tenant_title": "Tenants",
-    "tenant_desc": "the right home shouldn't cost you your savings up front. Verified listings, flexible payments, and an easier way in.",
+    "tenant_desc": "The right home shouldn't cost you your savings up front. Verified listings, flexible payments, and an easier way in.",
     "landlord_cta": "Landlord",
     "tenant_cta": "Tenant"
   },
@@ -226,7 +226,7 @@
         "description": "Your unit goes out through Rentak, our broker partners, and our sales team. Seen everywhere it should be."
       },
       "step-4": {
-        "title": "Find your tenant",
+        "title": "Sign your tenant",
         "description": "We support every step from first interest to viewing and paperwork. Right through to move-in."
       },
       "step-5": {
@@ -239,7 +239,7 @@
       "description": "Maximize your rental income with Rentak's guaranteed rent and property management services. Enjoy hassle-free living with our technology-driven solutions."
     },
     "header": {
-      "title": "Your property Managed. Your Rent Guaranteed",
+      "title": "Your Property Managed. Your Rent Guaranteed!",
       "subtitle": "No chasing tenants. No chasing rent. Give us the keys we'll take it from here.",
       "cta": "Add Property",
       "cta_list_property": "List Your Property"
@@ -269,12 +269,12 @@
     "services": {
       "title": "Landlord Services",
       "finishing-financing": {
-        "title": "Finishing Financing",
+        "title": "Finished To Rent",
         "description": "Need to complete construction or renovations before renting out your property? Rentak offers financing solutions to help you finish projects faster, ensuring your property is rent-ready without financial strain.",
         "cta": "Get Started"
       },
       "maintenance-financing": {
-        "title": "Maintenance Financing",
+        "title": "Finishing & Maintenance Financing",
         "description": "Annual maintenance fees can be a significant burden. With our tailored financing options, landlords can spread these costs over 6 to 60 months, avoiding large upfront payments and maintaining cash flow.",
         "cta": "Get Started"
       },
@@ -417,7 +417,7 @@
     },
     "header": {
       "title": "Search Less. Pay Smarter. Rent Happier.",
-      "subtitle": "No lump sums. No cash upfront. Browse verified homes and pay monthly, Your way.",
+      "subtitle": "No lump sums. No cash upfront.\nBrowse verified homes and pay monthly, Your way.",
       "cta_pay_now": "Pay Now",
       "cta_browse_listing": "Browse Listing"
     },
@@ -738,6 +738,10 @@
     "finishingTypes": "Finishing Types",
     "propertyType": "Property Type",
     "priceRange": "Price Range",
+    "minPrice": "Min Price",
+    "maxPrice": "Max Price",
+    "apply": "Apply",
+    "egp": "EGP",
     "selectToilets": "Select Number of Bathrooms",
     "selectRooms": "Select Number of Bedrooms",
     "filter": "Filter",
