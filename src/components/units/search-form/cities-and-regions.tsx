@@ -55,7 +55,7 @@ function CitiesAndRegions() {
               <Select
                 onValueChange={(val) => {
                   field.onChange(val);
-                  form.setValue("city_id", "");
+                  form.setValue("city_id", undefined);
                 }}
                 value={field.value}
               >
@@ -78,8 +78,8 @@ function CitiesAndRegions() {
                     variant="secondary"
                     size="sm"
                     onClick={() => {
-                      field.onChange(null);
-                      form.setValue("city_id", "");
+                      field.onChange();
+                      form.setValue("city_id", undefined);
                     }}
                   >
                     {t("clear")}
@@ -117,7 +117,7 @@ function CitiesAndRegions() {
                     variant="secondary"
                     size="sm"
                     onClick={() => {
-                      field.onChange(null);
+                      field.onChange();
                     }}
                   >
                     {t("clear")}
