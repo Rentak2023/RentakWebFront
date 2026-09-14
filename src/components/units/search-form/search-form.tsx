@@ -20,7 +20,7 @@ import { orpc } from "@/lib/orpc";
 import CitiesAndRegions from "./cities-and-regions";
 import FinishingTypes from "./finishing-types";
 import KeywordInput from "./keyword-input";
-import MultiRangeSlider from "./multi-range-slider";
+import PriceRangeFilter from "./price-range-filter";
 import PropertyTypes from "./property-types";
 import RoomsAndToilets from "./rooms-and-toilets";
 
@@ -50,6 +50,7 @@ export default function SearchForm() {
   );
 
   const isInternalChangeRef = useRef(false);
+  const isFirstRender = useRef(true);
 
   const updateSearchParams = useDebouncedCallback(
     (value: Record<string, any>) => {
@@ -77,7 +78,6 @@ export default function SearchForm() {
     control: form.control,
   });
 
-  // Sync form values when searchParams change externally (e.g. from banner CTA)
   useEffect(() => {
     if (isInternalChangeRef.current) {
       isInternalChangeRef.current = false;
@@ -98,22 +98,30 @@ export default function SearchForm() {
   }, [searchParams, form]);
 
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+
     const newSearchParams: Record<string, any> = {
       page: 1,
     };
     let changed = false;
     for (const [key, value] of Object.entries(currentValues)) {
+      if (key === "price_from" || key === "price_to") {
+        continue;
+      }
       const searchParamValue = searchParams[key as keyof typeof searchParams];
 
       if (Array.isArray(value)) {
         if (JSON.stringify(value) !== JSON.stringify(searchParamValue)) {
-          newSearchParams[key] = value;
+          newSearchParams[key] = value.length > 0 ? value : null;
           changed = true;
         }
       } else if ((value == null || value === "") && searchParamValue) {
-        newSearchParams[key] = value;
+        newSearchParams[key] = null;
         changed = true;
-      } else if (value !== "" && searchParamValue !== value) {
+      } else if (value !== "" && value != null && searchParamValue !== value) {
         newSearchParams[key] = value;
         changed = true;
       }
@@ -136,6 +144,18 @@ export default function SearchForm() {
       bathroom_numbers: "",
       room_numers: "",
     });
+    setSearchParams({
+      keyword: null,
+      governoment_id: null,
+      city_id: null,
+      price_from: null,
+      price_to: null,
+      finish_type: null,
+      property_type: null,
+      bathroom_numbers: null,
+      room_numers: null,
+      page: null,
+    });
   };
 
   return (
@@ -150,7 +170,7 @@ export default function SearchForm() {
           <RoomsAndToilets />
           <FinishingTypes />
           <PropertyTypes />
-          <MultiRangeSlider
+          <PriceRangeFilter
             min={priceRange.min_price}
             max={priceRange.max_price}
           />
