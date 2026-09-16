@@ -100,7 +100,7 @@ export default function PriceRangeFilter({ min, max }: PriceRangeFilterProps) {
 
       <div className="mt-4 flex items-center gap-2">
         <Select
-          value={selectedMin}
+          value={selectedMin || undefined}
           onValueChange={(val) => {
             setSelectedMin(val);
           }}
@@ -140,7 +140,7 @@ export default function PriceRangeFilter({ min, max }: PriceRangeFilterProps) {
         <span className="font-medium text-slate-400">—</span>
 
         <Select
-          value={selectedMax}
+          value={selectedMax || undefined}
           onValueChange={(val) => {
             setSelectedMax(val);
           }}

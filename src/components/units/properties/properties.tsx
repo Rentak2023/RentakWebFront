@@ -8,6 +8,7 @@ import UnitsSkeleton from "@/components/home/units/units-skeleton";
 import Container from "@/components/ui/container";
 import { Skeleton } from "@/components/ui/skeleton";
 import Pagination from "@/components/units/pagination";
+import SodicBanner from "@/components/units/sodic-banner";
 import Unit from "@/components/units/unit";
 import { orpc } from "@/lib/orpc";
 import { propertiesQueryParsers } from "@/services/properties";
@@ -15,14 +16,41 @@ import { propertiesQueryParsers } from "@/services/properties";
 import PropertiesHeader from "./properties-header";
 import ResetFilters from "./reset-filters";
 import Sort from "./sort";
-import SodicBanner from "../sodic-banner";
+
+type UnitsListOptions = NonNullable<
+  Parameters<typeof orpc.units.list.queryOptions>[0]
+>;
+type UnitsListInput = UnitsListOptions["input"];
+
+function buildUnitsInput(
+  searchParams: Record<string, unknown>,
+  locale: string,
+): UnitsListInput {
+  const cleaned = Object.fromEntries(
+    Object.entries(searchParams).filter(
+      ([, value]) => value !== null && value !== undefined && value !== "",
+    ),
+  );
+  return { ...cleaned, lang: locale } as UnitsListInput;
+}
+
+function useUnitsQuery() {
+  const [searchParams] = useQueryStates(propertiesQueryParsers);
+  const locale = useLocale();
+
+  return useSuspenseQuery(
+    orpc.units.list.queryOptions({
+      input: buildUnitsInput(searchParams, locale),
+    }),
+  );
+}
 
 function Properties() {
   return (
-    <Container className="mt-4 md:mt-16 lg:mt-24 space-y-6">
+    <Container className="mt-4 space-y-6 md:mt-16 lg:mt-24">
       <SodicBanner />
       <PropertiesHeader />
-      <div className="flex justify-between items-center">
+      <div className="flex items-center justify-between">
         <Suspense
           fallback={
             <div className="my-7">
@@ -31,7 +59,7 @@ function Properties() {
           }
         >
           <UnitsCount />
-          <div className="flex items-center gap-2 my-7">
+          <div className="my-7 flex items-center gap-2">
             <ResetFilters />
             <Sort />
           </div>
@@ -46,17 +74,7 @@ function Properties() {
 
 function UnitsCount() {
   const t = useTranslations("units");
-  const locale = useLocale();
-  const [searchParams] = useQueryStates(propertiesQueryParsers);
-
-  const { data: properties } = useSuspenseQuery(
-    orpc.units.list.queryOptions({
-      input: {
-        ...searchParams,
-        lang: locale,
-      },
-    }),
-  );
+  const { data: properties } = useUnitsQuery();
 
   return (
     <div className="my-7 text-sm font-medium md:text-base">
@@ -72,20 +90,13 @@ function UnitsCount() {
 
 function Units() {
   const t = useTranslations("units");
-  const [searchParams] = useQueryStates(propertiesQueryParsers);
-  const locale = useLocale();
-  const { data: properties } = useSuspenseQuery(
-    orpc.units.list.queryOptions({
-      input: {
-        ...searchParams,
-        lang: locale,
-      },
-    }),
-  );
+  const { data: properties } = useUnitsQuery();
 
   const blurHashQueries = useSuspenseQueries({
     queries: properties.items.map((item) =>
-      orpc.placeholder.blurhash.queryOptions({ input: { url: item.picture } }),
+      orpc.placeholder.blurhash.queryOptions({
+        input: { url: item.picture || undefined },
+      }),
     ),
   });
 

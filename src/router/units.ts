@@ -1,4 +1,3 @@
-/* eslint-disable barrel-files/avoid-barrel-files */
 import { HTTPError } from "ky";
 import * as v from "valibot";
 
@@ -36,6 +35,8 @@ export const homeUnits = pub
     return res.data;
   });
 
+const StringOrNumber = v.union([v.string(), v.number()]);
+
 export const unitsList = pub
   .route({
     method: "GET",
@@ -46,22 +47,28 @@ export const unitsList = pub
   .input(
     v.object({
       lang: LocaleSchema,
-      governoment_id: v.nullable(v.number()),
-      city_id: v.nullable(v.number()),
-      finish_type: v.nullable(v.number()),
-      bathroom_numbers: v.nullable(v.number()),
-      room_numers: v.nullable(v.number()),
-      property_type: v.nullable(v.array(v.number())),
-      keyword: v.nullable(v.string()),
-      price_to: v.nullable(v.number()),
-      price_from: v.nullable(v.number()),
-      page: v.nullable(v.number()),
-      sort_by: v.nullable(v.picklist(["newest", "high-to-low", "low-to-high"])),
+      governoment_id: v.nullish(StringOrNumber),
+      city_id: v.nullish(StringOrNumber),
+      finish_type: v.nullish(StringOrNumber),
+      bathroom_numbers: v.nullish(StringOrNumber),
+      room_numers: v.nullish(StringOrNumber),
+      property_type: v.nullish(
+        v.union([v.array(StringOrNumber), StringOrNumber]),
+      ),
+      keyword: v.nullish(v.string()),
+      price_to: v.nullish(StringOrNumber),
+      price_from: v.nullish(StringOrNumber),
+      page: v.nullish(StringOrNumber),
+      sort_by: v.nullish(v.picklist(["newest", "high-to-low", "low-to-high"])),
     }),
   )
   .output(UnitsListResponseSchema)
   .handler(async ({ input, context }) => {
-    const searchParams = inputToSearchParams(input);
+    const { property_type, ...rest } = input;
+    const searchParams = inputToSearchParams({
+      ...rest,
+      property_types: property_type,
+    });
 
     const res = await context.fetcher
       .get("unit/get-all-units", {
@@ -199,7 +206,7 @@ export const getPriceRange = pub
     return res.data;
   });
 
-export default {
+const unitsRouter = {
   home: homeUnits,
   list: unitsList,
   find: findUnit,
@@ -208,3 +215,5 @@ export default {
   propertyTypes: propertyTypesList,
   priceRange: getPriceRange,
 };
+
+export default unitsRouter;

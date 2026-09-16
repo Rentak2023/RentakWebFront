@@ -10,10 +10,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { type FormValues } from "@/components/units/types";
 
 function KeywordInput() {
   const t = useTranslations("units");
-  const form = useFormContext();
+  const form = useFormContext<FormValues>();
 
   return (
     <div className="relative mt-2">
@@ -33,6 +34,7 @@ function KeywordInput() {
 
                 <Input
                   {...field}
+                  value={field.value ?? ""}
                   type="search"
                   className="border-0 bg-slate-50 ps-10"
                   placeholder={t("searchKeyword")}
