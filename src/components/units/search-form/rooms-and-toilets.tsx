@@ -15,23 +15,24 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { type FormValues } from "@/components/units/types";
 
 function RoomsAndToilets() {
   const t = useTranslations("units");
 
-  const form = useFormContext();
+  const form = useFormContext<FormValues>();
 
   const roomOptions = [
-    { label: 1, value: "1" },
-    { label: 2, value: "2" },
-    { label: 3, value: "3" },
-    { label: 4, value: "4" },
+    { label: 1, value: 1 },
+    { label: 2, value: 2 },
+    { label: 3, value: 3 },
+    { label: 4, value: 4 },
   ];
 
   const bathroomOptions = [
-    { label: 1, value: "1" },
-    { label: 2, value: "2" },
-    { label: 3, value: "3" },
+    { label: 1, value: 1 },
+    { label: 2, value: 2 },
+    { label: 3, value: 3 },
   ];
 
   return (
@@ -44,7 +45,12 @@ function RoomsAndToilets() {
           name="room_numers"
           render={({ field }) => (
             <FormItem>
-              <Select onValueChange={field.onChange} value={field.value}>
+              <Select
+                onValueChange={(val) => {
+                  field.onChange(val ? Number(val) : null);
+                }}
+                value={field.value ? String(field.value) : undefined}
+              >
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder={t("selectRooms")} />
@@ -60,6 +66,7 @@ function RoomsAndToilets() {
                     className="w-full px-2"
                     variant="secondary"
                     size="sm"
+                    type="button"
                     onClick={() => {
                       field.onChange(null);
                     }}
@@ -79,22 +86,31 @@ function RoomsAndToilets() {
           name="bathroom_numbers"
           render={({ field }) => (
             <FormItem>
-              <Select onValueChange={field.onChange} value={field.value}>
+              <Select
+                onValueChange={(val) => {
+                  field.onChange(val ? Number(val) : null);
+                }}
+                value={field.value ? String(field.value) : undefined}
+              >
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder={t("selectToilets")} />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  {bathroomOptions.map((room) => (
-                    <SelectItem key={room.value} value={room.value.toString()}>
-                      {room.label}
+                  {bathroomOptions.map((bathroom) => (
+                    <SelectItem
+                      key={bathroom.value}
+                      value={bathroom.value.toString()}
+                    >
+                      {bathroom.label}
                     </SelectItem>
                   ))}
                   <Button
                     className="w-full px-2"
                     variant="secondary"
                     size="sm"
+                    type="button"
                     onClick={() => {
                       field.onChange(null);
                     }}

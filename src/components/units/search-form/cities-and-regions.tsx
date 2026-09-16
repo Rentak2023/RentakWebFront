@@ -16,12 +16,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { type FormValues } from "@/components/units/types";
 import { orpc } from "@/lib/orpc";
 
 function CitiesAndRegions() {
   const t = useTranslations("units");
 
-  const form = useFormContext();
+  const form = useFormContext<FormValues>();
 
   const governorate = form.watch("governoment_id");
   const locale = useLocale();
@@ -33,7 +34,7 @@ function CitiesAndRegions() {
   );
   const citiesOptions = orpc.locations.cities.queryOptions({
     input: {
-      governorate_id: governorate,
+      governorate_id: governorate ?? undefined,
       lang: locale,
     },
   });
@@ -54,10 +55,14 @@ function CitiesAndRegions() {
             <FormItem>
               <Select
                 onValueChange={(val) => {
-                  field.onChange(val);
-                  form.setValue("city_id", undefined);
+                  field.onChange(val ? Number(val) : null);
+                  form.setValue("city_id", null, {
+                    shouldDirty: true,
+                    shouldTouch: true,
+                    shouldValidate: true,
+                  });
                 }}
-                value={field.value}
+                value={field.value ? String(field.value) : undefined}
               >
                 <FormControl>
                   <SelectTrigger>
@@ -65,21 +70,26 @@ function CitiesAndRegions() {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  {governorates.map((governorate) => (
+                  {governorates.map((gov) => (
                     <SelectItem
-                      key={governorate.governorate_id}
-                      value={governorate.governorate_id.toString()}
+                      key={gov.governorate_id}
+                      value={gov.governorate_id.toString()}
                     >
-                      {governorate.governorate_name}
+                      {gov.governorate_name}
                     </SelectItem>
                   ))}
                   <Button
                     className="w-full px-2"
                     variant="secondary"
                     size="sm"
+                    type="button"
                     onClick={() => {
-                      field.onChange();
-                      form.setValue("city_id", undefined);
+                      field.onChange(null);
+                      form.setValue("city_id", null, {
+                        shouldDirty: true,
+                        shouldTouch: true,
+                        shouldValidate: true,
+                      });
                     }}
                   >
                     {t("clear")}
@@ -97,7 +107,12 @@ function CitiesAndRegions() {
           name="city_id"
           render={({ field }) => (
             <FormItem>
-              <Select onValueChange={field.onChange} value={field.value}>
+              <Select
+                onValueChange={(val) => {
+                  field.onChange(val ? Number(val) : null);
+                }}
+                value={field.value ? String(field.value) : undefined}
+              >
                 <FormControl>
                   <SelectTrigger disabled={!governorate}>
                     <SelectValue placeholder={t("selectDistrict")} />
@@ -116,8 +131,9 @@ function CitiesAndRegions() {
                     className="w-full px-2"
                     variant="secondary"
                     size="sm"
+                    type="button"
                     onClick={() => {
-                      field.onChange();
+                      field.onChange(null);
                     }}
                   >
                     {t("clear")}

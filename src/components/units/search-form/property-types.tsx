@@ -10,12 +10,13 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { type FormValues } from "@/components/units/types";
 import { orpc } from "@/lib/orpc";
 
 function PropertyTypes() {
   const t = useTranslations("units");
   const locale = useLocale();
-  const form = useFormContext();
+  const form = useFormContext<FormValues>();
 
   const { data: propertyTypes } = useSuspenseQuery(
     orpc.units.propertyTypes.queryOptions({
@@ -26,54 +27,48 @@ function PropertyTypes() {
   return (
     <div>
       <p className="font-medium text-slate-600">{t("propertyType")}</p>
-      <div className="mt-4 flex flex-row gap-4">
+      <div className="mt-4 flex flex-col gap-4">
         <FormField
           control={form.control}
           name="property_type"
-          render={() => (
-            <FormItem className="space-y-4">
-              {propertyTypes.map((item) => (
-                <FormField
-                  key={item.id}
-                  control={form.control}
-                  name="property_type"
-                  render={({ field }) => {
-                    return (
-                      <FormItem
-                        key={item.id}
-                        className="flex items-center gap-3 space-y-0"
-                      >
-                        <FormControl>
-                          <Checkbox
-                            checked={field.value?.includes(item.id.toString())}
-                            onCheckedChange={(checked) => {
-                              if (checked) {
-                                field.onChange([
-                                  ...field.value,
-                                  item.id.toString(),
-                                ]);
-                              } else {
-                                field.onChange(
-                                  field.value?.filter(
-                                    (value: string) =>
-                                      value !== item.id.toString(),
-                                  ),
-                                );
-                              }
-                            }}
-                          />
-                        </FormControl>
-                        <FormLabel className="font-normal">
-                          {item.type_name}
-                        </FormLabel>
-                      </FormItem>
-                    );
-                  }}
-                />
-              ))}
-              <FormMessage />
-            </FormItem>
-          )}
+          render={({ field }) => {
+            const selectedValues: Array<number> = Array.isArray(field.value)
+              ? field.value.map(Number).filter((n) => !Number.isNaN(n))
+              : [];
+
+            return (
+              <FormItem className="space-y-4">
+                {propertyTypes.map((item) => {
+                  const isChecked = selectedValues.includes(item.id);
+                  return (
+                    <FormItem
+                      key={item.id}
+                      className="flex items-center gap-3 space-y-0"
+                    >
+                      <FormControl>
+                        <Checkbox
+                          checked={isChecked}
+                          onCheckedChange={(checked) => {
+                            if (checked) {
+                              field.onChange([...selectedValues, item.id]);
+                            } else {
+                              field.onChange(
+                                selectedValues.filter((id) => id !== item.id),
+                              );
+                            }
+                          }}
+                        />
+                      </FormControl>
+                      <FormLabel className="cursor-pointer font-normal">
+                        {item.type_name}
+                      </FormLabel>
+                    </FormItem>
+                  );
+                })}
+                <FormMessage />
+              </FormItem>
+            );
+          }}
         />
       </div>
     </div>
