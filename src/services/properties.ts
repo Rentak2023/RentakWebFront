@@ -1,8 +1,8 @@
 import { type Locale } from "next-intl";
 import {
   createSearchParamsCache,
-  parseAsArrayOf,
   parseAsInteger,
+  parseAsNativeArrayOf,
   parseAsString,
   parseAsStringEnum,
 } from "nuqs/server";
@@ -33,7 +33,7 @@ export const propertiesQueryParsers = {
   price_from: parseAsInteger.withDefault(0),
   price_to: parseAsInteger.withDefault(200_000),
   finish_type: parseAsInteger,
-  property_type: parseAsArrayOf(parseAsInteger),
+  property_type: parseAsNativeArrayOf(parseAsInteger),
   bathroom_numbers: parseAsInteger,
   room_numers: parseAsInteger,
   page: parseAsInteger.withDefault(1),
