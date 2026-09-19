@@ -1,6 +1,6 @@
 import { skipToken, useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import { useLocale, useTranslations } from "next-intl";
-import { useFormContext } from "react-hook-form";
+import { useFormContext, useWatch } from "react-hook-form";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -24,7 +24,10 @@ function CitiesAndRegions() {
 
   const form = useFormContext<FormValues>();
 
-  const governorate = form.watch("governoment_id");
+  const governorate = useWatch({
+    control: form.control,
+    name: "governoment_id",
+  });
   const locale = useLocale();
 
   const { data: governorates } = useSuspenseQuery(
@@ -41,7 +44,8 @@ function CitiesAndRegions() {
 
   const { data: cities } = useQuery({
     ...citiesOptions,
-    queryFn: governorate ? citiesOptions.queryFn : skipToken,
+    enabled: governorate != null,
+    queryFn: governorate == null ? skipToken : citiesOptions.queryFn,
   });
 
   return (
@@ -55,7 +59,11 @@ function CitiesAndRegions() {
             <FormItem>
               <Select
                 onValueChange={(val) => {
-                  field.onChange(val ? Number(val) : null);
+                  form.setValue("governoment_id", val ? Number(val) : null, {
+                    shouldDirty: true,
+                    shouldTouch: true,
+                    shouldValidate: true,
+                  });
                   form.setValue("city_id", null, {
                     shouldDirty: true,
                     shouldTouch: true,
