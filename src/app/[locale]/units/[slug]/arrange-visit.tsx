@@ -1,4 +1,5 @@
 "use client";
+import { sendGAEvent } from "@next/third-parties/google";
 import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
 import { startOfDay, startOfToday } from "date-fns";
 import { CalendarIcon, Loader2 } from "lucide-react";
@@ -70,6 +71,11 @@ export function ArrangeVisit({ unitId }: ArrangeVisitProps) {
   const onSubmit = form.handleSubmit(async (data) => {
     const res = await arrangeVisitAction(data, unitId, locale);
     if (res.type === "success") {
+      sendGAEvent("event", "book_a_visit", {
+        event_category: "Unit",
+        unit_id: unitId,
+      });
+
       toast({
         title: "Success",
         description: res.data.message,
