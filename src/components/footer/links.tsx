@@ -82,7 +82,7 @@ async function Links() {
         {
           id: "tel",
           url: URLS.tel,
-          text: "(+20) 111111 - 1541",
+          text: "(+20) 1500077777",
           icon: <PhoneIcon className="size-6" />,
         },
       ],
