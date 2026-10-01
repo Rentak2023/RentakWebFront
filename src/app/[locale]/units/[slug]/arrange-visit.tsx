@@ -71,7 +71,7 @@ export function ArrangeVisit({ unitId }: ArrangeVisitProps) {
   const onSubmit = form.handleSubmit(async (data) => {
     const res = await arrangeVisitAction(data, unitId, locale);
     if (res.type === "success") {
-      sendGAEvent("event", "book_a_visit", {
+      sendGAEvent("event", "book_a_visit_submitted", {
         event_category: "Unit",
         unit_id: unitId,
       });
@@ -93,7 +93,15 @@ export function ArrangeVisit({ unitId }: ArrangeVisitProps) {
   return (
     <Dialog modal>
       <DialogTrigger asChild>
-        <Button className="bg-primary-600 hover:bg-primary-600/90 flex-1">
+        <Button
+          onClick={() => {
+            sendGAEvent("event", "book_a_visit_click", {
+              event_category: "Unit",
+              unit_id: unitId,
+            });
+          }}
+          className="bg-primary-600 hover:bg-primary-600/90 flex-1"
+        >
           {t("requestATour")}
         </Button>
       </DialogTrigger>
