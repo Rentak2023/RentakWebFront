@@ -63,11 +63,11 @@ const URLS = {
   //Social Media
   facebook: "https://www.facebook.com/Rentakapp/",
   instagram: "https://www.instagram.com/rentakapp/",
-  whatsapp: "https://wa.me/+201111111541",
+  whatsapp: "https://wa.me/+201500077777",
   linkedin: "https://www.linkedin.com/company/rentak-app/",
   //Contact Info
   mailTo: "mailto:Info@rent-ak.com",
-  tel: "tel:+201111111541",
+  tel: "tel:+201500077777",
   address: `https://maps.app.goo.gl/B28qPdtzBoW9FCmv6`,
 };
 
