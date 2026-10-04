@@ -1,6 +1,6 @@
 "use client";
-import { sendGAEvent } from "@next/third-parties/google";
 import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
+import { sendGAEvent } from "@next/third-parties/google";
 import { startOfDay, startOfToday } from "date-fns";
 import { CalendarIcon, Loader2 } from "lucide-react";
 import { useFormatter, useLocale, useTranslations } from "next-intl";
@@ -48,6 +48,13 @@ type ArrangeVisitProps = {
   unitId: number;
 };
 
+function trackPixelCustomEvent(name: string, options: Record<string, any> = {}) {
+  const fbq = (globalThis as unknown as { fbq?: (...args: Array<any>) => void }).fbq;
+  if (typeof fbq === "function") {
+    fbq("trackCustom", name, options);
+  }
+}
+
 const availableTimeSlots = [
   "10:00 AM To 1:00 PM",
   "1:00 PM To 4:00 PM",
@@ -75,6 +82,10 @@ export function ArrangeVisit({ unitId }: ArrangeVisitProps) {
         event_category: "Unit",
         unit_id: unitId,
       });
+      trackPixelCustomEvent("book_a_visit_submitted", {
+        event_category: "Unit",
+        unit_id: unitId,
+      });
 
       toast({
         title: "Success",
@@ -96,6 +107,10 @@ export function ArrangeVisit({ unitId }: ArrangeVisitProps) {
         <Button
           onClick={() => {
             sendGAEvent("event", "book_a_visit_click", {
+              event_category: "Unit",
+              unit_id: unitId,
+            });
+            trackPixelCustomEvent("book_a_visit_click", {
               event_category: "Unit",
               unit_id: unitId,
             });
