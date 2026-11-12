@@ -30,6 +30,7 @@ import { cn } from "@/lib/utils";
 import { userLoggedInQuery } from "@/queries/user";
 import URLS from "@/shared/urls";
 
+import CountrySwitcher from "./country-switcher";
 import { Button } from "./ui/button";
 import Container from "./ui/container";
 import {
@@ -64,7 +65,12 @@ function NavRight() {
 
   return (
     <div className="flex flex-1 items-center justify-end gap-x-2">
-      <Button asChild className="rounded-full" size="icon">
+      <CountrySwitcher />
+      <Button
+        asChild
+        className="rounded-full border-none bg-orange-600 text-white hover:bg-orange-500 focus-visible:outline-orange-500"
+        size="icon"
+      >
         <Link locale={locale === "en" ? "ar" : "en"} href={pathname}>
           {locale === "en" ? "ع" : "EN"}
         </Link>
@@ -104,7 +110,10 @@ function NavRight() {
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (
-        <Button asChild className="rounded-full">
+        <Button
+          asChild
+          className="rounded-full border-none bg-orange-600 text-white hover:bg-orange-500 focus-visible:outline-orange-500"
+        >
           <Link href="/login-register">Login/Signup</Link>
         </Button>
       )}
@@ -196,11 +205,11 @@ export default function Navbar() {
             {routes.map((route) =>
               route.subRoutes ? (
                 <Popover className="relative" key={route.name}>
-                  <PopoverButton className="focus:outline-hidden focus-visible:outline-primary-600 flex items-center gap-x-1 text-lg/6 font-medium text-slate-700">
+                  <PopoverButton className="focus:outline-hidden focus-visible:outline-primary-600 flex items-center gap-x-1 text-lg/6 font-medium text-blue-800">
                     {route.name}
                     <ChevronDownIcon
                       aria-hidden="true"
-                      className="size-5 flex-none text-slate-400"
+                      className="size-5 flex-none text-blue-800"
                     />
                   </PopoverButton>
 
@@ -215,8 +224,8 @@ export default function Navbar() {
                         className={cn(
                           "block rounded-lg px-3 py-2 text-base/6 hover:bg-slate-50",
                           pathname === item.path
-                            ? "font-semibold text-slate-900"
-                            : "font-medium text-slate-700",
+                            ? "font-semibold text-blue-800"
+                            : "font-medium text-blue-800",
                           item.disabled
                             && "disabled text-slate-400! pointer-events-none",
                         )}
@@ -233,8 +242,8 @@ export default function Navbar() {
                   className={cn(
                     "text-lg/6",
                     pathname === route.path
-                      ? "font-semibold text-slate-900"
-                      : "font-medium text-slate-700",
+                      ? "font-semibold text-blue-800"
+                      : "font-medium text-blue-800",
                   )}
                 >
                   {route.name}
