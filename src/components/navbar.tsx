@@ -66,11 +66,7 @@ function NavRight() {
   return (
     <div className="flex flex-1 items-center justify-end gap-x-2">
       <CountrySwitcher />
-      <Button
-        asChild
-        className="rounded-full border-none bg-orange-600 text-white hover:bg-orange-500 focus-visible:outline-orange-500"
-        size="icon"
-      >
+      <Button asChild className="rounded-full" size="icon">
         <Link locale={locale === "en" ? "ar" : "en"} href={pathname}>
           {locale === "en" ? "ع" : "EN"}
         </Link>
@@ -110,10 +106,7 @@ function NavRight() {
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (
-        <Button
-          asChild
-          className="rounded-full border-none bg-orange-600 text-white hover:bg-orange-500 focus-visible:outline-orange-500"
-        >
+        <Button asChild className="rounded-full">
           <Link href="/login-register">Login/Signup</Link>
         </Button>
       )}
