@@ -5,6 +5,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { type Metadata } from "next";
 import { Noto_Sans_Arabic } from "next/font/google";
 import localFont from "next/font/local";
+import Script from "next/script";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getTranslations } from "next-intl/server";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
@@ -21,7 +22,6 @@ import WhatsappIcon from "./assets/svgs/whatsapp-icon";
 import { NavigationEvents } from "./navigation-events";
 import { Providers } from "./providers";
 import { WebVitals } from "./web-vitals";
-import Script from "next/script";
 
 const notoSans = Noto_Sans_Arabic({
   subsets: ["arabic"],
@@ -67,6 +67,8 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
@@ -90,7 +92,7 @@ export default async function RootLayout(
     >
       <body className="font-sans antialiased">
         {/* Meta Pixel Code */}
-        <Script>
+        <Script id="meta-pixel">
           {`
           !function(f, b, e, v, n, t, s) {
             if (f.fbq) return; n = f.fbq = function() {n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments)};
@@ -105,8 +107,13 @@ export default async function RootLayout(
           `}
         </Script>
         <noscript>
-          <img height="1" width="1" style={{ display: 'none' }}
-            src="https://www.facebook.com/tr?id=3454752011447347&ev=PageView&noscript=1" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            src="https://www.facebook.com/tr?id=3454752011447347&ev=PageView&noscript=1"
+          />
         </noscript>
         {/* End Meta Pixel Code */}
 
