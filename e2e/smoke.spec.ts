@@ -57,7 +57,9 @@ test("unit details page opens", async ({ page }) => {
   const path = await firstUnitPath(page);
   const res = await page.goto(path);
   expect(res?.status()).toBe(200);
-  await expect(page.locator("h1").first()).toBeVisible();
+  // The page has no <h1> today, so check the unit title and breadcrumb.
+  await expect(page).toHaveTitle(/^Rent in .+\| Rentak$/);
+  await expect(page.getByRole("navigation", { name: "breadcrumb" })).toBeVisible();
 });
 
 test("Arabic unit details page opens", async ({ page }) => {
