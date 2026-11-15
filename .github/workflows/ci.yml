@@ -16,7 +16,8 @@ permissions:
 
 jobs:
   checks:
-    runs-on: ubuntu-latest
+    # Pinned: Playwright 1.56 has no browser build for ubuntu-latest (26.04).
+    runs-on: ubuntu-24.04
     timeout-minutes: 30
     env:
       NEXT_TELEMETRY_DISABLED: "1"
