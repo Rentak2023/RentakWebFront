@@ -1,0 +1,65 @@
+name: CI
+
+# Checks every pull request before it is merged. It never deploys anything:
+# deploys still happen only from the main_* workflows on a push to main.
+on:
+  pull_request:
+    branches: [main, development]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    # Pinned: Playwright 1.56 has no browser build for ubuntu-latest (26.04).
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+      PLAYWRIGHT_VERSION: "1.56.1"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.x"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      # Runs after the build, which generates the route types tsc needs.
+      - name: Typecheck
+        run: npm run typecheck
+
+      # Not blocking yet: main has existing lint errors. Make it blocking
+      # (remove continue-on-error) once they are fixed.
+      - name: Lint
+        run: npm run lint
+        continue-on-error: true
+
+      # Installed without saving so package.json and the lockfiles the
+      # deploy workflows use stay unchanged.
+      - name: Install Playwright
+        run: |
+          npm install --no-save @playwright/test@${PLAYWRIGHT_VERSION}
+          npx playwright install --with-deps chromium
+
+      - name: Smoke tests
+        run: npx playwright test
+
+      - name: Upload test report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7

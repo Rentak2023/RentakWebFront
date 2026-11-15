@@ -8,6 +8,8 @@
     "start": "next start",
     "startAzure": "node .next/standalone/server.js",
     "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test:e2e": "playwright test",
     "prepare": "husky",
     "i18n:check": "i18n-check -s en --locales messages -u src -f next-intl"
   },
