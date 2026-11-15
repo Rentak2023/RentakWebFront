@@ -44,3 +44,7 @@ public/_next-video
 
 # next-intl
 messages/*.d.json.ts
+
+# playwright
+/playwright-report/
+/test-results/

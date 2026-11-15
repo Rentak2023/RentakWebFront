@@ -16,7 +16,7 @@ async function FAQ() {
     "instarent",
     "flexible-payments",
     "sodic-badge",
-  ];
+  ] as const;
 
   return (
     <div className="w-full">

@@ -29,7 +29,18 @@ const compat = new FlatCompat({
 });
 
 export default defineConfig(
-  globalIgnores(["build", ".next", ".vercel", "out", "node_modules"]),
+  globalIgnores([
+    "build",
+    ".next",
+    ".vercel",
+    "out",
+    "node_modules",
+    "next-env.d.ts",
+    "playwright-report",
+    "test-results",
+    "e2e",
+    "playwright.config.ts",
+  ]),
   {
     extends: [
       js.configs.recommended,

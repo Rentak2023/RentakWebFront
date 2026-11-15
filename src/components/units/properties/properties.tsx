@@ -95,7 +95,7 @@ function Units() {
   const blurHashQueries = useSuspenseQueries({
     queries: properties.items.map((item) =>
       orpc.placeholder.blurhash.queryOptions({
-        input: { url: item.picture || undefined },
+        input: { url: item.picture },
       }),
     ),
   });
